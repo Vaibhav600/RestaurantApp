@@ -23,7 +23,8 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"/>
+    RetrievedOnInsert="true"
+    IsNotNull="false"/>
   <Attribute
     Name="OrderId"
     Precision="10"
@@ -81,11 +82,12 @@
   <Attribute
     Name="CardNo"
     Precision="19"
-    ColumnName="CARD_NO"
+    ColumnName="&quot;Synchronize:Fix_SQL&quot;"
     SQLType="VARCHAR"
     Type="java.lang.String"
-    ColumnType="VARCHAR2"
-    TableName="G3_PAYMENTS">
+    ColumnType="$none$"
+    IsQueriable="false"
+    IsPersistent="false">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="19"/>
     </DesignTime>
@@ -93,11 +95,12 @@
   <Attribute
     Name="CardHolderName"
     Precision="255"
-    ColumnName="CARD_HOLDER_NAME"
+    ColumnName="&quot;Synchronize:Fix_SQL&quot;"
     SQLType="VARCHAR"
     Type="java.lang.String"
-    ColumnType="VARCHAR2"
-    TableName="G3_PAYMENTS">
+    ColumnType="$none$"
+    IsQueriable="false"
+    IsPersistent="false">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="255"/>
     </DesignTime>
@@ -105,11 +108,12 @@
   <Attribute
     Name="Cvv"
     Precision="4"
-    ColumnName="CVV"
+    ColumnName="&quot;Synchronize:Fix_SQL&quot;"
     SQLType="VARCHAR"
     Type="java.lang.String"
-    ColumnType="VARCHAR2"
-    TableName="G3_PAYMENTS">
+    ColumnType="$none$"
+    IsQueriable="false"
+    IsPersistent="false">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="4"/>
     </DesignTime>
@@ -117,11 +121,12 @@
   <Attribute
     Name="UpiId"
     Precision="100"
-    ColumnName="UPI_ID"
+    ColumnName="&quot;Synchronize:Fix_SQL&quot;"
     SQLType="VARCHAR"
     Type="java.lang.String"
-    ColumnType="VARCHAR2"
-    TableName="G3_PAYMENTS">
+    ColumnType="$none$"
+    IsQueriable="false"
+    IsPersistent="false">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="100"/>
     </DesignTime>
@@ -133,22 +138,41 @@
     AssociationOtherEnd="model.services.assoc.PaymentOrderAssoc.G3PaymentsEO"
     Type="oracle.jbo.server.EntityImpl"
     IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="G3OrdersEO1"
+    Association="model.services.entities.SysC009722913Assoc"
+    AssociationEnd="model.services.entities.SysC009722913Assoc.G3OrdersEO1"
+    AssociationOtherEnd="model.services.entities.SysC009722913Assoc.G3PaymentsEO1"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
   <Key
-    Name="SysC009722482"
-    PrimaryKey="true">
+    Name="G3PaymentsPaymentIdCheck">
     <DesignTime>
-      <Attr Name="_DBObjectName" Value="SYS_C009722482"/>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_checkCondition" Value='"PAYMENT_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+      <Attr Name="_DBObjectName" Value="G3PAYMENTS_PAYMENT_ID_CHECK"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3PaymentsEO.PaymentId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722483">
+    Name="SysC009722912"
+    PrimaryKey="true">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722469"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722912"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.entities.G3PaymentsEO.PaymentId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC009722913">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="SYS_C009722899"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722483"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722913"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3PaymentsEO.OrderId"/>

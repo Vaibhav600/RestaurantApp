@@ -18,11 +18,12 @@
     Entity="model.services.entities.G3MenuItemsEO"/>
   <ViewAttribute
     Name="ItemId"
-    IsNotNull="true"
+    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="ItemId"
     EntityUsage="G3MenuItemsEO"
-    AliasName="ITEM_ID"/>
+    AliasName="ITEM_ID"
+    IsUpdateable="while_insert"/>
   <ViewAttribute
     Name="RestaurantId"
     PrecisionRule="true"
@@ -70,7 +71,9 @@
     PrecisionRule="true"
     EntityAttrName="Rating"
     EntityUsage="G3MenuItemsEO"
-    AliasName="RATING"/>
+    AliasName="RATING"
+    IsQueriable="false"
+    IsPersistent="false"/>
   <ViewLinkAccessor
     Name="G3OrderItemsVO"
     ViewLink="model.services.link.OrderItemMenuItemViewLink"

@@ -23,7 +23,8 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"/>
+    RetrievedOnInsert="true"
+    IsNotNull="false"/>
   <Attribute
     Name="CustomerId"
     ColumnName="CUSTOMER_ID"
@@ -44,9 +45,11 @@
     Name="TableSize"
     ColumnName="TABLE_SIZE"
     SQLType="NUMERIC"
-    Type="java.math.BigDecimal"
+    Type="java.lang.Integer"
     ColumnType="NUMBER"
-    TableName="G3_RESERVATIONS"/>
+    TableName="G3_RESERVATIONS"
+    Precision="5"
+    Scale="0"/>
   <Attribute
     Name="Status"
     Precision="50"
@@ -95,46 +98,47 @@
     Type="oracle.jbo.server.EntityImpl"
     IsUpdateable="true"/>
   <Key
-    Name="SysC009722487"
-    PrimaryKey="true">
+    Name="G3ReservationsReservationIdCheck">
     <DesignTime>
-      <Attr Name="_DBObjectName" Value="SYS_C009722487"/>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_checkCondition" Value='"RESERVATION_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+      <Attr Name="_DBObjectName" Value="G3RESERVATIONS_RESERVATION_ID_"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3ReservationsEO.ReservationId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722488">
+    Name="SysC009722917"
+    PrimaryKey="true">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722462"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722917"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.entities.G3ReservationsEO.ReservationId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC009722918">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="SYS_C009722892"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722488"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722918"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3ReservationsEO.CustomerId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722489">
+    Name="SysC009722919">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722464"/>
+      <Attr Name="_referencedKey" Value="SYS_C009722894"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722489"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722919"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3ReservationsEO.RestaurantId"/>
-    </AttrArray>
-  </Key>
-  <Key
-    Name="fk_G3ReservationsEO">
-    <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722379"/>
-      <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="FK_G3RESERVATIONS_EO"/>
-    </DesignTime>
-    <AttrArray Name="Attributes">
-      <Item Value="model.services.entities.G3ReservationsEO.CustomerId"/>
     </AttrArray>
   </Key>
 </Entity>

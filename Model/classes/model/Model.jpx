@@ -4,7 +4,7 @@
 <JboProject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="Model"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   SeparateXMLFiles="true"
   PackageName="model">
   <DesignTime>
@@ -29,6 +29,7 @@
     <DesignTime>
       <Attr Name="_EO" Value="true"/>
       <Attr Name="_VO" Value="true"/>
+      <Attr Name="_AS" Value="true"/>
     </DesignTime>
   </Containee>
   <Containee

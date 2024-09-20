@@ -18,11 +18,12 @@
     Entity="model.services.entities.G3CouponsEO"/>
   <ViewAttribute
     Name="CouponId"
-    IsNotNull="true"
+    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="CouponId"
     EntityUsage="G3CouponsEO"
-    AliasName="COUPON_ID"/>
+    AliasName="COUPON_ID"
+    IsUpdateable="while_insert"/>
   <ViewAttribute
     Name="RestaurantId"
     PrecisionRule="true"
@@ -65,11 +66,6 @@
     EntityAttrName="UpdatedAt"
     EntityUsage="G3CouponsEO"
     AliasName="UPDATED_AT"/>
-  <ViewLinkAccessor
-    Name="G3RestaurantsVO"
-    ViewLink="model.services.link.CouponRestaurantViewLink"
-    Type="oracle.jbo.Row"
-    IsUpdateable="false"/>
   <ViewLinkAccessor
     Name="G3OrdersVO"
     ViewLink="model.services.link.OrderCouponViewLink"

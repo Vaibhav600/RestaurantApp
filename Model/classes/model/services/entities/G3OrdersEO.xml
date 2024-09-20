@@ -23,7 +23,8 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"/>
+    RetrievedOnInsert="true"
+    IsNotNull="false"/>
   <Attribute
     Name="RestaurantId"
     Precision="10"
@@ -152,69 +153,91 @@
     AssociationOtherEnd="model.services.assoc.OrderUserAssoc.G3OrdersEO"
     Type="oracle.jbo.server.EntityImpl"
     IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="G3PaymentsEO1"
+    Association="model.services.entities.SysC009722913Assoc"
+    AssociationEnd="model.services.entities.SysC009722913Assoc.G3PaymentsEO1"
+    AssociationOtherEnd="model.services.entities.SysC009722913Assoc.G3OrdersEO1"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="G3OrderItemsEO1"
+    Association="model.services.entities.SysC009722910Assoc"
+    AssociationEnd="model.services.entities.SysC009722910Assoc.G3OrderItemsEO1"
+    AssociationOtherEnd="model.services.entities.SysC009722910Assoc.G3OrdersEO1"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <AccessorAttribute
+    Name="G3RatingsReviewsEO1"
+    Association="model.services.entities.SysC009722916Assoc"
+    AssociationEnd="model.services.entities.SysC009722916Assoc.G3RatingsReviewsEO1"
+    AssociationOtherEnd="model.services.entities.SysC009722916Assoc.G3OrdersEO1"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <Key
-    Name="SysC009722469"
-    PrimaryKey="true">
+    Name="G3OrdersOrderIdCheck">
     <DesignTime>
-      <Attr Name="_DBObjectName" Value="SYS_C009722469"/>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_checkCondition" Value='"ORDER_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+      <Attr Name="_DBObjectName" Value="G3ORDERS_ORDER_ID_CHECK"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3OrdersEO.OrderId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722470">
+    Name="SysC009722899"
+    PrimaryKey="true">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722464"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722899"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.entities.G3OrdersEO.OrderId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC009722900">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="SYS_C009722894"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722470"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722900"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3OrdersEO.RestaurantId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722471">
+    Name="SysC009722901">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722462"/>
+      <Attr Name="_referencedKey" Value="SYS_C009722892"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722471"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722901"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3OrdersEO.CustomerId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722472">
+    Name="SysC009722902">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722468"/>
+      <Attr Name="_referencedKey" Value="SYS_C009722898"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722472"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722902"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3OrdersEO.DeliveryAgentId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722473">
+    Name="SysC009722903">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722466"/>
+      <Attr Name="_referencedKey" Value="SYS_C009722896"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722473"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722903"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3OrdersEO.CouponId"/>
-    </AttrArray>
-  </Key>
-  <Key
-    Name="fk_G3OrdersEO">
-    <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722379"/>
-      <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="FK_G3ORDERS_EO"/>
-    </DesignTime>
-    <AttrArray Name="Attributes">
-      <Item Value="model.services.entities.G3OrdersEO.CustomerId"/>
     </AttrArray>
   </Key>
 </Entity>

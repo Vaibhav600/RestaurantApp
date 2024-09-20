@@ -18,11 +18,12 @@
     Entity="model.services.entities.G3PaymentsEO"/>
   <ViewAttribute
     Name="PaymentId"
-    IsNotNull="true"
+    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="PaymentId"
     EntityUsage="G3PaymentsEO"
-    AliasName="PAYMENT_ID"/>
+    AliasName="PAYMENT_ID"
+    IsUpdateable="while_insert"/>
   <ViewAttribute
     Name="OrderId"
     PrecisionRule="true"
@@ -64,23 +65,31 @@
     PrecisionRule="true"
     EntityAttrName="CardNo"
     EntityUsage="G3PaymentsEO"
-    AliasName="CARD_NO"/>
+    AliasName="CARD_NO"
+    IsQueriable="false"
+    IsPersistent="false"/>
   <ViewAttribute
     Name="CardHolderName"
     PrecisionRule="true"
     EntityAttrName="CardHolderName"
     EntityUsage="G3PaymentsEO"
-    AliasName="CARD_HOLDER_NAME"/>
+    AliasName="CARD_HOLDER_NAME"
+    IsQueriable="false"
+    IsPersistent="false"/>
   <ViewAttribute
     Name="Cvv"
     PrecisionRule="true"
     EntityAttrName="Cvv"
     EntityUsage="G3PaymentsEO"
-    AliasName="CVV"/>
+    AliasName="CVV"
+    IsQueriable="false"
+    IsPersistent="false"/>
   <ViewAttribute
     Name="UpiId"
     PrecisionRule="true"
     EntityAttrName="UpiId"
     EntityUsage="G3PaymentsEO"
-    AliasName="UPI_ID"/>
+    AliasName="UPI_ID"
+    IsQueriable="false"
+    IsPersistent="false"/>
 </ViewObject>

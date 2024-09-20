@@ -37,7 +37,7 @@
     Entity="model.services.entities.G3DeliveryAgentEO"/>
   <ViewAttribute
     Name="AgentId"
-    IsNotNull="true"
+    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="AgentId"
     EntityUsage="G3DeliveryAgentEO"

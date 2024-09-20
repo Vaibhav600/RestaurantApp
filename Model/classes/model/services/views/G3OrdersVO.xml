@@ -48,7 +48,7 @@
     Entity="model.services.entities.G3OrdersEO"/>
   <ViewAttribute
     Name="OrderId"
-    IsNotNull="true"
+    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="OrderId"
     EntityUsage="G3OrdersEO"

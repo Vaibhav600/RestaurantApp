@@ -65,23 +65,33 @@ public class RegisterBean {
         }
     }
     public String registerUser() {
-        if(password.equals(confirm_password)){
-            String encryptedPassword = encryptPassword(password);
-            ApplicationModule am = getApplicationModule();
+        try {
+            if (password.equals(confirm_password)) {
+                String encryptedPassword = encryptPassword(password);
+                ApplicationModule am = getApplicationModule();
+                
+                
+                System.out.println("Inside Application Module *******");
+                if (am != null) {
+                    ViewObject vo = am.findViewObject(usersVO_name);
+                    createUser(am, vo, email, encryptedPassword);
+                    FacesContext.getCurrentInstance().addMessage(null,
+                                                                 new FacesMessage("User registration successfully"));
+                    return constants.getLogin_page_navigation();
 
-            if (am != null) {
-                ViewObject vo = am.findViewObject(usersVO_name);
-                createUser(am, vo, email, encryptedPassword);
+                } else {
+                    System.out.println("Application Module is null");
+                }
             } else {
-                System.out.println("Application Module is null");
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Password Doesn't Match"));
+                return constants.getError_page_navigation();
             }
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User registration successfully"));
-            return constants.getLogin_page_navigation();
+        } catch (Exception e) {
+            // TODO: Add catch code
+            e.printStackTrace();
+            System.out.println(e);
         }
-        else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Password Doesn't Match"));
-            return constants.getError_page_navigation();
-        }
+        return null;
     }
 
     public void setPassword(String password) {

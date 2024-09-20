@@ -46,7 +46,7 @@
     Entity="model.services.entities.G3RestaurantsEO"/>
   <ViewAttribute
     Name="RestaurantId"
-    IsNotNull="true"
+    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="RestaurantId"
     EntityUsage="G3RestaurantsEO"

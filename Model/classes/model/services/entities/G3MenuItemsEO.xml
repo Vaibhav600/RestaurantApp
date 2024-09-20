@@ -23,7 +23,8 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"/>
+    RetrievedOnInsert="true"
+    IsNotNull="false"/>
   <Attribute
     Name="RestaurantId"
     Precision="10"
@@ -92,11 +93,12 @@
     TableName="G3_MENU_ITEMS"/>
   <Attribute
     Name="Rating"
-    ColumnName="RATING"
+    ColumnName="&quot;Synchronize:Fix_SQL&quot;"
     SQLType="NUMERIC"
     Type="java.math.BigDecimal"
-    ColumnType="NUMBER"
-    TableName="G3_MENU_ITEMS"/>
+    ColumnType="$none$"
+    IsQueriable="false"
+    IsPersistent="false"/>
   <AccessorAttribute
     Name="G3RestaurantsEO"
     Association="model.services.assoc.MenuItemRestaurantAssoc"
@@ -111,22 +113,41 @@
     AssociationOtherEnd="model.services.assoc.OrderItemMenuItemAssoc.G3MenuItemsEO"
     Type="oracle.jbo.server.EntityImpl"
     IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="G3RestaurantsEO1"
+    Association="model.services.entities.SysC009722908Assoc"
+    AssociationEnd="model.services.entities.SysC009722908Assoc.G3RestaurantsEO1"
+    AssociationOtherEnd="model.services.entities.SysC009722908Assoc.G3MenuItemsEO1"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
   <Key
-    Name="SysC009722477"
-    PrimaryKey="true">
+    Name="G3MenuItemsItemIdCheck">
     <DesignTime>
-      <Attr Name="_DBObjectName" Value="SYS_C009722477"/>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_checkCondition" Value='"ITEM_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+      <Attr Name="_DBObjectName" Value="G3MENU_ITEMS_ITEM_ID_CHECK"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3MenuItemsEO.ItemId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722478">
+    Name="SysC009722907"
+    PrimaryKey="true">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722464"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722907"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.entities.G3MenuItemsEO.ItemId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC009722908">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="SYS_C009722894"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722478"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722908"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3MenuItemsEO.RestaurantId"/>

@@ -18,7 +18,6 @@
       <Attr Name="_isUpdateable" Value="true"/>
       <Attr Name="_aggregation" Value="0"/>
       <Attr Name="_finderName" Value="G3RestaurantsEO"/>
-      <Attr Name="_foreignKey" Value="model.services.entities.G3RestaurantsEO.SysC009722464"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3RestaurantsEO.RestaurantId"/>
@@ -32,7 +31,6 @@
       <Attr Name="_isUpdateable" Value="true"/>
       <Attr Name="_aggregation" Value="0"/>
       <Attr Name="_finderName" Value="G3MenuItemsEO"/>
-      <Attr Name="_foreignKey" Value="model.services.entities.G3MenuItemsEO.SysC009722478"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3MenuItemsEO.RestaurantId"/>

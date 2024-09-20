@@ -23,7 +23,7 @@
     Entity="model.services.entities.G3UsersEO"/>
   <ViewAttribute
     Name="UserId"
-    IsNotNull="true"
+    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="UserId"
     EntityUsage="G3UsersEO"

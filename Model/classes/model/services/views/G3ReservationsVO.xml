@@ -22,7 +22,7 @@
     Entity="model.services.entities.G3ReservationsEO"/>
   <ViewAttribute
     Name="ReservationId"
-    IsNotNull="true"
+    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="ReservationId"
     EntityUsage="G3ReservationsEO"
