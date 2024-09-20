@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Association SYSTEM "jbo_03_01.dtd">
+<!---->
+<Association
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="SysC009722895Assoc"
+  Version="12.2.1.22.48"
+  InheritPersonalization="merge">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <AssociationEnd
+    Name="G3UsersEO1"
+    Cardinality="1"
+    Source="true"
+    Owner="model.services.entities.G3UsersEO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="G3UsersEO1"/>
+      <Attr Name="_foreignKey" Value="model.services.entities.G3UsersEO.SysC009722892"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.entities.G3UsersEO.UserId"/>
+    </AttrArray>
+  </AssociationEnd>
+  <AssociationEnd
+    Name="G3RestaurantsEO1"
+    Cardinality="-1"
+    Owner="model.services.entities.G3RestaurantsEO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_aggregation" Value="0"/>
+      <Attr Name="_finderName" Value="G3RestaurantsEO1"/>
+      <Attr Name="_foreignKey" Value="model.services.entities.G3RestaurantsEO.SysC009722895"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.entities.G3RestaurantsEO.OwnerId"/>
+    </AttrArray>
+  </AssociationEnd>
+</Association>
