@@ -69,8 +69,8 @@ public class LoginBean {
                 Row userRow = usersVO.first();
                 String storedPassword = (String) userRow.getAttribute("Password");
                 
-                // if (storedPassword.equals(password)) {
-                if (storedPassword.equals(encryptPassword(password))) {
+                if (storedPassword.equals(password)) {
+                // if (storedPassword.equals(encryptPassword(password))) {
                     String role = (String) userRow.getAttribute("Role");
                     System.out.println(role);
                     if(role.equals("owner")) {
