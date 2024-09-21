@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.couponBox {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.couponLayout {
+    margin: 10px;
+}
+
+.couponCard {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.couponDescription {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.couponDiscount {
+    color: green;
+    font-size: 14px;
+}
+
+.couponValidFrom,
+.couponValidTo {
+    font-size: 12px;
+    color: #777;
+}
+
+.useCouponButton {
+    background-color: #007bff;
+    color: white;
+}

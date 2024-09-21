@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3CouponsVO"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge"
   SelectListFlags="1"
   FromListFlags="1"
@@ -12,18 +12,11 @@
   BindingStyle="OracleName"
   CustomQuery="false"
   SelectAllAttributes="false"
-  PageIterMode="Full">
+  PageIterMode="Full"
+  AccessMode="DEFAULT">
   <EntityUsage
     Name="G3CouponsEO"
     Entity="model.services.entities.G3CouponsEO"/>
-  <ViewAttribute
-    Name="CouponId"
-    IsNotNull="true"
-    PrecisionRule="true"
-    EntityAttrName="CouponId"
-    EntityUsage="G3CouponsEO"
-    AliasName="COUPON_ID"
-    IsUpdateable="while_insert"/>
   <ViewAttribute
     Name="RestaurantId"
     PrecisionRule="true"
@@ -66,6 +59,13 @@
     EntityAttrName="UpdatedAt"
     EntityUsage="G3CouponsEO"
     AliasName="UPDATED_AT"/>
+  <ViewAttribute
+    Name="CouponId"
+    PrecisionRule="true"
+    EntityAttrName="CouponId"
+    EntityUsage="G3CouponsEO"
+    AliasName="COUPON_ID"
+    IsUpdateable="while_insert"/>
   <ViewLinkAccessor
     Name="G3OrdersVO"
     ViewLink="model.services.link.OrderCouponViewLink"

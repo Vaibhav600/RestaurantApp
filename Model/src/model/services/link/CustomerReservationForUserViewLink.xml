@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CustomerReservationForUserViewLink"
+  Version="12.2.1.22.48"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.services.link.CustomerReservationForUserViewLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="G3RestaurantsVO"
+    Cardinality="1"
+    Source="true"
+    Owner="model.services.views.G3RestaurantsVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="G3RestaurantsVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.views.G3RestaurantsVO.RestaurantId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="ReservationOfCustomerForRestVO"
+    Cardinality="-1"
+    Owner="model.services.views.ReservationOfCustomerForRestVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="ReservationOfCustomerForRestVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.views.ReservationOfCustomerForRestVO.RestaurantId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

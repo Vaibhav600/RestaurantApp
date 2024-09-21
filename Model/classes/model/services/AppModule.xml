@@ -69,13 +69,38 @@
     ViewObjectName="model.services.views.RestaurantReviewVO"/>
   <ViewUsage
     Name="G3MenuItemsVO"
-    ViewObjectName="model.services.views.G3MenuItemsVO"/>
+    ViewObjectName="model.services.views.G3MenuItemsVO">
+    <ViewCriteriaUsage
+      Name="G3MenuItemsVOCriteria"
+      FullName="model.services.views.G3MenuItemsVO.G3MenuItemsVOCriteria"/>
+  </ViewUsage>
   <ViewUsage
     Name="MenuItemsForRestaurantForUserVO"
     ViewObjectName="model.services.views.G3MenuItemsVO"/>
   <ViewUsage
     Name="OrderStatusListVO"
     ViewObjectName="model.services.views.OrderStatusListVO"/>
+  <ViewUsage
+    Name="G3CouponsVO"
+    ViewObjectName="model.services.views.G3CouponsVO"/>
+  <ViewUsage
+    Name="CustomerFeedbackToRestaurantVO"
+    ViewObjectName="model.services.views.CustomerFeedbackToRestaurantVO"/>
+  <ViewUsage
+    Name="CustomerFeedbackToRestaurantVO1"
+    ViewObjectName="model.services.views.CustomerFeedbackToRestaurantVO"/>
+  <ViewUsage
+    Name="ReservationOfCustomerForRestVO"
+    ViewObjectName="model.services.views.ReservationOfCustomerForRestVO"/>
+  <ViewUsage
+    Name="ReservationOfCustomerForRestForUserVO"
+    ViewObjectName="model.services.views.ReservationOfCustomerForRestVO"/>
+  <ViewUsage
+    Name="TotalReservedSeatsOfRestaurantForUserVO"
+    ViewObjectName="model.services.views.TotalReservedSeatsOfRestaurantVO"/>
+  <ViewUsage
+    Name="TotalReservedSeatsOfRestaurantVO1"
+    ViewObjectName="model.services.views.TotalReservedSeatsOfRestaurantVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -135,5 +160,23 @@
     ViewLinkObjectName="model.services.link.MenuItemRestaurantViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantForUser"
     DstViewUsageName="model.services.AppModule.MenuItemsForRestaurantForUserVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="CustomerRestaurantViewLink1"
+    ViewLinkObjectName="model.services.link.CustomerRestaurantViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
+    DstViewUsageName="model.services.AppModule.CustomerFeedbackToRestaurantVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="CustomerReservationForUserViewLink1"
+    ViewLinkObjectName="model.services.link.CustomerReservationForUserViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
+    DstViewUsageName="model.services.AppModule.ReservationOfCustomerForRestForUserVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="TotalReservedSeatsOfRestaurantForUserViewLink"
+    ViewLinkObjectName="model.services.link.TotalReservedSeatsOfRestaurantViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
+    DstViewUsageName="model.services.AppModule.TotalReservedSeatsOfRestaurantForUserVO"
     Reversed="false"/>
 </AppModule>

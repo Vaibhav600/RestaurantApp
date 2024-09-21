@@ -198,6 +198,21 @@
     ViewLink="model.services.link.RestaurantReviewViewLink"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="CustomerFeedbackToRestaurantVO"
+    ViewLink="model.services.link.CustomerRestaurantViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="ReservationOfCustomerForRestVO"
+    ViewLink="model.services.link.CustomerReservationForUserViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="TotalReservedSeatsOfRestaurantVO"
+    ViewLink="model.services.link.TotalReservedSeatsOfRestaurantViewLink"
+    Type="oracle.jbo.Row"
+    IsUpdateable="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>

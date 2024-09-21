@@ -1,7 +1,10 @@
 package com.example.beans;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import javax.faces.context.FacesContext;
 
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCBindingContainer;
@@ -41,8 +44,47 @@ public class RestaurantMenuBean {
         return null;
     }
     
+    public boolean validations(){
+        if (price == null || price.doubleValue() <= 0) {
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Price must be greater than 0."));
+            return true;
+        }
+        
+        // Cuisine validation
+        if (cuisine == null || cuisine.trim().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Cuisine is required."));
+            return true;
+        }
+
+        // Dish Name validation
+        if (itemName == null || itemName.trim().isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Dish Name is required."));
+            return true;
+        }
+        if (itemName.length() > 100) {  // Assuming max length of 100 characters for the dish name
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Dish Name cannot exceed 100 characters."));
+            return true;
+        }
+
+        // Availability validation (assuming it is a Boolean type, otherwise adjust as necessary)
+        if (availability == null) {
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Availability must be specified (Yes/No)."));
+            return true;
+        }
+        return false;
+    }
+    
     public String addMenuItem(){
         try{
+           boolean isError =  validations();
+            if(isError){
+                return null;
+            }
         ApplicationModule am = getApplicationModule();
         ViewObject menu_restaurants_vo = am.findViewObject(constants.getMenu_restaurant_vo());
         ViewObject restaurants_vo = am.findViewObject(constants.getRestaurant_for_user_vo());

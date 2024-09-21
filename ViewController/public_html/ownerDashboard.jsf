@@ -126,39 +126,67 @@
                     </af:panelBox>
                     <af:panelBox text="Menu Items" id="pb2">
                         <f:facet name="toolbar"/>
-                        <af:table value="#{bindings.MenuItemsForRestaurantForUserVO.collectionModel}" var="row"
-                                  rows="#{bindings.MenuItemsForRestaurantForUserVO.rangeSize}"
-                                  emptyText="#{bindings.MenuItemsForRestaurantForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                  rowBandingInterval="0"
-                                  fetchSize="#{bindings.MenuItemsForRestaurantForUserVO.rangeSize}" id="t3">
-                            <af:column headerText="#{bindings.MenuItemsForRestaurantForUserVO.hints.DishName.label}"
-                                       id="c19">
-                                <af:outputText value="#{row.bindings.DishName.inputValue}"
-                                               shortDesc="#{bindings.MenuItemsForRestaurantForUserVO.hints.DishName.tooltip}"
-                                               id="it13"/>
-                            </af:column>
-                            <af:column headerText="#{bindings.MenuItemsForRestaurantForUserVO.hints.Price.label}"
-                                       id="c20">
-                                <af:outputText value="#{row.bindings.Price.inputValue}"
-                                               shortDesc="#{bindings.MenuItemsForRestaurantForUserVO.hints.Price.tooltip}"
-                                               id="it14">
-                                    <af:convertNumber groupingUsed="false"
-                                                      pattern="#{bindings.MenuItemsForRestaurantForUserVO.hints.Price.format}"/>
-                                </af:outputText>
-                            </af:column>
-                            <af:column headerText="#{bindings.MenuItemsForRestaurantForUserVO.hints.Availability.label}"
-                                       id="c21">
-                                <af:outputText value="#{row.bindings.Availability.inputValue}"
-                                               shortDesc="#{bindings.MenuItemsForRestaurantForUserVO.hints.Availability.tooltip}"
-                                               id="it15"/>
-                            </af:column>
-                            <af:column headerText="#{bindings.MenuItemsForRestaurantForUserVO.hints.Cuisine.label}"
-                                       id="c22">
-                                <af:outputText value="#{row.bindings.Cuisine.inputValue}"
-                                               shortDesc="#{bindings.MenuItemsForRestaurantForUserVO.hints.Cuisine.tooltip}"
-                                               id="it16"/>
-                            </af:column>
-                        </af:table>
+                        <af:listView value="#{bindings.MenuItemsForRestaurantForUserVO.collectionModel}" var="item"
+                                     emptyText="#{bindings.MenuItemsForRestaurantForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                     fetchSize="#{bindings.MenuItemsForRestaurantForUserVO.rangeSize}" id="lv4">
+                            <af:listItem id="li4">
+                                <af:panelGridLayout id="pgl9">
+                                    <af:gridRow marginTop="5px" height="auto" id="gr10">
+                                        <af:gridCell marginStart="5px" width="24%" id="gc17">
+                                            <af:outputText value="#{item.DishName}"
+                                                           shortDesc="#{bindings.MenuItemsForRestaurantForUserVO.hints.DishName.tooltip}"
+                                                           id="ot7" inlineStyle="font-size:large; font-weight:bold;"/>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc18">
+                                            <af:outputText value="#{item.Price}"
+                                                           shortDesc="#{bindings.MenuItemsForRestaurantForUserVO.hints.Price.tooltip}"
+                                                           id="ot8">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.MenuItemsForRestaurantForUserVO.hints.Price.format}"/>
+                                            </af:outputText>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="13%" marginEnd="5px" id="gc19">
+                                            <af:outputText value="#{item.ItemId}"
+                                                           shortDesc="#{bindings.MenuItemsForRestaurantForUserVO.hints.ItemId.tooltip}"
+                                                           id="ot11" rendered="false">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.MenuItemsForRestaurantForUserVO.hints.ItemId.format}"/>
+                                            </af:outputText>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" id="gr11">
+                                        <af:gridCell marginStart="5px" width="24%" id="gc20">
+                                            <af:panelLabelAndMessage label="Availability" id="plam8">
+                                                <af:outputText value="#{item.Availability}"
+                                                               shortDesc="#{bindings.MenuItemsForRestaurantForUserVO.hints.Availability.tooltip}"
+                                                               id="ot20"/>
+                                            </af:panelLabelAndMessage>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc21"/>
+                                        <af:gridCell marginStart="5px" width="13%" marginEnd="5px" id="gc22"/>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr12">
+                                        <af:gridCell marginStart="5px" width="24%" id="gc23">
+                                            <af:panelLabelAndMessage label="Cuisine" id="plam9">
+                                                <af:outputText value="#{item.Cuisine}"
+                                                               shortDesc="#{bindings.MenuItemsForRestaurantForUserVO.hints.Cuisine.tooltip}"
+                                                               id="ot43"/>
+                                            </af:panelLabelAndMessage>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc24">
+                                            <af:button text="Remove" id="b5"
+                                                       disabled="#{!bindings.Delete.enabled}"
+                                                       action="#{editMEnuItemBean.edit}">
+                                                <af:setPropertyListener from="#{item.ItemId}"
+                                                                        to="#{editMEnuItemBean.menuItem}"
+                                                                        type="action"/>
+                                            </af:button>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="13%" marginEnd="5px" id="gc25"/>
+                                    </af:gridRow>
+                                </af:panelGridLayout>
+                            </af:listItem>
+                        </af:listView>
                     </af:panelBox>
                 </af:showDetailItem>
                 <af:showDetailItem id="order_status" text="Order Status">
@@ -277,117 +305,85 @@
                     <af:button text="Save" id="b3" partialTrigger="orderStatusChoice" actionListener="#{orderForRestaurantBean.commit}" />
                 </af:showDetailItem>
                 <af:showDetailItem id="reservation" text="Reservation">
-                    <af:table value="#{bindings.ReservationForRestaurantForUser.collectionModel}" var="row"
-                              rows="#{bindings.ReservationForRestaurantForUser.rangeSize}"
-                              emptyText="#{bindings.ReservationForRestaurantForUser.viewable ? 'No data to display.' : 'Access Denied.'}"
-                              rowBandingInterval="0"
-                              selectedRowKeys="#{bindings.ReservationForRestaurantForUser.collectionModel.selectedRow}"
-                              selectionListener="#{bindings.ReservationForRestaurantForUser.collectionModel.makeCurrent}"
-                              rowSelection="single" fetchSize="#{bindings.ReservationForRestaurantForUser.rangeSize}"
-                              filterModel="#{bindings.ReservationForRestaurantForUserQuery.queryDescriptor}"
-                              filterVisible="true"
-                              queryListener="#{bindings.ReservationForRestaurantForUserQuery.processQuery}"
-                              varStatus="vs" id="t1">
-                        <af:column sortProperty="#{bindings.ReservationForRestaurantForUser.hints.ReservationId.name}"
-                                   filterable="true" sortable="true"
-                                   headerText="#{bindings.ReservationForRestaurantForUser.hints.ReservationId.label}"
-                                   id="c1">
-                            <af:outputText value="#{row.ReservationId}"
-                                           shortDesc="#{bindings.ReservationForRestaurantForUser.hints.ReservationId.tooltip}"
-                                           id="ot1">
-                                <af:convertNumber groupingUsed="false"
-                                                  pattern="#{bindings.ReservationForRestaurantForUser.hints.ReservationId.format}"/>
-                            </af:outputText>
-                        </af:column>
-                        <af:column sortProperty="#{bindings.ReservationForRestaurantForUser.hints.CustomerId.name}"
-                                   filterable="true" sortable="true"
-                                   headerText="#{bindings.ReservationForRestaurantForUser.hints.CustomerId.label}"
-                                   id="c2">
-                            <af:outputText value="#{row.CustomerId}"
-                                           shortDesc="#{bindings.ReservationForRestaurantForUser.hints.CustomerId.tooltip}"
-                                           id="ot2">
-                                <af:convertNumber groupingUsed="false"
-                                                  pattern="#{bindings.ReservationForRestaurantForUser.hints.CustomerId.format}"/>
-                            </af:outputText>
-                        </af:column>
-                        <af:column sortProperty="#{bindings.ReservationForRestaurantForUser.hints.RestaurantId.name}"
-                                   filterable="true" sortable="true"
-                                   headerText="#{bindings.ReservationForRestaurantForUser.hints.RestaurantId.label}"
-                                   id="c3">
-                            <af:outputText value="#{row.RestaurantId}"
-                                           shortDesc="#{bindings.ReservationForRestaurantForUser.hints.RestaurantId.tooltip}"
-                                           id="ot3">
-                                <af:convertNumber groupingUsed="false"
-                                                  pattern="#{bindings.ReservationForRestaurantForUser.hints.RestaurantId.format}"/>
-                            </af:outputText>
-                        </af:column>
-                        <af:column sortProperty="#{bindings.ReservationForRestaurantForUser.hints.TableSize.name}"
-                                   filterable="true" sortable="true"
-                                   headerText="#{bindings.ReservationForRestaurantForUser.hints.TableSize.label}"
-                                   id="c4">
-                            <af:outputText value="#{row.TableSize}"
-                                           shortDesc="#{bindings.ReservationForRestaurantForUser.hints.TableSize.tooltip}"
-                                           id="ot4">
-                                <af:convertNumber groupingUsed="false"
-                                                  pattern="#{bindings.ReservationForRestaurantForUser.hints.TableSize.format}"/>
-                            </af:outputText>
-                        </af:column>
-                        <af:column sortProperty="#{bindings.ReservationForRestaurantForUser.hints.Status.name}"
-                                   filterable="true" sortable="true"
-                                   headerText="#{bindings.ReservationForRestaurantForUser.hints.Status.label}" id="c5">
-                            <af:outputText value="#{row.Status}"
-                                           shortDesc="#{bindings.ReservationForRestaurantForUser.hints.Status.tooltip}"
-                                           id="ot5"/>
-                        </af:column>
-                        <af:column sortProperty="#{bindings.ReservationForRestaurantForUser.hints.ReservationTime.name}"
-                                   filterable="true" sortable="true"
-                                   headerText="#{bindings.ReservationForRestaurantForUser.hints.ReservationTime.label}"
-                                   id="c6">
-                            <f:facet name="filter">
-                                <af:inputDate value="#{bindings.ReservationForRestaurantForUserQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.ReservationTime.value}"
-                                              id="id3">
-                                    <af:convertDateTime pattern="#{bindings.ReservationForRestaurantForUser.hints.ReservationTime.format}"/>
-                                </af:inputDate>
-                            </f:facet>
-                            <af:outputText value="#{row.ReservationTime}"
-                                           shortDesc="#{bindings.ReservationForRestaurantForUser.hints.ReservationTime.tooltip}"
-                                           id="ot6">
-                                <af:convertDateTime pattern="#{bindings.ReservationForRestaurantForUser.hints.ReservationTime.format}"/>
-                            </af:outputText>
-                        </af:column>
-                        <af:column sortProperty="#{bindings.ReservationForRestaurantForUser.hints.CreatedAt.name}"
-                                   filterable="true" sortable="true"
-                                   headerText="#{bindings.ReservationForRestaurantForUser.hints.CreatedAt.label}"
-                                   id="c7">
-                            <f:facet name="filter">
-                                <af:inputDate value="#{bindings.ReservationForRestaurantForUserQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.CreatedAt.value}"
-                                              id="id4">
-                                    <af:convertDateTime pattern="#{bindings.ReservationForRestaurantForUser.hints.CreatedAt.format}"/>
-                                </af:inputDate>
-                            </f:facet>
-                            <af:outputText value="#{row.CreatedAt}"
-                                           shortDesc="#{bindings.ReservationForRestaurantForUser.hints.CreatedAt.tooltip}"
-                                           id="ot7">
-                                <af:convertDateTime pattern="#{bindings.ReservationForRestaurantForUser.hints.CreatedAt.format}"/>
-                            </af:outputText>
-                        </af:column>
-                        <af:column sortProperty="#{bindings.ReservationForRestaurantForUser.hints.UpdatedAt.name}"
-                                   filterable="true" sortable="true"
-                                   headerText="#{bindings.ReservationForRestaurantForUser.hints.UpdatedAt.label}"
-                                   id="c8">
-                            <f:facet name="filter">
-                                <af:inputDate value="#{bindings.ReservationForRestaurantForUserQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.UpdatedAt.value}"
-                                              id="id5">
-                                    <af:convertDateTime pattern="#{bindings.ReservationForRestaurantForUser.hints.UpdatedAt.format}"/>
-                                </af:inputDate>
-                            </f:facet>
-                            <af:outputText value="#{row.UpdatedAt}"
-                                           shortDesc="#{bindings.ReservationForRestaurantForUser.hints.UpdatedAt.tooltip}"
-                                           id="ot8">
-                                <af:convertDateTime pattern="#{bindings.ReservationForRestaurantForUser.hints.UpdatedAt.format}"/>
-                            </af:outputText>
-                        </af:column>
-                    </af:table>
+                    <af:panelBox text="Availibility" id="pb6">
+                        <f:facet name="toolbar"/>
+                        <af:panelGridLayout id="pgl8">
+                            <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr9">
+                                <af:gridCell marginStart="5px" width="40%" id="gc15">
+                                    <af:panelFormLayout id="pfl5">
+                                        <af:panelLabelAndMessage label="#{bindings.TotalSeats.hints.label}" id="plam5">
+                                            <af:outputText value="#{bindings.TotalSeats.inputValue}"
+                                                           shortDesc="#{bindings.TotalSeats.hints.tooltip}" id="ot4">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.TotalSeats.format}"/>
+                                            </af:outputText>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelLabelAndMessage label="#{bindings.TotalReservedSeats.hints.label}"
+                                                                 id="plam6">
+                                            <af:outputText value="#{bindings.TotalReservedSeats.inputValue}"
+                                                           shortDesc="#{bindings.TotalReservedSeats.hints.tooltip}"
+                                                           id="ot5">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.TotalReservedSeats.format}"/>
+                                            </af:outputText>
+                                        </af:panelLabelAndMessage>
+                                        <af:panelLabelAndMessage label="#{bindings.AvailableSeats.hints.label}"
+                                                                 id="plam7">
+                                            <af:outputText value="#{bindings.AvailableSeats.inputValue}"
+                                                           shortDesc="#{bindings.AvailableSeats.hints.tooltip}"
+                                                           id="ot6">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.AvailableSeats.format}"/>
+                                            </af:outputText>
+                                        </af:panelLabelAndMessage>
+                                    </af:panelFormLayout>
+                                </af:gridCell>
+                                <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc16">
+                                    <dvt:statusMeterGauge id="statusMeterGauge1" orientation="circular"
+                                                          inlineStyle="width:100px;height:100px"
+                                                          value="#{bindings.TotalReservedSeats.inputValue}"
+                                                          maximum="#{bindings.TotalSeats.inputValue}"
+                                                          thresholdDisplay="onIndicator"
+                                                          title="Available: #{bindings.AvailableSeats.inputValue}">
+                                        <dvt:gaugeThreshold id="thr1" color="#d62800"/>
+                                        <dvt:gaugeMetricLabel rendered="true" id="gml2"/>
+                                    </dvt:statusMeterGauge>
+                                </af:gridCell>
+                            </af:gridRow>
+                        </af:panelGridLayout>
+                    </af:panelBox>
+                    <af:panelBox text="Bookings" id="pb5">
+                        <f:facet name="toolbar"/>
+                        <af:table value="#{bindings.ReservationOfCustomerForRestForUserVO.collectionModel}" var="row"
+                                  rows="#{bindings.ReservationOfCustomerForRestForUserVO.rangeSize}"
+                                  emptyText="#{bindings.ReservationOfCustomerForRestForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  rowBandingInterval="0"
+                                  fetchSize="#{bindings.ReservationOfCustomerForRestForUserVO.rangeSize}" id="t1">
+                            <af:column headerText="#{bindings.ReservationOfCustomerForRestForUserVO.hints.FullName.label}"
+                                       id="c1">
+                                <af:outputText value="#{row.FullName}"
+                                               shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.FullName.tooltip}"
+                                               id="ot1" inlineStyle="font-weight:bold;"/>
+                            </af:column>
+                            <af:column headerText="#{bindings.ReservationOfCustomerForRestForUserVO.hints.Reserved_Seats.label}"
+                                       id="c2">
+                                <af:outputText value="#{row.Reserved_Seats}"
+                                               shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.Reserved_Seats.tooltip}"
+                                               id="ot2">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.ReservationOfCustomerForRestForUserVO.hints.Reserved_Seats.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.ReservationOfCustomerForRestForUserVO.hints.ReservationTime.label}"
+                                       id="c3">
+                                <af:outputText value="#{row.ReservationTime}"
+                                               shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.ReservationTime.tooltip}"
+                                               id="ot3">
+                                    <af:convertDateTime pattern="#{bindings.ReservationOfCustomerForRestForUserVO.hints.ReservationTime.format}"/>
+                                </af:outputText>
+                            </af:column>
+                        </af:table>
+                    </af:panelBox>
                 </af:showDetailItem>
                 <af:showDetailItem id="delivery_agent" text="Delivery Agent">
                     <af:panelGridLayout id="pgl1">
@@ -417,8 +413,129 @@
                         </af:gridRow>
                     </af:panelGridLayout>
                 </af:showDetailItem>
-                <af:showDetailItem id="coupon" text="Coupon"/>
-                <af:showDetailItem id="feedback_and_complaint" text="Feedback &amp; Complaints"/>
+                <af:showDetailItem id="coupon" text="Coupon">
+                    <af:panelBox text="Add Coupons" id="pb4">
+                        <f:facet name="toolbar"/>
+                        <af:panelFormLayout id="pfl4">
+                            <af:inputText value="#{addCouponBean.description}"
+                                          label="#{bindings.Description.hints.label}"
+                                          required="#{bindings.Description.hints.mandatory}"
+                                          columns="#{bindings.Description.hints.displayWidth}"
+                                          maximumLength="#{bindings.Description.hints.precision}"
+                                          shortDesc="#{bindings.Description.hints.tooltip}" id="it17">
+                                <f:validator binding="#{bindings.Description.validator}"/>
+                            </af:inputText>
+                            <af:inputNumberSpinbox value="#{addCouponBean.discountPercentage}"
+                                                   label="#{bindings.DiscountPercentage.hints.label}"
+                                                   required="#{bindings.DiscountPercentage.hints.mandatory}"
+                                                   columns="#{bindings.DiscountPercentage.hints.displayWidth}"
+                                                   shortDesc="#{bindings.DiscountPercentage.hints.tooltip}" id="it18">
+                                <f:validator binding="#{bindings.DiscountPercentage.validator}"/>
+                                <af:validateLongRange minimum="0" maximum ="100"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.DiscountPercentage.format}"/>
+                            </af:inputNumberSpinbox>
+                            <af:inputDate
+                                          label="#{bindings.ValidFrom.hints.label}"
+                                          required="#{bindings.ValidFrom.hints.mandatory}"
+                                          columns="#{bindings.ValidFrom.hints.displayWidth}"
+                                          shortDesc="#{bindings.ValidFrom.hints.tooltip}" id="id6"
+                                          value="#{addCouponBean.validFrom}">
+                                <f:validator binding="#{bindings.ValidFrom.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.ValidFrom.format}"/>
+                            </af:inputDate>
+                            <af:inputDate value="#{addCouponBean.validTo}" label="#{bindings.ValidTo.hints.label}"
+                                          required="#{bindings.ValidTo.hints.mandatory}"
+                                          columns="#{bindings.ValidTo.hints.displayWidth}"
+                                          shortDesc="#{bindings.ValidTo.hints.tooltip}" id="id7">
+                                <f:validator binding="#{bindings.ValidTo.validator}"/>
+                                <af:convertDateTime pattern="#{bindings.ValidTo.format}"/>
+                            </af:inputDate>
+                            <f:facet name="footer">
+                                <af:button text="Submit" id="b4" actionListener="#{addCouponBean.insertCoupon}"/>
+                            </f:facet>
+                        </af:panelFormLayout>
+                    </af:panelBox>
+                    <af:spacer id="s3"/>
+                   <af:panelBox text="All Coupons" id="pbCoupons" styleClass="couponBox">
+                        <af:listView value="#{bindings.CouponsForRestaurantForUserVO1.collectionModel}" var="item"
+                                     emptyText="#{bindings.CouponsForRestaurantForUserVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                     fetchSize="#{bindings.CouponsForRestaurantForUserVO1.rangeSize}" id="lv1">
+                            <af:listItem id="li1">
+                                <af:panelGridLayout id="pgl5">
+                                    <af:gridRow marginTop="5px" height="auto" id="gr2">
+                                        <af:gridCell marginStart="5px" columnSpan="2" marginEnd="5px" id="gc4">
+                                            <af:outputText value="#{item.Description}"
+                                                           shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.Description.tooltip}"
+                                                           id="ot22"/>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" id="gr3">
+                                        <af:gridCell marginStart="5px" width="70%" id="gc5">
+                                            <af:outputText value="#{item.DiscountPercentage}"
+                                                           shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.DiscountPercentage.tooltip}"
+                                                           id="ot23">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.CouponsForRestaurantForUserVO1.hints.DiscountPercentage.format}"/>
+                                            </af:outputText>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc6"/>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr4">
+                                        <af:gridCell marginStart="5px" width="70%" id="gc7">
+                                            <af:outputText value="#{item.ValidFrom}"
+                                                           shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidFrom.tooltip}"
+                                                           id="ot24">
+                                                <af:convertDateTime pattern="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidFrom.format}"/>
+                                            </af:outputText>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc8">
+                                            <af:outputText value="#{item.ValidTo}"
+                                                           shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidTo.tooltip}"
+                                                           id="ot25">
+                                                <af:convertDateTime pattern="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidTo.format}"/>
+                                            </af:outputText>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                </af:panelGridLayout>
+                            </af:listItem>
+                        </af:listView>
+                    </af:panelBox>
+                </af:showDetailItem>
+                <af:showDetailItem id="feedback_and_complaint" text="Feedback &amp; Complaints">
+                    <af:panelBox text="Feedback" id="pb3">
+                        <f:facet name="toolbar"/>
+                        <af:listView value="#{bindings.CustomerFeedbackToRestaurantVO.collectionModel}" var="item"
+                                     emptyText="#{bindings.CustomerFeedbackToRestaurantVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                     fetchSize="#{bindings.CustomerFeedbackToRestaurantVO.rangeSize}" id="lv2">
+                            <af:listItem id="li2">
+                                <af:panelGridLayout id="pgl6">
+                                    <af:gridRow marginTop="5px" height="auto" id="gr5">
+                                        <af:gridCell marginStart="5px" width="30%" id="gc9">
+                                            <af:outputLabel value="#{item.FullName}" id="ol2"/>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" rowSpan="2" width="50%" marginEnd="25px"
+                                                     id="gc10">
+                                            <af:panelLabelAndMessage label="" id="plam4">
+                                                <af:outputText value="#{item.FeedbackDate}"
+                                                               shortDesc="#{bindings.CustomerFeedbackToRestaurantVO.hints.FeedbackDate.tooltip}"
+                                                               id="ot27">
+                                                    <af:convertDateTime pattern="#{bindings.CustomerFeedbackToRestaurantVO.hints.FeedbackDate.format}"/>
+                                                </af:outputText>
+                                            </af:panelLabelAndMessage>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr6">
+                                        <af:gridCell marginStart="5px" width="30%" marginEnd="25px" id="gc11">
+                                            <af:outputText value="#{item.Description}"
+                                                           shortDesc="#{bindings.CustomerFeedbackToRestaurantVO.hints.Description.tooltip}"
+                                                           id="ot28"/>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                </af:panelGridLayout>
+                            </af:listItem>
+                        </af:listView>
+                    </af:panelBox>
+                </af:showDetailItem>
                 <af:showDetailItem id="reviews" text="Reviews">
                     <af:panelGroupLayout layout="vertical" id="pgl3">
                         <af:panelFormLayout id="pfl2">
@@ -434,7 +551,6 @@
                             </af:panelLabelAndMessage>
                             <af:panelLabelAndMessage label="#{bindings.AvgRating.hints.label}" id="plam3">
                                 <dvt:ratingGauge id="ratingGauge1" value="#{bindings.AvgRating.inputValue}"/>
-                                <af:outputText value="#{bindings.AvgRating.inputValue}" id="ot21"/>
                             </af:panelLabelAndMessage>
                         </af:panelFormLayout>
                     </af:panelGroupLayout>
@@ -444,33 +560,200 @@
                         <af:spacer id="s2" height="20"/>
                     </af:panelGroupLayout>
                     <af:panelGroupLayout layout="vertical" id="pgl2" halign="start">
-                        <af:table value="#{bindings.ReviewForRestaurantForUserVO.collectionModel}" var="row"
-                                  rows="#{bindings.ReviewForRestaurantForUserVO.rangeSize}"
-                                  emptyText="#{bindings.ReviewForRestaurantForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                  rowBandingInterval="0" fetchSize="#{bindings.ReviewForRestaurantForUserVO.rangeSize}"
-                                  id="t4">
-                            <af:column headerText="#{bindings.ReviewForRestaurantForUserVO.hints.FullName.label}"
-                                       id="c23">
-                                <af:outputText value="#{row.FullName}"
-                                               shortDesc="#{bindings.ReviewForRestaurantForUserVO.hints.FullName.tooltip}"
-                                               id="ot11"/>
-                            </af:column>
-                            <af:column headerText="#{bindings.ReviewForRestaurantForUserVO.hints.Review.label}"
-                                       id="c24">
-                                <af:outputText value="#{row.Review}"
-                                               shortDesc="#{bindings.ReviewForRestaurantForUserVO.hints.Review.tooltip}"
-                                               id="ot20"/>
-                            </af:column>
-                            <af:column headerText="#{bindings.ReviewForRestaurantForUserVO.hints.Rating.label}"
-                                       id="c25">
-                                <dvt:ratingGauge id="ratingGauge2"
-                                                 shortDesc="#{bindings.ReviewForRestaurantForUserVO.hints.Rating.tooltip}"
-                                                 value="#{row.bindings.Rating.inputValue}"/>
-                            </af:column>
-                        </af:table>
+                        <af:listView value="#{bindings.ReviewForRestaurantForUserVO.collectionModel}" var="item"
+                                     emptyText="#{bindings.ReviewForRestaurantForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                     fetchSize="#{bindings.ReviewForRestaurantForUserVO.rangeSize}" id="lv3">
+                            <af:listItem id="li3">
+                                <af:panelGridLayout id="pgl7">
+                                    <af:gridRow marginTop="5px" height="auto" id="gr7">
+                                        <af:gridCell marginStart="5px" width="30%" id="gc12">
+                                            <af:outputLabel value="#{item.FullName}" id="ol3"/>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" rowSpan="2" width="50%" marginEnd="25px"
+                                                     id="gc13">
+                                            <dvt:ratingGauge id="ratingGauge2" value="#{item.Rating}"/>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr8">
+                                        <af:gridCell marginStart="5px" width="30%" marginEnd="25px" id="gc14">
+                                            <af:outputFormatted value="#{item.bindings.Review.inputValue}" id="of1"/>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                </af:panelGridLayout>
+                            </af:listItem>
+                        </af:listView>
                     </af:panelGroupLayout>
                 </af:showDetailItem>
             </af:panelTabbed>
+        </af:form>
+        <af:form id="f2">
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p1">
+                <af:panelWindow id="pw1">
+                    <af:table value="#{bindings.G3MenuItemsVO.collectionModel}" var="row"
+                              rows="#{bindings.G3MenuItemsVO.rangeSize}"
+                              emptyText="#{bindings.G3MenuItemsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              rowBandingInterval="0" fetchSize="#{bindings.G3MenuItemsVO.rangeSize}"
+                              filterModel="#{bindings.G3MenuItemsVOQuery.queryDescriptor}" filterVisible="true"
+                              queryListener="#{bindings.G3MenuItemsVOQuery.processQuery}" varStatus="vs" id="t3">
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.RestaurantId.name}" filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.RestaurantId.label}" id="c4">
+                            <af:outputText value="#{row.RestaurantId}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.RestaurantId.tooltip}" id="ot21">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.G3MenuItemsVO.hints.RestaurantId.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.DishName.name}" filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.DishName.label}" id="c5">
+                            <af:outputText value="#{row.DishName}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.DishName.tooltip}" id="ot26"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.Price.name}" filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.Price.label}" id="c6">
+                            <af:outputText value="#{row.Price}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.Price.tooltip}" id="ot29">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.G3MenuItemsVO.hints.Price.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.Availability.name}" filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.Availability.label}" id="c7">
+                            <af:outputText value="#{row.Availability}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.Availability.tooltip}" id="ot30"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.Cuisine.name}" filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.Cuisine.label}" id="c8">
+                            <af:outputText value="#{row.Cuisine}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.Cuisine.tooltip}" id="ot31"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.CreatedAt.name}" filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.CreatedAt.label}" id="c19">
+                            <f:facet name="filter">
+                                <af:inputDate value="#{bindings.G3MenuItemsVOQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.CreatedAt.value}"
+                                              id="id3">
+                                    <af:convertDateTime pattern="#{bindings.G3MenuItemsVO.hints.CreatedAt.format}"/>
+                                </af:inputDate>
+                            </f:facet>
+                            <af:outputText value="#{row.CreatedAt}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.CreatedAt.tooltip}" id="ot32">
+                                <af:convertDateTime pattern="#{bindings.G3MenuItemsVO.hints.CreatedAt.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.UpdatedAt.name}" filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.UpdatedAt.label}" id="c20">
+                            <f:facet name="filter">
+                                <af:inputDate value="#{bindings.G3MenuItemsVOQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.UpdatedAt.value}"
+                                              id="id4">
+                                    <af:convertDateTime pattern="#{bindings.G3MenuItemsVO.hints.UpdatedAt.format}"/>
+                                </af:inputDate>
+                            </f:facet>
+                            <af:outputText value="#{row.UpdatedAt}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.UpdatedAt.tooltip}" id="ot33">
+                                <af:convertDateTime pattern="#{bindings.G3MenuItemsVO.hints.UpdatedAt.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.ItemId.name}" filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.ItemId.label}" id="c21">
+                            <af:outputText value="#{row.ItemId}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.ItemId.tooltip}" id="ot34">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.G3MenuItemsVO.hints.ItemId.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Id.name}"
+                                   filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Id.label}" id="c22">
+                            <af:outputText value="#{row.G3OrderItemsVO.bindings.Id.inputValue}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Id.tooltip}"
+                                           rendered="#{row.G3OrderItemsVO != null}" id="ot35">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Id.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.OrderId.name}"
+                                   filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.OrderId.label}" id="c23">
+                            <af:outputText value="#{row.G3OrderItemsVO.bindings.OrderId.inputValue}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.OrderId.tooltip}"
+                                           rendered="#{row.G3OrderItemsVO != null}" id="ot36">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.OrderId.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.ItemId.name}"
+                                   filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.ItemId.label}" id="c24">
+                            <af:outputText value="#{row.G3OrderItemsVO.bindings.ItemId.inputValue}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.ItemId.tooltip}"
+                                           rendered="#{row.G3OrderItemsVO != null}" id="ot37">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.ItemId.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Quantity.name}"
+                                   filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Quantity.label}" id="c25">
+                            <af:outputText value="#{row.G3OrderItemsVO.bindings.Quantity.inputValue}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Quantity.tooltip}"
+                                           rendered="#{row.G3OrderItemsVO != null}" id="ot38">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Quantity.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Price.name}"
+                                   filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Price.label}" id="c26">
+                            <af:outputText value="#{row.G3OrderItemsVO.bindings.Price.inputValue}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Price.tooltip}"
+                                           rendered="#{row.G3OrderItemsVO != null}" id="ot39">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.Price.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.ItemTotal.name}"
+                                   filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.ItemTotal.label}" id="c27">
+                            <af:outputText value="#{row.G3OrderItemsVO.bindings.ItemTotal.inputValue}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.ItemTotal.tooltip}"
+                                           rendered="#{row.G3OrderItemsVO != null}" id="ot40">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.ItemTotal.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.CreatedAt.name}"
+                                   filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.CreatedAt.label}" id="c28">
+                            <f:facet name="filter">
+                                <af:inputDate value="#{bindings.G3MenuItemsVOQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.CreatedAt.value}"
+                                              id="id5">
+                                    <af:convertDateTime pattern="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.CreatedAt.format}"/>
+                                </af:inputDate>
+                            </f:facet>
+                            <af:outputText value="#{row.G3OrderItemsVO.bindings.CreatedAt.inputValue}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.CreatedAt.tooltip}"
+                                           rendered="#{row.G3OrderItemsVO != null}" id="ot41">
+                                <af:convertDateTime pattern="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.CreatedAt.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.UpdatedAt.name}"
+                                   filterable="true"
+                                   headerText="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.UpdatedAt.label}" id="c29">
+                            <f:facet name="filter">
+                                <af:inputDate value="#{bindings.G3MenuItemsVOQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.UpdatedAt.value}"
+                                              id="id8">
+                                    <af:convertDateTime pattern="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.UpdatedAt.format}"/>
+                                </af:inputDate>
+                            </f:facet>
+                            <af:outputText value="#{row.G3OrderItemsVO.bindings.UpdatedAt.inputValue}"
+                                           shortDesc="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.UpdatedAt.tooltip}"
+                                           rendered="#{row.G3OrderItemsVO != null}" id="ot42">
+                                <af:convertDateTime pattern="#{bindings.G3MenuItemsVO.hints.G3OrderItemsVO.UpdatedAt.format}"/>
+                            </af:outputText>
+                        </af:column>
+                    </af:table>
+                    <af:button text="button 1" id="b7" action="#{editMEnuItemBean.edit}"/>
+                </af:panelWindow>
+            </af:popup>
         </af:form>
     </af:document>
 </f:view>
