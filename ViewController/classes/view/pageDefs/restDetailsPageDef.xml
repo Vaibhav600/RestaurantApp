@@ -8,6 +8,9 @@
               id="RestaurantVO_ForCustAppIterator"/>
     <iterator Binds="MenuItems_CustApp_VO" RangeSize="25" DataControl="AppModuleDataControl"
               id="MenuItems_CustApp_VOIterator"/>
+    <iterator Binds="ReservationForRestaurant_CustApp" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ReservationForRestaurant_CustAppIterator"/>
+    <iterator id="G3ReservationsVOIterator" Binds="G3ReservationsVO" DataControl="AppModuleDataControl" RangeSize="25"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="Name">
@@ -42,5 +45,15 @@
         </AttrNames>
       </nodeDefinition>
     </tree>
+    <attributeValues IterBinding="ReservationForRestaurant_CustAppIterator" id="TableSize">
+      <AttrNames>
+        <Item Value="TableSize"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ReservationForRestaurant_CustAppIterator" id="ReservationTime">
+      <AttrNames>
+        <Item Value="ReservationTime"/>
+      </AttrNames>
+    </attributeValues>
   </bindings>
 </pageDefinition>

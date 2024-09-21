@@ -38,65 +38,37 @@
                                           id="t1">
                                     <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.DishName.label}"
                                                id="c1">
-                                        <af:inputText value="#{row.bindings.DishName.inputValue}"
-                                                      label="#{bindings.MenuItems_CustApp_VO.hints.DishName.label}"
-                                                      required="#{bindings.MenuItems_CustApp_VO.hints.DishName.mandatory}"
-                                                      columns="#{bindings.MenuItems_CustApp_VO.hints.DishName.displayWidth}"
-                                                      maximumLength="#{bindings.MenuItems_CustApp_VO.hints.DishName.precision}"
-                                                      shortDesc="#{bindings.MenuItems_CustApp_VO.hints.DishName.tooltip}"
-                                                      id="it1">
-                                            <f:validator binding="#{row.bindings.DishName.validator}"/>
-                                        </af:inputText>
+                                        <af:outputText value="#{row.bindings.DishName.inputValue}"
+                                                       shortDesc="#{bindings.MenuItems_CustApp_VO.hints.DishName.tooltip}"
+                                                       id="it1"/>
                                     </af:column>
                                     <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Price.label}" id="c2">
-                                        <af:inputText value="#{row.bindings.Price.inputValue}"
-                                                      label="#{bindings.MenuItems_CustApp_VO.hints.Price.label}"
-                                                      required="#{bindings.MenuItems_CustApp_VO.hints.Price.mandatory}"
-                                                      columns="#{bindings.MenuItems_CustApp_VO.hints.Price.displayWidth}"
-                                                      maximumLength="#{bindings.MenuItems_CustApp_VO.hints.Price.precision}"
-                                                      shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Price.tooltip}"
-                                                      id="it2">
-                                            <f:validator binding="#{row.bindings.Price.validator}"/>
+                                        <af:outputText value="#{row.bindings.Price.inputValue}"
+                                                       shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Price.tooltip}"
+                                                       id="it2">
                                             <af:convertNumber groupingUsed="false"
                                                               pattern="#{bindings.MenuItems_CustApp_VO.hints.Price.format}"/>
-                                        </af:inputText>
+                                        </af:outputText>
                                     </af:column>
                                     <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Availability.label}"
                                                id="c3">
-                                        <af:inputText value="#{row.bindings.Availability.inputValue}"
-                                                      label="#{bindings.MenuItems_CustApp_VO.hints.Availability.label}"
-                                                      required="#{bindings.MenuItems_CustApp_VO.hints.Availability.mandatory}"
-                                                      columns="#{bindings.MenuItems_CustApp_VO.hints.Availability.displayWidth}"
-                                                      maximumLength="#{bindings.MenuItems_CustApp_VO.hints.Availability.precision}"
-                                                      shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Availability.tooltip}"
-                                                      id="it3">
-                                            <f:validator binding="#{row.bindings.Availability.validator}"/>
-                                        </af:inputText>
+                                        <af:outputText value="#{row.bindings.Availability.inputValue}"
+                                                       shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Availability.tooltip}"
+                                                       id="it3"/>
                                     </af:column>
                                     <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.label}"
                                                id="c4">
-                                        <af:inputText value="#{row.bindings.Cuisine.inputValue}"
-                                                      label="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.label}"
-                                                      required="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.mandatory}"
-                                                      columns="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.displayWidth}"
-                                                      maximumLength="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.precision}"
-                                                      shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.tooltip}"
-                                                      id="it4">
-                                            <f:validator binding="#{row.bindings.Cuisine.validator}"/>
-                                        </af:inputText>
+                                        <af:outputText value="#{row.bindings.Cuisine.inputValue}"
+                                                       shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.tooltip}"
+                                                       id="it4"/>
                                     </af:column>
                                     <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Rating.label}" id="c5">
-                                        <af:inputText value="#{row.bindings.Rating.inputValue}"
-                                                      label="#{bindings.MenuItems_CustApp_VO.hints.Rating.label}"
-                                                      required="#{bindings.MenuItems_CustApp_VO.hints.Rating.mandatory}"
-                                                      columns="#{bindings.MenuItems_CustApp_VO.hints.Rating.displayWidth}"
-                                                      maximumLength="#{bindings.MenuItems_CustApp_VO.hints.Rating.precision}"
-                                                      shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Rating.tooltip}"
-                                                      id="it5">
-                                            <f:validator binding="#{row.bindings.Rating.validator}"/>
+                                        <af:outputText value="#{row.bindings.Rating.inputValue}"
+                                                       shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Rating.tooltip}"
+                                                       id="it5">
                                             <af:convertNumber groupingUsed="false"
                                                               pattern="#{bindings.MenuItems_CustApp_VO.hints.Rating.format}"/>
-                                        </af:inputText>
+                                        </af:outputText>
                                     </af:column>
                                     <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Quantity.label}"
                                                id="c6">
@@ -107,7 +79,37 @@
                                 <af:button text="Order Now" id="order_now_btn"
                                            actionListener="#{orderNowBean.submitOrder}"/>
                             </af:showDetailItem>
-                            <af:showDetailItem id="BookTable" text="Book Table"/>
+                            <af:showDetailItem id="BookTable" text="Book Table">
+                                <af:panelFormLayout id="pfl2">
+                                    <af:inputText value="#{reservationBean.number_of_guests}"
+                                                  label="Number of Guests"
+                                                  required="#{bindings.TableSize.hints.mandatory}"
+                                                  columns="#{bindings.TableSize.hints.displayWidth}"
+                                                  maximumLength="#{bindings.TableSize.hints.precision}"
+                                                  shortDesc="#{bindings.TableSize.hints.tooltip}" id="it6">
+                                        <f:validator binding="#{bindings.TableSize.validator}"/>
+                                        <af:convertNumber groupingUsed="false" pattern="#{bindings.TableSize.format}"/>
+                                    </af:inputText>
+                                    <af:inputDate value="#{reservationBean.reservation_date}"
+                                                  label="Reservation Date"
+                                                  required="#{bindings.ReservationTime.hints.mandatory}"
+                                                  columns="#{bindings.ReservationTime.hints.displayWidth}"
+                                                  shortDesc="#{bindings.ReservationTime.hints.tooltip}" id="id1">
+                                        <f:validator binding="#{bindings.ReservationTime.validator}"/>
+                                        <af:convertDateTime pattern="#{bindings.ReservationTime.format}"/>
+                                    </af:inputDate>
+                                    <af:selectOneChoice label="Reservation Time Slot" id="soc1"
+                                                        value="#{reservationBean.reservation_time}">
+                                        <af:selectItem label="10:00 AM to 12:00 PM" value="10" id="si1"/>
+                                        <af:selectItem label="12:00 PM to 2:00 PM" value="12" id="si2"/>
+                                        <af:selectItem label="2:00 PM to 4:00 PM" value="14" id="si3"/>
+                                        <af:selectItem label="4:00 PM to 6:00 PM" value="16" id="si4"/>
+                                        <af:selectItem label="6:00 PM to 8:00 PM" value="18" id="si5"/>
+                                        <af:selectItem label="8:00 PM to 10:00 PM" value="20" id="si6"/>
+                                    </af:selectOneChoice>
+                                    <af:button text="Book Now" id="b1" action="#{reservationBean.bookReservation}"/>
+                                </af:panelFormLayout>
+                            </af:showDetailItem>
                         </af:panelTabbed>
                     </af:gridCell>
                 </af:gridRow>

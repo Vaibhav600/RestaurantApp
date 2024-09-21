@@ -27,6 +27,7 @@ import oracle.adf.view.rich.component.rich.output.RichOutputFormatted;
 import oracle.jbo.Row;
 import oracle.jbo.RowSetIterator;
 import oracle.jbo.ViewObject;
+import oracle.jbo.domain.DBSequence;
 
 @SessionScoped
 @ManagedBean(name="orderNowBean")
@@ -89,48 +90,7 @@ public class OrderNow {
     }
 
     public void submitOrder(ActionEvent actionEvent) {
-       /* System.out.println(listViewBinding.getChildren());
-        
-        for (UIComponent listItem : listViewBinding.getChildren()) {
-            System.out.println(listItem);
-            
-           
-            
-            if (listItem instanceof RichListItem) {
-                // Access the panelFormLayout within the list item
-                RichPanelFormLayout formLayout = (RichPanelFormLayout) listItem.findComponent("pfl2");
-                System.out.println(formLayout);
-                System.out.println("we are in if condition");
-                
-                if (formLayout != null) {
-                    // Retrieve the outputFormatted components
-                    System.out.println("Inside form layout");
-                    RichOutputFormatted dishNameField = (RichOutputFormatted) formLayout.findComponent("dish_name");
-                    System.out.println("dishField"+formLayout.getChildren().get(0).getChildren().get(0).getAttributes());
-                    RichOutputFormatted priceField = (RichOutputFormatted) formLayout.findComponent("price");
-                    System.out.println("priceField"+priceField);
-                    RichOutputFormatted availabilityField = (RichOutputFormatted) formLayout.findComponent("availability");
-                    RichOutputFormatted cuisineField = (RichOutputFormatted) formLayout.findComponent("cuisine");
-                    RichOutputFormatted ratingField = (RichOutputFormatted) formLayout.findComponent("rating");
-                    RichInputNumberSpinbox quantityField = (RichInputNumberSpinbox) formLayout.findComponent("quantity");
-                    // Retrieve values
-                    String dishName = (String) dishNameField.getValue();
-                    String price = (String) priceField.getValue();
-                    String availability = (String) availabilityField.getValue();
-                    String cuisine = (String) cuisineField.getValue();
-                    String rating = (String) ratingField.getValue();
-                    String quantity = (String)quantityField.getValue(); // Assuming the inputNumberSpinbox returns Integer
-                    // Process the values
-                    System.out.println("Row Data: Dish Name = " + dishName +
-                                       ", Price = " + price +
-                                       ", Availability = " + availability +
-                                       ", Cuisine = " + cuisine +
-                                       ", Rating = " + rating +
-                                       ", Quantity = " + quantity);
-                }
-            }
-        }*/
-       BindingContext bindingContext = BindingContext.getCurrent();
+        BindingContext bindingContext = BindingContext.getCurrent();
            
            // Get the current binding container
            DCBindingContainer bindingContainer = (DCBindingContainer) bindingContext.getCurrentBindingsEntry();
@@ -150,15 +110,13 @@ public class OrderNow {
                Row currentRow = rowSetIterator.next();
                
                // Access the attribute values for the current row
+               DBSequence itemIdDbSeq = (DBSequence) currentRow.getAttribute("ItemId");
+               Integer itemId = Integer.parseInt(itemIdDbSeq != null ? itemIdDbSeq.toString() : null);
+
                String dishName = (String) currentRow.getAttribute("DishName");
                BigDecimal price = (BigDecimal) currentRow.getAttribute("Price");
                String availability = (String) currentRow.getAttribute("Availability");
                Integer quantity = Integer.parseInt(currentRow.getAttribute("Quantity")==null?"0":currentRow.getAttribute("Quantity").toString());
-               // Print out the values for debugging
-               System.out.println("Dish Name: " + dishName);
-               System.out.println("Price: " + price);
-               System.out.println("Availability: " + availability);
-               System.out.println("Quantity: " + quantity);
            }
            
            // Close the RowSetIterator when done

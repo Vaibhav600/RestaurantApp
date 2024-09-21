@@ -23,8 +23,7 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"
-    IsNotNull="false"/>
+    RetrievedOnInsert="true"/>
   <Attribute
     Name="CustomerId"
     ColumnName="CUSTOMER_ID"

@@ -80,6 +80,12 @@
   <ViewUsage
     Name="MenuItems_CustApp_VO"
     ViewObjectName="model.services.views.G3MenuItemsVO"/>
+  <ViewUsage
+    Name="ReservationForRestaurant_CustApp"
+    ViewObjectName="model.services.views.G3ReservationsVO"/>
+  <ViewUsage
+    Name="G3ReservationsVO"
+    ViewObjectName="model.services.views.G3ReservationsVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -145,5 +151,11 @@
     ViewLinkObjectName="model.services.link.MenuItemForRest_CustApp_ViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantVO_ForCustApp"
     DstViewUsageName="model.services.AppModule.MenuItems_CustApp_VO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="ReservationForRest_ForCustApp_ViewLink1"
+    ViewLinkObjectName="model.services.link.ReservationForRest_ForCustApp_ViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantVO_ForCustApp"
+    DstViewUsageName="model.services.AppModule.ReservationForRestaurant_CustApp"
     Reversed="false"/>
 </AppModule>

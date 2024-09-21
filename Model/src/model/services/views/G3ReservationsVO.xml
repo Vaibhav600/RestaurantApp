@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3ReservationsVO"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge"
   SelectListFlags="1"
   FromListFlags="1"
@@ -22,7 +22,6 @@
     Entity="model.services.entities.G3ReservationsEO"/>
   <ViewAttribute
     Name="ReservationId"
-    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="ReservationId"
     EntityUsage="G3ReservationsEO"

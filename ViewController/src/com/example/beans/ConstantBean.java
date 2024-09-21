@@ -13,6 +13,15 @@ public class ConstantBean {
     private String login_page_navigation = "goToLogin";
     private String error_page_navigation = "goToError";
     private String restaurant_vo_name = "G3RestaurantsVO";
+    private String reservation_vo_name = "G3ReservationsVO";
+
+    public void setReservation_vo_name(String reservation_vo_name) {
+        this.reservation_vo_name = reservation_vo_name;
+    }
+
+    public String getReservation_vo_name() {
+        return reservation_vo_name;
+    }
 
     public void setLogin_page_navigation(String login_page_navigation) {
         this.login_page_navigation = login_page_navigation;

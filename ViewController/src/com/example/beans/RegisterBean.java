@@ -69,9 +69,7 @@ public class RegisterBean {
             if (password.equals(confirm_password)) {
                 String encryptedPassword = encryptPassword(password);
                 ApplicationModule am = getApplicationModule();
-                
-                
-                System.out.println("Inside Application Module *******");
+
                 if (am != null) {
                     ViewObject vo = am.findViewObject(usersVO_name);
                     createUser(am, vo, email, encryptedPassword);
