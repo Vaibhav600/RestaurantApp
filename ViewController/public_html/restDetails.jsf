@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="restDetails.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="50px" id="gr2">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Header -->
+                    </af:gridCell>
+                </af:gridRow>
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                        <!-- Content -->
+                        <af:panelTabbed position="above" id="pt1">
+                            <af:showDetailItem id="Overview" text="Overview">
+                                <af:panelFormLayout id="pfl1">
+                                    <af:outputText value="#{bindings.Name.inputValue}"
+                                                   shortDesc="#{bindings.Name.hints.tooltip}" id="ot1"/>
+                                    <af:outputText value="#{bindings.Address.inputValue}"
+                                                   shortDesc="#{bindings.Address.hints.tooltip}" id="ot2"/>
+                                    <af:outputText value="#{bindings.AvailableSeats.inputValue}"
+                                                   shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="ot3">
+                                        <af:convertNumber groupingUsed="false"
+                                                          pattern="#{bindings.AvailableSeats.format}"/>
+                                    </af:outputText>
+                                    <af:outputText value="#{bindings.Status.inputValue}"
+                                                   shortDesc="#{bindings.Status.hints.tooltip}" id="ot4"/>
+                                </af:panelFormLayout>
+                            </af:showDetailItem>
+                            <af:showDetailItem id="Review" text="Review"/>
+                            <af:showDetailItem id="Menu" text="Menu">
+                                <af:listView value="#{bindings.MenuItems_CustApp_VO.collectionModel}" var="item"
+                                             emptyText="#{bindings.MenuItems_CustApp_VO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                             fetchSize="#{bindings.MenuItems_CustApp_VO.rangeSize}" id="lv1"
+                                             binding="#{orderNowBean.listViewBinding}">
+                                    <af:listItem id="li1">
+                                        <af:panelFormLayout id="pfl2">
+                                            <f:facet name="footer"/>
+                                            <af:panelGroupLayout layout="horizontal" id="pgl2">
+                                                <f:facet name="separator">
+                                                    <af:spacer width="10" id="s1"/>
+                                                </f:facet>
+                                                <af:outputFormatted value="#{item.bindings.DishName.inputValue}"
+                                                                    id="dish_name"/>
+                                                <af:outputFormatted value="#{item.bindings.Price.inputValue}"
+                                                                    id="price">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MenuItems_CustApp_VO.hints.Price.format}"/>
+                                                </af:outputFormatted>
+                                                <af:outputFormatted value="#{item.bindings.Availability.inputValue}"
+                                                                    id="availability"/>
+                                                <af:outputFormatted value="#{item.bindings.Cuisine.inputValue}"
+                                                                    id="cuisine"/>
+                                                <af:outputFormatted value="#{item.bindings.Rating.inputValue}"
+                                                                    id="rating">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.MenuItems_CustApp_VO.hints.Rating.format}"/>
+                                                </af:outputFormatted>
+                                                <af:inputNumberSpinbox label="quantity" id="quantity" minimum="0"
+                                                                       value="0"/>
+                                            </af:panelGroupLayout>
+                                        </af:panelFormLayout>
+                                    </af:listItem>
+                                </af:listView>
+                                <af:button text="Order Now" id="order_now_btn"
+                                           actionListener="#{orderNowBean.submitOrder}"/>
+                            </af:showDetailItem>
+                            <af:showDetailItem id="BookTable" text="Book Table"/>
+                        </af:panelTabbed>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>

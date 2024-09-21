@@ -4,7 +4,7 @@
 <AppModule
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="AppModule"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge"
   ClearCacheOnRollback="true">
   <ViewUsage
@@ -70,6 +70,16 @@
   <ViewUsage
     Name="ReviewForRestaurantForUserVO"
     ViewObjectName="model.services.views.RestaurantReviewVO"/>
+  <ViewUsage
+    Name="RestaurantVO_ForCustApp"
+    ViewObjectName="model.services.views.RestaurantVO_ForCustApp">
+    <ViewCriteriaUsage
+      Name="searchRestByNameVC"
+      FullName="model.services.views.RestaurantVO_ForCustApp.searchRestByNameVC"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="MenuItems_CustApp_VO"
+    ViewObjectName="model.services.views.G3MenuItemsVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -129,5 +139,11 @@
     ViewLinkObjectName="model.services.link.RestaurantReviewViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantForUser"
     DstViewUsageName="model.services.AppModule.ReviewForRestaurantForUserVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="MenuItemForRest_CustApp_ViewLink"
+    ViewLinkObjectName="model.services.link.MenuItemForRest_CustApp_ViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantVO_ForCustApp"
+    DstViewUsageName="model.services.AppModule.MenuItems_CustApp_VO"
     Reversed="false"/>
 </AppModule>

@@ -8,5 +8,32 @@
     <view id="customer_dashboard">
       <page>/customerDashboard.jsf</page>
     </view>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="restDetails">
+      <page>/restDetails.jsf</page>
+      <input-page-parameter id="__5">
+        <from-value>bRestName</from-value>
+        <to-value>#{pageFlowScope.selectedRestName}</to-value>
+      </input-page-parameter>
+    </view>
+    <control-flow-rule id="__1">
+      <from-activity-id>customer_dashboard</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>goToRestDetailsPage</from-outcome>
+        <to-activity-id>ExecuteWithParams</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>ExecuteWithParams</from-outcome>
+        <to-activity-id>restDetails</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
   </task-flow-definition>
 </adfc-config>

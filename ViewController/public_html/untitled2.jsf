@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="viewcontrollerBundle" value="#{adfBundle['view.ViewControllerBundle']}"/>
+    <af:document title="user_dashboard.jsf" id="d1">
+        <af:resource type="css" source="/styles/style.css"/>
+
+        <af:form id="f1">
+            <af:panelGroupLayout id="pgl2" layout="scroll">
+                <af:panelGroupLayout id="pgl3" styleClass="navigationBar">
+                    <af:link text="Offers" id="l1" inlineStyle="color:white; font-size:large; font-weight:200;"/>
+                    <af:link text="Cart" id="l2" inlineStyle="color:white; font-size:large; font-weight:200;"/>
+                    <af:link text="My Orders" id="l3" inlineStyle="color:white; font-size:large; font-weight:200;"/>
+                    <af:link text="Logout" id="l4" inlineStyle="color:white; font-size:large; font-weight:200;"/>
+                </af:panelGroupLayout>
+                <af:image source="#{resource['images:banner_image.jpg']}" shortDesc="Home Page Banner" id="i1"
+                          styleClass="backgroundImage"/>
+                <af:panelGroupLayout layout="vertical" styleClass="centeredContent" id="pgl4">
+                    <!-- Logo -->
+                    <af:outputText value="PlatePay" styleClass="logoText" id="ot1"/>
+                    <!-- Headline -->
+                    <af:outputFormatted value="Discover the best food and drinks in Gandhinagar"
+                                        styleClass="headlineText" id="of1"/>
+                    <!-- Search Bar -->
+                    <af:panelGroupLayout layout="horizontal" styleClass="searchBar" id="pgl5">
+                        <af:inputText styleClass="searchInput" id="it1"/>
+                        <af:commandButton text="Search" styleClass="searchButton" id="cb1"/>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>

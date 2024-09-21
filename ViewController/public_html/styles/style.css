@@ -1,0 +1,70 @@
+.backgroundImage {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+.navigationBar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    color: white;
+    z-index: 1;
+}
+/* Center the content on the page */
+.centeredContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Logo Styling */
+.logoText {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+/* Headline Text Styling */
+.headlineText {
+    font-size: 24px;
+    color: white;
+    margin-top: 10px;
+}
+
+/* Search Bar Layout */
+.searchBar {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:black;
+}
+
+/* Search Input Styling */
+.searchInput {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+    color: black;
+}
+
+/* Search Button Styling */
+.searchButton {
+    padding: 10px 20px;
+    background-color: #ff4c4c;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

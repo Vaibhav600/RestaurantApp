@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.11.57" id="customerDashboardPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variableUsage DataControl="AppModuleDataControl" Binds="RestaurantVO_ForCustApp.variablesMap.bRestName"
+                     Name="ExecuteWithParams_bRestName" IsQueriable="false"/>
+    </variableIterator>
+    <iterator Binds="RestaurantVO_ForCustApp" RangeSize="25" DataControl="AppModuleDataControl"
+              id="RestaurantVO_ForCustAppIterator"/>
+    <iterator Binds="MenuItems_CustApp_VO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="MenuItems_CustApp_VOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="RestaurantVO_ForCustAppIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="bRestName" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams_bRestName}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="bRestName">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_bRestName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="RestaurantVO_ForCustAppIterator" id="RestaurantVO_ForCustApp">
+      <nodeDefinition DefName="model.services.views.RestaurantVO_ForCustApp" Name="RestaurantVO_ForCustApp0">
+        <AttrNames>
+          <Item Value="Name"/>
+          <Item Value="AvailableSeats"/>
+          <Item Value="Status"/>
+          <Item Value="Address"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MenuItems_CustApp_VOIterator" id="MenuItems_CustApp_VO">
+      <nodeDefinition DefName="model.services.views.G3MenuItemsVO" Name="MenuItems_CustApp_VO0">
+        <AttrNames>
+          <Item Value="ItemId"/>
+          <Item Value="RestaurantId"/>
+          <Item Value="DishName"/>
+          <Item Value="Price"/>
+          <Item Value="Availability"/>
+          <Item Value="Cuisine"/>
+          <Item Value="Rating"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

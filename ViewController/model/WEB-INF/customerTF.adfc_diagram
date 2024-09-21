@@ -7,16 +7,64 @@
       <property
          name="activityId">customer_dashboard</property>
       <property
-         name="x">18.063477</property>
+         name="x">115.06348</property>
       <property
          name="start">true</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>customer_dashboard&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="y">216.30469</property>
+         name="y">215.50781</property>
       <property
          name="page">/customerDashboard.jsf</property>
       <property
          name="exceptionHandler">false</property>
    </View>
+   <MethodCall
+      id="MethodCall3">
+      <property
+         name="activityId">ExecuteWithParams</property>
+      <property
+         name="x">403.55176</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>ExecuteWithParams&lt;/b>&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="y">101.03516</property>
+      <property
+         name="exceptionHandler">false</property>
+   </MethodCall>
+   <View
+      id="View4">
+      <property
+         name="activityId">restDetails</property>
+      <property
+         name="x">677.0</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>restDetails&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">221.60156</property>
+      <property
+         name="page">/restDetails.jsf</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View2"
+      to="MethodCall3">
+      <property
+         name="fromOutcome">goToRestDetailsPage</property>
+      <property
+         name="sdm:polyPoints">R50,156.06348,215.4414,362.55176,100.96875,L50</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="MethodCall3"
+      to="View4">
+      <property
+         name="fromOutcome">ExecuteWithParams</property>
+      <property
+         name="sdm:polyPoints">R50,444.55176,100.96875,636.0,221.53516,L50</property>
+   </ControlFlowCase>
 </SDM>
