@@ -38,6 +38,7 @@
           <Item Value="Availability"/>
           <Item Value="Cuisine"/>
           <Item Value="Rating"/>
+          <Item Value="Quantity"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

@@ -1,5 +1,7 @@
 package com.example.beans;
 
+import java.math.BigDecimal;
+
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -11,6 +13,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 
+import oracle.adf.model.BindingContext;
+import oracle.adf.model.binding.DCBindingContainer;
+import oracle.adf.model.binding.DCIteratorBinding;
 import oracle.adf.view.rich.component.rich.data.RichListItem;
 import oracle.adf.view.rich.component.rich.data.RichListView;
 import oracle.adf.view.rich.component.rich.input.RichInputNumberSpinbox;
@@ -18,6 +23,10 @@ import oracle.adf.view.rich.component.rich.layout.RichPanelFormLayout;
 import oracle.adf.view.rich.component.rich.input.RichInputText;
 import oracle.adf.view.rich.component.rich.output.RichOutputText;
 import oracle.adf.view.rich.component.rich.output.RichOutputFormatted;
+
+import oracle.jbo.Row;
+import oracle.jbo.RowSetIterator;
+import oracle.jbo.ViewObject;
 
 @SessionScoped
 @ManagedBean(name="orderNowBean")
@@ -31,7 +40,7 @@ public class OrderNow {
         
         System.out.println(listViewBinding.getChildren());
         for (UIComponent listItem : listViewBinding.getChildren()) {
-            System.out.println(listItem);
+            System.out.println(listItem.getId());
             
             if (listItem instanceof RichListItem) {
                 // Access the panelFormLayout within the list item
@@ -41,9 +50,11 @@ public class OrderNow {
                 
                 if (formLayout != null) {
                     // Retrieve the outputFormatted components
+                    System.out.println("Inside form layout");
                     RichOutputFormatted dishNameField = (RichOutputFormatted) formLayout.findComponent("dish_name");
-            
+                    System.out.println("dishField"+dishNameField.getAttributes().get("value"));
                     RichOutputFormatted priceField = (RichOutputFormatted) formLayout.findComponent("price");
+                    System.out.println("priceField"+priceField);
                     RichOutputFormatted availabilityField = (RichOutputFormatted) formLayout.findComponent("availability");
                     RichOutputFormatted cuisineField = (RichOutputFormatted) formLayout.findComponent("cuisine");
                     RichOutputFormatted ratingField = (RichOutputFormatted) formLayout.findComponent("rating");
@@ -78,7 +89,7 @@ public class OrderNow {
     }
 
     public void submitOrder(ActionEvent actionEvent) {
-        System.out.println(listViewBinding.getChildren());
+       /* System.out.println(listViewBinding.getChildren());
         
         for (UIComponent listItem : listViewBinding.getChildren()) {
             System.out.println(listItem);
@@ -93,9 +104,11 @@ public class OrderNow {
                 
                 if (formLayout != null) {
                     // Retrieve the outputFormatted components
+                    System.out.println("Inside form layout");
                     RichOutputFormatted dishNameField = (RichOutputFormatted) formLayout.findComponent("dish_name");
-            
+                    System.out.println("dishField"+formLayout.getChildren().get(0).getChildren().get(0).getAttributes());
                     RichOutputFormatted priceField = (RichOutputFormatted) formLayout.findComponent("price");
+                    System.out.println("priceField"+priceField);
                     RichOutputFormatted availabilityField = (RichOutputFormatted) formLayout.findComponent("availability");
                     RichOutputFormatted cuisineField = (RichOutputFormatted) formLayout.findComponent("cuisine");
                     RichOutputFormatted ratingField = (RichOutputFormatted) formLayout.findComponent("rating");
@@ -116,6 +129,39 @@ public class OrderNow {
                                        ", Quantity = " + quantity);
                 }
             }
-        }
+        }*/
+       BindingContext bindingContext = BindingContext.getCurrent();
+           
+           // Get the current binding container
+           DCBindingContainer bindingContainer = (DCBindingContainer) bindingContext.getCurrentBindingsEntry();
+           
+           // Get the iterator binding for your View Object
+           DCIteratorBinding iteratorBinding = bindingContainer.findIteratorBinding("MenuItems_CustApp_VOIterator");
+           
+           // Get the View Object to iterate through the rows
+           ViewObject viewObject = iteratorBinding.getViewObject();
+           
+           // Get the RowSetIterator to loop through rows
+           RowSetIterator rowSetIterator = viewObject.createRowSetIterator(null); // Create a RowSetIterator
+           
+           // Loop through all rows
+           while (rowSetIterator.hasNext()) {
+               // Get the current row
+               Row currentRow = rowSetIterator.next();
+               
+               // Access the attribute values for the current row
+               String dishName = (String) currentRow.getAttribute("DishName");
+               BigDecimal price = (BigDecimal) currentRow.getAttribute("Price");
+               String availability = (String) currentRow.getAttribute("Availability");
+               Integer quantity = Integer.parseInt(currentRow.getAttribute("Quantity")==null?"0":currentRow.getAttribute("Quantity").toString());
+               // Print out the values for debugging
+               System.out.println("Dish Name: " + dishName);
+               System.out.println("Price: " + price);
+               System.out.println("Availability: " + availability);
+               System.out.println("Quantity: " + quantity);
+           }
+           
+           // Close the RowSetIterator when done
+           rowSetIterator.closeRowSetIterator();
     }
 }
