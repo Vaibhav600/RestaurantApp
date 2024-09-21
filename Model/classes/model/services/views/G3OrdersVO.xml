@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3OrdersVO"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge"
   SelectListFlags="1"
   FromListFlags="1"
@@ -12,7 +12,8 @@
   BindingStyle="OracleName"
   CustomQuery="false"
   SelectAllAttributes="false"
-  PageIterMode="Full">
+  PageIterMode="Full"
+  AccessMode="DEFAULT">
   <Variable
     Name="bRestaurantId"
     Kind="viewcriteria"
@@ -24,6 +25,10 @@
   <ViewAccessor
     Name="G3OrdersVO"
     ViewObjectName="model.services.views.G3OrdersVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="OrderStatusListVO1"
+    ViewObjectName="model.services.views.OrderStatusListVO"
     RowLevelBinds="true"/>
   <ListBinding
     Name="LOV_OrderId"
@@ -40,6 +45,23 @@
     </AttrArray>
     <AttrArray Name="ListDisplayAttrNames">
       <Item Value="OrderId"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_OrderStatus"
+    ListVOName="OrderStatusListVO1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="OrderStatus"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="status"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="status"/>
     </AttrArray>
     <DisplayCriteria/>
   </ListBinding>
@@ -85,7 +107,15 @@
     PrecisionRule="true"
     EntityAttrName="OrderStatus"
     EntityUsage="G3OrdersEO"
-    AliasName="ORDER_STATUS"/>
+    AliasName="ORDER_STATUS"
+    LOVName="LOV_OrderStatus">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="PaymentStatus"
     PrecisionRule="true"

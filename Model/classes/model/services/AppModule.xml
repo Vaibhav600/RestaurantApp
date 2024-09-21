@@ -50,9 +50,6 @@
     Name="ReservationForRestaurantForUser"
     ViewObjectName="model.services.views.G3ReservationsVO"/>
   <ViewUsage
-    Name="MenuItemsForRestaurantForUserVO"
-    ViewObjectName="model.services.views.G3MenuItemsVO"/>
-  <ViewUsage
     Name="FeedbackForRestaurantForUserVO"
     ViewObjectName="model.services.views.G3FeedbackVO"/>
   <ViewUsage
@@ -70,6 +67,15 @@
   <ViewUsage
     Name="ReviewForRestaurantForUserVO"
     ViewObjectName="model.services.views.RestaurantReviewVO"/>
+  <ViewUsage
+    Name="G3MenuItemsVO"
+    ViewObjectName="model.services.views.G3MenuItemsVO"/>
+  <ViewUsage
+    Name="MenuItemsForRestaurantForUserVO"
+    ViewObjectName="model.services.views.G3MenuItemsVO"/>
+  <ViewUsage
+    Name="OrderStatusListVO"
+    ViewObjectName="model.services.views.OrderStatusListVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -101,12 +107,6 @@
     DstViewUsageName="model.services.AppModule.ReservationForRestaurantForUser"
     Reversed="false"/>
   <ViewLinkUsage
-    Name="MenuItemsForRestaurantForUserViewLink"
-    ViewLinkObjectName="model.services.link.MenuItemRestaurantViewLink"
-    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
-    DstViewUsageName="model.services.AppModule.MenuItemsForRestaurantForUserVO"
-    Reversed="false"/>
-  <ViewLinkUsage
     Name="FeedbackForRestaurantForUserViewLink"
     ViewLinkObjectName="model.services.link.FeedbackRestaurantViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantForUser"
@@ -129,5 +129,11 @@
     ViewLinkObjectName="model.services.link.RestaurantReviewViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantForUser"
     DstViewUsageName="model.services.AppModule.ReviewForRestaurantForUserVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="MenuItemRestaurantUserViewLink"
+    ViewLinkObjectName="model.services.link.MenuItemRestaurantViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
+    DstViewUsageName="model.services.AppModule.MenuItemsForRestaurantForUserVO"
     Reversed="false"/>
 </AppModule>

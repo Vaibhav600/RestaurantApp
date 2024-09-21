@@ -4,7 +4,7 @@
 <Association
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="OrderItemMenuItemAssoc"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge">
   <DesignTime>
     <Attr Name="_isCodegen" Value="true"/>
@@ -18,7 +18,6 @@
       <Attr Name="_isUpdateable" Value="true"/>
       <Attr Name="_aggregation" Value="0"/>
       <Attr Name="_finderName" Value="G3MenuItemsEO"/>
-      <Attr Name="_foreignKey" Value="model.services.entities.G3MenuItemsEO.SysC009722477"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3MenuItemsEO.ItemId"/>
@@ -32,7 +31,6 @@
       <Attr Name="_isUpdateable" Value="true"/>
       <Attr Name="_aggregation" Value="0"/>
       <Attr Name="_finderName" Value="G3OrderItemsEO"/>
-      <Attr Name="_foreignKey" Value="model.services.entities.G3OrderItemsEO.SysC009722481"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3OrderItemsEO.ItemId"/>

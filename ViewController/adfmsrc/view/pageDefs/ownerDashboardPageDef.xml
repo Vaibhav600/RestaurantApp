@@ -21,6 +21,9 @@
               id="RestaurantForUserIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="RatingsForRestaurantForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
               id="RatingsForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="G3MenuItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="G3MenuItemsVOIterator"/>
+    <iterator Binds="MenuItemsForRestaurantForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="MenuItemsForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="ReviewForRestaurantForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
               id="ReviewForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
   </executables>
@@ -147,6 +150,36 @@
         <Item Value="AvgRating"/>
       </AttrNames>
     </attributeValues>
+    <attributeValues IterBinding="G3MenuItemsVOIterator" id="DishName">
+      <AttrNames>
+        <Item Value="DishName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="G3MenuItemsVOIterator" id="Price">
+      <AttrNames>
+        <Item Value="Price"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="G3MenuItemsVOIterator" id="Availability">
+      <AttrNames>
+        <Item Value="Availability"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="G3MenuItemsVOIterator" id="Cuisine">
+      <AttrNames>
+        <Item Value="Cuisine"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="MenuItemsForRestaurantForUserVOIterator" id="MenuItemsForRestaurantForUserVO">
+      <nodeDefinition DefName="model.services.views.G3MenuItemsVO" Name="MenuItemsForRestaurantForUserVO0">
+        <AttrNames>
+          <Item Value="DishName"/>
+          <Item Value="Price"/>
+          <Item Value="Availability"/>
+          <Item Value="Cuisine"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
     <tree IterBinding="ReviewForRestaurantForUserVOIterator" id="ReviewForRestaurantForUserVO">
       <nodeDefinition DefName="model.services.views.RestaurantReviewVO" Name="ReviewForRestaurantForUserVO0">
         <AttrNames>

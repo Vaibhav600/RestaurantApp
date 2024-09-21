@@ -4,7 +4,7 @@
 <Entity
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3OrderItemsEO"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge"
   DBObjectType="table"
   DBObjectName="G3_ORDER_ITEMS"
@@ -23,7 +23,8 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"/>
+    RetrievedOnInsert="true"
+    IsNotNull="true"/>
   <Attribute
     Name="OrderId"
     Precision="10"
@@ -91,33 +92,52 @@
     AssociationOtherEnd="model.services.assoc.OrderItemMenuItemAssoc.G3OrderItemsEO"
     Type="oracle.jbo.server.EntityImpl"
     IsUpdateable="true"/>
+  <AccessorAttribute
+    Name="G3OrdersEO1"
+    Association="model.services.entities.SysC009722910Assoc"
+    AssociationEnd="model.services.entities.SysC009722910Assoc.G3OrdersEO1"
+    AssociationOtherEnd="model.services.entities.SysC009722910Assoc.G3OrderItemsEO1"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
   <Key
-    Name="SysC009722479"
-    PrimaryKey="true">
+    Name="G3OrderItemsIdCheck">
     <DesignTime>
-      <Attr Name="_DBObjectName" Value="SYS_C009722479"/>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_checkCondition" Value='"ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+      <Attr Name="_DBObjectName" Value="G3ORDER_ITEMS_ID_CHECK"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3OrderItemsEO.Id"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722480">
+    Name="SysC009722909"
+    PrimaryKey="true">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722469"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722909"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.entities.G3OrderItemsEO.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC009722910">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="SYS_C009722899"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722480"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722910"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3OrderItemsEO.OrderId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722481">
+    Name="SysC009722911">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722477"/>
+      <Attr Name="_referencedKey" Value="SYS_C009722907"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722481"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722911"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3OrderItemsEO.ItemId"/>

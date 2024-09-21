@@ -4,7 +4,7 @@
 <Entity
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3FeedbackEO"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge"
   DBObjectType="table"
   DBObjectName="G3_FEEDBACK"
@@ -23,7 +23,8 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"/>
+    RetrievedOnInsert="true"
+    IsNotNull="true"/>
   <Attribute
     Name="CustomerId"
     ColumnName="CUSTOMER_ID"
@@ -88,32 +89,44 @@
     Type="oracle.jbo.server.EntityImpl"
     IsUpdateable="true"/>
   <Key
-    Name="SysC009722474"
-    PrimaryKey="true">
+    Name="G3FeedbackFeedbackIdCheck">
     <DesignTime>
-      <Attr Name="_DBObjectName" Value="SYS_C009722474"/>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_checkCondition" Value='"FEEDBACK_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+      <Attr Name="_DBObjectName" Value="G3FEEDBACK_FEEDBACK_ID_CHECK"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3FeedbackEO.FeedbackId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722475">
+    Name="SysC009722904"
+    PrimaryKey="true">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722462"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722904"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.entities.G3FeedbackEO.FeedbackId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC009722905">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="SYS_C009722892"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722475"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722905"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3FeedbackEO.CustomerId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722476">
+    Name="SysC009722906">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722464"/>
+      <Attr Name="_referencedKey" Value="SYS_C009722894"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722476"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722906"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3FeedbackEO.RestaurantId"/>

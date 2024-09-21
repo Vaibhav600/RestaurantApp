@@ -4,7 +4,7 @@
 <Entity
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3CouponsEO"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge"
   DBObjectType="table"
   DBObjectName="G3_COUPONS"
@@ -23,7 +23,8 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"/>
+    RetrievedOnInsert="true"
+    IsNotNull="true"/>
   <Attribute
     Name="RestaurantId"
     Precision="10"
@@ -95,21 +96,33 @@
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
   <Key
-    Name="SysC009722466"
-    PrimaryKey="true">
+    Name="G3CouponsCouponIdCheck">
     <DesignTime>
-      <Attr Name="_DBObjectName" Value="SYS_C009722466"/>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_checkCondition" Value='"COUPON_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+      <Attr Name="_DBObjectName" Value="G3COUPONS_COUPON_ID_CHECK"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3CouponsEO.CouponId"/>
     </AttrArray>
   </Key>
   <Key
-    Name="SysC009722467">
+    Name="SysC009722896"
+    PrimaryKey="true">
     <DesignTime>
-      <Attr Name="_referencedKey" Value="SYS_C009722464"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722896"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.entities.G3CouponsEO.CouponId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC009722897">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="SYS_C009722894"/>
       <Attr Name="_isForeign" Value="true"/>
-      <Attr Name="_DBObjectName" Value="SYS_C009722467"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722897"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3CouponsEO.RestaurantId"/>

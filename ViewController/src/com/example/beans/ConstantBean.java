@@ -13,6 +13,13 @@ public class ConstantBean {
     private String login_page_navigation = "goToLogin";
     private String error_page_navigation = "goToError";
     private String restaurant_vo_name = "G3RestaurantsVO";
+    private String restaurant_for_user_vo = "RestaurantForUser";
+    private String menu_restaurant_vo = "G3MenuItemsVO";
+    private String order_restaurant_user_vo = "OrderForRestaurantForUser";
+
+    public String getOrder_restaurant_user_vo() {
+        return order_restaurant_user_vo;
+    }
 
     public void setLogin_page_navigation(String login_page_navigation) {
         this.login_page_navigation = login_page_navigation;
@@ -60,5 +67,13 @@ public class ConstantBean {
 
     public String getRestaurant_vo_name() {
         return restaurant_vo_name;
+    }
+
+    public String getRestaurant_for_user_vo() {
+        return restaurant_for_user_vo;
+    }
+
+    public String getMenu_restaurant_vo() {
+        return menu_restaurant_vo;
     }
 }

@@ -71,10 +71,11 @@ public class LoginBean {
                     String role = (String) userRow.getAttribute("Role");
                     System.out.println(role);
                     if(role.equals("owner")) {
-                        DBSequence dbSeq = (DBSequence) userRow.getAttribute("UserId");
-                        int user_id = dbSeq.getSequenceNumber().intValue();
+//                        DBSequence dbSeq = (DBSequence) userRow.getAttribute("UserId");
+//                        int user_id = dbSeq.getSequenceNumber().intValue();
+                        
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Owner Login Success"));
-                        usersVO.setNamedWhereClauseParam("bOwnerId", user_id);
+                        usersVO.setNamedWhereClauseParam("bOwnerId", userRow.getAttribute("UserId"));
                         return constants.getOwner_navigation();
                     }
                     else if(role.equals("super_admin")){

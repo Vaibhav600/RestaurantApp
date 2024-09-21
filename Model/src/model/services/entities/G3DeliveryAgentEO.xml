@@ -4,7 +4,7 @@
 <Entity
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3DeliveryAgentEO"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge"
   DBObjectType="table"
   DBObjectName="G3_DELIVERY_AGENT"
@@ -23,7 +23,8 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"/>
+    RetrievedOnInsert="true"
+    IsNotNull="true"/>
   <Attribute
     Name="Name"
     Precision="100"
@@ -79,10 +80,22 @@
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
   <Key
-    Name="SysC009722468"
+    Name="G3DeliveryAgentAgentIdCheck">
+    <DesignTime>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_checkCondition" Value='"AGENT_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+      <Attr Name="_DBObjectName" Value="G3DELIVERY_AGENT_AGENT_ID_CHEC"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.entities.G3DeliveryAgentEO.AgentId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC009722898"
     PrimaryKey="true">
     <DesignTime>
-      <Attr Name="_DBObjectName" Value="SYS_C009722468"/>
+      <Attr Name="_DBObjectName" Value="SYS_C009722898"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3DeliveryAgentEO.AgentId"/>
