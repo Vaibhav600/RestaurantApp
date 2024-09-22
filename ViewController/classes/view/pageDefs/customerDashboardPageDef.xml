@@ -9,6 +9,7 @@
     </variableIterator>
     <iterator Binds="RestaurantVO_ForCustApp" RangeSize="25" DataControl="AppModuleDataControl"
               id="RestaurantVO_ForCustAppIterator"/>
+    <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
   </executables>
   <bindings>
     <action IterBinding="RestaurantVO_ForCustAppIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
@@ -27,6 +28,20 @@
           <Item Value="AvailableSeats"/>
           <Item Value="Status"/>
           <Item Value="Address"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CartItemsVOIterator" id="CartItemsVO">
+      <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO0">
+        <AttrNames>
+          <Item Value="OrderId"/>
+          <Item Value="Id"/>
+          <Item Value="ItemId"/>
+          <Item Value="DishName"/>
+          <Item Value="Price"/>
+          <Item Value="ItemTotal"/>
+          <Item Value="Quantity"/>
+          <Item Value="CouponId"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

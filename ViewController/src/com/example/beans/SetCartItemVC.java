@@ -1,30 +1,26 @@
 package com.example.beans;
 
-import javax.annotation.PostConstruct;
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
 import javax.faces.bean.ViewScoped;
+
+import javax.faces.context.FacesContext;
+
+import javax.servlet.http.HttpSession;
 
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCDataControl;
-
-import oracle.adf.view.rich.component.rich.data.RichListView;
 
 import oracle.jbo.ApplicationModule;
 import oracle.jbo.ViewObject;
 
 
 @ViewScoped
-@ManagedBean(name="resetRestaurantVCBean")
-public class ResetRestaurantVCBean {
-    private String rest_vc_name = "searchRestByNameVC";
-    private String rest_for_custApp_vo_name = "RestaurantVO_ForCustApp";
-    private RichListView list;
+@ManagedBean(name="setCartItemVC")
+public class SetCartItemVC {
+    ConstantBean constants = new ConstantBean();
 
-    public ResetRestaurantVCBean() {
+    public SetCartItemVC() {
         super();
     }
     public ApplicationModule getApplicationModule() {
@@ -40,21 +36,16 @@ public class ResetRestaurantVCBean {
         }
         return null;
     }
-    @PostConstruct
-    public void resetVC(){
+    public String setCartVC(){
+        // Get Logged in Customer Id
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Object userIdObject = session.getAttribute("userId");
+        int CustomerId = Integer.parseInt(userIdObject.toString());
+        
         ApplicationModule am = getApplicationModule();
-        ViewObject rest_vo = am.findViewObject(rest_for_custApp_vo_name);
-//        rest_vo.setWhereClause(null);
-//        rest_vo.removeNamedWhereClauseParam("bRestName"); // Remove the parameter
-//        rest_vo.executeQuery();
-        rest_vo.getViewCriteriaManager().clearViewCriterias();
-    }
-
-    public void setList(RichListView list) {
-        this.list = list;
-    }
-
-    public RichListView getList() {
-        return list;
+        ViewObject cart_vo = am.findViewObject(constants.getCart_items_vo_name());
+        cart_vo.setNamedWhereClauseParam("bCustId", CustomerId);
+        cart_vo.executeQuery();
+        return null;
     }
 }

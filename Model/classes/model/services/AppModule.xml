@@ -89,6 +89,13 @@
   <ViewUsage
     Name="G3OrderItemsVO"
     ViewObjectName="model.services.views.G3OrderItemsVO"/>
+  <ViewUsage
+    Name="CartItemsVO"
+    ViewObjectName="model.services.views.CartItemsVO">
+    <ViewCriteriaUsage
+      Name="searchByCustomerIdVC"
+      FullName="model.services.views.CartItemsVO.searchByCustomerIdVC"/>
+  </ViewUsage>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"

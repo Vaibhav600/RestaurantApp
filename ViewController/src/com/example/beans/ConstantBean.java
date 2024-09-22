@@ -17,7 +17,16 @@ public class ConstantBean {
     private String orders_vo_name = "G3OrdersVO";
     private String rest_for_custApp_vo_name = "RestaurantVO_ForCustApp";
     private String orderItem_vo_name = "G3OrderItemsVO";
+    private String cart_items_vo_name = "CartItemsVO";
 
+
+    public void setCart_items_vo_name(String cart_items_vo_name) {
+        this.cart_items_vo_name = cart_items_vo_name;
+    }
+
+    public String getCart_items_vo_name() {
+        return cart_items_vo_name;
+    }
 
     public void setOrderItem_vo_name(String orderItem_vo_name) {
         this.orderItem_vo_name = orderItem_vo_name;
