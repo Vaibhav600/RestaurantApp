@@ -5,6 +5,9 @@
     <data-control-scope>
       <shared/>
     </data-control-scope>
+    <task-flow-reentry>
+      <reentry-outcome-dependent/>
+    </task-flow-reentry>
     <view id="customer_dashboard">
       <page>/customerDashboard.jsf</page>
     </view>
@@ -21,11 +24,21 @@
         <to-value>#{pageFlowScope.selectedRestName}</to-value>
       </input-page-parameter>
     </view>
+    <task-flow-return id="logout">
+      <outcome>
+        <name>logout</name>
+        <reentry-not-allowed/>
+      </outcome>
+    </task-flow-return>
     <control-flow-rule id="__1">
       <from-activity-id>customer_dashboard</from-activity-id>
       <control-flow-case id="__2">
         <from-outcome>goToRestDetailsPage</from-outcome>
         <to-activity-id>ExecuteWithParams</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__6">
+        <from-outcome>logout</from-outcome>
+        <to-activity-id>logout</to-activity-id>
       </control-flow-case>
     </control-flow-rule>
     <control-flow-rule id="__3">

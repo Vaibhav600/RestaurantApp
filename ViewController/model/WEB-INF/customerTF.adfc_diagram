@@ -13,7 +13,7 @@
       <property
          name="description">&lt;html>&lt;p>&lt;b>customer_dashboard&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="y">215.50781</property>
+         name="y">215.3086</property>
       <property
          name="page">/customerDashboard.jsf</property>
       <property
@@ -55,7 +55,7 @@
       <property
          name="fromOutcome">goToRestDetailsPage</property>
       <property
-         name="sdm:polyPoints">R50,156.06348,215.4414,362.55176,100.96875,L50</property>
+         name="sdm:polyPoints">R50,156.79591,215.24219,361.81934,100.96875,L50</property>
    </ControlFlowCase>
    <ControlFlowCase
       islink="true"
@@ -65,6 +65,31 @@
       <property
          name="fromOutcome">ExecuteWithParams</property>
       <property
-         name="sdm:polyPoints">R50,444.55176,100.96875,636.0,221.53516,L50</property>
+         name="sdm:polyPoints">R50,445.28418,100.96875,635.2676,221.53513,L50</property>
+   </ControlFlowCase>
+   <TaskFlowReturn
+      id="TaskFlowReturn7">
+      <property
+         name="activityId">logout</property>
+      <property
+         name="x">339.0</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>logout&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  logout&lt;/p></property>
+      <property
+         name="y">361.40234</property>
+      <property
+         name="finish">true</property>
+      <property
+         name="exceptionHandler">false</property>
+   </TaskFlowReturn>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase8"
+      from="View2"
+      to="TaskFlowReturn7">
+      <property
+         name="fromOutcome">logout</property>
+      <property
+         name="sdm:polyPoints">R55,156.79591,219.47462,297.26758,361.33594,L50</property>
    </ControlFlowCase>
 </SDM>
