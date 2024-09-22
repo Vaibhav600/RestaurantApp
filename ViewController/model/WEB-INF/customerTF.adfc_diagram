@@ -55,7 +55,7 @@
       <property
          name="fromOutcome">goToRestDetailsPage</property>
       <property
-         name="sdm:polyPoints">R50,156.79591,215.24219,361.81934,100.96875,L50</property>
+         name="sdm:polyPoints">R46,156.06348,211.74219,362.55176,100.96875,L50</property>
    </ControlFlowCase>
    <ControlFlowCase
       islink="true"
@@ -65,7 +65,7 @@
       <property
          name="fromOutcome">ExecuteWithParams</property>
       <property
-         name="sdm:polyPoints">R50,445.28418,100.96875,635.2676,221.53513,L50</property>
+         name="sdm:polyPoints">R50,444.55176,100.96875,636.0,221.53516,L50</property>
    </ControlFlowCase>
    <TaskFlowReturn
       id="TaskFlowReturn7">
@@ -90,6 +90,6 @@
       <property
          name="fromOutcome">logout</property>
       <property
-         name="sdm:polyPoints">R55,156.79591,219.47462,297.26758,361.33594,L50</property>
+         name="sdm:polyPoints">R54,156.06348,218.74219,298.0,361.33594,L50</property>
    </ControlFlowCase>
 </SDM>

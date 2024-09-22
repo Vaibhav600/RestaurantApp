@@ -64,5 +64,20 @@
         </AttrNames>
       </nodeDefinition>
     </tree>
+    <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="RestaurantId">
+      <AttrNames>
+        <Item Value="RestaurantId"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="RestaurantVO_ForCustAppIterator" id="RestaurantVO_ForCustApp1">
+      <nodeDefinition DefName="model.services.views.RestaurantVO_ForCustApp" Name="RestaurantVO_ForCustApp10">
+        <AttrNames>
+          <Item Value="RestaurantId"/>
+          <Item Value="Name"/>
+          <Item Value="AvailableSeats"/>
+          <Item Value="Status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
   </bindings>
 </pageDefinition>

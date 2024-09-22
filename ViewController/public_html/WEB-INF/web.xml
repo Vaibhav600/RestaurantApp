@@ -90,6 +90,22 @@
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>REQUEST</dispatcher>
   </filter-mapping>
+  
+  
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_MEMORY</param-name>
+        <param-value>10000000</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_DISK_SPACE</param-name>
+        <param-value>10000000</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.apache.myfaces.trinidad.UPLOAD_MAX_FILE_SIZE</param-name>
+        <param-value>10000000</param-value>
+    </context-param>
+
+
   <context-param>
     <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
     <param-value>client</param-value>
