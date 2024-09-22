@@ -8,11 +8,15 @@
                 <af:gridRow height="50px" id="gr2">
                     <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
                         <!-- Header -->
-                        <af:button text="Offers" id="b2"/>
+                        <af:button text="Offers" id="b2">
+                            <af:showPopupBehavior popupId="coupons_popup"/>
+                        </af:button>
                         <af:button text="Cart" id="b3" action="#{viewScope.setCartItemVC.setCartVC}">
                             <af:showPopupBehavior popupId="cart_popup"/>
                         </af:button>
-                        <af:button text="My Orders" id="b4"/>
+                        <af:button text="My Orders" id="b4">
+                            <af:showPopupBehavior popupId="my_orders_popup"/>
+                        </af:button>
                         <af:button text="Logout" id="b5"/>
                     </af:gridCell>
                 </af:gridRow>
@@ -67,65 +71,118 @@
                               selectedRowKeys="#{bindings.CartItemsVO.collectionModel.selectedRow}"
                               selectionListener="#{bindings.CartItemsVO.collectionModel.makeCurrent}"
                               rowSelection="single" fetchSize="#{bindings.CartItemsVO.rangeSize}" id="t1">
-                        <af:column sortProperty="#{bindings.CartItemsVO.hints.OrderId.name}" sortable="true"
-                                   headerText="#{bindings.CartItemsVO.hints.OrderId.label}" id="c1">
-                            <af:outputText value="#{row.OrderId}"
-                                           shortDesc="#{bindings.CartItemsVO.hints.OrderId.tooltip}" id="ot1">
-                                <af:convertNumber groupingUsed="false"
-                                                  pattern="#{bindings.CartItemsVO.hints.OrderId.format}"/>
-                            </af:outputText>
-                        </af:column>
-                        <af:column sortProperty="#{bindings.CartItemsVO.hints.Id.name}" sortable="true"
-                                   headerText="#{bindings.CartItemsVO.hints.Id.label}" id="c2">
-                            <af:outputText value="#{row.Id}" shortDesc="#{bindings.CartItemsVO.hints.Id.tooltip}"
-                                           id="ot2">
-                                <af:convertNumber groupingUsed="false"
-                                                  pattern="#{bindings.CartItemsVO.hints.Id.format}"/>
-                            </af:outputText>
-                        </af:column>
-                        <af:column sortProperty="#{bindings.CartItemsVO.hints.ItemId.name}" sortable="true"
-                                   headerText="#{bindings.CartItemsVO.hints.ItemId.label}" id="c3">
-                            <af:outputText value="#{row.ItemId}"
-                                           shortDesc="#{bindings.CartItemsVO.hints.ItemId.tooltip}" id="ot3">
-                                <af:convertNumber groupingUsed="false"
-                                                  pattern="#{bindings.CartItemsVO.hints.ItemId.format}"/>
-                            </af:outputText>
-                        </af:column>
                         <af:column sortProperty="#{bindings.CartItemsVO.hints.DishName.name}" sortable="true"
-                                   headerText="#{bindings.CartItemsVO.hints.DishName.label}" id="c4">
+                                   headerText="#{bindings.CartItemsVO.hints.DishName.label}" id="c1">
                             <af:outputText value="#{row.DishName}"
-                                           shortDesc="#{bindings.CartItemsVO.hints.DishName.tooltip}" id="ot4"/>
+                                           shortDesc="#{bindings.CartItemsVO.hints.DishName.tooltip}" id="ot1"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CartItemsVO.hints.Quantity.name}" sortable="true"
+                                   headerText="#{bindings.CartItemsVO.hints.Quantity.label}" id="c2">
+                            <af:outputText value="#{row.Quantity}"
+                                           shortDesc="#{bindings.CartItemsVO.hints.Quantity.tooltip}" id="ot2">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.CartItemsVO.hints.Quantity.format}"/>
+                            </af:outputText>
                         </af:column>
                         <af:column sortProperty="#{bindings.CartItemsVO.hints.Price.name}" sortable="true"
-                                   headerText="#{bindings.CartItemsVO.hints.Price.label}" id="c5">
+                                   headerText="Dish Price" id="c3">
                             <af:outputText value="#{row.Price}" shortDesc="#{bindings.CartItemsVO.hints.Price.tooltip}"
-                                           id="ot5">
+                                           id="ot3">
                                 <af:convertNumber groupingUsed="false"
                                                   pattern="#{bindings.CartItemsVO.hints.Price.format}"/>
                             </af:outputText>
                         </af:column>
                         <af:column sortProperty="#{bindings.CartItemsVO.hints.ItemTotal.name}" sortable="true"
-                                   headerText="#{bindings.CartItemsVO.hints.ItemTotal.label}" id="c6">
+                                   headerText="Item Total" id="c4">
                             <af:outputText value="#{row.ItemTotal}"
-                                           shortDesc="#{bindings.CartItemsVO.hints.ItemTotal.tooltip}" id="ot6">
+                                           shortDesc="#{bindings.CartItemsVO.hints.ItemTotal.tooltip}" id="ot4">
                                 <af:convertNumber groupingUsed="false"
                                                   pattern="#{bindings.CartItemsVO.hints.ItemTotal.format}"/>
                             </af:outputText>
                         </af:column>
-                        <af:column sortProperty="#{bindings.CartItemsVO.hints.Quantity.name}" sortable="true"
-                                   headerText="#{bindings.CartItemsVO.hints.Quantity.label}" id="c7">
-                            <af:outputText value="#{row.Quantity}"
-                                           shortDesc="#{bindings.CartItemsVO.hints.Quantity.tooltip}" id="ot7">
+                        <af:column sortProperty="#{bindings.CartItemsVO.hints.Description.name}" sortable="true"
+                                   headerText="Coupon" id="c5">
+                            <af:outputText value="#{row.Description}"
+                                           shortDesc="#{bindings.CartItemsVO.hints.Description.tooltip}" id="ot5"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CartItemsVO.hints.TotalAmount.name}" sortable="true"
+                                   headerText="Total Amount" id="c6">
+                            <af:outputText value="#{row.TotalAmount}"
+                                           shortDesc="#{bindings.CartItemsVO.hints.TotalAmount.tooltip}" id="ot6">
                                 <af:convertNumber groupingUsed="false"
-                                                  pattern="#{bindings.CartItemsVO.hints.Quantity.format}"/>
+                                                  pattern="#{bindings.CartItemsVO.hints.TotalAmount.format}"/>
                             </af:outputText>
                         </af:column>
-                        <af:column sortProperty="#{bindings.CartItemsVO.hints.CouponId.name}" sortable="true"
-                                   headerText="#{bindings.CartItemsVO.hints.CouponId.label}" id="c8">
-                            <af:outputText value="#{row.CouponId}"
-                                           shortDesc="#{bindings.CartItemsVO.hints.CouponId.tooltip}" id="ot8">
+                    </af:table>
+                </af:panelWindow>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="my_orders_popup">
+                <af:panelWindow id="pw2">
+                    <af:table value="#{bindings.CartItemsVO1.collectionModel}" var="row"
+                              rows="#{bindings.CartItemsVO1.rangeSize}"
+                              emptyText="#{bindings.CartItemsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              rowBandingInterval="0"
+                              selectedRowKeys="#{bindings.CartItemsVO1.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.CartItemsVO1.collectionModel.makeCurrent}"
+                              rowSelection="single" fetchSize="#{bindings.CartItemsVO1.rangeSize}" id="t2">
+                        <af:column sortProperty="#{bindings.CartItemsVO1.hints.OrderId.name}" sortable="true"
+                                   headerText="#{bindings.CartItemsVO1.hints.OrderId.label}" id="c7">
+                            <af:outputText value="#{row.OrderId}"
+                                           shortDesc="#{bindings.CartItemsVO1.hints.OrderId.tooltip}" id="ot7">
                                 <af:convertNumber groupingUsed="false"
-                                                  pattern="#{bindings.CartItemsVO.hints.CouponId.format}"/>
+                                                  pattern="#{bindings.CartItemsVO1.hints.OrderId.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CartItemsVO1.hints.DishName.name}" sortable="true"
+                                   headerText="#{bindings.CartItemsVO1.hints.DishName.label}" id="c8">
+                            <af:outputText value="#{row.DishName}"
+                                           shortDesc="#{bindings.CartItemsVO1.hints.DishName.tooltip}" id="ot8"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CartItemsVO1.hints.TotalAmount.name}" sortable="true"
+                                   headerText="#{bindings.CartItemsVO1.hints.TotalAmount.label}" id="c9">
+                            <af:outputText value="#{row.TotalAmount}"
+                                           shortDesc="#{bindings.CartItemsVO1.hints.TotalAmount.tooltip}" id="ot9">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.CartItemsVO1.hints.TotalAmount.format}"/>
+                            </af:outputText>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CartItemsVO1.hints.OrderStatus.name}" sortable="true"
+                                   headerText="#{bindings.CartItemsVO1.hints.OrderStatus.label}" id="c10">
+                            <af:outputText value="#{row.OrderStatus}"
+                                           shortDesc="#{bindings.CartItemsVO1.hints.OrderStatus.tooltip}" id="ot10"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.CartItemsVO1.hints.PaymentStatus.name}" sortable="true"
+                                   headerText="#{bindings.CartItemsVO1.hints.PaymentStatus.label}" id="c11">
+                            <af:outputText value="#{row.PaymentStatus}"
+                                           shortDesc="#{bindings.CartItemsVO1.hints.PaymentStatus.tooltip}" id="ot11"/>
+                        </af:column>
+                    </af:table>
+                </af:panelWindow>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="coupons_popup">
+                <af:panelWindow id="pw3">
+                    <af:table value="#{bindings.OffersVO.collectionModel}" var="row"
+                              rows="#{bindings.OffersVO.rangeSize}"
+                              emptyText="#{bindings.OffersVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                              rowBandingInterval="0" selectedRowKeys="#{bindings.OffersVO.collectionModel.selectedRow}"
+                              selectionListener="#{bindings.OffersVO.collectionModel.makeCurrent}" rowSelection="single"
+                              fetchSize="#{bindings.OffersVO.rangeSize}" id="t3">
+                        <af:column sortProperty="#{bindings.OffersVO.hints.Name.name}" sortable="true"
+                                   headerText="Restaurant Name" id="c12">
+                            <af:outputText value="#{row.Name}" shortDesc="#{bindings.OffersVO.hints.Name.tooltip}"
+                                           id="ot12"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.OffersVO.hints.Description.name}" sortable="true"
+                                   headerText="Coupon Description" id="c13">
+                            <af:outputText value="#{row.Description}"
+                                           shortDesc="#{bindings.OffersVO.hints.Description.tooltip}" id="ot13"/>
+                        </af:column>
+                        <af:column sortProperty="#{bindings.OffersVO.hints.DiscountPercentage.name}" sortable="true"
+                                   headerText="Discount Percentage" id="c14">
+                            <af:outputText value="#{row.DiscountPercentage}"
+                                           shortDesc="#{bindings.OffersVO.hints.DiscountPercentage.tooltip}" id="ot14">
+                                <af:convertNumber groupingUsed="false"
+                                                  pattern="#{bindings.OffersVO.hints.DiscountPercentage.format}"/>
                             </af:outputText>
                         </af:column>
                     </af:table>

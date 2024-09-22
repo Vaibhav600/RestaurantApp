@@ -64,6 +64,25 @@
       </AttrArray>
     </DesignTime>
   </EntityUsage>
+  <EntityUsage
+    Name="G3CouponsEO"
+    Entity="model.services.entities.G3CouponsEO"
+    Association="model.services.assoc.OrderCouponAssoc"
+    AssociationEnd="model.services.assoc.OrderCouponAssoc.G3CouponsEO"
+    SourceUsage="model.services.views.CartItemsVO.G3OrdersEO"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"
+    JoinType="LEFT OUTER JOIN">
+    <DesignTime>
+      <AttrArray Name="_dstAttributes">
+        <Item Value="model.services.entities.G3CouponsEO.CouponId"/>
+      </AttrArray>
+      <AttrArray Name="_srcAttributes">
+        <Item Value="model.services.entities.G3OrdersEO.CouponId"/>
+      </AttrArray>
+    </DesignTime>
+  </EntityUsage>
   <ViewAttribute
     Name="OrderId"
     IsUpdateable="while_insert"
@@ -72,12 +91,42 @@
     EntityUsage="G3OrdersEO"
     AliasName="ORDER_ID"/>
   <ViewAttribute
+    Name="TotalAmount"
+    PrecisionRule="true"
+    EntityAttrName="TotalAmount"
+    EntityUsage="G3OrdersEO"
+    AliasName="TOTAL_AMOUNT"/>
+  <ViewAttribute
+    Name="OrderStatus"
+    PrecisionRule="true"
+    EntityAttrName="OrderStatus"
+    EntityUsage="G3OrdersEO"
+    AliasName="ORDER_STATUS"/>
+  <ViewAttribute
+    Name="PaymentStatus"
+    PrecisionRule="true"
+    EntityAttrName="PaymentStatus"
+    EntityUsage="G3OrdersEO"
+    AliasName="PAYMENT_STATUS"/>
+  <ViewAttribute
     Name="Id"
     IsUpdateable="while_insert"
     PrecisionRule="true"
     EntityAttrName="Id"
     EntityUsage="G3OrderItemsEO"
     AliasName="ID"/>
+  <ViewAttribute
+    Name="ItemTotal"
+    PrecisionRule="true"
+    EntityAttrName="ItemTotal"
+    EntityUsage="G3OrderItemsEO"
+    AliasName="ITEM_TOTAL"/>
+  <ViewAttribute
+    Name="Quantity"
+    PrecisionRule="true"
+    EntityAttrName="Quantity"
+    EntityUsage="G3OrderItemsEO"
+    AliasName="QUANTITY"/>
   <ViewAttribute
     Name="ItemId"
     PrecisionRule="true"
@@ -98,23 +147,18 @@
     EntityUsage="G3MenuItemsEO"
     AliasName="PRICE"/>
   <ViewAttribute
-    Name="ItemTotal"
-    PrecisionRule="true"
-    EntityAttrName="ItemTotal"
-    EntityUsage="G3OrderItemsEO"
-    AliasName="ITEM_TOTAL"/>
-  <ViewAttribute
-    Name="Quantity"
-    PrecisionRule="true"
-    EntityAttrName="Quantity"
-    EntityUsage="G3OrderItemsEO"
-    AliasName="QUANTITY"/>
-  <ViewAttribute
     Name="CouponId"
     PrecisionRule="true"
     EntityAttrName="CouponId"
-    EntityUsage="G3OrdersEO"
-    AliasName="COUPON_ID"/>
+    EntityUsage="G3CouponsEO"
+    AliasName="COUPON_ID"
+    IsUpdateable="while_insert"/>
+  <ViewAttribute
+    Name="Description"
+    PrecisionRule="true"
+    EntityAttrName="Description"
+    EntityUsage="G3CouponsEO"
+    AliasName="DESCRIPTION"/>
   <ViewCriteria
     Name="searchByCustomerIdVC"
     ViewObjectName="model.services.views.CartItemsVO"

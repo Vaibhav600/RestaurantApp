@@ -96,6 +96,12 @@
       Name="searchByCustomerIdVC"
       FullName="model.services.views.CartItemsVO.searchByCustomerIdVC"/>
   </ViewUsage>
+  <ViewUsage
+    Name="G3CouponsVO"
+    ViewObjectName="model.services.views.G3CouponsVO"/>
+  <ViewUsage
+    Name="OffersVO"
+    ViewObjectName="model.services.views.OffersVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
