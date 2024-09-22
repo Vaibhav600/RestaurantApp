@@ -213,6 +213,11 @@
     ViewLink="model.services.link.TotalReservedSeatsOfRestaurantViewLink"
     Type="oracle.jbo.Row"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="ToDeliverOrdersVO"
+    ViewLink="model.services.views.ToDeliverOrderRestaurantViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>

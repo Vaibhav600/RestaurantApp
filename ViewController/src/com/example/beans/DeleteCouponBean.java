@@ -1,6 +1,4 @@
-package com.view.beans;
-
-import com.example.beans.ConstantBean;
+package com.example.beans;
 
 import javax.faces.bean.ManagedBean;
 
@@ -13,14 +11,12 @@ import oracle.jbo.Row;
 import oracle.jbo.ViewObject;
 import oracle.jbo.domain.DBSequence;
 
-
-@ManagedBean(name="editMEnuItemBean")
-public class EditMenuItemBean {
-    private String menuItem;
-    public EditMenuItemBean() {
+@ManagedBean(name="deleteCouponBean")
+public class DeleteCouponBean {
+    public DeleteCouponBean() {
         super();
     }
-    
+    private String couponId;
     ConstantBean constants = new ConstantBean();
     
     public ApplicationModule getApplicationModule() {
@@ -36,47 +32,44 @@ public class EditMenuItemBean {
         }
         return null;
     }
-
-    public void setMenuItem(String menuItem) {
-        System.out.println("set item: "+menuItem);
-        this.menuItem = menuItem;
-    }
-
-    public String getMenuItem() {
-        System.out.println("get item: "+menuItem);
-        return menuItem;
-    }
     
-    public String edit(){
+    public String deleteCoupon(){
         try{
-        System.out.println("menu item geot: "+this.menuItem);
+        System.out.println("coupon item geot: "+this.couponId);
         ApplicationModule am = getApplicationModule();
-        ViewObject menusVO = am.findViewObject(constants.getMenu_restaurant_vo());
+        ViewObject menusVO = am.findViewObject(constants.getCoupon_vo());
         
         Row rowToDelete = null;
             for (Row row : menusVO.getAllRowsInRange()) {
-                DBSequence rowItemId = (DBSequence) row.getAttribute("ItemId"); // Use correct attribute name for ItemId
-                            String item = rowItemId.toString(); // Replace with actual attribute name
-                if (item.equals(this.menuItem)) {
+                DBSequence rowCouponId = (DBSequence) row.getAttribute("CouponId"); // Use correct attribute name for ItemId
+                            String item = rowCouponId.toString(); // Replace with actual attribute name
+                if (item.equals(this.couponId)) {
                     rowToDelete = row;
                     break;
                 }
             }
 
-        
+         
             if (rowToDelete != null) {
                 rowToDelete.remove();
-                System.out.println("Menu item removed: " + this.menuItem);
-                
-
+                System.out.println("Coupon item removed: " + this.couponId);
+       
                 menusVO.getApplicationModule().getTransaction().commit();
                 System.out.println("Transaction committed.");
             } else {
-                System.out.println("Menu item not found.");
+                System.out.println("Coupon item not found.");
             }
         } catch(Exception e){
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void setCouponId(String couponId) {
+        this.couponId = couponId;
+    }
+
+    public String getCouponId() {
+        return couponId;
     }
 }

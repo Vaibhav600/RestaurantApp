@@ -15,6 +15,7 @@ public class ConstantBean {
     private String restaurant_vo_name = "G3RestaurantsVO";
     private String restaurant_for_user_vo = "RestaurantForUser";
     private String menu_restaurant_vo = "G3MenuItemsVO";
+    private String coupon_vo = "G3CouponsVO";
     private String order_restaurant_user_vo = "OrderForRestaurantForUser";
     private String coupons_restaurant_user_vo  =  "CouponsForRestaurantForUserVO";
     
@@ -81,5 +82,9 @@ public class ConstantBean {
 
     public String getCoupons_restaurant_user_vo() {
         return coupons_restaurant_user_vo;
+    }
+
+    public String getCoupon_vo() {
+        return coupon_vo;
     }
 }

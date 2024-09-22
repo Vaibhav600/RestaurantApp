@@ -4,8 +4,6 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="G3DeliveryAgentVO" RangeSize="25" DataControl="AppModuleDataControl"
-              id="G3DeliveryAgentVOIterator"/>
     <iterator Binds="G3UsersVO" RangeSize="25" DataControl="AppModuleDataControl" id="G3UsersVOIterator"
               ChangeEventPolicy="ppr"/>
     <iterator Binds="OrderForRestaurantForUser" RangeSize="25" DataControl="AppModuleDataControl"
@@ -32,14 +30,12 @@
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="G3MenuItemsVOQuery"/>
     <iterator Binds="MenuItemsForRestaurantForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
               id="MenuItemsForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="ToDeliverOrdersForRestaurantVO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ToDeliverOrdersForRestaurantVOIterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="G3DeliveryAgentVO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="G3DeliveryAgentVOIterator"/>
   </executables>
   <bindings>
-    <list IterBinding="G3DeliveryAgentVOIterator" ListOperMode="navigation" ListIter="G3DeliveryAgentVOIterator"
-          id="G3DeliveryAgentVO" DTSupportsMRU="true" SelectItemValueMode="ListObject">
-      <AttrNames>
-        <Item Value="AgentId"/>
-      </AttrNames>
-    </list>
     <attributeValues IterBinding="G3UsersVOIterator" id="UserId">
       <AttrNames>
         <Item Value="UserId"/>
@@ -115,13 +111,6 @@
     </tree>
     <list IterBinding="OrderForRestaurantForUserIterator" StaticList="false" Uses="LOV_OrderId" id="OrderId"
           DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
-    <list IterBinding="OrderForRestaurantForUserIterator" ListOperMode="navigation"
-          ListIter="OrderForRestaurantForUserIterator" id="OrderForRestaurantForUser1" DTSupportsMRU="true"
-          SelectItemValueMode="ListObject">
-      <AttrNames>
-        <Item Value="OrderId"/>
-      </AttrNames>
-    </list>
     <attributeValues IterBinding="RestaurantForUserIterator" id="RestaurantId">
       <AttrNames>
         <Item Value="RestaurantId"/>
@@ -142,24 +131,9 @@
         <Item Value="AvgRating"/>
       </AttrNames>
     </attributeValues>
-    <attributeValues IterBinding="G3MenuItemsVOIterator" id="DishName">
-      <AttrNames>
-        <Item Value="DishName"/>
-      </AttrNames>
-    </attributeValues>
     <attributeValues IterBinding="G3MenuItemsVOIterator" id="Price">
       <AttrNames>
         <Item Value="Price"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="G3MenuItemsVOIterator" id="Availability">
-      <AttrNames>
-        <Item Value="Availability"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="G3MenuItemsVOIterator" id="Cuisine">
-      <AttrNames>
-        <Item Value="Cuisine"/>
       </AttrNames>
     </attributeValues>
     <attributeValues IterBinding="G3CouponsVOIterator" id="Description">
@@ -193,16 +167,6 @@
           <Item Value="ValidTo"/>
           <Item Value="CreatedAt"/>
           <Item Value="UpdatedAt"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <tree IterBinding="CouponsForRestaurantForUserVOIterator" id="CouponsForRestaurantForUserVO1">
-      <nodeDefinition DefName="model.services.views.G3CouponsVO" Name="CouponsForRestaurantForUserVO10">
-        <AttrNames>
-          <Item Value="Description"/>
-          <Item Value="DiscountPercentage"/>
-          <Item Value="ValidFrom"/>
-          <Item Value="ValidTo"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
@@ -292,5 +256,41 @@
     </tree>
     <action IterBinding="MenuItemsForRestaurantForUserVOIterator" id="Delete" RequiresUpdateModel="false"
             Action="removeCurrentRow"/>
+    <attributeValues IterBinding="G3MenuItemsVOIterator" id="DishName">
+      <AttrNames>
+        <Item Value="DishName"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="G3MenuItemsVOIterator" StaticList="false" Uses="LOV_Availability" id="Availability"
+          DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="G3MenuItemsVOIterator" id="Cuisine">
+      <AttrNames>
+        <Item Value="Cuisine"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CouponsForRestaurantForUserVOIterator" id="CouponsForRestaurantForUserVO1">
+      <nodeDefinition DefName="model.services.views.G3CouponsVO" Name="CouponsForRestaurantForUserVO10">
+        <AttrNames>
+          <Item Value="Description"/>
+          <Item Value="CouponId"/>
+          <Item Value="DiscountPercentage"/>
+          <Item Value="ValidFrom"/>
+          <Item Value="ValidTo"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="ToDeliverOrdersForRestaurantVOIterator" ListOperMode="navigation"
+          ListIter="ToDeliverOrdersForRestaurantVOIterator" id="ToDeliverOrdersForRestaurantVO" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="OrderId"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="G3DeliveryAgentVOIterator" ListOperMode="navigation" ListIter="G3DeliveryAgentVOIterator"
+          id="G3DeliveryAgentVO" DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="AgentId"/>
+      </AttrNames>
+    </list>
   </bindings>
 </pageDefinition>

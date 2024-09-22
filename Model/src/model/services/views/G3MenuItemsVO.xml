@@ -18,6 +18,27 @@
     Name="menuItem"
     Kind="viewcriteria"
     Type="oracle.jbo.domain.Number"/>
+  <ViewAccessor
+    Name="AvailabilityVO1"
+    ViewObjectName="model.services.views.AvailabilityVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_Availability"
+    ListVOName="AvailabilityVO1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Availability"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="availability"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="availability"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
   <EntityUsage
     Name="G3MenuItemsEO"
     Entity="model.services.entities.G3MenuItemsEO"/>
@@ -44,7 +65,15 @@
     PrecisionRule="true"
     EntityAttrName="Availability"
     EntityUsage="G3MenuItemsEO"
-    AliasName="AVAILABILITY"/>
+    AliasName="AVAILABILITY"
+    LOVName="LOV_Availability">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="Cuisine"
     PrecisionRule="true"

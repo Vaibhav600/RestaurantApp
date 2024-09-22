@@ -101,6 +101,15 @@
   <ViewUsage
     Name="TotalReservedSeatsOfRestaurantVO1"
     ViewObjectName="model.services.views.TotalReservedSeatsOfRestaurantVO"/>
+  <ViewUsage
+    Name="AvailabilityVO1"
+    ViewObjectName="model.services.views.AvailabilityVO"/>
+  <ViewUsage
+    Name="ToDeliverOrdersForRestaurantVO"
+    ViewObjectName="model.services.views.ToDeliverOrdersVO"/>
+  <ViewUsage
+    Name="ToDeliverOrdersVO1"
+    ViewObjectName="model.services.views.ToDeliverOrdersVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -178,5 +187,11 @@
     ViewLinkObjectName="model.services.link.TotalReservedSeatsOfRestaurantViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantForUser"
     DstViewUsageName="model.services.AppModule.TotalReservedSeatsOfRestaurantForUserVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="ToDeliverOrderRestaurantViewLink1"
+    ViewLinkObjectName="model.services.views.ToDeliverOrderRestaurantViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
+    DstViewUsageName="model.services.AppModule.ToDeliverOrdersForRestaurantVO"
     Reversed="false"/>
 </AppModule>

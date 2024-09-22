@@ -106,22 +106,24 @@
                                 <f:validator binding="#{bindings.Price.validator}"/>
                                 <af:convertNumber groupingUsed="false" pattern="#{bindings.Price.format}"/>
                             </af:inputText>
-                            <af:inputText value="#{restaurantMenuBean.availability}"
-                                          label="#{bindings.Availability.hints.label}"
-                                          required="#{bindings.Availability.hints.mandatory}"
-                                          columns="#{bindings.Availability.hints.displayWidth}"
-                                          maximumLength="#{bindings.Availability.hints.precision}"
-                                          shortDesc="#{bindings.Availability.hints.tooltip}" id="it11">
+                            <af:selectOneRadio value="#{restaurantMenuBean.availability}"
+                                               label="#{bindings.Availability.label}"
+                                               required="#{bindings.Availability.hints.mandatory}"
+                                               shortDesc="#{bindings.Availability.hints.tooltip}" id="sor1"
+                                               layout="horizontal">
+                                <f:selectItems value="#{bindings.Availability.items}" id="si5"/>
                                 <f:validator binding="#{bindings.Availability.validator}"/>
-                            </af:inputText>
+                            </af:selectOneRadio>
                             <af:inputText value="#{restaurantMenuBean.cuisine}" label="#{bindings.Cuisine.hints.label}"
                                           required="#{bindings.Cuisine.hints.mandatory}"
                                           columns="#{bindings.Cuisine.hints.displayWidth}"
                                           maximumLength="#{bindings.Cuisine.hints.precision}"
-                                          shortDesc="#{bindings.Cuisine.hints.tooltip}" id="it12">
+                                          shortDesc="#{bindings.Cuisine.hints.tooltip}" id="it11">
                                 <f:validator binding="#{bindings.Cuisine.validator}"/>
                             </af:inputText>
-                            <af:button text="submit" id="b2" action="#{restaurantMenuBean.addMenuItem}"/>
+                            <f:facet name="footer">
+                                <af:button text="Submit" id="b2" action="#{restaurantMenuBean.addMenuItem}"/>
+                            </f:facet>
                         </af:panelFormLayout>
                     </af:panelBox>
                     <af:panelBox text="Menu Items" id="pb2">
@@ -386,32 +388,36 @@
                     </af:panelBox>
                 </af:showDetailItem>
                 <af:showDetailItem id="delivery_agent" text="Delivery Agent">
-                    <af:panelGridLayout id="pgl1">
-                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr1">
-                            <af:gridCell marginStart="5px" width="34%" id="gc1">
-                                <af:selectOneChoice value="#{assignDeliveryAgent.order_id}"
-                                                    label="#{bindings.OrderForRestaurantForUser1.label}"
-                                                    required="#{bindings.OrderForRestaurantForUser1.hints.mandatory}"
-                                                    shortDesc="#{bindings.OrderForRestaurantForUser1.hints.tooltip}"
-                                                    id="soc1">
-                                    <f:selectItems value="#{bindings.OrderForRestaurantForUser1.items}" id="si1"/>
-                                    <f:validator binding="#{bindings.OrderForRestaurantForUser1.validator}"/>
-                                </af:selectOneChoice>
-                            </af:gridCell>
-                            <af:gridCell marginStart="5px" width="33%" id="gc2">
-                                <af:selectOneChoice value="#{assignDeliveryAgent.agent_id}"
-                                                    label="#{bindings.G3DeliveryAgentVO.label}"
-                                                    required="#{bindings.G3DeliveryAgentVO.hints.mandatory}"
-                                                    shortDesc="#{bindings.G3DeliveryAgentVO.hints.tooltip}" id="soc3">
-                                    <f:selectItems value="#{bindings.G3DeliveryAgentVO.items}" id="si3"/>
-                                    <f:validator binding="#{bindings.G3DeliveryAgentVO.validator}"/>
-                                </af:selectOneChoice>
-                            </af:gridCell>
-                            <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc3">
-                                <af:button text="Assign" id="b1" action="#{assignDeliveryAgent.assignAgent}"/>
-                            </af:gridCell>
-                        </af:gridRow>
-                    </af:panelGridLayout>
+                    <af:panelBox text="PanelBox1" id="pb7">
+                        <f:facet name="toolbar"/>
+                        <af:panelGridLayout id="pgl1">
+                            <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr1">
+                                <af:gridCell marginStart="5px" width="34%" id="gc1">
+                                    <af:selectOneChoice value="#{assignDeliveryAgent.order_id}"
+                                                        label="#{bindings.ToDeliverOrdersForRestaurantVO.label}"
+                                                        required="#{bindings.ToDeliverOrdersForRestaurantVO.hints.mandatory}"
+                                                        shortDesc="#{bindings.ToDeliverOrdersForRestaurantVO.hints.tooltip}"
+                                                        id="soc5">
+                                        <f:selectItems value="#{bindings.ToDeliverOrdersForRestaurantVO.items}"
+                                                       id="si7"/>
+                                        <f:validator binding="#{bindings.ToDeliverOrdersForRestaurantVO.validator}"/>
+                                    </af:selectOneChoice>
+                                </af:gridCell>
+                                <af:gridCell marginStart="5px" width="33%" id="gc2">
+                                    <af:selectOneChoice value="#{assignDeliveryAgent.agent_id}"
+                                                        label="#{bindings.G3DeliveryAgentVO.label}"
+                                                        shortDesc="#{bindings.G3DeliveryAgentVO.hints.tooltip}"
+                                                        id="soc1">
+                                        <f:selectItems value="#{bindings.G3DeliveryAgentVO.items}" id="si1"/>
+                                        <f:validator binding="#{bindings.G3DeliveryAgentVO.validator}"/>
+                                    </af:selectOneChoice>
+                                </af:gridCell>
+                                <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc3">
+                                    <af:button text="Assign" id="b1" action="#{assignDeliveryAgent.assignAgent}"/>
+                                </af:gridCell>
+                            </af:gridRow>
+                        </af:panelGridLayout>
+                    </af:panelBox>
                 </af:showDetailItem>
                 <af:showDetailItem id="coupon" text="Coupon">
                     <af:panelBox text="Add Coupons" id="pb4">
@@ -463,38 +469,61 @@
                             <af:listItem id="li1">
                                 <af:panelGridLayout id="pgl5">
                                     <af:gridRow marginTop="5px" height="auto" id="gr2">
-                                        <af:gridCell marginStart="5px" columnSpan="2" marginEnd="5px" id="gc4">
+                                        <af:gridCell marginStart="5px" width="24%" id="gc4">
                                             <af:outputText value="#{item.Description}"
                                                            shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.Description.tooltip}"
-                                                           id="ot22"/>
+                                                           id="ot22" inlineStyle="font-weight:bold;"/>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc5"/>
+                                        <af:gridCell marginStart="5px" width="23%" marginEnd="5px" id="gc6">
+                                            <af:outputText value="#{item.CouponId}"
+                                                           shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.CouponId.tooltip}"
+                                                           id="ot23" rendered="false">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.CouponsForRestaurantForUserVO1.hints.CouponId.format}"/>
+                                            </af:outputText>
                                         </af:gridCell>
                                     </af:gridRow>
                                     <af:gridRow marginTop="5px" height="auto" id="gr3">
-                                        <af:gridCell marginStart="5px" width="70%" id="gc5">
-                                            <af:outputText value="#{item.DiscountPercentage}"
-                                                           shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.DiscountPercentage.tooltip}"
-                                                           id="ot23">
-                                                <af:convertNumber groupingUsed="false"
-                                                                  pattern="#{bindings.CouponsForRestaurantForUserVO1.hints.DiscountPercentage.format}"/>
-                                            </af:outputText>
+                                        <af:gridCell marginStart="5px" width="24%" id="gc7">
+                                            <af:panelLabelAndMessage label="Discount" id="plam10">
+                                                <af:outputText value="#{item.DiscountPercentage} % off"
+                                                               shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.DiscountPercentage.tooltip}"
+                                                               id="ot24">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CouponsForRestaurantForUserVO1.hints.DiscountPercentage.format}"/>
+                                                </af:outputText>
+                                            </af:panelLabelAndMessage>
                                         </af:gridCell>
-                                        <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc6"/>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc8">
+                                            <af:button text="Remove" id="b6" action="#{deleteCouponBean.deleteCoupon}">
+                                                <af:setPropertyListener from="#{item.CouponId}"
+                                                                        to="#{deleteCouponBean.couponId}"
+                                                                        type="action"/>
+                                            </af:button>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="23%" marginEnd="5px" id="gc26"/>
                                     </af:gridRow>
                                     <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr4">
-                                        <af:gridCell marginStart="5px" width="70%" id="gc7">
-                                            <af:outputText value="#{item.ValidFrom}"
-                                                           shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidFrom.tooltip}"
-                                                           id="ot24">
-                                                <af:convertDateTime pattern="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidFrom.format}"/>
-                                            </af:outputText>
+                                        <af:gridCell marginStart="5px" width="24%" id="gc27">
+                                            <af:panelLabelAndMessage label="Valid From" id="plam11">
+                                                <af:outputText value="#{item.ValidFrom}"
+                                                               shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidFrom.tooltip}"
+                                                               id="ot25">
+                                                    <af:convertDateTime pattern="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidFrom.format}"/>
+                                                </af:outputText>
+                                            </af:panelLabelAndMessage>
                                         </af:gridCell>
-                                        <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc8">
-                                            <af:outputText value="#{item.ValidTo}"
-                                                           shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidTo.tooltip}"
-                                                           id="ot25">
-                                                <af:convertDateTime pattern="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidTo.format}"/>
-                                            </af:outputText>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc28">
+                                            <af:panelLabelAndMessage label="Valid To" id="plam12">
+                                                <af:outputText value="#{item.ValidTo}"
+                                                               shortDesc="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidTo.tooltip}"
+                                                               id="ot44">
+                                                    <af:convertDateTime pattern="#{bindings.CouponsForRestaurantForUserVO1.hints.ValidTo.format}"/>
+                                                </af:outputText>
+                                            </af:panelLabelAndMessage>
                                         </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="23%" marginEnd="5px" id="gc29"/>
                                     </af:gridRow>
                                 </af:panelGridLayout>
                             </af:listItem>
