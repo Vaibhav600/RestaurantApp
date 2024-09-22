@@ -39,14 +39,13 @@ public class ResetRestaurantVCBean {
         return null;
     }
     @PostConstruct
-    public String resetVC(){
+    public void resetVC(){
         ApplicationModule am = getApplicationModule();
         ViewObject rest_vo = am.findViewObject(rest_for_custApp_vo_name);
-        rest_vo.setWhereClause(null);
-        rest_vo.removeNamedWhereClauseParam("bRestName"); // Remove the parameter
-        rest_vo.executeQuery();
+//        rest_vo.setWhereClause(null);
+//        rest_vo.removeNamedWhereClauseParam("bRestName"); // Remove the parameter
+//        rest_vo.executeQuery();
         rest_vo.getViewCriteriaManager().clearViewCriterias();
-        return null;
     }
 
     public void setList(RichListView list) {
