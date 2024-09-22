@@ -14,6 +14,34 @@ public class ConstantBean {
     private String error_page_navigation = "goToError";
     private String restaurant_vo_name = "G3RestaurantsVO";
     private String reservation_vo_name = "G3ReservationsVO";
+    private String orders_vo_name = "G3OrdersVO";
+    private String rest_for_custApp_vo_name = "RestaurantVO_ForCustApp";
+    private String orderItem_vo_name = "G3OrderItemsVO";
+
+
+    public void setOrderItem_vo_name(String orderItem_vo_name) {
+        this.orderItem_vo_name = orderItem_vo_name;
+    }
+
+    public String getOrderItem_vo_name() {
+        return orderItem_vo_name;
+    }
+
+    public void setOrders_vo_name(String orders_vo_name) {
+        this.orders_vo_name = orders_vo_name;
+    }
+
+    public String getOrders_vo_name() {
+        return orders_vo_name;
+    }
+
+    public void setRest_for_custApp_vo_name(String rest_for_custApp_vo_name) {
+        this.rest_for_custApp_vo_name = rest_for_custApp_vo_name;
+    }
+
+    public String getRest_for_custApp_vo_name() {
+        return rest_for_custApp_vo_name;
+    }
 
     public void setReservation_vo_name(String reservation_vo_name) {
         this.reservation_vo_name = reservation_vo_name;

@@ -86,6 +86,9 @@
   <ViewUsage
     Name="G3ReservationsVO"
     ViewObjectName="model.services.views.G3ReservationsVO"/>
+  <ViewUsage
+    Name="G3OrderItemsVO"
+    ViewObjectName="model.services.views.G3OrderItemsVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"

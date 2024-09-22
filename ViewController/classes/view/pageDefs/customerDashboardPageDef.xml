@@ -9,8 +9,6 @@
     </variableIterator>
     <iterator Binds="RestaurantVO_ForCustApp" RangeSize="25" DataControl="AppModuleDataControl"
               id="RestaurantVO_ForCustAppIterator"/>
-    <iterator Binds="MenuItems_CustApp_VO" RangeSize="25" DataControl="AppModuleDataControl"
-              id="MenuItems_CustApp_VOIterator"/>
   </executables>
   <bindings>
     <action IterBinding="RestaurantVO_ForCustAppIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
@@ -29,19 +27,6 @@
           <Item Value="AvailableSeats"/>
           <Item Value="Status"/>
           <Item Value="Address"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <tree IterBinding="MenuItems_CustApp_VOIterator" id="MenuItems_CustApp_VO">
-      <nodeDefinition DefName="model.services.views.G3MenuItemsVO" Name="MenuItems_CustApp_VO0">
-        <AttrNames>
-          <Item Value="ItemId"/>
-          <Item Value="RestaurantId"/>
-          <Item Value="DishName"/>
-          <Item Value="Price"/>
-          <Item Value="Availability"/>
-          <Item Value="Cuisine"/>
-          <Item Value="Rating"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

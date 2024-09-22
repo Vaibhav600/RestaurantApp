@@ -83,7 +83,7 @@ public class ReservationBean {
         ApplicationModule am = getApplicationModule();
         ViewObject reservation_vo = am.findViewObject(constants.getReservation_vo_name());
 
-        ViewObject selectedRestVO = am.findViewObject("RestaurantVO_ForCustApp");
+        ViewObject selectedRestVO = am.findViewObject(constants.getRest_for_custApp_vo_name());
         Row selectedRestaurant = selectedRestVO.first();
         DBSequence dbSequence = (DBSequence) selectedRestaurant.getAttribute("RestaurantId");
         Integer selectedRestaurantId = dbSequence.getSequenceNumber().intValue();

@@ -23,15 +23,14 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"
-    IsNotNull="false"/>
+    RetrievedOnInsert="true"/>
   <Attribute
     Name="OrderId"
     Precision="10"
     Scale="0"
     ColumnName="ORDER_ID"
     SQLType="NUMERIC"
-    Type="java.lang.Long"
+    Type="oracle.jbo.domain.Number"
     ColumnType="NUMBER"
     TableName="G3_ORDER_ITEMS"/>
   <Attribute
@@ -40,28 +39,28 @@
     Scale="0"
     ColumnName="ITEM_ID"
     SQLType="NUMERIC"
-    Type="java.lang.Long"
+    Type="oracle.jbo.domain.Number"
     ColumnType="NUMBER"
     TableName="G3_ORDER_ITEMS"/>
   <Attribute
     Name="Quantity"
     ColumnName="QUANTITY"
     SQLType="NUMERIC"
-    Type="java.math.BigDecimal"
+    Type="oracle.jbo.domain.Number"
     ColumnType="NUMBER"
     TableName="G3_ORDER_ITEMS"/>
   <Attribute
     Name="Price"
     ColumnName="PRICE"
     SQLType="NUMERIC"
-    Type="java.math.BigDecimal"
+    Type="oracle.jbo.domain.Number"
     ColumnType="NUMBER"
     TableName="G3_ORDER_ITEMS"/>
   <Attribute
     Name="ItemTotal"
     ColumnName="ITEM_TOTAL"
     SQLType="NUMERIC"
-    Type="java.math.BigDecimal"
+    Type="oracle.jbo.domain.Number"
     ColumnType="NUMBER"
     TableName="G3_ORDER_ITEMS"/>
   <Attribute

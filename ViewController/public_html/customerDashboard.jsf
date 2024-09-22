@@ -31,7 +31,7 @@
                             <af:listView value="#{bindings.RestaurantVO_ForCustApp.collectionModel}" var="item"
                                          emptyText="#{bindings.RestaurantVO_ForCustApp.viewable ? 'No data to display.' : 'Access Denied.'}"
                                          fetchSize="#{bindings.RestaurantVO_ForCustApp.rangeSize}" id="lv1"
-                                         partialTriggers="::b1">
+                                         partialTriggers="::b1" binding="#{resetRestaurantVCBean.list}">
                                 <af:listItem id="li1">
                                     <af:panelGroupLayout layout="horizontal" id="pgl2">
                                         <f:facet name="separator">
@@ -52,102 +52,6 @@
                                     </af:panelGroupLayout>
                                 </af:listItem>
                             </af:listView>
-                            <af:table value="#{bindings.MenuItems_CustApp_VO.collectionModel}" var="row"
-                                      rows="#{bindings.MenuItems_CustApp_VO.rangeSize}"
-                                      emptyText="#{bindings.MenuItems_CustApp_VO.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                      rowBandingInterval="0"
-                                      selectedRowKeys="#{bindings.MenuItems_CustApp_VO.collectionModel.selectedRow}"
-                                      selectionListener="#{bindings.MenuItems_CustApp_VO.collectionModel.makeCurrent}"
-                                      rowSelection="single" fetchSize="#{bindings.MenuItems_CustApp_VO.rangeSize}"
-                                      id="t1">
-                                <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.ItemId.label}" id="c1">
-                                    <af:inputText value="#{row.bindings.ItemId.inputValue}"
-                                                  label="#{bindings.MenuItems_CustApp_VO.hints.ItemId.label}"
-                                                  required="#{bindings.MenuItems_CustApp_VO.hints.ItemId.mandatory}"
-                                                  columns="#{bindings.MenuItems_CustApp_VO.hints.ItemId.displayWidth}"
-                                                  maximumLength="#{bindings.MenuItems_CustApp_VO.hints.ItemId.precision}"
-                                                  shortDesc="#{bindings.MenuItems_CustApp_VO.hints.ItemId.tooltip}"
-                                                  id="it2">
-                                        <f:validator binding="#{row.bindings.ItemId.validator}"/>
-                                        <af:convertNumber groupingUsed="false"
-                                                          pattern="#{bindings.MenuItems_CustApp_VO.hints.ItemId.format}"/>
-                                    </af:inputText>
-                                </af:column>
-                                <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.RestaurantId.label}"
-                                           id="c2">
-                                    <af:inputText value="#{row.bindings.RestaurantId.inputValue}"
-                                                  label="#{bindings.MenuItems_CustApp_VO.hints.RestaurantId.label}"
-                                                  required="#{bindings.MenuItems_CustApp_VO.hints.RestaurantId.mandatory}"
-                                                  columns="#{bindings.MenuItems_CustApp_VO.hints.RestaurantId.displayWidth}"
-                                                  maximumLength="#{bindings.MenuItems_CustApp_VO.hints.RestaurantId.precision}"
-                                                  shortDesc="#{bindings.MenuItems_CustApp_VO.hints.RestaurantId.tooltip}"
-                                                  id="it3">
-                                        <f:validator binding="#{row.bindings.RestaurantId.validator}"/>
-                                        <af:convertNumber groupingUsed="false"
-                                                          pattern="#{bindings.MenuItems_CustApp_VO.hints.RestaurantId.format}"/>
-                                    </af:inputText>
-                                </af:column>
-                                <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.DishName.label}" id="c3">
-                                    <af:inputText value="#{row.bindings.DishName.inputValue}"
-                                                  label="#{bindings.MenuItems_CustApp_VO.hints.DishName.label}"
-                                                  required="#{bindings.MenuItems_CustApp_VO.hints.DishName.mandatory}"
-                                                  columns="#{bindings.MenuItems_CustApp_VO.hints.DishName.displayWidth}"
-                                                  maximumLength="#{bindings.MenuItems_CustApp_VO.hints.DishName.precision}"
-                                                  shortDesc="#{bindings.MenuItems_CustApp_VO.hints.DishName.tooltip}"
-                                                  id="it4">
-                                        <f:validator binding="#{row.bindings.DishName.validator}"/>
-                                    </af:inputText>
-                                </af:column>
-                                <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Price.label}" id="c4">
-                                    <af:inputText value="#{row.bindings.Price.inputValue}"
-                                                  label="#{bindings.MenuItems_CustApp_VO.hints.Price.label}"
-                                                  required="#{bindings.MenuItems_CustApp_VO.hints.Price.mandatory}"
-                                                  columns="#{bindings.MenuItems_CustApp_VO.hints.Price.displayWidth}"
-                                                  maximumLength="#{bindings.MenuItems_CustApp_VO.hints.Price.precision}"
-                                                  shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Price.tooltip}"
-                                                  id="it5">
-                                        <f:validator binding="#{row.bindings.Price.validator}"/>
-                                        <af:convertNumber groupingUsed="false"
-                                                          pattern="#{bindings.MenuItems_CustApp_VO.hints.Price.format}"/>
-                                    </af:inputText>
-                                </af:column>
-                                <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Availability.label}"
-                                           id="c5">
-                                    <af:inputText value="#{row.bindings.Availability.inputValue}"
-                                                  label="#{bindings.MenuItems_CustApp_VO.hints.Availability.label}"
-                                                  required="#{bindings.MenuItems_CustApp_VO.hints.Availability.mandatory}"
-                                                  columns="#{bindings.MenuItems_CustApp_VO.hints.Availability.displayWidth}"
-                                                  maximumLength="#{bindings.MenuItems_CustApp_VO.hints.Availability.precision}"
-                                                  shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Availability.tooltip}"
-                                                  id="it6">
-                                        <f:validator binding="#{row.bindings.Availability.validator}"/>
-                                    </af:inputText>
-                                </af:column>
-                                <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.label}" id="c6">
-                                    <af:inputText value="#{row.bindings.Cuisine.inputValue}"
-                                                  label="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.label}"
-                                                  required="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.mandatory}"
-                                                  columns="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.displayWidth}"
-                                                  maximumLength="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.precision}"
-                                                  shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.tooltip}"
-                                                  id="it7">
-                                        <f:validator binding="#{row.bindings.Cuisine.validator}"/>
-                                    </af:inputText>
-                                </af:column>
-                                <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Rating.label}" id="c7">
-                                    <af:inputText value="#{row.bindings.Rating.inputValue}"
-                                                  label="#{bindings.MenuItems_CustApp_VO.hints.Rating.label}"
-                                                  required="#{bindings.MenuItems_CustApp_VO.hints.Rating.mandatory}"
-                                                  columns="#{bindings.MenuItems_CustApp_VO.hints.Rating.displayWidth}"
-                                                  maximumLength="#{bindings.MenuItems_CustApp_VO.hints.Rating.precision}"
-                                                  shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Rating.tooltip}"
-                                                  id="it8">
-                                        <f:validator binding="#{row.bindings.Rating.validator}"/>
-                                        <af:convertNumber groupingUsed="false"
-                                                          pattern="#{bindings.MenuItems_CustApp_VO.hints.Rating.format}"/>
-                                    </af:inputText>
-                                </af:column>
-                            </af:table>
                         </af:panelFormLayout>
                     </af:gridCell>
                 </af:gridRow>
