@@ -45,7 +45,6 @@ public class SetCartItemVC {
         ApplicationModule am = getApplicationModule();
         ViewObject cart_vo = am.findViewObject(constants.getCart_items_vo_name());
         cart_vo.setNamedWhereClauseParam("bCustId", CustomerId);
-        cart_vo.executeQuery();
         return null;
     }
 }

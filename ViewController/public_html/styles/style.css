@@ -68,3 +68,7 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.increaseWidth{
+    width: 300px;
+}

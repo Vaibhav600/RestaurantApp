@@ -86,16 +86,16 @@ public class LoginBean {
                                             session.setAttribute("userId", user_id);
 
                     if(role.equals("owner")) {
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Owner Login Success"));
+                        // FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Owner Login Success"));
                         usersVO.setNamedWhereClauseParam("bOwnerId", user_id);
                         return constants.getOwner_navigation();
                     }
                     else if(role.equals("super_admin")){
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Super Admin Login Success"));
+                        // FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Super Admin Login Success"));
                         return constants.getSuper_admin_navigation();
                     }
                     else if(role.equals("customer")){
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User Login Success"));
+                        // FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User Login Success"));
                         return constants.getCustomer_navigation();
                     }
                     else{

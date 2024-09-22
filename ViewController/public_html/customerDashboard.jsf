@@ -2,11 +2,14 @@
 <!DOCTYPE html>
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
     <af:document title="customerDashboard.jsf" id="d1">
+            <af:resource type="css" source="/styles/style.css"/>
+        <af:resource type="css" source="/styles/style.css"/>
+
         <af:messages id="m1"/>
         <af:form id="f1">
             <af:panelGridLayout id="pgl1">
                 <af:gridRow height="50px" id="gr2">
-                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                    <af:gridCell width="100%" halign="center" valign="stretch" id="gc1">
                         <!-- Header -->
                         <af:button text="Offers" id="b2">
                             <af:showPopupBehavior popupId="coupons_popup"/>
@@ -20,42 +23,53 @@
                         <af:button text="Logout" id="b5"/>
                     </af:gridCell>
                 </af:gridRow>
-                <af:gridRow height="100%" id="gr1">
-                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                <af:gridRow height="100%" id="gr1" rendered="true">
+                    <af:gridCell width="auto" halign="center" valign="stretch" id="gc2">
                         <!-- Content -->
                         <af:panelFormLayout id="pfl2">
-                            <af:inputText value="#{bindings.bRestName.inputValue}"
-                                          label="Search Restaurant"
-                                          required="#{bindings.bRestName.hints.mandatory}"
-                                          columns="#{bindings.bRestName.hints.displayWidth}"
-                                          maximumLength="#{bindings.bRestName.hints.precision}"
-                                          shortDesc="#{bindings.bRestName.hints.tooltip}" id="it1">
-                                <f:validator binding="#{bindings.bRestName.validator}"/>
-                            </af:inputText>
-                            <af:button actionListener="#{bindings.ExecuteWithParams.execute}" text="Search"
-                                       disabled="#{!bindings.ExecuteWithParams.enabled}" id="b1"/>
+                            <af:panelGroupLayout id="pgl4" halign="center">
+                                <af:inputText value="#{bindings.bRestName.inputValue}" label="Search Restaurant"
+                                              required="#{bindings.bRestName.hints.mandatory}"
+                                              columns="#{bindings.bRestName.hints.displayWidth}"
+                                              maximumLength="#{bindings.bRestName.hints.precision}"
+                                              shortDesc="#{bindings.bRestName.hints.tooltip}" id="it1">
+                                    <f:validator binding="#{bindings.bRestName.validator}"/>
+                                </af:inputText>
+                                <af:button actionListener="#{bindings.ExecuteWithParams.execute}" text="Search"
+                                           disabled="#{!bindings.ExecuteWithParams.enabled}" id="b1"/>
+                            </af:panelGroupLayout>
                             <af:listView value="#{bindings.RestaurantVO_ForCustApp.collectionModel}" var="item"
                                          emptyText="#{bindings.RestaurantVO_ForCustApp.viewable ? 'No data to display.' : 'Access Denied.'}"
                                          fetchSize="#{bindings.RestaurantVO_ForCustApp.rangeSize}" id="lv1"
-                                         partialTriggers="::b1" binding="#{resetRestaurantVCBean.list}">
+                                         partialTriggers="::b1" binding="#{resetRestaurantVCBean.list}"
+                                         styleClass="increaseListWidth" inlineStyle="width:572px;">
                                 <af:listItem id="li1">
-                                    <af:panelGroupLayout layout="horizontal" id="pgl2">
-                                        <f:facet name="separator">
-                                            <af:spacer width="10" id="s1"/>
-                                        </f:facet>
-                                        <af:link id="l1" action="goToRestDetailsPage">
-                                            <af:outputFormatted value="#{item.bindings.Name.inputValue}" id="of1"/>
-                                            <af:setPropertyListener from="#{item.bindings.Name.inputValue}"
-                                                                    to="#{pageFlowScope.selectedRestName}"
-                                                                    type="action"/>
-                                        </af:link>
-                                        <af:outputFormatted value="#{item.bindings.AvailableSeats.inputValue}" id="of2">
-                                            <af:convertNumber groupingUsed="false"
-                                                              pattern="#{bindings.RestaurantVO_ForCustApp.hints.AvailableSeats.format}"/>
-                                        </af:outputFormatted>
-                                        <af:outputFormatted value="#{item.bindings.Status.inputValue}" id="of3"/>
-                                        <af:outputFormatted value="#{item.bindings.Address.inputValue}" id="of4"/>
-                                    </af:panelGroupLayout>
+                                    <af:panelGridLayout id="pgl3">
+                                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr3">
+                                            <af:gridCell marginStart="5px" width="50%" id="gc3"/>
+                                            <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc4">
+                                                <af:panelGroupLayout layout="vertical" id="pgl2">
+                                                    <f:facet name="separator">
+                                                        <af:spacer width="10" id="s1"/>
+                                                    </f:facet>
+                                                    <af:link id="l1" action="goToRestDetailsPage">
+                                                        <af:outputFormatted value="#{item.bindings.Name.inputValue}"
+                                                                            id="of1" inlineStyle="font-size:x-large;"/>
+                                                        <af:setPropertyListener from="#{item.bindings.Name.inputValue}"
+                                                                                to="#{pageFlowScope.selectedRestName}"
+                                                                                type="action"/>
+                                                    </af:link>
+                                                    <af:outputFormatted value="Available Seats - #{item.bindings.AvailableSeats.inputValue}"
+                                                                        id="of2" inlineStyle="font-size:large;">
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.RestaurantVO_ForCustApp.hints.AvailableSeats.format}"/>
+                                                    </af:outputFormatted>
+                                                    <af:outputFormatted value="#{item.bindings.Status.inputValue}"
+                                                                        id="of3" inlineStyle="font-size:large;"/>
+                                                </af:panelGroupLayout>
+                                            </af:gridCell>
+                                        </af:gridRow>
+                                    </af:panelGridLayout>
                                 </af:listItem>
                             </af:listView>
                         </af:panelFormLayout>
