@@ -120,9 +120,17 @@
                                 </af:outputText>
                             </af:column>
                         </af:table>
-                        <af:button text="Checkout" id="b6" inlineStyle="margin-top: 10px;"/>
+                        <af:button text="Checkout" id="b6" inlineStyle="margin-top: 10px;">
+                            <af:showPopupBehavior popupId="checkoutTrain_popup"/>
+                        </af:button>
                     </af:panelGroupLayout>
                 </af:panelWindow>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="checkoutTrain_popup" animate="true">
+                <af:panelWindow id="pw4">
+                    <af:region value="#{bindings.checkoutTrainTF1.regionModel}" id="r1"/>
+                </af:panelWindow>
+                    
             </af:popup>
             <af:popup childCreation="deferred" autoCancel="disabled" id="my_orders_popup" animate="true">
                 <af:panelWindow id="pw2">

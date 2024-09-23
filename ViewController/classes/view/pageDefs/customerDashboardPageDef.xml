@@ -11,6 +11,8 @@
               id="RestaurantVO_ForCustAppIterator"/>
     <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
     <iterator Binds="OffersVO" RangeSize="25" DataControl="AppModuleDataControl" id="OffersVOIterator"/>
+    <taskFlow id="checkoutTrainTF1" taskFlowId="/WEB-INF/checkoutTrainTF.xml#checkoutTrainTF" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings>
     <action IterBinding="RestaurantVO_ForCustAppIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
