@@ -30,11 +30,11 @@
       <property
          name="pageFragment">true</property>
       <property
-         name="x">95.703125</property>
+         name="x">24.703125</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>addressDetails&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="y">271.23438</property>
+         name="y">364.10156</property>
       <property
          name="page">/addressDetails.jsff</property>
       <property
@@ -48,7 +48,7 @@
       from="View22"
       to="View23">
       <property
-         name="sdm:polyPoints">B50,22.636719,184.50781,95.703125,217.16797,T50</property>
+         name="sdm:polyPoints">B50,22.636719,184.4414,21.203125,307.99902,T44</property>
    </TrainFlow>
    <View
       id="View25">
@@ -57,11 +57,11 @@
       <property
          name="pageFragment">true</property>
       <property
-         name="x">276.0586</property>
+         name="x">185.0586</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>paymentDetails&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="y">232.23438</property>
+         name="y">126.96875</property>
       <property
          name="page">/paymentDetails.jsff</property>
       <property
@@ -75,7 +75,7 @@
       from="View23"
       to="View25">
       <property
-         name="sdm:polyPoints">R50,136.70312,271.16797,235.0586,232.16797,L50</property>
+         name="sdm:polyPoints">T56,28.203125,310.03516,181.5586,181.03516,B44</property>
    </TrainFlow>
    <View
       id="View27">
@@ -84,11 +84,11 @@
       <property
          name="pageFragment">true</property>
       <property
-         name="x">343.93066</property>
+         name="x">193.93066</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>placeOrder&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="y">392.23438</property>
+         name="y">369.10156</property>
       <property
          name="page">/placeOrder.jsff</property>
       <property
@@ -102,18 +102,18 @@
       from="View25"
       to="View27">
       <property
-         name="sdm:polyPoints">B50,276.0586,286.16797,343.93066,338.30078,T50</property>
+         name="sdm:polyPoints">B56,188.5586,180.90234,190.43066,315.03516,T44</property>
    </TrainFlow>
    <TaskFlowReturn
       id="TaskFlowReturn29">
       <property
          name="activityId">Submit</property>
       <property
-         name="x">517.0</property>
+         name="x">378.0</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>Submit&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  taskFlowReturn1&lt;/p></property>
       <property
-         name="y">301.53516</property>
+         name="y">129.26953</property>
       <property
          name="finish">true</property>
       <property
@@ -127,6 +127,6 @@
       <property
          name="fromOutcome">submit</property>
       <property
-         name="sdm:polyPoints">R50,384.93066,392.16797,476.0,301.46875,L50</property>
+         name="sdm:polyPoints">T56,197.43066,315.03516,378.0,183.26953,B50</property>
    </ControlFlowCase>
 </SDM>

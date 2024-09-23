@@ -54,9 +54,45 @@ public class OrderNow {
          Object userIdObject = session.getAttribute("userId");
          int CustomerId = Integer.parseInt(userIdObject.toString());
         
+        // Now Create Order       
+        ViewObject orders_vo = am.findViewObject(constants.getOrders_vo_name());
+
+        // Set Where Clause to find any PENDING order for the given CustomerId
+        // Use the exact parameter names in the where clause
+        orders_vo.setWhereClause("G3OrdersEO.CUSTOMER_ID = :custId AND UPPER(G3OrdersEO.PAYMENT_STATUS) = UPPER(:paymentStatus)");
+        // Define named where clause parameters. Make sure the names here match the ones in the whereClause.
+        orders_vo.defineNamedWhereClauseParam("custId", null, null);
+        orders_vo.defineNamedWhereClauseParam("paymentStatus", null, null);
+
+        // Set the actual values for the named parameters
+        orders_vo.setNamedWhereClauseParam("custId", CustomerId); // Correct parameter name case
+        orders_vo.setNamedWhereClauseParam("paymentStatus", "PENDING"); // Correct parameter name case
+
+        orders_vo.executeQuery();
+
+        // Get the first order (if any) that matches the criteria
+        Row existing_order_row = orders_vo.first();
+        System.out.println(existing_order_row);
         
-         // Now Create Order       
-         ViewObject orders_vo = am.findViewObject(constants.getOrders_vo_name());
+        if (existing_order_row != null) {
+            // If a pending order exists, delete it
+            existing_order_row.remove(); // Removes the row
+            am.getTransaction().commit(); // Commit the changes to the database
+        }
+
+        // Clear the whereClause and named parameters to reset the ViewObject
+        orders_vo.removeNamedWhereClauseParam("custId");
+        orders_vo.removeNamedWhereClauseParam("paymentStatus");
+        orders_vo.setWhereClause(null);  // Clear where clause
+        orders_vo.executeQuery();  // Re-execute without the filter to refresh data if necessary
+
+//         exisiting_order_row.remove();
+//        orders_vo.executeQuery();
+//         am.getTransaction().commit();
+//         orders_vo.clearCache();
+//         orders_vo.setWhereClause(null);
+//        orders_vo.executeQuery();
+
          Row new_order = orders_vo.createRow();
          new_order.setAttribute("RestaurantId", selectedRestaurantId);
          new_order.setAttribute("CustomerId", CustomerId);
