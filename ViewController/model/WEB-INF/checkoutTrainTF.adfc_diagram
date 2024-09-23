@@ -7,7 +7,7 @@
       <property
          name="activityId">orderDetails</property>
       <property
-         name="pageFragment">false</property>
+         name="pageFragment">true</property>
       <property
          name="start">true</property>
       <property
@@ -17,7 +17,7 @@
       <property
          name="description">&lt;html>&lt;p>&lt;b>orderDetails&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="page">/orderDetails.jsf</property>
+         name="page">/orderDetails.jsff</property>
       <property
          name="trainStop">true</property>
       <property
@@ -28,7 +28,7 @@
       <property
          name="activityId">addressDetails</property>
       <property
-         name="pageFragment">false</property>
+         name="pageFragment">true</property>
       <property
          name="x">95.703125</property>
       <property
@@ -36,7 +36,7 @@
       <property
          name="y">271.23438</property>
       <property
-         name="page">/addressDetails.jsf</property>
+         name="page">/addressDetails.jsff</property>
       <property
          name="exceptionHandler">false</property>
       <property
@@ -55,7 +55,7 @@
       <property
          name="activityId">paymentDetails</property>
       <property
-         name="pageFragment">false</property>
+         name="pageFragment">true</property>
       <property
          name="x">276.0586</property>
       <property
@@ -63,7 +63,7 @@
       <property
          name="y">232.23438</property>
       <property
-         name="page">/paymentDetails.jsf</property>
+         name="page">/paymentDetails.jsff</property>
       <property
          name="exceptionHandler">false</property>
       <property
@@ -82,7 +82,7 @@
       <property
          name="activityId">placeOrder</property>
       <property
-         name="pageFragment">false</property>
+         name="pageFragment">true</property>
       <property
          name="x">343.93066</property>
       <property
@@ -90,7 +90,7 @@
       <property
          name="y">392.23438</property>
       <property
-         name="page">/placeOrder.jsf</property>
+         name="page">/placeOrder.jsff</property>
       <property
          name="exceptionHandler">false</property>
       <property

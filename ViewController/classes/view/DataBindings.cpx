@@ -26,8 +26,8 @@
           usageId="view_customerTF_customerTF_ExecuteWithParamsPageDef"/>
     <page path="/restDetails.jsf" usageId="view_restDetailsPageDef"/>
     <page path="/superAdminDashboard.jsf" usageId="view_superAdminDashboardTestPageDef"/>
-    <page path="/addressDetails.jsf" usageId="view_addressDetailsPageDef"/>
-    <page path="/orderDetails.jsf" usageId="view_orderDetailsPageDef"/>
+    <page path="/addressDetails.jsff" usageId="view_addressDetailsPageDef"/>
+    <page path="/orderDetails.jsff" usageId="view_orderDetailsPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="view_loginPageDef" path="view.pageDefs.loginPageDef"/>

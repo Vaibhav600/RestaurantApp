@@ -6,25 +6,25 @@
       <shared/>
     </data-control-scope>
     <view id="orderDetails">
-      <page>/orderDetails.jsf</page>
+      <page>/orderDetails.jsff</page>
       <train-stop>
         <display-name>Order Details</display-name>
       </train-stop>
     </view>
     <view id="addressDetails">
-      <page>/addressDetails.jsf</page>
+      <page>/addressDetails.jsff</page>
       <train-stop>
         <display-name>Address Details</display-name>
       </train-stop>
     </view>
     <view id="paymentDetails">
-      <page>/paymentDetails.jsf</page>
+      <page>/paymentDetails.jsff</page>
       <train-stop>
         <display-name>Payment Details</display-name>
       </train-stop>
     </view>
     <view id="placeOrder">
-      <page>/placeOrder.jsf</page>
+      <page>/placeOrder.jsff</page>
       <train-stop>
         <display-name>Place Order</display-name>
       </train-stop>
@@ -42,5 +42,6 @@
         <to-activity-id>Submit</to-activity-id>
       </control-flow-case>
     </control-flow-rule>
+    <use-page-fragments/>
   </task-flow-definition>
 </adfc-config>
