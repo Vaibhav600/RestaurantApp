@@ -1,6 +1,7 @@
 package com.example.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import javax.faces.context.FacesContext;
@@ -11,14 +12,19 @@ import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCDataControl;
 
+import oracle.adf.view.rich.component.rich.RichPopup;
+
 import oracle.jbo.ApplicationModule;
 import oracle.jbo.ViewObject;
 
 
-@ViewScoped
+@SessionScoped
 @ManagedBean(name="setCartItemVC")
 public class SetCartItemVC {
     ConstantBean constants = new ConstantBean();
+    private RichPopup cart_popup;
+    
+    
 
     public SetCartItemVC() {
         super();
@@ -36,6 +42,15 @@ public class SetCartItemVC {
         }
         return null;
     }
+
+    public void setCart_popup(RichPopup cart_popup) {
+        this.cart_popup = cart_popup;
+    }
+
+    public RichPopup getCart_popup() {
+        return cart_popup;
+    }
+    
     public String setCartVC(){
         // Get Logged in Customer Id
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -45,6 +60,12 @@ public class SetCartItemVC {
         ApplicationModule am = getApplicationModule();
         ViewObject cart_vo = am.findViewObject(constants.getCart_items_vo_name());
         cart_vo.setNamedWhereClauseParam("bCustId", CustomerId);
+        System.out.println("Setting CART for User: " + CustomerId);
+        cart_vo.executeQuery();
+        
+        RichPopup.PopupHints hints = new RichPopup.PopupHints();
+        getCart_popup().show(hints);
+        
         return null;
     }
 }

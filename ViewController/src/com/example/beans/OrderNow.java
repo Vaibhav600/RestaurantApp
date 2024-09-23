@@ -94,14 +94,7 @@ public class OrderNow {
         order_items_vo.insertRow(new_order_item); 
         
         try{
-            System.out.println("Order Id" + OrderId.toString());
-            System.out.println("Item Id" + MenuItemId.toString());
-            System.out.println("Quantity" + Quantity.toString());
-            System.out.println("Price" + Price.toString());
-            System.out.println("Item Total" + item_total.toString());
             am.getTransaction().commit();
-            System.out.println("After Comitting in Create Order Item Function");
-
             DBSequence newOrderItemId = (DBSequence) new_order_item.getAttribute("Id");
             return newOrderItemId.getSequenceNumber();            
         } catch(Exception e){
@@ -138,20 +131,13 @@ public class OrderNow {
                 // Access the attribute values for the current row
                 DBSequence itemIdDbSeq = (DBSequence) currentRow.getAttribute("ItemId");
                 Number menu_item_id = itemIdDbSeq != null ? itemIdDbSeq.getSequenceNumber() : null;
-                
                 Number price =  new Number(currentRow.getAttribute("Price"));
                 Number quantity = currentRow.getAttribute("Quantity")==null? new Number(0) : new Number(currentRow.getAttribute("Quantity"));
                 
                 if(quantity.equals(new Number(0))) continue;
-                
-                String availability = currentRow.getAttribute("Availability").toString();
-                
-                Number order_item_id = createOrderItem(order_id, menu_item_id, quantity, price, am);
-                System.out.println("Returned From Order Item Function");
-                System.out.println("Order Menu Item Id: "+ order_item_id.toString());
 
-                
-                System.out.println("Order Item Id: " + order_item_id.toString());
+                String availability = currentRow.getAttribute("Availability").toString();
+                Number order_item_id = createOrderItem(order_id, menu_item_id, quantity, price, am);              
             }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Order Created Successfully"));
 

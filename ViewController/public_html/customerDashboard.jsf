@@ -14,9 +14,7 @@
                         <af:button text="Offers" id="b2">
                             <af:showPopupBehavior popupId="coupons_popup"/>
                         </af:button>
-                        <af:button text="Cart" id="b3" action="#{viewScope.setCartItemVC.setCartVC}">
-                            <af:showPopupBehavior popupId="cart_popup"/>
-                        </af:button>
+                        <af:button text="Cart" id="b3" action="#{setCartItemVC.setCartVC}"/>
                         <af:button text="My Orders" id="b4">
                             <af:showPopupBehavior popupId="my_orders_popup"/>
                         </af:button>
@@ -81,7 +79,8 @@
                     </af:gridCell>
                 </af:gridRow>
             </af:panelGridLayout>
-            <af:popup childCreation="deferred" autoCancel="disabled" id="cart_popup">
+            <af:popup childCreation="deferred" autoCancel="disabled" id="cart_popup"
+                      binding="#{setCartItemVC.cart_popup}">
                 <af:panelWindow id="pw1">
                     <af:table value="#{bindings.CartItemsVO.collectionModel}" var="row"
                               rows="#{bindings.CartItemsVO.rangeSize}"
