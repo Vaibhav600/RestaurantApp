@@ -20,7 +20,7 @@
                         <af:button text="My Orders" id="b4">
                             <af:showPopupBehavior popupId="my_orders_popup"/>
                         </af:button>
-                        <af:button text="Logout" id="b5" action="logout"/>
+                        <af:button text="Logout" id="b5" action="#{loginBean.doLogout}"/>
                     </af:gridCell>
                 </af:gridRow>
                 <af:gridRow id="gr4" height="100%">

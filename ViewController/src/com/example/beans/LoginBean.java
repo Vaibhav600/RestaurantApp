@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -20,6 +21,8 @@ import oracle.jbo.domain.DBSequence;
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCDataControl;
+import oracle.adf.share.ADFContext;
+
 import oracle.jbo.ApplicationModule;
 import oracle.jbo.Row;
 import oracle.jbo.ViewObject;
@@ -115,6 +118,17 @@ public class LoginBean {
             System.out.println(e);
             return null;
         }
+    }
+    
+    public String doLogout(){
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+                                .getExternalContext().getSession(true);
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
+        // Navigate to the specific task flow control flow case
+        navigationHandler.handleNavigation(facesContext, null, "logout");
+        session.invalidate();
+        return null;
     }
 
     public void setEmail(String email) {
