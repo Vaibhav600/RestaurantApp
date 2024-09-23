@@ -10,6 +10,7 @@
     <Attr Name="_isCodegen" Value="true"/>
   </DesignTime>
   <AssociationEnd
+    Name="G3OrdersEO1"
     Cardinality="1"
     Source="true"
     Owner="model.services.entities.G3OrdersEO">
