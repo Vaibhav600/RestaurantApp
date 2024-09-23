@@ -5,12 +5,12 @@
                 xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
     <af:panelGridLayout id="pgl1">
         <af:gridRow marginTop="5px" height="auto" id="gr1">
-            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc1">
+            <af:gridCell marginStart="5px" width="600px" marginEnd="5px" id="gc1">
                 <af:train value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}" id="t1"/>
             </af:gridCell>
         </af:gridRow>
         <af:gridRow marginTop="5px" height="auto" id="gr2">
-            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc2">
+            <af:gridCell marginStart="5px" width="600px" marginEnd="5px" id="gc2">
                 <af:panelFormLayout id="pfl1" inlineStyle="width:248px;">
                     <f:facet name="footer"/>
                     <af:button text="Place Order" id="b1"/>
@@ -18,7 +18,7 @@
             </af:gridCell>
         </af:gridRow>
         <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr3">
-            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc3">
+            <af:gridCell marginStart="5px" width="600px" marginEnd="5px" id="gc3">
                 <af:trainButtonBar value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}" id="tbb1"/>
             </af:gridCell>
         </af:gridRow>

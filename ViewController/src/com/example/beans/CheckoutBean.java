@@ -27,7 +27,6 @@ public class CheckoutBean {
 
 
     public String showCheckoutTrainPopup() {
-        
         RichPopup.PopupHints hints = new RichPopup.PopupHints();
         getCheckoutPopup().show(hints);
         return null;

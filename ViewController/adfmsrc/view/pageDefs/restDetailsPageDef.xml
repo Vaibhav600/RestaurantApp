@@ -12,6 +12,8 @@
               id="ReservationForRestaurant_CustAppIterator"/>
     <iterator id="G3ReservationsVOIterator" Binds="G3ReservationsVO" DataControl="AppModuleDataControl" RangeSize="25"/>
     <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
+    <taskFlow id="checkoutTrainTF1" taskFlowId="/WEB-INF/checkoutTrainTF.xml#checkoutTrainTF" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="Name">
