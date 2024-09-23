@@ -14,7 +14,6 @@
                         <af:button text="Offers" id="b2">
                             <af:showPopupBehavior popupId="coupons_popup"/>
                         </af:button>
-                        <af:button text="Cart" id="b3" action="#{setCartItemVC.setCartVC}"/>
                         <af:button text="My Orders" id="b4">
                             <af:showPopupBehavior popupId="my_orders_popup"/>
                         </af:button>
@@ -79,52 +78,6 @@
                     </af:gridCell>
                 </af:gridRow>
             </af:panelGridLayout>
-            <af:popup childCreation="deferred" autoCancel="disabled" id="cart_popup"
-                      binding="#{setCartItemVC.cart_popup}" animate="true">
-                <af:panelWindow id="pw1">
-                    <af:panelGroupLayout id="pgl2" layout="vertical" halign="end">
-                        <af:table value="#{bindings.CartItemsVO.collectionModel}" var="row"
-                                  rows="#{bindings.CartItemsVO.rangeSize}"
-                                  emptyText="#{bindings.CartItemsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                  rowBandingInterval="0"
-                                  selectedRowKeys="#{bindings.CartItemsVO.collectionModel.selectedRow}"
-                                  selectionListener="#{bindings.CartItemsVO.collectionModel.makeCurrent}"
-                                  rowSelection="single" fetchSize="#{bindings.CartItemsVO.rangeSize}" id="t1">
-                            <af:column sortProperty="#{bindings.CartItemsVO.hints.DishName.name}" sortable="true"
-                                       headerText="#{bindings.CartItemsVO.hints.DishName.label}" id="c1" width="98">
-                                <af:outputText value="#{row.DishName}"
-                                               shortDesc="#{bindings.CartItemsVO.hints.DishName.tooltip}" id="ot1"/>
-                            </af:column>
-                            <af:column sortProperty="#{bindings.CartItemsVO.hints.Quantity.name}" sortable="true"
-                                       headerText="#{bindings.CartItemsVO.hints.Quantity.label}" id="c2" width="102">
-                                <af:outputText value="#{row.Quantity}"
-                                               shortDesc="#{bindings.CartItemsVO.hints.Quantity.tooltip}" id="ot2">
-                                    <af:convertNumber groupingUsed="false"
-                                                      pattern="#{bindings.CartItemsVO.hints.Quantity.format}"/>
-                                </af:outputText>
-                            </af:column>
-                            <af:column sortProperty="#{bindings.CartItemsVO.hints.Price.name}" sortable="true"
-                                       headerText="Dish Price" id="c3" width="100">
-                                <af:outputText value="#{row.Price}"
-                                               shortDesc="#{bindings.CartItemsVO.hints.Price.tooltip}" id="ot3">
-                                    <af:convertNumber groupingUsed="false"
-                                                      pattern="#{bindings.CartItemsVO.hints.Price.format}"/>
-                                </af:outputText>
-                            </af:column>
-                            <af:column sortProperty="#{bindings.CartItemsVO.hints.ItemTotal.name}" sortable="true"
-                                       headerText="Item Total" id="c4" width="100">
-                                <af:outputText value="#{row.ItemTotal}"
-                                               shortDesc="#{bindings.CartItemsVO.hints.ItemTotal.tooltip}" id="ot4">
-                                    <af:convertNumber groupingUsed="false"
-                                                      pattern="#{bindings.CartItemsVO.hints.ItemTotal.format}"/>
-                                </af:outputText>
-                            </af:column>
-                        </af:table>
-                        <af:button text="Checkout" id="b6" inlineStyle="margin-top: 10px;"
-                                   action="#{checkoutBean.showCheckoutTrainPopup}"/>
-                    </af:panelGroupLayout>
-                </af:panelWindow>
-            </af:popup>
             <af:popup childCreation="deferred" autoCancel="disabled" id="checkoutTrain_popup" animate="true"
                       binding="#{checkoutBean.checkoutPopup}">
                 <af:panelWindow id="pw4">

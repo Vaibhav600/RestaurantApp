@@ -11,6 +11,7 @@
     <iterator Binds="ReservationForRestaurant_CustApp" RangeSize="25" DataControl="AppModuleDataControl"
               id="ReservationForRestaurant_CustAppIterator"/>
     <iterator id="G3ReservationsVOIterator" Binds="G3ReservationsVO" DataControl="AppModuleDataControl" RangeSize="25"/>
+    <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="Name">
@@ -55,5 +56,24 @@
         <Item Value="ReservationTime"/>
       </AttrNames>
     </attributeValues>
+    <tree IterBinding="CartItemsVOIterator" id="CartItemsVO">
+      <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO0">
+        <AttrNames>
+          <Item Value="OrderId"/>
+          <Item Value="CustomerId"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="OrderStatus"/>
+          <Item Value="PaymentStatus"/>
+          <Item Value="Id"/>
+          <Item Value="ItemTotal"/>
+          <Item Value="Quantity"/>
+          <Item Value="ItemId"/>
+          <Item Value="DishName"/>
+          <Item Value="Price"/>
+          <Item Value="CouponId"/>
+          <Item Value="Description"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
   </bindings>
 </pageDefinition>

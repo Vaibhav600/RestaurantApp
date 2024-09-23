@@ -59,8 +59,7 @@ public class SetCartItemVC {
         
         ApplicationModule am = getApplicationModule();
         ViewObject cart_vo = am.findViewObject(constants.getCart_items_vo_name());
-        cart_vo.setNamedWhereClauseParam("bCustId", CustomerId);
-        System.out.println("Setting CART for User: " + CustomerId);
+        cart_vo.setNamedWhereClauseParam("b_user_id", CustomerId);
         cart_vo.executeQuery();
         
         RichPopup.PopupHints hints = new RichPopup.PopupHints();
