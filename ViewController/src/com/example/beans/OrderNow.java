@@ -94,7 +94,14 @@ public class OrderNow {
         order_items_vo.insertRow(new_order_item); 
         
         try{
+            System.out.println("Order Id" + OrderId.toString());
+            System.out.println("Item Id" + MenuItemId.toString());
+            System.out.println("Quantity" + Quantity.toString());
+            System.out.println("Price" + Price.toString());
+            System.out.println("Item Total" + item_total.toString());
             am.getTransaction().commit();
+            System.out.println("After Comitting in Create Order Item Function");
+
             DBSequence newOrderItemId = (DBSequence) new_order_item.getAttribute("Id");
             return newOrderItemId.getSequenceNumber();            
         } catch(Exception e){
@@ -124,7 +131,7 @@ public class OrderNow {
             Number order_id = createOrder(am);
             
             // Loop through all rows
-            while (rowSetIterator.hasNext()) {
+            while (rowSetIterator.hasNext()) {                
                 // Get the current row
                 Row currentRow = rowSetIterator.next();
                
@@ -140,6 +147,10 @@ public class OrderNow {
                 String availability = currentRow.getAttribute("Availability").toString();
                 
                 Number order_item_id = createOrderItem(order_id, menu_item_id, quantity, price, am);
+                System.out.println("Returned From Order Item Function");
+                System.out.println("Order Menu Item Id: "+ order_item_id.toString());
+
+                
                 System.out.println("Order Item Id: " + order_item_id.toString());
             }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Order Created Successfully"));

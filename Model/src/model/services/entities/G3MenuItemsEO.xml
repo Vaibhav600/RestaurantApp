@@ -90,6 +90,14 @@
     Type="java.sql.Timestamp"
     ColumnType="TIMESTAMP"
     TableName="G3_MENU_ITEMS"/>
+    <Attribute
+    Name="Rating"
+    ColumnName="&quot;Synchronize:Fix_SQL&quot;"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    ColumnType="$none$"
+    IsQueriable="false"
+    IsPersistent="false"/>
   <AccessorAttribute
     Name="G3RestaurantsEO"
     Association="model.services.assoc.MenuItemRestaurantAssoc"

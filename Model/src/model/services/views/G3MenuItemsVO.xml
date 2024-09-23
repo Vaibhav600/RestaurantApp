@@ -99,6 +99,23 @@
     EntityUsage="G3MenuItemsEO"
     AliasName="ITEM_ID"
     IsUpdateable="while_insert"/>
+  <ViewAttribute
+    Name="Quantity"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="INTEGER"
+    AliasName="VIEW_ATTR"
+    SQLType="INTEGER"/>
+  <ViewAttribute
+    Name="Rating"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    EntityAttrName="Rating"
+    EntityUsage="G3MenuItemsEO"
+    AliasName="RATING"/>
   <ViewCriteria
     Name="G3MenuItemsVOCriteria"
     ViewObjectName="model.services.views.G3MenuItemsVO"
