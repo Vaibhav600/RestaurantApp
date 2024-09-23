@@ -245,7 +245,8 @@
     ViewLinkObjectName="model.services.link.ReservationForRest_ForCustApp_ViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantVO_ForCustApp"
     DstViewUsageName="model.services.AppModule.ReservationForRestaurant_CustApp"
-    Reversed="false"/>
+    Reversed="false"
+    />
   <ViewLinkUsage
     Name="RatingCountForRestaurant1"
     ViewLinkObjectName="model.services.link.RatingCountForRestaurant"
