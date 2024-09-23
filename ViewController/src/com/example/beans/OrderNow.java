@@ -62,6 +62,8 @@ public class OrderNow {
          new_order.setAttribute("CustomerId", CustomerId);
          new_order.setAttribute("OrderStatus", "Ordered");
          new_order.setAttribute("PaymentStatus", "Pending");
+         
+         
          // new_order.setAttribute("CouponId", );
          // new_order.setAttribute("TotalAmount", );
          

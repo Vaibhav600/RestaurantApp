@@ -4,7 +4,7 @@
 <Entity
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3UsersEO"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge"
   DBObjectType="table"
   DBObjectName="G3_USERS"
@@ -22,7 +22,7 @@
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
     RetrievedOnInsert="true"
-    IsNotNull="false"/>
+    IsNotNull="true"/>
   <Attribute
     Name="FullName"
     Precision="100"
@@ -175,18 +175,6 @@
     AssociationOtherEnd="model.services.entities.SysC009722895Assoc.G3UsersEO1"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
-  <Key
-    Name="G3UsersUserIdCheck">
-    <DesignTime>
-      <Attr Name="_isNotNull" Value="true"/>
-      <Attr Name="_checkCondition" Value='"USER_ID" IS NOT NULL'/>
-      <Attr Name="_isCheck" Value="true"/>
-      <Attr Name="_DBObjectName" Value="G3USERS_USER_ID_CHECK"/>
-    </DesignTime>
-    <AttrArray Name="Attributes">
-      <Item Value="model.services.entities.G3UsersEO.UserId"/>
-    </AttrArray>
-  </Key>
   <Key
     Name="SysC009722892"
     PrimaryKey="true">
