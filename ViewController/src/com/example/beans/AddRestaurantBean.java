@@ -8,6 +8,7 @@ import java.io.InputStream;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 import javax.faces.context.FacesContext;
 
@@ -91,7 +92,7 @@ public class AddRestaurantBean {
             status = "";
         }
         catch(Exception e){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Agent Assignment Failed", null));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Restaurant Addition Failed", null));
             System.out.println(e);
         }
         return null;

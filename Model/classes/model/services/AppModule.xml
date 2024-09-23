@@ -139,6 +139,18 @@
   <ViewUsage
     Name="OffersVO"
     ViewObjectName="model.services.views.OffersVO"/>
+  <ViewUsage
+    Name="G3RatingsReviewsVO1"
+    ViewObjectName="model.services.views.G3RatingsReviewsVO"/>
+  <ViewUsage
+    Name="RatingTotalForRestaurant1"
+    ViewObjectName="model.services.views.RatingTotalForRestaurant"/>
+  <ViewUsage
+    Name="RatingTotalForRestaurant2"
+    ViewObjectName="model.services.views.RatingTotalForRestaurant"/>
+  <ViewUsage
+    Name="RevenueForRestaurant"
+    ViewObjectName="model.services.views.Revenue"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -233,5 +245,17 @@
     ViewLinkObjectName="model.services.link.ReservationForRest_ForCustApp_ViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantVO_ForCustApp"
     DstViewUsageName="model.services.AppModule.ReservationForRestaurant_CustApp"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="RatingCountForRestaurant1"
+    ViewLinkObjectName="model.services.link.RatingCountForRestaurant"
+    SrcViewUsageName="model.services.AppModule.G3RestaurantsVO"
+    DstViewUsageName="model.services.AppModule.RatingTotalForRestaurant2"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="RevenueForRestaurant1"
+    ViewLinkObjectName="model.services.link.RevenueForRestaurant"
+    SrcViewUsageName="model.services.AppModule.G3RestaurantsVO"
+    DstViewUsageName="model.services.AppModule.RevenueForRestaurant"
     Reversed="false"/>
 </AppModule>

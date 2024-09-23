@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3UsersVO"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge"
   SelectListFlags="1"
   FromListFlags="1"
@@ -23,7 +23,6 @@
     Entity="model.services.entities.G3UsersEO"/>
   <ViewAttribute
     Name="UserId"
-    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="UserId"
     EntityUsage="G3UsersEO"
@@ -136,6 +135,55 @@
           Required="Optional"/>
       </ViewCriteriaRow>
     </ViewCriteria>
+  </ViewCriteria>
+  <ViewCriteria
+    Name="SearchUser"
+    ViewObjectName="model.services.views.G3UsersVO"
+    Conjunction="AND">
+    <Properties Name="_Props">
+      <CustomProperties>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="G3UsersVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="UserId"
+        ViewAttribute="UserId"
+        Operator="="
+        Conjunction="AND"
+        Value=""
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="FullName"
+        ViewAttribute="FullName"
+        Operator="STARTSWITH"
+        Conjunction="AND"
+        Value=""
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="Role"
+        ViewAttribute="Role"
+        Operator="="
+        Conjunction="AND"
+        Value=""
+        Required="Optional"/>
+    </ViewCriteriaRow>
   </ViewCriteria>
   <ViewLinkAccessor
     Name="G3RestaurantsVO"

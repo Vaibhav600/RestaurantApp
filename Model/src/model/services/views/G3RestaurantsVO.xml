@@ -46,7 +46,6 @@
     Entity="model.services.entities.G3RestaurantsEO"/>
   <ViewAttribute
     Name="RestaurantId"
-    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="RestaurantId"
     EntityUsage="G3RestaurantsEO"
@@ -216,6 +215,11 @@
   <ViewLinkAccessor
     Name="ToDeliverOrdersVO"
     ViewLink="model.services.views.ToDeliverOrderRestaurantViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="RatingTotalForRestaurant"
+    ViewLink="model.services.link.RatingCountForRestaurant"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
   <ResourceBundle>

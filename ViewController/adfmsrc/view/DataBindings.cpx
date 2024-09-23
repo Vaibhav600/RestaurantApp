@@ -22,6 +22,7 @@
     <page path="/WEB-INF/customerTF.xml#customerTF@ExecuteWithParams"
           usageId="view_customerTF_customerTF_ExecuteWithParamsPageDef"/>
     <page path="/restDetails.jsf" usageId="view_restDetailsPageDef"/>
+    <page path="/superAdminDashboard.jsf" usageId="view_superAdminDashboardTestPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="view_loginPageDef" path="view.pageDefs.loginPageDef"/>
@@ -40,6 +41,7 @@
     <page id="view_customerTF_customerTF_ExecuteWithParamsPageDef"
           path="view.pageDefs.customerTF_customerTF_ExecuteWithParamsPageDef"/>
     <page id="view_restDetailsPageDef" path="view.pageDefs.restDetailsPageDef"/>
+    <page id="view_superAdminDashboardTestPageDef" path="view.pageDefs.superAdminDashboardPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <BC4JDataControl id="AppModuleDataControl" Package="model.services"
