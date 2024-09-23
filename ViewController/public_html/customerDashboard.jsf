@@ -58,8 +58,13 @@
                                                     <af:convertNumber groupingUsed="false"
                                                                       pattern="#{bindings.RestaurantVO_ForCustApp1.hints.RestaurantId.format}"/>
                                                 </af:outputFormatted>
-                                                <af:outputFormatted value="#{item.bindings.Name.inputValue}" id="of5"
-                                                                    inlineStyle="font-size:x-large;"/>
+                                                <af:link id="l1" action="goToRestDetailsPage">
+                                                    <af:outputFormatted value="#{item.bindings.Name.inputValue}"
+                                                                        id="of5" inlineStyle="font-size:x-large;"/>
+                                                    <af:setPropertyListener from="#{item.bindings.Name.inputValue}"
+                                                                            to="#{pageFlowScope.selectedRestName}"
+                                                                            type="action"/>
+                                                </af:link>
                                                 <af:outputFormatted value="Available Seats - #{item.bindings.AvailableSeats.inputValue}"
                                                                     id="of6" inlineStyle="font-size:large;">
                                                     <af:convertNumber groupingUsed="false"
