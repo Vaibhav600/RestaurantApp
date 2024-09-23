@@ -1,10 +1,17 @@
 package com.example.beans;
 
+import java.awt.image.BufferedImage;
+
+import java.io.File;
+import java.io.InputStream;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import javax.faces.context.FacesContext;
+
+import javax.imageio.ImageIO;
 
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCBindingContainer;
@@ -13,6 +20,8 @@ import oracle.adf.model.binding.DCDataControl;
 import oracle.jbo.ApplicationModule;
 import oracle.jbo.Row;
 import oracle.jbo.ViewObject;
+
+import org.apache.myfaces.trinidad.model.UploadedFile;
 
 
 @SessionScoped
@@ -24,8 +33,16 @@ public class AddRestaurantBean {
     private String phone;
     private String available_seats;
     private String status;
+    
+    private UploadedFile restImage;
+    
+            
             
     ConstantBean constants = new ConstantBean();
+    
+    
+   
+            
     
     public AddRestaurantBean() {
         super();
@@ -47,6 +64,11 @@ public class AddRestaurantBean {
         try{
             ApplicationModule am = getApplicationModule();
             ViewObject restaurants_vo = am.findViewObject(constants.getRestaurant_vo_name());
+            
+            Row lastRow = restaurants_vo.last();
+            Long newRestaurantId = Long.valueOf(lastRow.getAttribute("RestaurantId").toString()) + 1;
+            
+            
 
             Row newRow = restaurants_vo.createRow();
             newRow.setAttribute("OwnerId", owner_id);
@@ -56,6 +78,8 @@ public class AddRestaurantBean {
             newRow.setAttribute("AvailableSeats", available_seats);
             newRow.setAttribute("Status", status);
             restaurants_vo.insertRow(newRow);
+            
+            saveFile(restImage,newRestaurantId.toString());
 
             am.getTransaction().commit();
             
@@ -119,5 +143,32 @@ public class AddRestaurantBean {
 
     public String getStatus() {
         return status;
+    }
+    
+    public void setRestImage(UploadedFile restImage) {
+        this.restImage = restImage;
+    }
+
+    public UploadedFile getRestImage() {
+        return restImage;
+    }
+    
+    
+    private void saveFile(UploadedFile file,String fileName) {
+        InputStream inputStream = null;
+         try {
+            inputStream = file.getInputStream();
+            BufferedImage inputImg = ImageIO.read(inputStream);
+            File outputFile = new File("/Users/Shared/"+fileName+".png");
+             ImageIO.write(inputImg,"PNG", outputFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (inputStream != null) inputStream.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }

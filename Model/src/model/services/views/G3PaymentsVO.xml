@@ -18,7 +18,7 @@
     Entity="model.services.entities.G3PaymentsEO"/>
   <ViewAttribute
     Name="PaymentId"
-    IsNotNull="true"
+    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="PaymentId"
     EntityUsage="G3PaymentsEO"

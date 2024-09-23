@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MenuItemForRest_CustApp_ViewLink"
+  Version="12.2.1.11.57"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.services.link.MenuItemForRest_CustApp_ViewLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="RestaurantVO_ForCustApp"
+    Cardinality="1"
+    Source="true"
+    Owner="model.services.views.RestaurantVO_ForCustApp">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="RestaurantVO_ForCustApp"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.views.RestaurantVO_ForCustApp.RestaurantId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="G3MenuItemsVO"
+    Cardinality="-1"
+    Owner="model.services.views.G3MenuItemsVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="G3MenuItemsVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.views.G3MenuItemsVO.RestaurantId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

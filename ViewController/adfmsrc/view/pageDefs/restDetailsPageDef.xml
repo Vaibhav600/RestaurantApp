@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.11.57" id="restDetailsPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="RestaurantVO_ForCustApp" RangeSize="25" DataControl="AppModuleDataControl"
+              id="RestaurantVO_ForCustAppIterator"/>
+    <iterator Binds="MenuItems_CustApp_VO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="MenuItems_CustApp_VOIterator"/>
+    <iterator Binds="ReservationForRestaurant_CustApp" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ReservationForRestaurant_CustAppIterator"/>
+    <iterator id="G3ReservationsVOIterator" Binds="G3ReservationsVO" DataControl="AppModuleDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="Name">
+      <AttrNames>
+        <Item Value="Name"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="Address">
+      <AttrNames>
+        <Item Value="Address"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="AvailableSeats">
+      <AttrNames>
+        <Item Value="AvailableSeats"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="Status">
+      <AttrNames>
+        <Item Value="Status"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="MenuItems_CustApp_VOIterator" id="MenuItems_CustApp_VO">
+      <nodeDefinition DefName="model.services.views.G3MenuItemsVO" Name="MenuItems_CustApp_VO0">
+        <AttrNames>
+          <Item Value="DishName"/>
+          <Item Value="Price"/>
+          <Item Value="Availability"/>
+          <Item Value="Cuisine"/>
+          <Item Value="Rating"/>
+          <Item Value="Quantity"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="ReservationForRestaurant_CustAppIterator" id="TableSize">
+      <AttrNames>
+        <Item Value="TableSize"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="ReservationForRestaurant_CustAppIterator" id="ReservationTime">
+      <AttrNames>
+        <Item Value="ReservationTime"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

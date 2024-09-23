@@ -18,7 +18,7 @@
     Entity="model.services.entities.G3FeedbackEO"/>
   <ViewAttribute
     Name="FeedbackId"
-    IsNotNull="true"
+    IsNotNull="false"
     PrecisionRule="true"
     EntityAttrName="FeedbackId"
     EntityUsage="G3FeedbackEO"

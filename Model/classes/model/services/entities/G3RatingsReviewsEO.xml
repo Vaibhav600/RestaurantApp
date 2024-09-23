@@ -24,7 +24,7 @@
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
     RetrievedOnInsert="true"
-    IsNotNull="true"/>
+    IsNotNull="false"/>
   <Attribute
     Name="CustomerId"
     ColumnName="CUSTOMER_ID"

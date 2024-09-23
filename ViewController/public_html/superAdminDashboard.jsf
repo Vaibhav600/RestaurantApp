@@ -5,7 +5,7 @@
     <c:set var="viewcontrollerBundle" value="#{adfBundle['view.ViewControllerBundle']}"/>
     <af:document title="super_admin_dashboard.jsf" id="d1">
         <af:messages id="m1"/>
-        <af:form id="f1">
+        <af:form id="f1" usesUpload="true">
             <af:toolbar id="t1">
                 <af:button text="#{viewcontrollerBundle.ADD_RESTAURANT}" id="b1" action="goToAddRestaurant">
                     <af:showPopupBehavior popupId="add_rest_popup"/>
@@ -199,6 +199,7 @@
                                       shortDesc="#{bindings.Status1.hints.tooltip}" id="it12">
                             <f:validator binding="#{bindings.Status1.validator}"/>
                         </af:inputText>
+                        <af:inputFile label="Restaurant Image" id="if1" value="#{addRestaurantBean.restImage}"/>
                         <af:button text="add" disabled="#{!bindings.CreateWithParams15.enabled}" id="b3"
                                    action="#{addRestaurantBean.addRestaurant}"/>
                     </af:panelFormLayout>

@@ -4,7 +4,7 @@
 <Association
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="SysC009722908Assoc"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge">
   <DesignTime>
     <Attr Name="_isCodegen" Value="true"/>

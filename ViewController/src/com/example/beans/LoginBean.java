@@ -1,5 +1,7 @@
 package com.example.beans;
 
+import java.math.BigDecimal;
+
 import java.nio.charset.StandardCharsets;
 
 import java.security.MessageDigest;
@@ -11,6 +13,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
+import javax.servlet.http.HttpSession;
+
 import oracle.jbo.domain.DBSequence;
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCBindingContainer;
@@ -62,28 +67,35 @@ public class LoginBean {
             usersVO.setNamedWhereClauseParam("Email", email);
             usersVO.executeQuery();
             
+            // System.out.println(encryptPassword(password));
+            // System.out.println(storedPassword);
+            
             if (usersVO.getEstimatedRowCount() == 1) {
                 Row userRow = usersVO.first();
                 String storedPassword = (String) userRow.getAttribute("Password");
                 
                 if (storedPassword.equals(password)) {
                 // if (storedPassword.equals(encryptPassword(password))) {
+                    DBSequence dbSeq = (DBSequence) userRow.getAttribute("UserId");
+                    int user_id = dbSeq.getSequenceNumber().intValue();
+
                     String role = (String) userRow.getAttribute("Role");
-                    System.out.println(role);
+
+                    HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+                                            .getExternalContext().getSession(true);
+                                            session.setAttribute("userId", user_id);
+
                     if(role.equals("owner")) {
-//                        DBSequence dbSeq = (DBSequence) userRow.getAttribute("UserId");
-//                        int user_id = dbSeq.getSequenceNumber().intValue();
-                        
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Owner Login Success"));
-                        usersVO.setNamedWhereClauseParam("bOwnerId", userRow.getAttribute("UserId"));
+                        // FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Owner Login Success"));
+                        usersVO.setNamedWhereClauseParam("bOwnerId", user_id);
                         return constants.getOwner_navigation();
                     }
                     else if(role.equals("super_admin")){
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Super Admin Login Success"));
+                        // FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Super Admin Login Success"));
                         return constants.getSuper_admin_navigation();
                     }
                     else if(role.equals("customer")){
-                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User Login Success"));
+                        // FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User Login Success"));
                         return constants.getCustomer_navigation();
                     }
                     else{

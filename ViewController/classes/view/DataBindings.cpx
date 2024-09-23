@@ -18,6 +18,10 @@
     <page path="/WEB-INF/superAdminTF.xml#superAdminTF@ExecuteWithParamsOwner"
           usageId="view_superAdminTF_superAdminTF_ExecuteWithParams1PageDef"/>
     <page path="/ownerDashboard.jsf" usageId="view_ownerDashboardPageDef"/>
+    <page path="/customerDashboard.jsf" usageId="view_customerDashboardPageDef"/>
+    <page path="/WEB-INF/customerTF.xml#customerTF@ExecuteWithParams"
+          usageId="view_customerTF_customerTF_ExecuteWithParamsPageDef"/>
+    <page path="/restDetails.jsf" usageId="view_restDetailsPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="view_loginPageDef" path="view.pageDefs.loginPageDef"/>
@@ -32,6 +36,10 @@
     <page id="view_superAdminTF_superAdminTF_ExecuteWithParams1PageDef"
           path="view.pageDefs.superAdminTF_superAdminTF_ExecuteWithParams1PageDef"/>
     <page id="view_ownerDashboardPageDef" path="view.pageDefs.ownerDashboardPageDef"/>
+    <page id="view_customerDashboardPageDef" path="view.pageDefs.customerDashboardPageDef"/>
+    <page id="view_customerTF_customerTF_ExecuteWithParamsPageDef"
+          path="view.pageDefs.customerTF_customerTF_ExecuteWithParamsPageDef"/>
+    <page id="view_restDetailsPageDef" path="view.pageDefs.restDetailsPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <BC4JDataControl id="AppModuleDataControl" Package="model.services"

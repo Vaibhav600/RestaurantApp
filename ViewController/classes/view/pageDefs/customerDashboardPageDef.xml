@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.11.57" id="customerDashboardPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variableUsage DataControl="AppModuleDataControl" Binds="RestaurantVO_ForCustApp.variablesMap.bRestName"
+                     Name="ExecuteWithParams_bRestName" IsQueriable="false"/>
+    </variableIterator>
+    <iterator Binds="RestaurantVO_ForCustApp" RangeSize="25" DataControl="AppModuleDataControl"
+              id="RestaurantVO_ForCustAppIterator"/>
+    <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
+    <iterator Binds="OffersVO" RangeSize="25" DataControl="AppModuleDataControl" id="OffersVOIterator"/>
+  </executables>
+  <bindings>
+    <action IterBinding="RestaurantVO_ForCustAppIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="bRestName" NDType="java.lang.String" NDValue="${bindings.ExecuteWithParams_bRestName}"/>
+    </action>
+    <attributeValues IterBinding="variables" id="bRestName">
+      <AttrNames>
+        <Item Value="ExecuteWithParams_bRestName"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="RestaurantVO_ForCustAppIterator" id="RestaurantVO_ForCustApp">
+      <nodeDefinition DefName="model.services.views.RestaurantVO_ForCustApp" Name="RestaurantVO_ForCustApp0">
+        <AttrNames>
+          <Item Value="Name"/>
+          <Item Value="AvailableSeats"/>
+          <Item Value="Status"/>
+          <Item Value="Address"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CartItemsVOIterator" id="CartItemsVO">
+      <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO0">
+        <AttrNames>
+          <Item Value="DishName"/>
+          <Item Value="Quantity"/>
+          <Item Value="Price"/>
+          <Item Value="ItemTotal"/>
+          <Item Value="Description"/>
+          <Item Value="TotalAmount"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="CartItemsVOIterator" id="CartItemsVO1">
+      <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO10">
+        <AttrNames>
+          <Item Value="OrderId"/>
+          <Item Value="DishName"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="OrderStatus"/>
+          <Item Value="PaymentStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="OffersVOIterator" id="OffersVO">
+      <nodeDefinition DefName="model.services.views.OffersVO" Name="OffersVO0">
+        <AttrNames>
+          <Item Value="Name"/>
+          <Item Value="Description"/>
+          <Item Value="DiscountPercentage"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="RestaurantId">
+      <AttrNames>
+        <Item Value="RestaurantId"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="RestaurantVO_ForCustAppIterator" id="RestaurantVO_ForCustApp1">
+      <nodeDefinition DefName="model.services.views.RestaurantVO_ForCustApp" Name="RestaurantVO_ForCustApp10">
+        <AttrNames>
+          <Item Value="RestaurantId"/>
+          <Item Value="Name"/>
+          <Item Value="AvailableSeats"/>
+          <Item Value="Status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

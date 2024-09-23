@@ -4,7 +4,7 @@
 <AppModule
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="AppModule"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge"
   ClearCacheOnRollback="true">
   <ViewUsage
@@ -81,6 +81,32 @@
     Name="OrderStatusListVO"
     ViewObjectName="model.services.views.OrderStatusListVO"/>
   <ViewUsage
+    Name="RestaurantVO_ForCustApp"
+    ViewObjectName="model.services.views.RestaurantVO_ForCustApp">
+    <ViewCriteriaUsage
+      Name="searchRestByNameVC"
+      FullName="model.services.views.RestaurantVO_ForCustApp.searchRestByNameVC"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="MenuItems_CustApp_VO"
+    ViewObjectName="model.services.views.G3MenuItemsVO"/>
+  <ViewUsage
+    Name="ReservationForRestaurant_CustApp"
+    ViewObjectName="model.services.views.G3ReservationsVO"/>
+  <ViewUsage
+    Name="G3ReservationsVO"
+    ViewObjectName="model.services.views.G3ReservationsVO"/>
+  <ViewUsage
+    Name="G3OrderItemsVO"
+    ViewObjectName="model.services.views.G3OrderItemsVO"/>
+  <ViewUsage
+    Name="CartItemsVO"
+    ViewObjectName="model.services.views.CartItemsVO">
+    <ViewCriteriaUsage
+      Name="searchByCustomerIdVC"
+      FullName="model.services.views.CartItemsVO.searchByCustomerIdVC"/>
+  </ViewUsage>
+  <ViewUsage
     Name="G3CouponsVO"
     ViewObjectName="model.services.views.G3CouponsVO"/>
   <ViewUsage
@@ -110,6 +136,9 @@
   <ViewUsage
     Name="ToDeliverOrdersVO1"
     ViewObjectName="model.services.views.ToDeliverOrdersVO"/>
+  <ViewUsage
+    Name="OffersVO"
+    ViewObjectName="model.services.views.OffersVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -192,6 +221,17 @@
     Name="ToDeliverOrderRestaurantViewLink1"
     ViewLinkObjectName="model.services.views.ToDeliverOrderRestaurantViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantForUser"
-    DstViewUsageName="model.services.AppModule.ToDeliverOrdersForRestaurantVO"
+    DstViewUsageName="model.services.AppModule.ToDeliverOrdersForRestaurantVO"/>
+  <ViewLinkUsage
+    Name="MenuItemForRest_CustApp_ViewLink"
+    ViewLinkObjectName="model.services.link.MenuItemForRest_CustApp_ViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantVO_ForCustApp"
+    DstViewUsageName="model.services.AppModule.MenuItems_CustApp_VO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="ReservationForRest_ForCustApp_ViewLink1"
+    ViewLinkObjectName="model.services.link.ReservationForRest_ForCustApp_ViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantVO_ForCustApp"
+    DstViewUsageName="model.services.AppModule.ReservationForRestaurant_CustApp"
     Reversed="false"/>
 </AppModule>

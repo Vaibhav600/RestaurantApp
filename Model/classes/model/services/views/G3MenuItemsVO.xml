@@ -135,6 +135,19 @@
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
+  <ViewCriteria
+    AliasName="RATING"
+    IsQueriable="false"
+    IsPersistent="false"/>
+  <ViewAttribute
+    Name="Quantity"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC"/>
   <ViewLinkAccessor
     Name="G3OrderItemsVO"
     ViewLink="model.services.link.OrderItemMenuItemViewLink"
