@@ -3,40 +3,40 @@
    <OverallProperties
       id="OverallProperties1"/>
    <View
-      id="View2">
+      id="View22">
       <property
          name="activityId">orderDetails</property>
       <property
-         name="pageFragment">true</property>
+         name="pageFragment">false</property>
       <property
          name="start">true</property>
       <property
-         name="x">208.63672</property>
+         name="x">22.636719</property>
       <property
-         name="y">236.70703</property>
+         name="y">130.50781</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>orderDetails&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="page">/orderDetails.jsff</property>
+         name="page">/orderDetails.jsf</property>
       <property
          name="trainStop">true</property>
       <property
          name="exceptionHandler">false</property>
    </View>
    <View
-      id="View3">
+      id="View23">
       <property
          name="activityId">addressDetails</property>
       <property
-         name="pageFragment">true</property>
+         name="pageFragment">false</property>
       <property
-         name="x">570.7031</property>
+         name="x">95.703125</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>addressDetails&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="y">259.3672</property>
+         name="y">271.23438</property>
       <property
-         name="page">/addressDetails.jsff</property>
+         name="page">/addressDetails.jsf</property>
       <property
          name="exceptionHandler">false</property>
       <property
@@ -44,26 +44,26 @@
    </View>
    <TrainFlow
       islink="true"
-      id="TrainFlow4"
-      from="View2"
-      to="View3">
+      id="TrainFlow24"
+      from="View22"
+      to="View23">
       <property
-         name="sdm:polyPoints">R50,249.63672,236.70703,529.7031,255.80078,L46</property>
+         name="sdm:polyPoints">B50,22.636719,184.50781,95.703125,217.16797,T50</property>
    </TrainFlow>
    <View
-      id="View5">
+      id="View25">
       <property
          name="activityId">paymentDetails</property>
       <property
-         name="pageFragment">true</property>
+         name="pageFragment">false</property>
       <property
-         name="x">361.0586</property>
+         name="x">276.0586</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>paymentDetails&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="y">418.3672</property>
+         name="y">232.23438</property>
       <property
-         name="page">/paymentDetails.jsff</property>
+         name="page">/paymentDetails.jsf</property>
       <property
          name="exceptionHandler">false</property>
       <property
@@ -71,26 +71,26 @@
    </View>
    <TrainFlow
       islink="true"
-      id="TrainFlow6"
-      from="View3"
-      to="View5">
+      id="TrainFlow26"
+      from="View23"
+      to="View25">
       <property
-         name="sdm:polyPoints">L54,529.7031,262.80078,361.0586,364.30078,T50</property>
+         name="sdm:polyPoints">R50,136.70312,271.16797,235.0586,232.16797,L50</property>
    </TrainFlow>
    <View
-      id="View7">
+      id="View27">
       <property
          name="activityId">placeOrder</property>
       <property
-         name="pageFragment">true</property>
+         name="pageFragment">false</property>
       <property
-         name="x">603.93066</property>
+         name="x">343.93066</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>placeOrder&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="y">456.3672</property>
+         name="y">392.23438</property>
       <property
-         name="page">/placeOrder.jsff</property>
+         name="page">/placeOrder.jsf</property>
       <property
          name="exceptionHandler">false</property>
       <property
@@ -98,22 +98,22 @@
    </View>
    <TrainFlow
       islink="true"
-      id="TrainFlow8"
-      from="View5"
-      to="View7">
+      id="TrainFlow28"
+      from="View25"
+      to="View27">
       <property
-         name="sdm:polyPoints">R50,402.0586,418.30078,562.93066,456.30078,L50</property>
+         name="sdm:polyPoints">B50,276.0586,286.16797,343.93066,338.30078,T50</property>
    </TrainFlow>
    <TaskFlowReturn
-      id="TaskFlowReturn9">
+      id="TaskFlowReturn29">
       <property
          name="activityId">Submit</property>
       <property
-         name="x">679.0</property>
+         name="x">517.0</property>
       <property
-         name="description">&lt;html>&lt;p>&lt;b>Submit&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  Submit&lt;/p></property>
+         name="description">&lt;html>&lt;p>&lt;b>Submit&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  taskFlowReturn1&lt;/p></property>
       <property
-         name="y">327.60156</property>
+         name="y">301.53516</property>
       <property
          name="finish">true</property>
       <property
@@ -121,12 +121,12 @@
    </TaskFlowReturn>
    <ControlFlowCase
       islink="true"
-      id="ControlFlowCase10"
-      from="View7"
-      to="TaskFlowReturn9">
+      id="ControlFlowCase30"
+      from="View27"
+      to="TaskFlowReturn29">
       <property
-         name="fromOutcome">*</property>
+         name="fromOutcome">submit</property>
       <property
-         name="sdm:polyPoints">T50,603.93066,402.30078,679.0,381.53516,B50</property>
+         name="sdm:polyPoints">R50,384.93066,392.16797,476.0,301.46875,L50</property>
    </ControlFlowCase>
 </SDM>

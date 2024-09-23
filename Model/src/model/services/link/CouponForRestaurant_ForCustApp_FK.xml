@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CouponForRestaurant_ForCustApp_FK"
+  Version="12.2.1.11.57"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.services.link.CouponForRestaurant_ForCustApp_FK_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="RestaurantVO_ForCustApp"
+    Cardinality="1"
+    Source="true"
+    Owner="model.services.views.RestaurantVO_ForCustApp">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="RestaurantVO_ForCustApp"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.views.RestaurantVO_ForCustApp.RestaurantId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="G3CouponsVO"
+    Cardinality="-1"
+    Owner="model.services.views.G3CouponsVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="G3CouponsVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.views.G3CouponsVO.RestaurantId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

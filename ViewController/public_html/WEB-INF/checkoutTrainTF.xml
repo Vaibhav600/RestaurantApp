@@ -6,41 +6,41 @@
       <shared/>
     </data-control-scope>
     <view id="orderDetails">
-      <page>/orderDetails.jsff</page>
+      <page>/orderDetails.jsf</page>
       <train-stop>
         <display-name>Order Details</display-name>
       </train-stop>
     </view>
     <view id="addressDetails">
-      <page>/addressDetails.jsff</page>
+      <page>/addressDetails.jsf</page>
       <train-stop>
         <display-name>Address Details</display-name>
       </train-stop>
     </view>
     <view id="paymentDetails">
-      <page>/paymentDetails.jsff</page>
+      <page>/paymentDetails.jsf</page>
       <train-stop>
-        <display-name>Payment</display-name>
+        <display-name>Payment Details</display-name>
       </train-stop>
     </view>
     <view id="placeOrder">
-      <page>/placeOrder.jsff</page>
+      <page>/placeOrder.jsf</page>
       <train-stop>
         <display-name>Place Order</display-name>
       </train-stop>
     </view>
     <task-flow-return id="Submit">
       <outcome>
-        <name>Submit</name>
+        <name>taskFlowReturn1</name>
       </outcome>
     </task-flow-return>
     <train/>
     <control-flow-rule id="__1">
       <from-activity-id>placeOrder</from-activity-id>
       <control-flow-case id="__2">
+        <from-outcome>submit</from-outcome>
         <to-activity-id>Submit</to-activity-id>
       </control-flow-case>
     </control-flow-rule>
-    <use-page-fragments/>
   </task-flow-definition>
 </adfc-config>

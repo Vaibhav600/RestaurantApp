@@ -154,6 +154,9 @@
   <ViewUsage
     Name="CouponsForRestaurant"
     ViewObjectName="model.services.views.G3CouponsVO"/>
+  <ViewUsage
+    Name="CouponsForRestaurant_CustApp"
+    ViewObjectName="model.services.views.G3CouponsVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -268,5 +271,11 @@
     ViewLinkObjectName="model.services.link.CouponRestaurantViewLink"
     SrcViewUsageName="model.services.AppModule.G3RestaurantsVO"
     DstViewUsageName="model.services.AppModule.CouponsForRestaurant"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="CouponForRestaurant_ForCustApp_FK"
+    ViewLinkObjectName="model.services.link.CouponForRestaurant_ForCustApp_FK"
+    SrcViewUsageName="model.services.AppModule.RestaurantVO_ForCustApp"
+    DstViewUsageName="model.services.AppModule.CouponsForRestaurant_CustApp"
     Reversed="false"/>
 </AppModule>

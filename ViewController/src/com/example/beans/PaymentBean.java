@@ -5,8 +5,12 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name="paymentBean")
 @SessionScoped
-class PaymentBean {
+public class PaymentBean {
     private String selectedPaymentMethod;
+    
+    public PaymentBean() {
+        super();
+    }
 
     public String getSelectedPaymentMethod() {
         return selectedPaymentMethod;

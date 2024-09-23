@@ -26,7 +26,8 @@
           usageId="view_customerTF_customerTF_ExecuteWithParamsPageDef"/>
     <page path="/restDetails.jsf" usageId="view_restDetailsPageDef"/>
     <page path="/superAdminDashboard.jsf" usageId="view_superAdminDashboardTestPageDef"/>
-    <page path="/orderDetails.jsff" usageId="view_orderDetailsPageDef"/>
+    <page path="/addressDetails.jsf" usageId="view_addressDetailsPageDef"/>
+    <page path="/orderDetails.jsf" usageId="view_orderDetailsPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="view_loginPageDef" path="view.pageDefs.loginPageDef"/>
@@ -47,6 +48,7 @@
     <page id="view_restDetailsPageDef" path="view.pageDefs.restDetailsPageDef"/>
     <page id="view_superAdminDashboardTestPageDef" path="view.pageDefs.superAdminDashboardPageDef"/>
     <page id="view_orderDetailsPageDef" path="view.pageDefs.orderDetailsPageDef"/>
+    <page id="view_addressDetailsPageDef" path="view.pageDefs.addressDetailsPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <BC4JDataControl id="AppModuleDataControl" Package="model.services"

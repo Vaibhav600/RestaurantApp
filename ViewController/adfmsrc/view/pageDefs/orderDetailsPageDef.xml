@@ -6,6 +6,9 @@
     <variableIterator id="variables"/>
     <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
     <iterator Binds="G3OrdersVO" RangeSize="25" DataControl="AppModuleDataControl" id="G3OrdersVOIterator"/>
+    <iterator Binds="G3CouponsVO" RangeSize="25" DataControl="AppModuleDataControl" id="G3CouponsVOIterator"/>
+    <iterator Binds="CouponsForRestaurant_CustApp" RangeSize="10" DataControl="AppModuleDataControl"
+              id="CouponsForRestaurant_CustAppIterator"/>
   </executables>
   <bindings>
     <tree IterBinding="CartItemsVOIterator" id="CartItemsVO">
@@ -29,6 +32,11 @@
     <attributeValues IterBinding="G3OrdersVOIterator" id="TotalAmount">
       <AttrNames>
         <Item Value="TotalAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CouponsForRestaurant_CustAppIterator" id="CouponId">
+      <AttrNames>
+        <Item Value="CouponId"/>
       </AttrNames>
     </attributeValues>
   </bindings>

@@ -127,6 +127,11 @@
     ViewLink="model.services.link.ReservationForRest_ForCustApp_ViewLink"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="G3CouponsVO"
+    ViewLink="model.services.link.CouponForRestaurant_ForCustApp_FK"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>
