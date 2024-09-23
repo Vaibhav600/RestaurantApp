@@ -22,16 +22,6 @@
         <Item Value="ExecuteWithParams_bRestName"/>
       </AttrNames>
     </attributeValues>
-    <tree IterBinding="RestaurantVO_ForCustAppIterator" id="RestaurantVO_ForCustApp">
-      <nodeDefinition DefName="model.services.views.RestaurantVO_ForCustApp" Name="RestaurantVO_ForCustApp0">
-        <AttrNames>
-          <Item Value="Name"/>
-          <Item Value="AvailableSeats"/>
-          <Item Value="Status"/>
-          <Item Value="Address"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
     <tree IterBinding="CartItemsVOIterator" id="CartItemsVO">
       <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO0">
         <AttrNames>
