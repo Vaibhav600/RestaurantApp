@@ -222,6 +222,31 @@
     ViewLink="model.services.link.RatingCountForRestaurant"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="CuisinesVO"
+    ViewLink="model.services.link.CusinesRestaurantVOLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="OrdersStatsVO"
+    ViewLink="model.services.link.OrderStatsForRestaurantViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="OrdersForEachStatusVO"
+    ViewLink="model.services.assoc.OrderForEachStatusViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="BestSellerVO"
+    ViewLink="model.services.link.BestSellerForRestaurantViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="RevenueOfRestaurantVO"
+    ViewLink="model.services.link.RevenueOfRestaurantViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>

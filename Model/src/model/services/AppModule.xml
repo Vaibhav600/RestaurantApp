@@ -4,7 +4,7 @@
 <AppModule
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="AppModule"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge"
   ClearCacheOnRollback="true">
   <ViewUsage
@@ -151,6 +151,30 @@
   <ViewUsage
     Name="RevenueForRestaurant"
     ViewObjectName="model.services.views.Revenue"/>
+  <ViewUsage
+    Name="CuisinesVO1"
+    ViewObjectName="model.services.views.CuisinesVO"/>
+  <ViewUsage
+    Name="CuisinesForRestaurantForUserVO"
+    ViewObjectName="model.services.views.CuisinesVO"/>
+  <ViewUsage
+    Name="OrdersStatsForRestaurantForUserVO"
+    ViewObjectName="model.services.views.OrdersStatsVO"/>
+  <ViewUsage
+    Name="OrdersStatsVO"
+    ViewObjectName="model.services.views.OrdersStatsVO"/>
+  <ViewUsage
+    Name="OrdersForEachStatusForRestaurantVO"
+    ViewObjectName="model.services.views.OrdersForEachStatusVO"/>
+  <ViewUsage
+    Name="BestSellerForRestaurantForUserVO"
+    ViewObjectName="model.services.views.BestSellerVO"/>
+  <ViewUsage
+    Name="BestSellerVO"
+    ViewObjectName="model.services.views.BestSellerVO"/>
+  <ViewUsage
+    Name="RevenueOfRestaurantForUserVO"
+    ViewObjectName="model.services.views.RevenueOfRestaurantVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -233,7 +257,8 @@
     Name="ToDeliverOrderRestaurantViewLink1"
     ViewLinkObjectName="model.services.views.ToDeliverOrderRestaurantViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantForUser"
-    DstViewUsageName="model.services.AppModule.ToDeliverOrdersForRestaurantVO"/>
+    DstViewUsageName="model.services.AppModule.ToDeliverOrdersForRestaurantVO"
+    Reversed="false"/>
   <ViewLinkUsage
     Name="MenuItemForRest_CustApp_ViewLink"
     ViewLinkObjectName="model.services.link.MenuItemForRest_CustApp_ViewLink"
@@ -258,5 +283,35 @@
     ViewLinkObjectName="model.services.link.RevenueForRestaurant"
     SrcViewUsageName="model.services.AppModule.G3RestaurantsVO"
     DstViewUsageName="model.services.AppModule.RevenueForRestaurant"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="CuisinesForRestaurantForUserViewLink"
+    ViewLinkObjectName="model.services.link.CusinesRestaurantVOLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
+    DstViewUsageName="model.services.AppModule.CuisinesForRestaurantForUserVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="OrdersStatsForRestaurantForUserViewLink"
+    ViewLinkObjectName="model.services.link.OrderStatsForRestaurantViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
+    DstViewUsageName="model.services.AppModule.OrdersStatsForRestaurantForUserVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="OrdersForEachStatusForRestaurantViewLink"
+    ViewLinkObjectName="model.services.assoc.OrderForEachStatusViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
+    DstViewUsageName="model.services.AppModule.OrdersForEachStatusForRestaurantVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="BestSellerForRestaurantForUserViewLink"
+    ViewLinkObjectName="model.services.link.BestSellerForRestaurantViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
+    DstViewUsageName="model.services.AppModule.BestSellerForRestaurantForUserVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="RevenueOfRestaurantViewLink1"
+    ViewLinkObjectName="model.services.link.RevenueOfRestaurantViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantForUser"
+    DstViewUsageName="model.services.AppModule.RevenueOfRestaurantForUserVO"
     Reversed="false"/>
 </AppModule>

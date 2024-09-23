@@ -6,7 +6,7 @@
     <variableIterator id="variables"/>
     <iterator Binds="G3UsersVO" RangeSize="25" DataControl="AppModuleDataControl" id="G3UsersVOIterator"
               ChangeEventPolicy="ppr"/>
-    <iterator Binds="OrderForRestaurantForUser" RangeSize="25" DataControl="AppModuleDataControl"
+    <iterator Binds="OrderForRestaurantForUser" RangeSize="-1" DataControl="AppModuleDataControl"
               id="OrderForRestaurantForUserIterator" ChangeEventPolicy="ppr"/>
     <searchRegion Binds="OrderForRestaurantForUserIterator" Criteria=""
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="OrderForRestaurantForUserQuery"/>
@@ -34,43 +34,18 @@
               id="ToDeliverOrdersForRestaurantVOIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="G3DeliveryAgentVO" RangeSize="25" DataControl="AppModuleDataControl"
               id="G3DeliveryAgentVOIterator"/>
+    <iterator Binds="CuisinesForRestaurantForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="CuisinesForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="OrdersStatsForRestaurantForUserVO" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="OrdersStatsForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="OrdersForEachStatusForRestaurantVO" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="OrdersForEachStatusForRestaurantVOIterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="BestSellerForRestaurantForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="BestSellerForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="RevenueOfRestaurantForUserVO" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="RevenueOfRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
   </executables>
   <bindings>
-    <attributeValues IterBinding="G3UsersVOIterator" id="UserId">
-      <AttrNames>
-        <Item Value="UserId"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="G3UsersVOIterator" id="FullName">
-      <AttrNames>
-        <Item Value="FullName"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="G3UsersVOIterator" id="Email">
-      <AttrNames>
-        <Item Value="Email"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="G3UsersVOIterator" id="Phone">
-      <AttrNames>
-        <Item Value="Phone"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="G3UsersVOIterator" id="Password">
-      <AttrNames>
-        <Item Value="Password"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="G3UsersVOIterator" id="Address">
-      <AttrNames>
-        <Item Value="Address"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="G3UsersVOIterator" id="Role">
-      <AttrNames>
-        <Item Value="Role"/>
-      </AttrNames>
-    </attributeValues>
     <attributeValues IterBinding="G3UsersVOIterator" id="CreatedAt">
       <AttrNames>
         <Item Value="CreatedAt"/>
@@ -79,11 +54,6 @@
     <attributeValues IterBinding="G3UsersVOIterator" id="UpdatedAt">
       <AttrNames>
         <Item Value="UpdatedAt"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="G3UsersVOIterator" id="t_owner_id">
-      <AttrNames>
-        <Item Value="t_owner_id"/>
       </AttrNames>
     </attributeValues>
     <tree IterBinding="OrderForRestaurantForUserIterator" id="OrderForRestaurantForUser">
@@ -292,5 +262,53 @@
         <Item Value="AgentId"/>
       </AttrNames>
     </list>
+    <attributeValues IterBinding="G3UsersVOIterator" id="FullName">
+      <AttrNames>
+        <Item Value="FullName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="RatingsForRestaurantForUserVOIterator" id="AvgRating12">
+      <AttrNames>
+        <Item Value="AvgRating"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="CuisinesForRestaurantForUserVOIterator" id="CuisinesForRestaurantForUserVO">
+      <nodeDefinition DefName="model.services.views.CuisinesVO" Name="CuisinesForRestaurantForUserVO0">
+        <AttrNames>
+          <Item Value="Cuisine"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="OrdersStatsForRestaurantForUserVOIterator" id="OrdersStatsForRestaurantForUserVO1">
+      <nodeDefinition DefName="model.services.views.OrdersStatsVO" Name="OrdersStatsForRestaurantForUserVO10">
+        <AttrNames>
+          <Item Value="TotalOrders"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="OrdersForEachStatusForRestaurantVOIterator" id="OrdersForEachStatusForRestaurantVO"
+          ChangeEventPolicy="ppr">
+      <nodeDefinition DefName="model.services.views.OrdersForEachStatusVO" Name="OrdersForEachStatusForRestaurantVO">
+        <AttrNames>
+          <Item Value="OrderCount"/>
+          <Item Value="OrderStatus"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="BestSellerForRestaurantForUserVOIterator" id="BestSellerForRestaurantForUserVO">
+      <nodeDefinition DefName="model.services.views.BestSellerVO" Name="BestSellerForRestaurantForUserVO0">
+        <AttrNames>
+          <Item Value="DishName"/>
+          <Item Value="TotalOrders"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="RevenueOfRestaurantForUserVOIterator" id="RevenueOfRestaurantForUserVO">
+      <nodeDefinition DefName="model.services.views.RevenueOfRestaurantVO" Name="RevenueOfRestaurantForUserVO0">
+        <AttrNames>
+          <Item Value="TotalRevenue"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
   </bindings>
 </pageDefinition>

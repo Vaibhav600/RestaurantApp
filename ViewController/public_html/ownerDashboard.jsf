@@ -1,90 +1,193 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
 <f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
-        xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
+        xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces"
+        xmlns:h="http://java.sun.com/jsf/html">
     <c:set var="viewcontrollerBundle" value="#{adfBundle['view.ViewControllerBundle']}"/>
     <af:document title="owner_dashboard.jsf" id="d1">
         <af:messages id="m1"/>
         <af:form id="f1">
             <af:panelTabbed position="above" id="pt1">
                 <af:showDetailItem id="home" text="Home">
-                    <af:panelFormLayout id="pfl1">
-                        <af:inputText value="#{bindings.UserId.inputValue}" label="#{bindings.UserId.hints.label}"
-                                      required="#{bindings.UserId.hints.mandatory}" readOnly="true"
-                                      columns="#{bindings.UserId.hints.displayWidth}"
-                                      maximumLength="#{bindings.UserId.hints.precision}"
-                                      shortDesc="#{bindings.UserId.hints.tooltip}" id="it1">
-                            <f:validator binding="#{bindings.UserId.validator}"/>
-                            <af:convertNumber groupingUsed="false" pattern="#{bindings.UserId.format}"/>
-                        </af:inputText>
-                        <af:inputText value="#{bindings.FullName.inputValue}" label="#{bindings.FullName.hints.label}"
-                                      required="#{bindings.FullName.hints.mandatory}" readOnly="true"
-                                      columns="#{bindings.FullName.hints.displayWidth}"
-                                      maximumLength="#{bindings.FullName.hints.precision}"
-                                      shortDesc="#{bindings.FullName.hints.tooltip}" id="it2">
-                            <f:validator binding="#{bindings.FullName.validator}"/>
-                        </af:inputText>
-                        <af:inputText value="#{bindings.Email.inputValue}" label="#{bindings.Email.hints.label}"
-                                      required="#{bindings.Email.hints.mandatory}" readOnly="true"
-                                      columns="#{bindings.Email.hints.displayWidth}"
-                                      maximumLength="#{bindings.Email.hints.precision}"
-                                      shortDesc="#{bindings.Email.hints.tooltip}" id="it3">
-                            <f:validator binding="#{bindings.Email.validator}"/>
-                        </af:inputText>
-                        <af:inputText value="#{bindings.Phone.inputValue}" label="#{bindings.Phone.hints.label}"
-                                      required="#{bindings.Phone.hints.mandatory}" readOnly="true"
-                                      columns="#{bindings.Phone.hints.displayWidth}"
-                                      maximumLength="#{bindings.Phone.hints.precision}"
-                                      shortDesc="#{bindings.Phone.hints.tooltip}" id="it4">
-                            <f:validator binding="#{bindings.Phone.validator}"/>
-                        </af:inputText>
-                        <af:inputText value="#{bindings.Password.inputValue}" label="#{bindings.Password.hints.label}"
-                                      required="#{bindings.Password.hints.mandatory}" readOnly="true"
-                                      columns="#{bindings.Password.hints.displayWidth}"
-                                      maximumLength="#{bindings.Password.hints.precision}"
-                                      shortDesc="#{bindings.Password.hints.tooltip}" id="it5">
-                            <f:validator binding="#{bindings.Password.validator}"/>
-                        </af:inputText>
-                        <af:inputText value="#{bindings.Address.inputValue}" label="#{bindings.Address.hints.label}"
-                                      required="#{bindings.Address.hints.mandatory}" readOnly="true"
-                                      columns="#{bindings.Address.hints.displayWidth}"
-                                      maximumLength="#{bindings.Address.hints.precision}"
-                                      shortDesc="#{bindings.Address.hints.tooltip}" id="it6">
-                            <f:validator binding="#{bindings.Address.validator}"/>
-                        </af:inputText>
-                        <af:inputText value="#{bindings.Role.inputValue}" label="#{bindings.Role.hints.label}"
-                                      required="#{bindings.Role.hints.mandatory}" readOnly="true"
-                                      columns="#{bindings.Role.hints.displayWidth}"
-                                      maximumLength="#{bindings.Role.hints.precision}"
-                                      shortDesc="#{bindings.Role.hints.tooltip}" id="it7">
-                            <f:validator binding="#{bindings.Role.validator}"/>
-                        </af:inputText>
-                        <af:inputDate value="#{bindings.CreatedAt.inputValue}" readOnly="true"
-                                      label="#{bindings.CreatedAt.hints.label}"
-                                      required="#{bindings.CreatedAt.hints.mandatory}"
-                                      columns="#{bindings.CreatedAt.hints.displayWidth}"
-                                      shortDesc="#{bindings.CreatedAt.hints.tooltip}" id="id1">
-                            <f:validator binding="#{bindings.CreatedAt.validator}"/>
-                            <af:convertDateTime pattern="#{bindings.CreatedAt.format}"/>
-                        </af:inputDate>
-                        <af:inputDate value="#{bindings.UpdatedAt.inputValue}" readOnly="true"
-                                      label="#{bindings.UpdatedAt.hints.label}"
-                                      required="#{bindings.UpdatedAt.hints.mandatory}"
-                                      columns="#{bindings.UpdatedAt.hints.displayWidth}"
-                                      shortDesc="#{bindings.UpdatedAt.hints.tooltip}" id="id2">
-                            <f:validator binding="#{bindings.UpdatedAt.validator}"/>
-                            <af:convertDateTime pattern="#{bindings.UpdatedAt.format}"/>
-                        </af:inputDate>
-                        <af:inputText value="#{bindings.t_owner_id.inputValue}"
-                                      label="#{bindings.t_owner_id.hints.label}"
-                                      required="#{bindings.t_owner_id.hints.mandatory}" readOnly="true"
-                                      columns="#{bindings.t_owner_id.hints.displayWidth}"
-                                      maximumLength="#{bindings.t_owner_id.hints.precision}"
-                                      shortDesc="#{bindings.t_owner_id.hints.tooltip}" id="it8">
-                            <f:validator binding="#{bindings.t_owner_id.validator}"/>
-                            <af:convertNumber groupingUsed="false" pattern="#{bindings.t_owner_id.format}"/>
-                        </af:inputText>
-                    </af:panelFormLayout>
+                    <af:panelGridLayout id="pgl10">
+                        <af:gridRow marginTop="5px" height="auto" id="gr13">
+                            <af:gridCell width="100%" id="gc30" halign="center">
+                                <h:outputLabel value="Welcome back" id="ol6" style="font-size:large;"/>
+                                <af:outputText value=", #{bindings.FullName.inputValue}!"
+                                               shortDesc="#{bindings.FullName.hints.tooltip}" id="ot45"
+                                               inlineStyle="font-size:large; font-weight:bold;"/>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <af:gridRow marginTop="0px" height="auto" id="gr14">
+                            <af:gridCell width="100%" id="gc31" halign="center">
+                                <af:outputText value="#{bindings.Name.inputValue}, is ready for action!"
+                                               shortDesc="#{bindings.Name.hints.tooltip}" id="ot46"
+                                               inlineStyle="font-weight:bold; font-size:large;"/>
+                            </af:gridCell>
+                        </af:gridRow>
+                    </af:panelGridLayout>
+                    <af:panelGridLayout id="pgl11">
+                        <af:gridRow marginTop="5px" height="auto" id="gr15">
+                            <af:gridCell marginStart="5px" width="50%" id="gc32" halign="stretch">
+                                <af:panelBox text="Restaurant Rating" id="pb8">
+                                    <f:facet name="toolbar"/>
+                                    <dvt:ratingGauge id="ratingGauge3" shape="star" maximum="5"
+                                                     value="#{bindings.AvgRating12.inputValue}" minimum="1"
+                                                     inlineStyle="height:120px;width:120px"/>
+                                </af:panelBox>
+                            </af:gridCell>
+                            <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc33" halign="stretch">
+                                <af:panelBox text="Cuisines we offer" id="pb10">
+                                    <f:facet name="toolbar"/>
+                                    <af:listView value="#{bindings.CuisinesForRestaurantForUserVO.collectionModel}"
+                                                 var="item"
+                                                 emptyText="#{bindings.CuisinesForRestaurantForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                 fetchSize="#{bindings.CuisinesForRestaurantForUserVO.rangeSize}"
+                                                 id="lv5">
+                                        <af:listItem id="li5">
+                                            <af:panelGroupLayout layout="horizontal" id="pgl12">
+                                                <f:facet name="separator">
+                                                    <af:spacer width="10" id="s4"/>
+                                                </f:facet>
+                                                <af:outputText value="#{item.Cuisine}"
+                                                               shortDesc="#{bindings.CuisinesForRestaurantForUserVO.hints.Cuisine.tooltip}"
+                                                               id="ot50"/>
+                                            </af:panelGroupLayout>
+                                        </af:listItem>
+                                    </af:listView>
+                                </af:panelBox>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr16">
+                            <af:gridCell marginStart="5px" width="auto" id="gc34" halign="stretch">
+                                <af:panelBox text="Availability" id="pb9">
+                                    <f:facet name="toolbar"/>
+                                    <af:panelGridLayout id="pgl13">
+                                        <af:gridRow marginTop="0px" height="auto" marginBottom="0px" id="gr17">
+                                            <af:gridCell marginStart="0px" width="50%" id="gc36">
+                                                <af:panelFormLayout id="pfl1">
+                                                    <af:panelLabelAndMessage label="#{bindings.TotalSeats.hints.label}"
+                                                                             id="plam13">
+                                                        <af:outputText value="#{bindings.TotalSeats.inputValue}"
+                                                                       shortDesc="#{bindings.TotalSeats.hints.tooltip}"
+                                                                       id="ot47">
+                                                            <af:convertNumber groupingUsed="false"
+                                                                              pattern="#{bindings.TotalSeats.format}"/>
+                                                        </af:outputText>
+                                                    </af:panelLabelAndMessage>
+                                                    <af:panelLabelAndMessage label="#{bindings.TotalReservedSeats.hints.label}"
+                                                                             id="plam14">
+                                                        <af:outputText value="#{bindings.TotalReservedSeats.inputValue}"
+                                                                       shortDesc="#{bindings.TotalReservedSeats.hints.tooltip}"
+                                                                       id="ot48">
+                                                            <af:convertNumber groupingUsed="false"
+                                                                              pattern="#{bindings.TotalReservedSeats.format}"/>
+                                                        </af:outputText>
+                                                    </af:panelLabelAndMessage>
+                                                    <af:panelLabelAndMessage label="#{bindings.AvailableSeats.hints.label}"
+                                                                             id="plam15">
+                                                        <af:outputText value="#{bindings.AvailableSeats.inputValue}"
+                                                                       shortDesc="#{bindings.AvailableSeats.hints.tooltip}"
+                                                                       id="ot49">
+                                                            <af:convertNumber groupingUsed="false"
+                                                                              pattern="#{bindings.AvailableSeats.format}"/>
+                                                        </af:outputText>
+                                                    </af:panelLabelAndMessage>
+                                                </af:panelFormLayout>
+                                            </af:gridCell>
+                                            <af:gridCell marginStart="0px" width="50%" marginEnd="0px" id="gc37">
+                                                <dvt:statusMeterGauge id="statusMeterGauge2" orientation="circular"
+                                                                      inlineStyle="width:120px;height:120px"
+                                                                      value="#{bindings.TotalReservedSeats.inputValue}"
+                                                                      title="Available: #{bindings.AvailableSeats.inputValue}"
+                                                                      maximum="#{bindings.TotalSeats.inputValue}">
+                                                    <dvt:gaugeThreshold id="thr2" color="#d62800"/>
+                                                    <dvt:gaugeMetricLabel rendered="true" id="gml1"/>
+                                                </dvt:statusMeterGauge>
+                                            </af:gridCell>
+                                        </af:gridRow>
+                                    </af:panelGridLayout>
+                                </af:panelBox>
+                            </af:gridCell>
+                            <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc35">
+                                <af:panelBox text="Number of orders placed in last 7 days" id="pb11">
+                                    <f:facet name="toolbar"/>
+                                    <dvt:sparkChart id="sparkchart1" subType="bar" axisScaledFromBaseline="on"
+                                                    inlineStyle="height:120px;width:250px">
+                                        <af:iterator value="#{bindings.OrdersStatsForRestaurantForUserVO1.collectionModel}"
+                                                     var="row" id="i1">
+                                            <dvt:sparkItem value="#{row.TotalOrders}" id="si3"/>
+                                        </af:iterator>
+                                    </dvt:sparkChart>
+                                </af:panelBox>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <af:gridRow id="gr18">
+                            <af:gridCell id="gc38" halign="stretch">
+                                <af:panelBox text="Order Status" id="pb14">
+                                    <f:facet name="toolbar"/>
+                                    <dvt:pieChart id="pieChart1" var="row"
+                                                  value="#{bindings.OrdersForEachStatusForRestaurantVO.collectionModel}">
+                                        <dvt:chartLegend id="cl1"/>
+                                        <dvt:pieDataItem id="di1" label="#{row.OrderStatus}" value="#{row.OrderCount}"/>
+                                    </dvt:pieChart>
+                                </af:panelBox>
+                            </af:gridCell>
+                            <af:gridCell id="gc39" halign="stretch">
+                                <af:panelBox text="Best Seller" id="pb13">
+                                    <f:facet name="toolbar"/>
+                                    <af:listView value="#{bindings.BestSellerForRestaurantForUserVO.collectionModel}"
+                                                 var="item"
+                                                 emptyText="#{bindings.BestSellerForRestaurantForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                 fetchSize="#{bindings.BestSellerForRestaurantForUserVO.rangeSize}"
+                                                 id="lv6">
+                                        <af:listItem id="li6">
+                                            <af:panelGridLayout id="pgl14">
+                                                <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr19">
+                                                    <af:gridCell marginStart="5px" width="50%" id="gc40">
+                                                        <af:panelLabelAndMessage label="Item" id="plam16">
+                                                            <af:outputText value="#{item.DishName}"
+                                                                           shortDesc="#{bindings.BestSellerForRestaurantForUserVO.hints.DishName.tooltip}"
+                                                                           id="ot51"/>
+                                                        </af:panelLabelAndMessage>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc41">
+                                                        <af:panelLabelAndMessage label="Order" id="plam17">
+                                                            <af:outputText value="#{item.TotalOrders}"
+                                                                           shortDesc="#{bindings.BestSellerForRestaurantForUserVO.hints.TotalOrders.tooltip}"
+                                                                           id="ot52">
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.BestSellerForRestaurantForUserVO.hints.TotalOrders.format}"/>
+                                                            </af:outputText>
+                                                        </af:panelLabelAndMessage>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                            </af:panelGridLayout>
+                                        </af:listItem>
+                                    </af:listView>
+                                </af:panelBox>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <af:gridRow id="gr20">
+                            <af:gridCell id="gc42">
+                                <af:panelBox text="Revenue of last 30 days" id="pb15">
+                                    <f:facet name="toolbar"/>
+                                    <dvt:sparkChart id="sparkchart2" subType="lineWithArea" axisScaledFromBaseline="off"
+                                                    inlineStyle="height:120px;width:250px">
+                                        <af:iterator value="#{bindings.RevenueOfRestaurantForUserVO.collectionModel}"
+                                                     var="row" id="i2">
+                                            <dvt:sparkItem value="#{row.TotalRevenue}" id="si6"/>
+                                        </af:iterator>
+                                    </dvt:sparkChart>
+                                </af:panelBox>
+                            </af:gridCell>
+                            <af:gridCell id="gc43"/>
+                        </af:gridRow>
+                    </af:panelGridLayout>
+                    <af:panelBox text="PanelBox8" id="pb12">
+                        <f:facet name="toolbar"/>
+                    </af:panelBox>
                 </af:showDetailItem>
                 <af:showDetailItem id="menu" text="Menu">
                     <af:panelBox text="Add Menu Item" id="pb1">
