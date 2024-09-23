@@ -103,8 +103,8 @@
     Name="CartItemsVO"
     ViewObjectName="model.services.views.CartItemsVO">
     <ViewCriteriaUsage
-      Name="searchByCustomerIdVC"
-      FullName="model.services.views.CartItemsVO.searchByCustomerIdVC"/>
+      Name="getCartItemsVC"
+      FullName="model.services.views.CartItemsVO.getCartItemsVC"/>
   </ViewUsage>
   <ViewUsage
     Name="G3CouponsVO"
