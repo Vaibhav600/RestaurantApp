@@ -2,6 +2,7 @@ package com.example.beans;
 
 import java.math.BigDecimal;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ import oracle.jbo.ApplicationModule;
 import oracle.jbo.Row;
 import oracle.jbo.ViewObject;
 import oracle.jbo.domain.DBSequence;
+import oracle.jbo.domain.Number;
 
 
 @SessionScoped
@@ -50,11 +52,55 @@ public class ReservationBean {
         }
         return null;
     }
+    
+    public boolean updateRestaurantSeatCount(Integer restaurant_id, ApplicationModule am){
+        ViewObject rest_vo = am.findViewObject(constants.getRestaurant_vo_name());
+        rest_vo.setWhereClause("G3RestaurantsEO.RESTAURANT_ID = :restId");
+        rest_vo.defineNamedWhereClauseParam("restId", null, null);
+        rest_vo.setNamedWhereClauseParam("restId", restaurant_id);
+        rest_vo.executeQuery();
+        Row restaurant_row = rest_vo.first();
+        
+        boolean canAccommodateRequiredSeats = false;
+        int seats_required = Integer.parseInt(number_of_guests);
+        
+        if (restaurant_row != null) {
+            Number seats = (Number)restaurant_row.getAttribute("AvailableSeats");
+            int seats_available = seats.intValue();
+                
+            if(seats_available - seats_required > 0){
+                int new_available_seats = seats_available - seats_required;
+                restaurant_row.setAttribute("AvailableSeats", new_available_seats);
+                am.getTransaction().commit();
+                canAccommodateRequiredSeats = true;
+                
+                System.out.println("Got an Accomodation.");
+            }
+            
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Restaurant not found."));
+        }
+        
+        // Reset the where clause and parameters to avoid affecting other operations
+        rest_vo.removeNamedWhereClauseParam("restId");
+        rest_vo.setWhereClause(null);
+        rest_vo.executeQuery();
+        
+        return canAccommodateRequiredSeats;
+    }
+    
     public void createBooking(Integer selectedRestaurantId, Timestamp reservation_timestamp, ViewObject reservation_vo, ApplicationModule am){
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Object userIdObject = session.getAttribute("userId");
         int CustomerId = Integer.parseInt(userIdObject.toString());
         
+    
+        System.out.println("Before Update Restaurant Seats Method");    
+        updateRestaurantSeatCount(selectedRestaurantId, am);
+        System.out.println("After Update Restaurant Seats Method");    
+        
+    
         Row newUserRow = reservation_vo.createRow();
         newUserRow.setAttribute("CustomerId", CustomerId);
         newUserRow.setAttribute("RestaurantId", selectedRestaurantId);
@@ -69,10 +115,20 @@ public class ReservationBean {
         }
     }
     private boolean isReservationExists(Integer restaurantId, Timestamp reservationTimestamp, ViewObject reservationVO) {
-        reservationVO.setWhereClause("G3ReservationsEO.RESTAURANT_ID = :1 AND G3ReservationsEO.RESERVATION_TIME = :2");
-        reservationVO.setWhereClauseParams(new Object[] { restaurantId, reservationTimestamp });
+        reservationVO.setWhereClause("G3ReservationsEO.RESTAURANT_ID = :restaurantId AND G3ReservationsEO.RESERVATION_TIME = :reservationTimestamp");
+        reservationVO.defineNamedWhereClauseParam("restaurantId", null, null);
+        reservationVO.defineNamedWhereClauseParam("reservationTimestamp", null, null);
+        reservationVO.setNamedWhereClauseParam("restaurantId", restaurantId);
+        reservationVO.setNamedWhereClauseParam("reservationTimestamp", reservationTimestamp);
         reservationVO.executeQuery();
-        return reservationVO.hasNext();
+        boolean has_next = reservationVO.hasNext();
+        
+        reservationVO.removeNamedWhereClauseParam("restaurantId");
+        reservationVO.removeNamedWhereClauseParam("reservationTimestamp");
+        reservationVO.setWhereClause(null);
+        reservationVO.executeQuery();
+        
+        return has_next;
     }
     public String bookReservation(){        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy H");
