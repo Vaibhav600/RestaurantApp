@@ -103,8 +103,8 @@
     Name="CartItemsVO"
     ViewObjectName="model.services.views.CartItemsVO">
     <ViewCriteriaUsage
-      Name="searchByCustomerIdVC"
-      FullName="model.services.views.CartItemsVO.searchByCustomerIdVC"/>
+      Name="getCartItemsVC"
+      FullName="model.services.views.CartItemsVO.getCartItemsVC"/>
   </ViewUsage>
   <ViewUsage
     Name="G3CouponsVO"
@@ -175,6 +175,12 @@
   <ViewUsage
     Name="RevenueOfRestaurantForUserVO"
     ViewObjectName="model.services.views.RevenueOfRestaurantVO"/>
+  <ViewUsage  
+    Name="CouponsForRestaurant"
+    ViewObjectName="model.services.views.G3CouponsVO"/>
+  <ViewUsage
+    Name="CouponsForRestaurant_CustApp"
+    ViewObjectName="model.services.views.G3CouponsVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -313,5 +319,17 @@
     ViewLinkObjectName="model.services.link.RevenueOfRestaurantViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantForUser"
     DstViewUsageName="model.services.AppModule.RevenueOfRestaurantForUserVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="CouponRestaurantViewLink1"
+    ViewLinkObjectName="model.services.link.CouponRestaurantViewLink"
+    SrcViewUsageName="model.services.AppModule.G3RestaurantsVO"
+    DstViewUsageName="model.services.AppModule.CouponsForRestaurant"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="CouponForRestaurant_ForCustApp_FK"
+    ViewLinkObjectName="model.services.link.CouponForRestaurant_ForCustApp_FK"
+    SrcViewUsageName="model.services.AppModule.RestaurantVO_ForCustApp"
+    DstViewUsageName="model.services.AppModule.CouponsForRestaurant_CustApp"
     Reversed="false"/>
 </AppModule>

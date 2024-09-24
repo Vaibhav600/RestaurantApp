@@ -4,6 +4,9 @@
   <definitionFactories>
     <factory nameSpace="http://xmlns.oracle.com/adfm/dvt"
              className="oracle.adfinternal.view.faces.dvt.model.binding.FacesBindingFactory"/>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
   </definitionFactories>
   <pageMap>
     <page path="/login.jsf" usageId="view_loginPageDef"/>
@@ -23,6 +26,8 @@
           usageId="view_customerTF_customerTF_ExecuteWithParamsPageDef"/>
     <page path="/restDetails.jsf" usageId="view_restDetailsPageDef"/>
     <page path="/superAdminDashboard.jsf" usageId="view_superAdminDashboardTestPageDef"/>
+    <page path="/addressDetails.jsff" usageId="view_addressDetailsPageDef"/>
+    <page path="/orderDetails.jsff" usageId="view_orderDetailsPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="view_loginPageDef" path="view.pageDefs.loginPageDef"/>
@@ -42,6 +47,8 @@
           path="view.pageDefs.customerTF_customerTF_ExecuteWithParamsPageDef"/>
     <page id="view_restDetailsPageDef" path="view.pageDefs.restDetailsPageDef"/>
     <page id="view_superAdminDashboardTestPageDef" path="view.pageDefs.superAdminDashboardPageDef"/>
+    <page id="view_orderDetailsPageDef" path="view.pageDefs.orderDetailsPageDef"/>
+    <page id="view_addressDetailsPageDef" path="view.pageDefs.addressDetailsPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <BC4JDataControl id="AppModuleDataControl" Package="model.services"

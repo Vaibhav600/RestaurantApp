@@ -6,8 +6,10 @@
         <af:form id="f1">
             <af:panelGridLayout id="pgl1">
                 <af:gridRow height="50px" id="gr2">
-                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                    <af:gridCell width="100%" halign="start" valign="stretch" id="gc1">
                         <!-- Header -->
+                        <af:button text="Back" id="b2" inlineStyle="margin-right: 10px;"/>
+                        <af:button text="Cart" id="b3" action="#{setCartItemVC.setCartVC}"/>
                     </af:gridCell>
                 </af:gridRow>
                 <af:gridRow height="100%" id="gr1">
@@ -114,6 +116,195 @@
                     </af:gridCell>
                 </af:gridRow>
             </af:panelGridLayout>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="cartPopup" animate="true"
+                      binding="#{setCartItemVC.cart_popup}">
+                <af:panelWindow id="pw1">
+                    <af:panelHeader text="Cart Items" id="ph1">
+                        <f:facet name="context"/>
+                        <f:facet name="toolbar"/>
+                        <f:facet name="menuBar"/>
+                        <f:facet name="legend"/>
+                        <f:facet name="info"/>
+                        <af:table value="#{bindings.CartItemsVO.collectionModel}" var="row"
+                                  rows="#{bindings.CartItemsVO.rangeSize}"
+                                  emptyText="#{bindings.CartItemsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.CartItemsVO.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.CartItemsVO.collectionModel.makeCurrent}"
+                                  rowSelection="single" fetchSize="#{bindings.CartItemsVO.rangeSize}" id="t2">
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.OrderId.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.OrderId.label}" id="c7">
+                                <af:inputText value="#{row.bindings.OrderId.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.OrderId.label}"
+                                              required="#{bindings.CartItemsVO.hints.OrderId.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.OrderId.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.OrderId.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.OrderId.tooltip}" id="it7">
+                                    <f:validator binding="#{row.bindings.OrderId.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.OrderId.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.CustomerId.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.CustomerId.label}" id="c8">
+                                <af:inputText value="#{row.bindings.CustomerId.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.CustomerId.label}"
+                                              required="#{bindings.CartItemsVO.hints.CustomerId.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.CustomerId.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.CustomerId.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.CustomerId.tooltip}" id="it8">
+                                    <f:validator binding="#{row.bindings.CustomerId.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.CustomerId.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.TotalAmount.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.TotalAmount.label}" id="c9">
+                                <af:inputText value="#{row.bindings.TotalAmount.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.TotalAmount.label}"
+                                              required="#{bindings.CartItemsVO.hints.TotalAmount.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.TotalAmount.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.TotalAmount.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.TotalAmount.tooltip}" id="it9">
+                                    <f:validator binding="#{row.bindings.TotalAmount.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.TotalAmount.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.OrderStatus.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.OrderStatus.label}" id="c10">
+                                <af:inputText value="#{row.bindings.OrderStatus.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.OrderStatus.label}"
+                                              required="#{bindings.CartItemsVO.hints.OrderStatus.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.OrderStatus.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.OrderStatus.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.OrderStatus.tooltip}" id="it10">
+                                    <f:validator binding="#{row.bindings.OrderStatus.validator}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.PaymentStatus.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.PaymentStatus.label}" id="c11">
+                                <af:inputText value="#{row.bindings.PaymentStatus.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.PaymentStatus.label}"
+                                              required="#{bindings.CartItemsVO.hints.PaymentStatus.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.PaymentStatus.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.PaymentStatus.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.PaymentStatus.tooltip}" id="it11">
+                                    <f:validator binding="#{row.bindings.PaymentStatus.validator}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.Id.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.Id.label}" id="c12">
+                                <af:inputText value="#{row.bindings.Id.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.Id.label}"
+                                              required="#{bindings.CartItemsVO.hints.Id.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.Id.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.Id.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.Id.tooltip}" id="it12">
+                                    <f:validator binding="#{row.bindings.Id.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.Id.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.ItemTotal.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.ItemTotal.label}" id="c13">
+                                <af:inputText value="#{row.bindings.ItemTotal.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.ItemTotal.label}"
+                                              required="#{bindings.CartItemsVO.hints.ItemTotal.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.ItemTotal.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.ItemTotal.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.ItemTotal.tooltip}" id="it13">
+                                    <f:validator binding="#{row.bindings.ItemTotal.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.ItemTotal.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.Quantity.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.Quantity.label}" id="c14">
+                                <af:inputText value="#{row.bindings.Quantity.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.Quantity.label}"
+                                              required="#{bindings.CartItemsVO.hints.Quantity.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.Quantity.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.Quantity.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.Quantity.tooltip}" id="it14">
+                                    <f:validator binding="#{row.bindings.Quantity.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.Quantity.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.ItemId.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.ItemId.label}" id="c15">
+                                <af:inputText value="#{row.bindings.ItemId.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.ItemId.label}"
+                                              required="#{bindings.CartItemsVO.hints.ItemId.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.ItemId.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.ItemId.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.ItemId.tooltip}" id="it15">
+                                    <f:validator binding="#{row.bindings.ItemId.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.ItemId.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.DishName.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.DishName.label}" id="c16">
+                                <af:inputText value="#{row.bindings.DishName.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.DishName.label}"
+                                              required="#{bindings.CartItemsVO.hints.DishName.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.DishName.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.DishName.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.DishName.tooltip}" id="it16">
+                                    <f:validator binding="#{row.bindings.DishName.validator}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.Price.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.Price.label}" id="c17">
+                                <af:inputText value="#{row.bindings.Price.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.Price.label}"
+                                              required="#{bindings.CartItemsVO.hints.Price.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.Price.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.Price.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.Price.tooltip}" id="it17">
+                                    <f:validator binding="#{row.bindings.Price.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.Price.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.CouponId.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.CouponId.label}" id="c18">
+                                <af:inputText value="#{row.bindings.CouponId.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.CouponId.label}"
+                                              required="#{bindings.CartItemsVO.hints.CouponId.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.CouponId.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.CouponId.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.CouponId.tooltip}" id="it18">
+                                    <f:validator binding="#{row.bindings.CouponId.validator}"/>
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.CouponId.format}"/>
+                                </af:inputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.CartItemsVO.hints.Description.name}" sortable="true"
+                                       headerText="#{bindings.CartItemsVO.hints.Description.label}" id="c19">
+                                <af:inputText value="#{row.bindings.Description.inputValue}"
+                                              label="#{bindings.CartItemsVO.hints.Description.label}"
+                                              required="#{bindings.CartItemsVO.hints.Description.mandatory}"
+                                              columns="#{bindings.CartItemsVO.hints.Description.displayWidth}"
+                                              maximumLength="#{bindings.CartItemsVO.hints.Description.precision}"
+                                              shortDesc="#{bindings.CartItemsVO.hints.Description.tooltip}" id="it19">
+                                    <f:validator binding="#{row.bindings.Description.validator}"/>
+                                </af:inputText>
+                            </af:column>
+                        </af:table>
+                        <af:button text="Checkout" id="b4" inlineStyle="margin-top: 10px;"
+                                   action="#{checkoutBean.showCheckoutTrainPopup}"/>
+                    </af:panelHeader>
+                </af:panelWindow>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="checkoutTrainPopup"
+                      binding="#{checkoutBean.checkoutPopup}">
+                <af:panelWindow id="pw2">
+                    <af:region value="#{bindings.checkoutTrainTF1.regionModel}" id="r1"/>
+                </af:panelWindow>
+            </af:popup>
         </af:form>
     </af:document>
 </f:view>

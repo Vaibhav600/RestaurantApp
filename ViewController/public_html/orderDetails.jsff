@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:messages id="m1"/>
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow marginTop="5px" height="auto" id="gr1">
+            <af:gridCell marginStart="5px" width="500px" marginEnd="5px" id="gc1" halign="center">
+                <af:train value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}" id="t1"/>
+            </af:gridCell>
+        </af:gridRow>
+        <af:gridRow marginTop="5px" height="auto" id="gr2">
+            <af:gridCell marginStart="5px" width="700px" marginEnd="5px" id="gc2" halign="center">
+                <af:panelBox text="PanelBox1" id="pb1" type="stretch" showHeader="never">
+                    <f:facet name="toolbar"/>
+                    <af:panelFormLayout id="pfl1" inlineStyle="width:837px;">
+                        <af:table value="#{bindings.CartItemsVO.collectionModel}" var="row"
+                                  rows="#{bindings.CartItemsVO.rangeSize}"
+                                  emptyText="#{bindings.CartItemsVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.CartItemsVO.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.CartItemsVO.collectionModel.makeCurrent}"
+                                  rowSelection="single" fetchSize="#{bindings.CartItemsVO.rangeSize}" id="t2">
+                            <af:column headerText="#{bindings.CartItemsVO.hints.Id.label}" id="c1" rendered="false">
+                                <af:outputText value="#{row.Id}" shortDesc="#{bindings.CartItemsVO.hints.Id.tooltip}"
+                                               id="ot1">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.Id.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.CartItemsVO.hints.OrderId.label}" id="c2"
+                                       rendered="false">
+                                <af:outputText value="#{row.OrderId}"
+                                               shortDesc="#{bindings.CartItemsVO.hints.OrderId.tooltip}" id="ot2">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.OrderId.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.CartItemsVO.hints.ItemId.label}" id="c3" rendered="false">
+                                <af:outputText value="#{row.ItemId}"
+                                               shortDesc="#{bindings.CartItemsVO.hints.ItemId.tooltip}" id="ot3">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.ItemId.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.CartItemsVO.hints.CouponId.label}" id="c4"
+                                       rendered="false">
+                                <af:outputText value="#{row.CouponId}"
+                                               shortDesc="#{bindings.CartItemsVO.hints.CouponId.tooltip}" id="ot4">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.CouponId.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.CartItemsVO.hints.DishName.label}" id="c5">
+                                <af:outputText value="#{row.DishName}"
+                                               shortDesc="#{bindings.CartItemsVO.hints.DishName.tooltip}" id="ot5"/>
+                            </af:column>
+                            <af:column headerText="#{bindings.CartItemsVO.hints.Price.label}" id="c6">
+                                <af:outputText value="#{row.Price}"
+                                               shortDesc="#{bindings.CartItemsVO.hints.Price.tooltip}" id="ot6">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.Price.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.CartItemsVO.hints.Quantity.label}" id="c12">
+                                <af:outputText value="#{row.Quantity}"
+                                               shortDesc="#{bindings.CartItemsVO.hints.Quantity.tooltip}" id="ot12">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.Quantity.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column headerText="#{bindings.CartItemsVO.hints.ItemTotal.label}" id="c10"
+                                       rendered="true">
+                                <af:outputText value="#{row.ItemTotal}"
+                                               shortDesc="#{bindings.CartItemsVO.hints.ItemTotal.tooltip}" id="ot10">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.CartItemsVO.hints.ItemTotal.format}"/>
+                                </af:outputText>
+                            </af:column>
+                        </af:table>
+                        <af:panelFormLayout id="pfl2">
+                            <af:panelLabelAndMessage label="Order Total" id="plam1">
+                                <af:outputText value="#{bindings.TotalAmount.inputValue}"
+                                               shortDesc="#{bindings.TotalAmount.hints.tooltip}" id="ot7">
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.TotalAmount.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                            <af:selectOneChoice value="#{bindings.CouponId.inputValue}" label="Select Coupon"
+                                                required="#{bindings.CouponId.hints.mandatory}"
+                                                shortDesc="#{bindings.CouponId.hints.tooltip}" id="soc1"
+                                                rendered="true">
+                                <f:selectItems value="#{bindings.CouponId.items}" id="si1"/>
+                                <f:validator binding="#{bindings.CouponId.validator}"/>
+                            </af:selectOneChoice>
+                            <f:facet name="footer"/>
+                            <af:panelLabelAndMessage label="Total Amount" id="plam2">
+                                <af:outputText value="#{bindings.TotalAmount.inputValue}"
+                                               shortDesc="#{bindings.TotalAmount.hints.tooltip}" id="ot8">
+                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.TotalAmount.format}"/>
+                                </af:outputText>
+                            </af:panelLabelAndMessage>
+                        </af:panelFormLayout>
+                        <f:facet name="footer"/>
+                    </af:panelFormLayout>
+                </af:panelBox>
+            </af:gridCell>
+        </af:gridRow>
+        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr3">
+            <af:gridCell marginStart="5px" width="500px" marginEnd="5px" id="gc3" halign="center">
+                <af:trainButtonBar value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}" id="tbb1"/>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>

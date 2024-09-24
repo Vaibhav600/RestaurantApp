@@ -23,6 +23,10 @@
     Name="bCustId"
     Kind="viewcriteria"
     Type="oracle.jbo.domain.Number"/>
+  <Variable
+    Name="b_user_id"
+    Kind="viewcriteria"
+    Type="java.lang.Integer"/>
   <EntityUsage
     Name="G3OrdersEO"
     Entity="model.services.entities.G3OrdersEO"/>
@@ -90,6 +94,12 @@
     EntityAttrName="OrderId"
     EntityUsage="G3OrdersEO"
     AliasName="ORDER_ID"/>
+  <ViewAttribute
+    Name="CustomerId"
+    PrecisionRule="true"
+    EntityAttrName="CustomerId"
+    EntityUsage="G3OrdersEO"
+    AliasName="CUSTOMER_ID"/>
   <ViewAttribute
     Name="TotalAmount"
     PrecisionRule="true"
@@ -182,6 +192,49 @@
           Value="InAdvancedMode"/>
       </CustomProperties>
     </Properties>
+  </ViewCriteria>
+  <ViewCriteria
+    Name="getCartItemsVC"
+    ViewObjectName="model.services.views.CartItemsVO"
+    Conjunction="AND">
+    <Properties Name="_Props">
+      <CustomProperties>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="CartItemsVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="CustomerId"
+        ViewAttribute="CustomerId"
+        Operator="="
+        Conjunction="AND"
+        Value=":b_user_id"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="PaymentStatus"
+        ViewAttribute="PaymentStatus"
+        Operator="="
+        Conjunction="AND"
+        Value="Pending"
+        Required="Optional"/>
+    </ViewCriteriaRow>
   </ViewCriteria>
   <AttrArray Name="KeyAttributes">
     <Item Value="OrderId"/>

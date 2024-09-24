@@ -4,7 +4,7 @@
 <Entity
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3ReservationsEO"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge"
   DBObjectType="table"
   DBObjectName="G3_RESERVATIONS"
@@ -98,18 +98,6 @@
     Type="oracle.jbo.server.EntityImpl"
     IsUpdateable="true"/>
   <Key
-    Name="G3ReservationsReservationIdCheck">
-    <DesignTime>
-      <Attr Name="_isNotNull" Value="true"/>
-      <Attr Name="_checkCondition" Value='"RESERVATION_ID" IS NOT NULL'/>
-      <Attr Name="_isCheck" Value="true"/>
-      <Attr Name="_DBObjectName" Value="G3RESERVATIONS_RESERVATION_ID_"/>
-    </DesignTime>
-    <AttrArray Name="Attributes">
-      <Item Value="model.services.entities.G3ReservationsEO.ReservationId"/>
-    </AttrArray>
-  </Key>
-  <Key
     Name="SysC009722917"
     PrimaryKey="true">
     <DesignTime>
@@ -125,6 +113,7 @@
       <Attr Name="_referencedKey" Value="SYS_C009722892"/>
       <Attr Name="_isForeign" Value="true"/>
       <Attr Name="_DBObjectName" Value="SYS_C009722918"/>
+      <Attr Name="_isCascadeDelete" Value="true"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3ReservationsEO.CustomerId"/>
@@ -136,6 +125,7 @@
       <Attr Name="_referencedKey" Value="SYS_C009722894"/>
       <Attr Name="_isForeign" Value="true"/>
       <Attr Name="_DBObjectName" Value="SYS_C009722919"/>
+      <Attr Name="_isCascadeDelete" Value="true"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3ReservationsEO.RestaurantId"/>

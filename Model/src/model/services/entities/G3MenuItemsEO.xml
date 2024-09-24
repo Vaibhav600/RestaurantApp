@@ -4,7 +4,7 @@
 <Entity
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="G3MenuItemsEO"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge"
   DBObjectType="table"
   DBObjectName="G3_MENU_ITEMS"
@@ -23,7 +23,8 @@
     IsUpdateable="while_insert"
     DefaultValue="@0"
     Domain="oracle.jbo.domain.DBSequence"
-    RetrievedOnInsert="true"/>
+    RetrievedOnInsert="true"
+    IsNotNull="false"/>
   <Attribute
     Name="RestaurantId"
     Precision="10"
@@ -120,18 +121,6 @@
     Type="oracle.jbo.server.EntityImpl"
     IsUpdateable="true"/>
   <Key
-    Name="G3MenuItemsItemIdCheck">
-    <DesignTime>
-      <Attr Name="_isNotNull" Value="true"/>
-      <Attr Name="_checkCondition" Value='"ITEM_ID" IS NOT NULL'/>
-      <Attr Name="_isCheck" Value="true"/>
-      <Attr Name="_DBObjectName" Value="G3MENU_ITEMS_ITEM_ID_CHECK"/>
-    </DesignTime>
-    <AttrArray Name="Attributes">
-      <Item Value="model.services.entities.G3MenuItemsEO.ItemId"/>
-    </AttrArray>
-  </Key>
-  <Key
     Name="SysC009722907"
     PrimaryKey="true">
     <DesignTime>
@@ -147,6 +136,7 @@
       <Attr Name="_referencedKey" Value="SYS_C009722894"/>
       <Attr Name="_isForeign" Value="true"/>
       <Attr Name="_DBObjectName" Value="SYS_C009722908"/>
+      <Attr Name="_isCascadeDelete" Value="true"/>
     </DesignTime>
     <AttrArray Name="Attributes">
       <Item Value="model.services.entities.G3MenuItemsEO.RestaurantId"/>

@@ -11,6 +11,8 @@
               id="RestaurantVO_ForCustAppIterator"/>
     <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
     <iterator Binds="OffersVO" RangeSize="25" DataControl="AppModuleDataControl" id="OffersVOIterator"/>
+    <taskFlow id="checkoutTrainTF1" taskFlowId="/WEB-INF/checkoutTrainTF.xml#checkoutTrainTF" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings>
     <action IterBinding="RestaurantVO_ForCustAppIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
@@ -22,18 +24,6 @@
         <Item Value="ExecuteWithParams_bRestName"/>
       </AttrNames>
     </attributeValues>
-    <tree IterBinding="CartItemsVOIterator" id="CartItemsVO">
-      <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO0">
-        <AttrNames>
-          <Item Value="DishName"/>
-          <Item Value="Quantity"/>
-          <Item Value="Price"/>
-          <Item Value="ItemTotal"/>
-          <Item Value="Description"/>
-          <Item Value="TotalAmount"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
     <tree IterBinding="CartItemsVOIterator" id="CartItemsVO1">
       <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO10">
         <AttrNames>

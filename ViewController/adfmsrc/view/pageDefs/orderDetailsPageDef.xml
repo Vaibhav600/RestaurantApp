@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.11.57" id="orderDetailsPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
+    <iterator Binds="G3OrdersVO" RangeSize="25" DataControl="AppModuleDataControl" id="G3OrdersVOIterator"/>
+    <iterator Binds="G3CouponsVO" RangeSize="25" DataControl="AppModuleDataControl" id="G3CouponsVOIterator"/>
+    <iterator Binds="CouponsForRestaurant_CustApp" RangeSize="10" DataControl="AppModuleDataControl"
+              id="CouponsForRestaurant_CustAppIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="CartItemsVOIterator" id="CartItemsVO">
+      <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO0">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="OrderId"/>
+          <Item Value="ItemId"/>
+          <Item Value="CouponId"/>
+          <Item Value="DishName"/>
+          <Item Value="Price"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="OrderStatus"/>
+          <Item Value="PaymentStatus"/>
+          <Item Value="ItemTotal"/>
+          <Item Value="Description"/>
+          <Item Value="Quantity"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="G3OrdersVOIterator" id="TotalAmount">
+      <AttrNames>
+        <Item Value="TotalAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CouponsForRestaurant_CustAppIterator" id="CouponId">
+      <AttrNames>
+        <Item Value="CouponId"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

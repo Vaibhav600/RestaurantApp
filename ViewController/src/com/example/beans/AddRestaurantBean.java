@@ -35,15 +35,9 @@ public class AddRestaurantBean {
     private String available_seats;
     private String status;
     
-    private UploadedFile restImage;
-    
-            
+    private UploadedFile restImage;       
             
     ConstantBean constants = new ConstantBean();
-    
-    
-   
-            
     
     public AddRestaurantBean() {
         super();
@@ -161,7 +155,7 @@ public class AddRestaurantBean {
             inputStream = file.getInputStream();
             BufferedImage inputImg = ImageIO.read(inputStream);
             File outputFile = new File("/Users/Shared/"+fileName+".png");
-             ImageIO.write(inputImg,"PNG", outputFile);
+            ImageIO.write(inputImg,"PNG", outputFile);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

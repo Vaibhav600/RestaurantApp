@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow marginTop="5px" height="auto" id="gr1">
+            <af:gridCell marginStart="5px" width="600px" marginEnd="5px" id="gc1">
+                <af:train value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}" id="t1"/>
+            </af:gridCell>
+        </af:gridRow>
+        <af:gridRow marginTop="5px" height="auto" id="gr2">
+            <af:gridCell marginStart="5px" width="600px" marginEnd="5px" id="gc2">
+                <af:panelFormLayout id="pfl1" inlineStyle="width:660px;">
+                    <af:selectOneRadio label="Payment Type" id="sor1" value="#{paymentBean.selectedPaymentMethod}">
+                        <af:selectItem label="Card" value="Card" id="si1"/>
+                        <af:selectItem label="UPI" value="UPI" id="si2"/>
+                        <af:selectItem label="COD" value="COD" id="si3"/>
+                    </af:selectOneRadio>
+                    <af:panelGroupLayout layout="vertical" rendered="#{paymentBean.selectedPaymentMethod == 'Card'}"
+                                         partialTriggers="sor1" id="pgl1">
+                        <af:inputText label="Card Number" id="it1"/>
+                        <af:inputText label="CVV" id="it2"/>
+                        <af:inputText label="Cardholder Name" id="it3"/>
+                    </af:panelGroupLayout>
+                    <!-- UPI Payment Details -->
+                    <af:panelGroupLayout layout="vertical" rendered="#{paymentBean.selectedPaymentMethod == 'UPI'}"
+                                         partialTriggers="sor1" id="pgl2">
+                        <af:inputText label="UPI ID" id="it4"/>
+                    </af:panelGroupLayout>
+                    <!-- No additional details for COD -->
+                    <af:panelGroupLayout layout="vertical" rendered="#{paymentBean.selectedPaymentMethod == 'COD'}"
+                                         partialTriggers="sor1" id="pgl3">
+                        <af:outputText value="No additional details needed for COD" id="ot1"/>
+                    </af:panelGroupLayout>
+                    <f:facet name="footer"/>
+                </af:panelFormLayout>
+            </af:gridCell>
+        </af:gridRow>
+        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr3">
+            <af:gridCell marginStart="5px" width="600px" marginEnd="5px" id="gc3">
+                <af:trainButtonBar value="#{controllerContext.currentViewPort.taskFlowContext.trainModel}" id="tbb1"/>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>
