@@ -23,6 +23,10 @@ public class ConstantBean {
     private String rest_for_custApp_vo_name = "RestaurantVO_ForCustApp";
     private String orderItem_vo_name = "G3OrderItemsVO";
     private String cart_items_vo_name = "CartItemsVO";
+    private String to_deliver_orders_vo = "ToDeliverOrdersForRestaurantVO";
+    private String to_deliver_order_by_agent_vo_iter = "ToDeliverOrderByAgentVO1Iterator";
+    private String to_deliver_orders_vo_iter = "ToDeliverOrdersForRestaurantVOIterator";
+
 
 
     public String getOrder_restaurant_user_vo() {
@@ -131,5 +135,17 @@ public class ConstantBean {
 
     public String getCoupon_vo() {
         return coupon_vo;
+    }
+
+    public String getTo_deliver_orders_vo() {
+        return to_deliver_orders_vo;
+    }
+
+    public String getTo_deliver_orders_vo_iter() {
+        return to_deliver_orders_vo_iter;
+    }
+
+    public String getTo_deliver_order_by_agent_vo_iter() {
+        return to_deliver_order_by_agent_vo_iter;
     }
 }

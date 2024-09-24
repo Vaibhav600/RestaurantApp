@@ -247,6 +247,11 @@
     ViewLink="model.services.link.RevenueOfRestaurantViewLink"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="ToDeliverOrderByAgentVO"
+    ViewLink="model.services.link.ToDeliverOrderByAgentViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>

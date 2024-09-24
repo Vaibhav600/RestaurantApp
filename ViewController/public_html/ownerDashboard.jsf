@@ -294,7 +294,8 @@
                         </af:listView>
                     </af:panelBox>
                 </af:showDetailItem>
-                <af:showDetailItem id="order_status" text="Order Status">
+                <af:showDetailItem id="order_status" text="Order Status"
+                                   >
                     <af:table value="#{bindings.OrderForRestaurantForUser.collectionModel}" var="row"
                               rows="#{bindings.OrderForRestaurantForUser.rangeSize}"
                               emptyText="#{bindings.OrderForRestaurantForUser.viewable ? 'No data to display.' : 'Access Denied.'}"
@@ -346,7 +347,8 @@
                                                 label="#{row.bindings.OrderStatus.label}"
                                                 required="#{bindings.OrderForRestaurantForUser.hints.OrderStatus.mandatory}"
                                                 shortDesc="#{bindings.OrderForRestaurantForUser.hints.OrderStatus.tooltip}"
-                                                autoSubmit="true" valueChangeListener="#{orderForRestaurantBean.commit}">
+                                                autoSubmit="true" valueChangeListener="#{orderForRestaurantBean.commit}"
+                                                id="soc3">
                                 <f:selectItems value="#{row.bindings.OrderStatus.items}" id="si4"/>
                                 <f:validator binding="#{row.bindings.OrderStatus.validator}"/>
                             </af:selectOneChoice>
@@ -490,7 +492,7 @@
                         </af:table>
                     </af:panelBox>
                 </af:showDetailItem>
-                <af:showDetailItem id="delivery_agent" text="Delivery Agent">
+                <af:showDetailItem id="delivery_agent" text="Delivery Agent" disclosureListener="#{tabListenerBean.onTabChange}">
                     <af:panelBox text="PanelBox1" id="pb7">
                         <f:facet name="toolbar"/>
                         <af:panelGridLayout id="pgl1">
@@ -500,6 +502,7 @@
                                                         label="#{bindings.ToDeliverOrdersForRestaurantVO.label}"
                                                         required="#{bindings.ToDeliverOrdersForRestaurantVO.hints.mandatory}"
                                                         shortDesc="#{bindings.ToDeliverOrdersForRestaurantVO.hints.tooltip}"
+                                                        partialTriggers="b3 t2:soc3"
                                                         id="soc5">
                                         <f:selectItems value="#{bindings.ToDeliverOrdersForRestaurantVO.items}"
                                                        id="si7"/>
@@ -508,11 +511,12 @@
                                 </af:gridCell>
                                 <af:gridCell marginStart="5px" width="33%" id="gc2">
                                     <af:selectOneChoice value="#{assignDeliveryAgent.agent_id}"
-                                                        label="#{bindings.G3DeliveryAgentVO.label}"
-                                                        shortDesc="#{bindings.G3DeliveryAgentVO.hints.tooltip}"
-                                                        id="soc1">
-                                        <f:selectItems value="#{bindings.G3DeliveryAgentVO.items}" id="si1"/>
-                                        <f:validator binding="#{bindings.G3DeliveryAgentVO.validator}"/>
+                                                        label="#{bindings.ToDeliverOrderByAgentVO1.label}"
+                                                        required="#{bindings.ToDeliverOrderByAgentVO1.hints.mandatory}"
+                                                        shortDesc="#{bindings.ToDeliverOrderByAgentVO1.hints.tooltip}"
+                                                        id="soc4">
+                                        <f:selectItems value="#{bindings.ToDeliverOrderByAgentVO1.items}" id="si8"/>
+                                        <f:validator binding="#{bindings.ToDeliverOrderByAgentVO1.validator}"/>
                                     </af:selectOneChoice>
                                 </af:gridCell>
                                 <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc3">

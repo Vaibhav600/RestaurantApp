@@ -32,8 +32,6 @@
               id="MenuItemsForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="ToDeliverOrdersForRestaurantVO" RangeSize="25" DataControl="AppModuleDataControl"
               id="ToDeliverOrdersForRestaurantVOIterator" ChangeEventPolicy="ppr"/>
-    <iterator Binds="G3DeliveryAgentVO" RangeSize="25" DataControl="AppModuleDataControl"
-              id="G3DeliveryAgentVOIterator"/>
     <iterator Binds="CuisinesForRestaurantForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
               id="CuisinesForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="OrdersStatsForRestaurantForUserVO" RangeSize="-1" DataControl="AppModuleDataControl"
@@ -44,6 +42,8 @@
               id="BestSellerForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="RevenueOfRestaurantForUserVO" RangeSize="-1" DataControl="AppModuleDataControl"
               id="RevenueOfRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="ToDeliverOrderByAgentVO1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ToDeliverOrderByAgentVO1Iterator"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="G3UsersVOIterator" id="CreatedAt">
@@ -256,12 +256,6 @@
         <Item Value="OrderId"/>
       </AttrNames>
     </list>
-    <list IterBinding="G3DeliveryAgentVOIterator" ListOperMode="navigation" ListIter="G3DeliveryAgentVOIterator"
-          id="G3DeliveryAgentVO" DTSupportsMRU="true" SelectItemValueMode="ListObject">
-      <AttrNames>
-        <Item Value="AgentId"/>
-      </AttrNames>
-    </list>
     <attributeValues IterBinding="G3UsersVOIterator" id="FullName">
       <AttrNames>
         <Item Value="FullName"/>
@@ -310,5 +304,12 @@
         </AttrNames>
       </nodeDefinition>
     </tree>
+    <list IterBinding="ToDeliverOrderByAgentVO1Iterator" ListOperMode="navigation"
+          ListIter="ToDeliverOrderByAgentVO1Iterator" id="ToDeliverOrderByAgentVO1" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="AgentId"/>
+      </AttrNames>
+    </list>
   </bindings>
 </pageDefinition>

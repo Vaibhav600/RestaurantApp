@@ -85,5 +85,11 @@
          <Tester FullProxyInterfaceName="model.services.common.AppModule"/>
          <Custom ns0:LastUsedConfiguration="AppModuleLocal" ns0:ns0="http://xmlns.oracle.com/bc4j/configuration" ns0:JDBCDataSource="java:comp/env/jdbc/oracleDS" ns0:_testers_credentials_needed="false" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
       </AppModuleConfig>
+      <AppModuleConfig name="1922537AA02" IsLazyLoadingTrue="true" DBconnection="java:comp/env/jdbc/oracleDS" ApplicationName="model.services.AppModule" jbo.project="model.services.Model" BC4JConfigName="AppModuleLocal" JDBCName="oracle" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database JDBCDataSource="java:comp/env/jdbc/oracleDS" jbo.SQLBuilder="Oracle" jbo.locking.mode="optimistic" jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="model.services.AppModule"/>
+         <Tester FullProxyInterfaceName="model.services.common.AppModule"/>
+         <Custom ns0:ns0="http://xmlns.oracle.com/bc4j/configuration" ns0:tester_classloader_enabled="true" ns0:_testers_credentials_needed="false" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+      </AppModuleConfig>
    </AppModuleConfigBag>
 </BC4JConfig>
