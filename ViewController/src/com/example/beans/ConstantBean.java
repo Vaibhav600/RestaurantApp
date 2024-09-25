@@ -24,7 +24,16 @@ public class ConstantBean {
     private String orderItem_vo_name = "G3OrderItemsVO";
     private String cart_items_vo_name = "CartItemsVO";
     private String check_rest_availablity_vo_name = "CheckRestAvailability_ForCustApp_VO";
+    private String rest_to_cust_dashboard_navigation = "goToCustomerDashboard";
 
+
+    public void setRest_to_cust_dashboard_navigation(String rest_to_cust_dashboard_navigation) {
+        this.rest_to_cust_dashboard_navigation = rest_to_cust_dashboard_navigation;
+    }
+
+    public String getRest_to_cust_dashboard_navigation() {
+        return rest_to_cust_dashboard_navigation;
+    }
 
     public void setCheck_rest_availablity_vo_name(String check_rest_availablity_vo_name) {
         this.check_rest_availablity_vo_name = check_rest_availablity_vo_name;

@@ -94,4 +94,14 @@
       <property
          name="sdm:polyPoints">R51,223.56348,218.74219,298.0,361.20312,L50</property>
    </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase9"
+      from="View4"
+      to="View2">
+      <property
+         name="fromOutcome">goToCustomerDashboard</property>
+      <property
+         name="sdm:polyPoints">L54,634.9789,225.03516,157.52725,215.24219,R50</property>
+   </ControlFlowCase>
 </SDM>

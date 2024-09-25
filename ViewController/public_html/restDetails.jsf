@@ -8,7 +8,8 @@
                 <af:gridRow height="50px" id="gr2">
                     <af:gridCell width="100%" halign="start" valign="stretch" id="gc1">
                         <!-- Header -->
-                        <af:button text="Back" id="b2" inlineStyle="margin-right: 10px;"/>
+                        <af:button text="Back" id="b2" inlineStyle="margin-right: 10px;"
+                                   action="#{backButtonBean.goBack}"/>
                         <af:button text="Cart" id="b3" action="#{setCartItemVC.setCartVC}"/>
                     </af:gridCell>
                 </af:gridRow>

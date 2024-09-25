@@ -54,5 +54,12 @@
         <to-activity-id>restDetails</to-activity-id>
       </control-flow-case>
     </control-flow-rule>
+    <control-flow-rule id="__8">
+      <from-activity-id>restDetails</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome>goToCustomerDashboard</from-outcome>
+        <to-activity-id>customer_dashboard</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
   </task-flow-definition>
 </adfc-config>
