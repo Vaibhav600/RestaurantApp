@@ -14,6 +14,8 @@
     <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
     <taskFlow id="checkoutTrainTF1" taskFlowId="/WEB-INF/checkoutTrainTF.xml#checkoutTrainTF" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator id="CheckRestAvailability_ForCustApp_VOIterator" Binds="CheckRestAvailability_ForCustApp_VO"
+              DataControl="AppModuleDataControl" RangeSize="25"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="Name">

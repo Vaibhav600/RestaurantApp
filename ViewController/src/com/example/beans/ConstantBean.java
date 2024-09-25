@@ -23,7 +23,16 @@ public class ConstantBean {
     private String rest_for_custApp_vo_name = "RestaurantVO_ForCustApp";
     private String orderItem_vo_name = "G3OrderItemsVO";
     private String cart_items_vo_name = "CartItemsVO";
+    private String check_rest_availablity_vo_name = "CheckRestAvailability_ForCustApp_VO";
 
+
+    public void setCheck_rest_availablity_vo_name(String check_rest_availablity_vo_name) {
+        this.check_rest_availablity_vo_name = check_rest_availablity_vo_name;
+    }
+
+    public String getCheck_rest_availablity_vo_name() {
+        return check_rest_availablity_vo_name;
+    }
 
     public String getOrder_restaurant_user_vo() {
         return order_restaurant_user_vo;

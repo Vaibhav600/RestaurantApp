@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CheckRestAvailability_ForCustApp_VO"
+  Version="12.2.1.11.57"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.services.views.CheckRestAvailability_ForCustApp_VO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="b_rest_id"
+    Kind="where"
+    Type="oracle.jbo.domain.Number"/>
+  <SQLQuery><![CDATA[SELECT
+    rt.restaurant_id,
+    rt.available_seats AS total_seats,
+    COALESCE(SUM(r.table_size), 0) AS total_reserved_seats,
+    (rt.available_seats - COALESCE(SUM(r.table_size), 0)) AS available_seats
+FROM
+    g3_restaurants rt
+LEFT JOIN
+    g3_reservations r
+ON
+    rt.restaurant_id = r.restaurant_id
+GROUP BY
+    rt.restaurant_id, rt.available_seats
+HAVING 
+    rt.restaurant_id = :b_rest_id]]></SQLQuery>
+  <ViewAttribute
+    Name="RestaurantId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="RESTAURANT_ID"
+    Expression="RESTAURANT_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="TotalSeats"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="TOTAL_SEATS"
+    Expression="TOTAL_SEATS"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="TotalReservedSeats"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="TOTAL_RESERVED_SEATS"
+    Expression="TOTAL_RESERVED_SEATS"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="AvailableSeats"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="AVAILABLE_SEATS"
+    Expression="AVAILABLE_SEATS"
+    SQLType="NUMERIC"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>
