@@ -184,6 +184,9 @@
   <ViewUsage
     Name="CheckRestAvailability_ForCustApp_VO"
     ViewObjectName="model.services.views.CheckRestAvailability_ForCustApp_VO"/>
+  <ViewUsage
+    Name="RatingForRest_forCustApp_VO"
+    ViewObjectName="model.services.views.RatingForRest_forCustApp_VO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"

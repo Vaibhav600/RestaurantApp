@@ -33,29 +33,73 @@
                             <af:button actionListener="#{bindings.ExecuteWithParams.execute}" text="Search"
                                        disabled="#{!bindings.ExecuteWithParams.enabled}" id="b1"/>
                         </af:panelGroupLayout>
-                        <af:listView value="#{bindings.RestaurantVO_ForCustApp1.collectionModel}" var="item"
-                                     emptyText="#{bindings.RestaurantVO_ForCustApp1.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                     fetchSize="#{bindings.RestaurantVO_ForCustApp1.rangeSize}" id="lv2"
-                                     partialTriggers="::b1" inlineStyle="width:572px;" styleClass="increaseListWidth">
-                            <af:listItem id="li2">
-                                <af:panelGridLayout id="pgl6">
-                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr5">
-                                        <af:gridCell marginStart="5px" width="30%" id="gc6" halign="center"
+                        <af:listView value="#{bindings.RestaurantVO_ForCustApp.collectionModel}" var="item"
+                                     emptyText="#{bindings.RestaurantVO_ForCustApp.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                     fetchSize="#{bindings.RestaurantVO_ForCustApp.rangeSize}" id="lv1"
+                                     styleClass="increaseListWidth" inlineStyle="width: 572px;">
+                            <af:listItem id="li1">
+                                <af:panelGridLayout id="pgl9">
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr8">
+                                        <af:gridCell marginStart="5px" width="30%" id="gc9" halign="center"
                                                      valign="middle">
                                             <af:image id="i1" inlineStyle="width: 7rem;"
                                                       source="/showrestimage?imgName=#{item.bindings.RestaurantId.inputValue}"/>
                                         </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="70%" marginEnd="5px" id="gc10">
+                                            <af:panelGroupLayout layout="vertical" id="pgl2">
+                                                <f:facet name="separator">
+                                                    <af:spacer width="10" id="s1"/>
+                                                </f:facet>
+                                                <af:outputFormatted value="#{item.bindings.RestaurantId.inputValue}"
+                                                                    id="of1" inlineStyle="font-size:large;"
+                                                                    rendered="false">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.RestaurantVO_ForCustApp.hints.RestaurantId.format}"/>
+                                                </af:outputFormatted>
+                                                <af:link id="l2" action="#{showRestDetailPage.showRestDetail}">
+                                                    <af:outputFormatted value="#{item.bindings.Name.inputValue}"
+                                                                        id="of2" inlineStyle="font-size:x-large;"/>
+                                                    <af:setPropertyListener from="#{item.bindings.Name.inputValue}"
+                                                                            to="#{pageFlowScope.selectedRestName}"
+                                                                            type="action"/>
+                                                </af:link>
+                                                <af:outputFormatted value="#{item.bindings.AvgRating.inputValue}"
+                                                                    id="of3" inlineStyle="font-size:large;">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.RestaurantVO_ForCustApp.hints.AvgRating.format}"/>
+                                                </af:outputFormatted>
+                                                <af:outputFormatted value="#{item.bindings.Status.inputValue}"
+                                                                    id="of8"
+                                                                    inlineStyle="font-size:large; color:#{item.bindings.Status.inputValue eq &quot;close&quot; ? &quot;Red&quot; : &quot;Green&quot;} ;"/>
+                                            </af:panelGroupLayout>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                </af:panelGridLayout>
+                            </af:listItem>
+                        </af:listView>
+                        <af:listView value="#{bindings.RestaurantVO_ForCustApp1.collectionModel}" var="item"
+                                     emptyText="#{bindings.RestaurantVO_ForCustApp1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                     fetchSize="#{bindings.RestaurantVO_ForCustApp1.rangeSize}" id="lv2"
+                                     partialTriggers="::b1" inlineStyle="width:572px;" styleClass="increaseListWidth"
+                                     rendered="false">
+                            <af:listItem id="li2">
+                                <af:panelGridLayout id="pgl6">
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr5">
+                                        <af:gridCell marginStart="5px" width="30%" id="gc6" halign="center"
+                                                     valign="middle"/>
                                         <af:gridCell marginStart="5px" width="70%" marginEnd="5px" id="gc7">
                                             <af:panelGroupLayout layout="vertical" id="pgl5">
                                                 <f:facet name="separator">
                                                     <af:spacer width="10" id="s2"/>
                                                 </f:facet>
-                                                <af:outputFormatted value="#{item.bindings.RestaurantId.inputValue}"
-                                                                    id="of4" rendered="false">
+                                                <af:outputFormatted
+                                                                    id="of4" rendered="false"
+                                                                    value="#{item.bindings.RestaurantId.inputValue}"
+                                                                    binding="#{showRestDetailPage.rest_id}">
                                                     <af:convertNumber groupingUsed="false"
                                                                       pattern="#{bindings.RestaurantVO_ForCustApp1.hints.RestaurantId.format}"/>
                                                 </af:outputFormatted>
-                                                <af:link id="l1" action="goToRestDetailsPage">
+                                                <af:link id="l1" action="#{showRestDetailPage.showRestDetail}">
                                                     <af:outputFormatted value="#{item.bindings.Name.inputValue}"
                                                                         id="of5" inlineStyle="font-size:x-large;"/>
                                                     <af:setPropertyListener from="#{item.bindings.Name.inputValue}"
@@ -63,7 +107,8 @@
                                                                             type="action"/>
                                                 </af:link>
                                                 <af:outputFormatted value="Available Seats - #{item.bindings.AvailableSeats.inputValue}"
-                                                                    id="of6" inlineStyle="font-size:large;">
+                                                                    id="of6" inlineStyle="font-size:large;"
+                                                                    rendered="false">
                                                     <af:convertNumber groupingUsed="false"
                                                                       pattern="#{bindings.RestaurantVO_ForCustApp1.hints.AvailableSeats.format}"/>
                                                 </af:outputFormatted>
