@@ -79,5 +79,16 @@
         </AttrNames>
       </nodeDefinition>
     </tree>
+    <tree IterBinding="CheckRestAvailability_ForCustApp_VOIterator" id="CheckRestAvailability_ForCustApp_VO">
+      <nodeDefinition DefName="model.services.views.CheckRestAvailability_ForCustApp_VO"
+                      Name="CheckRestAvailability_ForCustApp_VO0">
+        <AttrNames>
+          <Item Value="RestaurantId"/>
+          <Item Value="TotalSeats"/>
+          <Item Value="TotalReservedSeats"/>
+          <Item Value="AvailableSeats"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
   </bindings>
 </pageDefinition>

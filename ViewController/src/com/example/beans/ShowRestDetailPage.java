@@ -36,12 +36,11 @@ public class ShowRestDetailPage {
     public String showRestDetail() {
         Object rest_value = rest_id.getValue();
         int restaurant_id = Integer.parseInt(rest_value.toString());
-        
-//        ApplicationModule am = getApplicationModule();
-//        ViewObject cart_vo = am.findViewObject();
-//        cart_vo.setNamedWhereClauseParam("b_rest_id", restaurant_id);
-//        cart_vo.executeQuery();
-        
+
+        ApplicationModule am = getApplicationModule();
+        ViewObject cart_vo = am.findViewObject("CheckRestAvailability_ForCustApp_VO");
+        cart_vo.setNamedWhereClauseParam("b_rest_id", restaurant_id);
+        cart_vo.executeQuery();
                 
         return "goToRestDetailsPage";
     }

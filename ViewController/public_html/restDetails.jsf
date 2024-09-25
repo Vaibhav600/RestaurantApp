@@ -27,13 +27,46 @@
                                                    inlineStyle="font-size:large;"/>
                                     <af:outputText value="Total Seats - #{bindings.AvailableSeats.inputValue}"
                                                    shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="ot3"
-                                                   inlineStyle="font-size:large;">
+                                                   inlineStyle="font-size:large;" rendered="false">
                                         <af:convertNumber groupingUsed="false"
                                                           pattern="#{bindings.AvailableSeats.format}"/>
                                     </af:outputText>
                                     <af:outputText value="#{bindings.Address.inputValue}"
                                                    shortDesc="#{bindings.Address.hints.tooltip}" id="ot2"
                                                    inlineStyle="font-size:large;"/>
+                                    <af:listView value="#{bindings.CheckRestAvailability_ForCustApp_VO.collectionModel}"
+                                                 var="item"
+                                                 emptyText="#{bindings.CheckRestAvailability_ForCustApp_VO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                 fetchSize="#{bindings.CheckRestAvailability_ForCustApp_VO.rangeSize}"
+                                                 id="lv1">
+                                        <af:listItem id="li1">
+                                            <af:panelGroupLayout layout="vertical" id="pgl2">
+                                                <f:facet name="separator">
+                                                    <af:spacer width="10" id="s1"/>
+                                                </f:facet>
+                                                <af:outputFormatted value="#{item.bindings.RestaurantId.inputValue}"
+                                                                    id="of1" rendered="false">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CheckRestAvailability_ForCustApp_VO.hints.RestaurantId.format}"/>
+                                                </af:outputFormatted>
+                                                <af:outputFormatted value="Total Seats - #{item.bindings.TotalSeats.inputValue}"
+                                                                    id="of2" inlineStyle="font-size:large;">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CheckRestAvailability_ForCustApp_VO.hints.TotalSeats.format}"/>
+                                                </af:outputFormatted>
+                                                <af:outputFormatted value="Reserved Seats - #{item.bindings.TotalReservedSeats.inputValue}"
+                                                                    id="of3" inlineStyle="font-size:large;">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CheckRestAvailability_ForCustApp_VO.hints.TotalReservedSeats.format}"/>
+                                                </af:outputFormatted>
+                                                <af:outputFormatted value="Available Seats - #{item.bindings.AvailableSeats.inputValue}"
+                                                                    id="of4" inlineStyle="font-size:large;">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CheckRestAvailability_ForCustApp_VO.hints.AvailableSeats.format}"/>
+                                                </af:outputFormatted>
+                                            </af:panelGroupLayout>
+                                        </af:listItem>
+                                    </af:listView>
                                 </af:panelFormLayout>
                             </af:showDetailItem>
                             <af:showDetailItem id="Review" text="Review"/>

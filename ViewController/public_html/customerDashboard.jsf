@@ -36,7 +36,7 @@
                         <af:listView value="#{bindings.RestaurantVO_ForCustApp.collectionModel}" var="item"
                                      emptyText="#{bindings.RestaurantVO_ForCustApp.viewable ? 'No data to display.' : 'Access Denied.'}"
                                      fetchSize="#{bindings.RestaurantVO_ForCustApp.rangeSize}" id="lv1"
-                                     styleClass="increaseListWidth" inlineStyle="width: 572px;">
+                                     styleClass="increaseListWidth" inlineStyle="width: 572px;" partialTriggers="::b1">
                             <af:listItem id="li1">
                                 <af:panelGridLayout id="pgl9">
                                     <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr8">
