@@ -56,7 +56,14 @@
     PrecisionRule="true"
     EntityAttrName="ReservationTime"
     EntityUsage="G3ReservationsEO"
-    AliasName="RESERVATION_TIME"/>
+    AliasName="RESERVATION_TIME">
+    <Properties>
+      <SchemaBasedProperties>
+        <TimeZoneID
+          Value="Asia/Kolkata"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="CreatedAt"
     PrecisionRule="true"

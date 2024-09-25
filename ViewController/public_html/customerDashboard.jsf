@@ -139,7 +139,7 @@
                 <af:panelWindow id="pw2">
                     <af:panelGridLayout id="pgl3">
                         <af:gridRow marginTop="5px" height="auto" id="gr1">
-                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc2" halign="stretch"
+                            <af:gridCell marginStart="5px" width="700px" marginEnd="5px" id="gc2" halign="stretch"
                                          valign="stretch">
                                 <af:table value="#{bindings.CartItemsVO1.collectionModel}" var="row"
                                           rows="#{bindings.CartItemsVO1.rangeSize}"
@@ -147,7 +147,8 @@
                                           rowBandingInterval="0"
                                           selectedRowKeys="#{bindings.CartItemsVO1.collectionModel.selectedRow}"
                                           selectionListener="#{bindings.CartItemsVO1.collectionModel.makeCurrent}"
-                                          rowSelection="single" fetchSize="#{bindings.CartItemsVO1.rangeSize}" id="t2">
+                                          rowSelection="single" fetchSize="#{bindings.CartItemsVO1.rangeSize}" id="t2"
+                                          width="100%" columnStretching="last">
                                     <af:column sortProperty="#{bindings.CartItemsVO1.hints.OrderId.name}"
                                                sortable="true" headerText="#{bindings.CartItemsVO1.hints.OrderId.label}"
                                                id="c7">
@@ -190,22 +191,6 @@
                                                        id="ot11"/>
                                     </af:column>
                                 </af:table>
-                            </af:gridCell>
-                        </af:gridRow>
-                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr3">
-                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc3">
-                                <af:panelGridLayout id="pgl7">
-                                    <af:gridRow marginTop="5px" height="auto" id="gr6">
-                                        <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc4">
-                                            <af:panelGroupLayout id="pgl8">
-                                                <af:outputText value="Coupons" id="ot5"/>
-                                            </af:panelGroupLayout>
-                                        </af:gridCell>
-                                    </af:gridRow>
-                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr7">
-                                        <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc8"/>
-                                    </af:gridRow>
-                                </af:panelGridLayout>
                             </af:gridCell>
                         </af:gridRow>
                     </af:panelGridLayout>

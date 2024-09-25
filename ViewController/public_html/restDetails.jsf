@@ -38,7 +38,7 @@
                                                  var="item"
                                                  emptyText="#{bindings.CheckRestAvailability_ForCustApp_VO.viewable ? 'No data to display.' : 'Access Denied.'}"
                                                  fetchSize="#{bindings.CheckRestAvailability_ForCustApp_VO.rangeSize}"
-                                                 id="lv1">
+                                                 id="lv1" rendered="false">
                                         <af:listItem id="li1">
                                             <af:panelGroupLayout layout="vertical" id="pgl2">
                                                 <f:facet name="separator">
@@ -137,7 +137,6 @@
                                                   columns="#{bindings.ReservationTime.hints.displayWidth}"
                                                   shortDesc="#{bindings.ReservationTime.hints.tooltip}" id="id1">
                                         <f:validator binding="#{bindings.ReservationTime.validator}"/>
-                                        <af:convertDateTime pattern="#{bindings.ReservationTime.format}"/>
                                     </af:inputDate>
                                     <af:selectOneChoice label="Reservation Time Slot" id="soc1"
                                                         value="#{reservationBean.reservation_time}">
