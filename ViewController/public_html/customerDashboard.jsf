@@ -64,7 +64,7 @@
                                                                             to="#{pageFlowScope.selectedRestName}"
                                                                             type="action"/>
                                                 </af:link>
-                                                <af:panelGroupLayout id="pgl11" valign="middle">
+                                                <af:panelGroupLayout id="pgl11" valign="middle" halign="center">
                                                     <af:outputFormatted value="#{item.bindings.AvgRating.inputValue}"
                                                                         id="of3" inlineStyle="font-size:large;">
                                                         <af:convertNumber groupingUsed="false"
