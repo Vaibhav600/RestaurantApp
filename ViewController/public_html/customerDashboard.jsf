@@ -64,14 +64,17 @@
                                                                             to="#{pageFlowScope.selectedRestName}"
                                                                             type="action"/>
                                                 </af:link>
-                                                <af:outputFormatted value="#{item.bindings.AvgRating.inputValue}"
-                                                                    id="of3" inlineStyle="font-size:large;">
-                                                    <af:convertNumber groupingUsed="false"
-                                                                      pattern="#{bindings.RestaurantVO_ForCustApp.hints.AvgRating.format}"/>
-                                                </af:outputFormatted>
-                                                <af:outputFormatted value="#{item.bindings.Status.inputValue}"
-                                                                    id="of8"
-                                                                    inlineStyle="font-size:large; color:#{item.bindings.Status.inputValue eq &quot;close&quot; ? &quot;Red&quot; : &quot;Green&quot;} ;"/>
+                                                <af:panelGroupLayout id="pgl11" valign="middle">
+                                                    <af:outputFormatted value="#{item.bindings.AvgRating.inputValue}"
+                                                                        id="of3" inlineStyle="font-size:large;">
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.RestaurantVO_ForCustApp.hints.AvgRating.format}"/>
+                                                    </af:outputFormatted>
+                                                    <af:image source="#{resource['images:star.png']}" id="i2"
+                                                              inlineStyle="width: 30px;"/>
+                                                </af:panelGroupLayout>
+                                                <af:outputFormatted value="#{item.bindings.Status.inputValue}" id="of8"
+                                                                    inlineStyle='font-size:large; color:#{item.bindings.Status.inputValue eq "close" ? "Red" : "Green"} ;'/>
                                             </af:panelGroupLayout>
                                         </af:gridCell>
                                     </af:gridRow>
