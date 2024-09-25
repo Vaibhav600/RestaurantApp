@@ -64,7 +64,8 @@
                                                        shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.tooltip}"
                                                        id="it4"/>
                                     </af:column>
-                                    <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Rating.label}" id="c5">
+                                    <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Rating.label}" id="c5"
+                                               rendered="false">
                                         <af:outputText value="#{row.bindings.Rating.inputValue}"
                                                        shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Rating.tooltip}"
                                                        id="it5">

@@ -68,7 +68,8 @@
                                                                       pattern="#{bindings.RestaurantVO_ForCustApp1.hints.AvailableSeats.format}"/>
                                                 </af:outputFormatted>
                                                 <af:outputFormatted value="#{item.bindings.Status.inputValue}"
-                                                                    id="of7" inlineStyle="font-size:large;"/>
+                                                                    id="of7"
+                                                                    inlineStyle="font-size:large; color:#{item.bindings.Status.inputValue eq &quot;close&quot;?&quot;Red&quot;:&quot;Green&quot;};"/>
                                             </af:panelGroupLayout>
                                         </af:gridCell>
                                     </af:gridRow>
