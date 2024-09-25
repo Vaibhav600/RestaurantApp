@@ -56,7 +56,8 @@
                                                     <af:convertNumber groupingUsed="false"
                                                                       pattern="#{bindings.RestaurantVO_ForCustApp.hints.RestaurantId.format}"/>
                                                 </af:outputFormatted>
-                                                <af:link id="l2" action="#{showRestDetailPage.showRestDetail}">
+                                                <af:link id="l2" action="#{showRestDetailPage.showRestDetail}"
+                                                         disabled='#{item.bindings.Status.inputValue eq "close" ? true : false}'>
                                                     <af:outputFormatted value="#{item.bindings.Name.inputValue}"
                                                                         id="of2" inlineStyle="font-size:x-large;"/>
                                                     <af:setPropertyListener from="#{item.bindings.Name.inputValue}"
