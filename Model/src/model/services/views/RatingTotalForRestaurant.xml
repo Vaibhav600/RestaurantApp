@@ -4,7 +4,7 @@
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="RatingTotalForRestaurant"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge"
   BindingStyle="OracleName"
   CustomQuery="true"
@@ -24,7 +24,7 @@
   </Properties>
   <SQLQuery><![CDATA[SELECT o.restaurant_id, 
        rr.rating, 
-       COUNT(rr.rating) AS rating_count
+       AVG(rr.rating) AS rating_count
 FROM g3_ratings_reviews rr
 JOIN g3_orders o 
     ON rr.order_id = o.order_id

@@ -59,5 +59,25 @@
         </AttrNames>
       </nodeDefinition>
     </tree>
+    <tree IterBinding="RestaurantVO_ForCustAppIterator" id="RestaurantVO_ForCustApp2">
+      <nodeDefinition DefName="model.services.views.RestaurantVO_ForCustApp" Name="RestaurantVO_ForCustApp20">
+        <AttrNames>
+          <Item Value="RestaurantId"/>
+          <Item Value="Name"/>
+          <Item Value="Status"/>
+          <Item Value="AvgRating"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="RestaurantVO_ForCustAppIterator" id="RestaurantVO_ForCustApp">
+      <nodeDefinition DefName="model.services.views.RestaurantVO_ForCustApp" Name="RestaurantVO_ForCustApp0">
+        <AttrNames>
+          <Item Value="RestaurantId"/>
+          <Item Value="Name"/>
+          <Item Value="AvgRating"/>
+          <Item Value="Status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
   </bindings>
 </pageDefinition>

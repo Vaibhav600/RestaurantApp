@@ -8,6 +8,11 @@
     <task-flow-reentry>
       <reentry-outcome-dependent/>
     </task-flow-reentry>
+    <managed-bean id="__7">
+      <managed-bean-name>showRestDetailPage</managed-bean-name>
+      <managed-bean-class>com.example.beans.ShowRestDetailPage</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
     <view id="customer_dashboard">
       <page>/customerDashboard.jsf</page>
       <redirect/>

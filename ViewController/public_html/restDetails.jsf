@@ -19,16 +19,20 @@
                             <af:showDetailItem id="Overview" text="Overview">
                                 <af:panelFormLayout id="pfl1">
                                     <af:outputText value="#{bindings.Name.inputValue}"
-                                                   shortDesc="#{bindings.Name.hints.tooltip}" id="ot1"/>
-                                    <af:outputText value="#{bindings.Address.inputValue}"
-                                                   shortDesc="#{bindings.Address.hints.tooltip}" id="ot2"/>
-                                    <af:outputText value="#{bindings.AvailableSeats.inputValue}"
-                                                   shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="ot3">
+                                                   shortDesc="#{bindings.Name.hints.tooltip}" id="ot1"
+                                                   inlineStyle="font-size:large;"/>
+                                    <af:outputText value="#{bindings.Status.inputValue}"
+                                                   shortDesc="#{bindings.Status.hints.tooltip}" id="ot4"
+                                                   inlineStyle="font-size:large;"/>
+                                    <af:outputText value="Total Seats - #{bindings.AvailableSeats.inputValue}"
+                                                   shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="ot3"
+                                                   inlineStyle="font-size:large;">
                                         <af:convertNumber groupingUsed="false"
                                                           pattern="#{bindings.AvailableSeats.format}"/>
                                     </af:outputText>
-                                    <af:outputText value="#{bindings.Status.inputValue}"
-                                                   shortDesc="#{bindings.Status.hints.tooltip}" id="ot4"/>
+                                    <af:outputText value="#{bindings.Address.inputValue}"
+                                                   shortDesc="#{bindings.Address.hints.tooltip}" id="ot2"
+                                                   inlineStyle="font-size:large;"/>
                                 </af:panelFormLayout>
                             </af:showDetailItem>
                             <af:showDetailItem id="Review" text="Review"/>
