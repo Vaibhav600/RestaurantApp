@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RatingForRest_forCustApp_VO"
+  Version="12.2.1.11.57"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.services.views.RatingForRest_forCustApp_VO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[SELECT G3RestaurantsEO.RESTAURANT_ID,
+       AVG(G3RatingsReviewsEO.RATING) AS avg_rating       
+FROM  G3_RESTAURANTS G3RestaurantsEO, G3_ORDERS G3OrdersEO, G3_RATINGS_REVIEWS G3RatingsReviewsEO
+WHERE (G3RestaurantsEO.RESTAURANT_ID = G3OrdersEO.RESTAURANT_ID) AND (G3OrdersEO.ORDER_ID = G3RatingsReviewsEO.ORDER_ID)
+GROUP BY G3RestaurantsEO.RESTAURANT_ID]]></SQLQuery>
+  <EntityUsage
+    Name="G3RestaurantsEO"
+    Entity="model.services.entities.G3RestaurantsEO"/>
+  <EntityUsage
+    Name="G3OrdersEO"
+    Entity="model.services.entities.G3OrdersEO"
+    Association="model.services.assoc.OrderRestaurantAssoc"
+    AssociationEnd="model.services.assoc.OrderRestaurantAssoc.G3OrdersEO"
+    SourceUsage="model.services.views.RatingForRest_forCustApp_VO.G3RestaurantsEO"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"
+    JoinType="INNER JOIN">
+    <DesignTime>
+      <AttrArray Name="_dstAttributes">
+        <Item Value="model.services.entities.G3OrdersEO.RestaurantId"/>
+      </AttrArray>
+      <AttrArray Name="_srcAttributes">
+        <Item Value="model.services.entities.G3RestaurantsEO.RestaurantId"/>
+      </AttrArray>
+    </DesignTime>
+  </EntityUsage>
+  <EntityUsage
+    Name="G3RatingsReviewsEO"
+    Entity="model.services.entities.G3RatingsReviewsEO"
+    Association="model.services.assoc.RatingReviewOrderAssoc"
+    AssociationEnd="model.services.assoc.RatingReviewOrderAssoc.G3RatingsReviewsEO"
+    SourceUsage="model.services.views.RatingForRest_forCustApp_VO.G3OrdersEO"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"
+    JoinType="INNER JOIN">
+    <DesignTime>
+      <AttrArray Name="_dstAttributes">
+        <Item Value="model.services.entities.G3RatingsReviewsEO.OrderId"/>
+      </AttrArray>
+      <AttrArray Name="_srcAttributes">
+        <Item Value="model.services.entities.G3OrdersEO.OrderId"/>
+      </AttrArray>
+    </DesignTime>
+  </EntityUsage>
+  <ViewAttribute
+    Name="RestaurantId"
+    IsUpdateable="while_insert"
+    PrecisionRule="true"
+    EntityAttrName="RestaurantId"
+    EntityUsage="G3RestaurantsEO"
+    AliasName="RESTAURANT_ID"/>
+  <ViewAttribute
+    Name="AvgRating"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="AVG_RATING"
+    Expression="AVG_RATING"
+    SQLType="NUMERIC"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

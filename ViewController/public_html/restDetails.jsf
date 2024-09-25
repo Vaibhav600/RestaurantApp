@@ -8,7 +8,8 @@
                 <af:gridRow height="50px" id="gr2">
                     <af:gridCell width="100%" halign="start" valign="stretch" id="gc1">
                         <!-- Header -->
-                        <af:button text="Back" id="b2" inlineStyle="margin-right: 10px;"/>
+                        <af:button text="Back" id="b2" inlineStyle="margin-right: 10px;"
+                                   action="#{backButtonBean.goBack}"/>
                         <af:button text="Cart" id="b3" action="#{setCartItemVC.setCartVC}"/>
                     </af:gridCell>
                 </af:gridRow>
@@ -19,16 +20,20 @@
                             <af:showDetailItem id="Overview" text="Overview">
                                 <af:panelFormLayout id="pfl1">
                                     <af:outputText value="#{bindings.Name.inputValue}"
-                                                   shortDesc="#{bindings.Name.hints.tooltip}" id="ot1"/>
-                                    <af:outputText value="#{bindings.Address.inputValue}"
-                                                   shortDesc="#{bindings.Address.hints.tooltip}" id="ot2"/>
-                                    <af:outputText value="#{bindings.AvailableSeats.inputValue}"
-                                                   shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="ot3">
+                                                   shortDesc="#{bindings.Name.hints.tooltip}" id="ot1"
+                                                   inlineStyle="font-size:large;"/>
+                                    <af:outputText value="#{bindings.Status.inputValue}"
+                                                   shortDesc="#{bindings.Status.hints.tooltip}" id="ot4"
+                                                   inlineStyle="font-size:large;"/>
+                                    <af:outputText value="Total Seats - #{bindings.AvailableSeats.inputValue}"
+                                                   shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="ot3"
+                                                   inlineStyle="font-size:large;">
                                         <af:convertNumber groupingUsed="false"
                                                           pattern="#{bindings.AvailableSeats.format}"/>
                                     </af:outputText>
-                                    <af:outputText value="#{bindings.Status.inputValue}"
-                                                   shortDesc="#{bindings.Status.hints.tooltip}" id="ot4"/>
+                                    <af:outputText value="#{bindings.Address.inputValue}"
+                                                   shortDesc="#{bindings.Address.hints.tooltip}" id="ot2"
+                                                   inlineStyle="font-size:large;"/>
                                 </af:panelFormLayout>
                             </af:showDetailItem>
                             <af:showDetailItem id="Review" text="Review"/>
@@ -64,7 +69,8 @@
                                                        shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Cuisine.tooltip}"
                                                        id="it4"/>
                                     </af:column>
-                                    <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Rating.label}" id="c5">
+                                    <af:column headerText="#{bindings.MenuItems_CustApp_VO.hints.Rating.label}" id="c5"
+                                               rendered="false">
                                         <af:outputText value="#{row.bindings.Rating.inputValue}"
                                                        shortDesc="#{bindings.MenuItems_CustApp_VO.hints.Rating.tooltip}"
                                                        id="it5">

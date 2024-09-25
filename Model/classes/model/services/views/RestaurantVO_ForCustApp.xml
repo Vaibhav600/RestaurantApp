@@ -6,13 +6,12 @@
   Name="RestaurantVO_ForCustApp"
   Version="12.2.1.11.57"
   InheritPersonalization="merge"
-  SelectListFlags="1"
-  FromListFlags="1"
-  WhereFlags="1"
   BindingStyle="OracleName"
-  CustomQuery="false"
-  SelectAllAttributes="false"
+  CustomQuery="true"
   PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
   <Properties>
     <SchemaBasedProperties>
       <LABEL
@@ -23,27 +22,47 @@
     Name="bRestName"
     Kind="viewcriteria"
     Type="java.lang.String"/>
+  <SQLQuery><![CDATA[SELECT 
+    r.restaurant_id, 
+    r.name,
+    r.owner_id,
+    r.available_seats,
+    r.phone,
+    r.status,
+    r.address,
+    r.created_at,
+    r.updated_at,
+    COALESCE(AVG(rr.rating), 0) AS avg_rating
+FROM 
+    g3_restaurants r
+LEFT JOIN 
+    g3_orders o ON r.restaurant_id = o.restaurant_id
+LEFT JOIN 
+    g3_ratings_reviews rr ON o.order_id = rr.order_id
+GROUP BY 
+    r.restaurant_id, 
+    r.name,
+    r.owner_id,
+    r.available_seats,
+    r.phone,
+    r.status,
+    r.address,
+    r.created_at,
+    r.updated_at,
+    rr.rating
+ORDER BY 
+    r.restaurant_id, 
+    rr.rating]]></SQLQuery>
   <EntityUsage
     Name="G3RestaurantsEO"
     Entity="model.services.entities.G3RestaurantsEO"/>
   <ViewAttribute
-    Name="Address"
+    Name="RestaurantId"
+    IsUpdateable="while_insert"
     PrecisionRule="true"
-    EntityAttrName="Address"
+    EntityAttrName="RestaurantId"
     EntityUsage="G3RestaurantsEO"
-    AliasName="ADDRESS"/>
-  <ViewAttribute
-    Name="AvailableSeats"
-    PrecisionRule="true"
-    EntityAttrName="AvailableSeats"
-    EntityUsage="G3RestaurantsEO"
-    AliasName="AVAILABLE_SEATS"/>
-  <ViewAttribute
-    Name="CreatedAt"
-    PrecisionRule="true"
-    EntityAttrName="CreatedAt"
-    EntityUsage="G3RestaurantsEO"
-    AliasName="CREATED_AT"/>
+    AliasName="RESTAURANT_ID"/>
   <ViewAttribute
     Name="Name"
     PrecisionRule="true"
@@ -57,18 +76,17 @@
     EntityUsage="G3RestaurantsEO"
     AliasName="OWNER_ID"/>
   <ViewAttribute
+    Name="AvailableSeats"
+    PrecisionRule="true"
+    EntityAttrName="AvailableSeats"
+    EntityUsage="G3RestaurantsEO"
+    AliasName="AVAILABLE_SEATS"/>
+  <ViewAttribute
     Name="Phone"
     PrecisionRule="true"
     EntityAttrName="Phone"
     EntityUsage="G3RestaurantsEO"
     AliasName="PHONE"/>
-  <ViewAttribute
-    Name="RestaurantId"
-    IsUpdateable="while_insert"
-    PrecisionRule="true"
-    EntityAttrName="RestaurantId"
-    EntityUsage="G3RestaurantsEO"
-    AliasName="RESTAURANT_ID"/>
   <ViewAttribute
     Name="Status"
     PrecisionRule="true"
@@ -76,11 +94,33 @@
     EntityUsage="G3RestaurantsEO"
     AliasName="STATUS"/>
   <ViewAttribute
+    Name="Address"
+    PrecisionRule="true"
+    EntityAttrName="Address"
+    EntityUsage="G3RestaurantsEO"
+    AliasName="ADDRESS"/>
+  <ViewAttribute
+    Name="CreatedAt"
+    PrecisionRule="true"
+    EntityAttrName="CreatedAt"
+    EntityUsage="G3RestaurantsEO"
+    AliasName="CREATED_AT"/>
+  <ViewAttribute
     Name="UpdatedAt"
     PrecisionRule="true"
     EntityAttrName="UpdatedAt"
     EntityUsage="G3RestaurantsEO"
     AliasName="UPDATED_AT"/>
+  <ViewAttribute
+    Name="AvgRating"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="AVG_RATING"
+    Expression="AVG_RATING"
+    SQLType="NUMERIC"/>
   <ViewCriteria
     Name="searchRestByNameVC"
     ViewObjectName="model.services.views.RestaurantVO_ForCustApp"

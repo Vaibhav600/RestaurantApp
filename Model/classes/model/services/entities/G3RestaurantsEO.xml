@@ -68,7 +68,7 @@
     Name="AvailableSeats"
     ColumnName="AVAILABLE_SEATS"
     SQLType="NUMERIC"
-    Type="java.math.BigDecimal"
+    Type="oracle.jbo.domain.Number"
     ColumnType="NUMBER"
     TableName="G3_RESTAURANTS"/>
   <Attribute

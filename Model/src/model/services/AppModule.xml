@@ -4,7 +4,7 @@
 <AppModule
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="AppModule"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge"
   ClearCacheOnRollback="true">
   <ViewUsage
@@ -197,6 +197,12 @@
       Name="DeliveryAgentInfoVOCriteria"
       FullName="model.services.views.DeliveryAgentInfoVO.DeliveryAgentInfoVOCriteria"/>
   </ViewUsage>
+  <ViewUsage
+    Name="CheckRestAvailability_ForCustApp_VO"
+    ViewObjectName="model.services.views.CheckRestAvailability_ForCustApp_VO"/>
+  <ViewUsage
+    Name="RatingForRest_forCustApp_VO"
+    ViewObjectName="model.services.views.RatingForRest_forCustApp_VO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"

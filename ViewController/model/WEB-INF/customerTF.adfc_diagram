@@ -18,6 +18,8 @@
          name="page">/customerDashboard.jsf</property>
       <property
          name="exceptionHandler">false</property>
+      <property
+         name="thumbnailExpanded">false</property>
    </View>
    <MethodCall
       id="MethodCall3">
@@ -55,7 +57,7 @@
       <property
          name="fromOutcome">goToRestDetailsPage</property>
       <property
-         name="sdm:polyPoints">R46,156.06348,211.74219,362.55176,100.96875,L50</property>
+         name="sdm:polyPoints">R49,223.56348,211.74219,362.55176,100.96875,L50</property>
    </ControlFlowCase>
    <ControlFlowCase
       islink="true"
@@ -90,6 +92,16 @@
       <property
          name="fromOutcome">logout</property>
       <property
-         name="sdm:polyPoints">R54,156.06348,218.74219,298.0,361.20312,L50</property>
+         name="sdm:polyPoints">R51,223.56348,218.74219,298.0,361.20312,L50</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase9"
+      from="View4"
+      to="View2">
+      <property
+         name="fromOutcome">goToCustomerDashboard</property>
+      <property
+         name="sdm:polyPoints">L54,634.9789,225.03516,157.52725,215.24219,R50</property>
    </ControlFlowCase>
 </SDM>

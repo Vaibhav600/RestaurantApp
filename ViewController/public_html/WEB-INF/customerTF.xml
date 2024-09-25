@@ -8,6 +8,11 @@
     <task-flow-reentry>
       <reentry-outcome-dependent/>
     </task-flow-reentry>
+    <managed-bean id="__7">
+      <managed-bean-name>showRestDetailPage</managed-bean-name>
+      <managed-bean-class>com.example.beans.ShowRestDetailPage</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
     <view id="customer_dashboard">
       <page>/customerDashboard.jsf</page>
       <redirect/>
@@ -47,6 +52,13 @@
       <control-flow-case id="__4">
         <from-outcome>ExecuteWithParams</from-outcome>
         <to-activity-id>restDetails</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__8">
+      <from-activity-id>restDetails</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome>goToCustomerDashboard</from-outcome>
+        <to-activity-id>customer_dashboard</to-activity-id>
       </control-flow-case>
     </control-flow-rule>
   </task-flow-definition>
