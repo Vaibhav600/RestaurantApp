@@ -53,104 +53,134 @@ public class ReservationBean {
         return null;
     }
     
-    public boolean updateRestaurantSeatCount(Integer restaurant_id, ApplicationModule am){
-        ViewObject rest_vo = am.findViewObject(constants.getRestaurant_vo_name());
-        rest_vo.setWhereClause("G3RestaurantsEO.RESTAURANT_ID = :restId");
-        rest_vo.defineNamedWhereClauseParam("restId", null, null);
-        rest_vo.setNamedWhereClauseParam("restId", restaurant_id);
-        rest_vo.executeQuery();
-        Row restaurant_row = rest_vo.first();
+//    public boolean updateRestaurantSeatCount(Integer restaurant_id, ApplicationModule am){
+//        ViewObject rest_vo = am.findViewObject(constants.getRestaurant_vo_name());
+//        rest_vo.setWhereClause("G3RestaurantsEO.RESTAURANT_ID = :restId");
+//        rest_vo.defineNamedWhereClauseParam("restId", null, null);
+//        rest_vo.setNamedWhereClauseParam("restId", restaurant_id);
+//        rest_vo.executeQuery();
+//        Row restaurant_row = rest_vo.first();
+//        
+//        boolean canAccommodateRequiredSeats = false;
+//        int seats_required = Integer.parseInt(number_of_guests);
+//        
+//        if (restaurant_row != null) {
+//            Number seats = (Number)restaurant_row.getAttribute("AvailableSeats");
+//            int seats_available = seats.intValue();
+//                
+//            if(seats_available - seats_required > 0){
+//                int new_available_seats = seats_available - seats_required;
+//                restaurant_row.setAttribute("AvailableSeats", new_available_seats);
+//                am.getTransaction().commit();
+//                canAccommodateRequiredSeats = true;
+//                
+//                System.out.println("Got an Accomodation.");
+//            }
+//            
+//        } else {
+//            FacesContext.getCurrentInstance().addMessage(null,
+//                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Restaurant not found."));
+//        }
+//        
+//        // Reset the where clause and parameters to avoid affecting other operations
+//        rest_vo.removeNamedWhereClauseParam("restId");
+//        rest_vo.setWhereClause(null);
+//        rest_vo.executeQuery();
+//        
+//        return canAccommodateRequiredSeats;
+//    }
+    public boolean checkRestaurantSeatsAvailability(Integer restaurant_id, ApplicationModule am){
+        /*  For a particular restaurant (restaurant_id = 1)
+         *  TimeSlot = 10 - 12
+         *  Date = 25 sept 
+         *  total seats = 58
+         * */
         
-        boolean canAccommodateRequiredSeats = false;
-        int seats_required = Integer.parseInt(number_of_guests);
-        
-        if (restaurant_row != null) {
-            Number seats = (Number)restaurant_row.getAttribute("AvailableSeats");
-            int seats_available = seats.intValue();
-                
-            if(seats_available - seats_required > 0){
-                int new_available_seats = seats_available - seats_required;
-                restaurant_row.setAttribute("AvailableSeats", new_available_seats);
-                am.getTransaction().commit();
-                canAccommodateRequiredSeats = true;
-                
-                System.out.println("Got an Accomodation.");
+        ViewObject vo = am.findViewObject(constants.getCheck_rest_availablity_vo_name());
+        vo.setNamedWhereClauseParam("b_rest_id", restaurant_id);
+        // vo.executeQuery();
+
+        Row currRow = vo.first();
+        Number totalReservedSeats = (Number)currRow.getAttribute("TotalReservedSeats");
+        Number totalSeats = (Number)currRow.getAttribute("TotalSeats");
+    
+
+        try {
+            System.out.println("numberOfGuests: " + number_of_guests);
+            System.out.println("totalSeats: " + totalSeats);
+            System.out.println("totalReservedSeats: " + totalReservedSeats);
+            System.out.println("totalSeats - totalReservedSeats: " + totalSeats.subtract(totalReservedSeats));
+            System.out.println((totalSeats.subtract(totalReservedSeats)).subtract(new Number(number_of_guests)));
+            System.out.println("If condition result: " + totalSeats.subtract(totalReservedSeats).subtract(new Number(number_of_guests)).compareTo(new Number(0)));
+
+            if ((totalSeats.subtract(totalReservedSeats)).subtract(new Number(number_of_guests)).compareTo(new Number(0)) > 0){                
+                return true;
             }
-            
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Restaurant not found."));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in try catch: check checkRestaurantSeatsAvailability method in ReservationBean");
         }
         
-        // Reset the where clause and parameters to avoid affecting other operations
-        rest_vo.removeNamedWhereClauseParam("restId");
-        rest_vo.setWhereClause(null);
-        rest_vo.executeQuery();
-        
-        return canAccommodateRequiredSeats;
+        return false;
     }
-    
-    public void createBooking(Integer selectedRestaurantId, Timestamp reservation_timestamp, ViewObject reservation_vo, ApplicationModule am){
+    public boolean createBooking(Integer selectedRestaurantId, Timestamp reservation_timestamp, ApplicationModule am){
+        // Get Logged in Customer ID
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Object userIdObject = session.getAttribute("userId");
         int CustomerId = Integer.parseInt(userIdObject.toString());
-        
     
-        System.out.println("Before Update Restaurant Seats Method");    
-        updateRestaurantSeatCount(selectedRestaurantId, am);
-        System.out.println("After Update Restaurant Seats Method");    
+        // updateRestaurantSeatCount(selectedRestaurantId, am);
+        boolean is_available = checkRestaurantSeatsAvailability(selectedRestaurantId, am);
         
-    
-        Row newUserRow = reservation_vo.createRow();
-        newUserRow.setAttribute("CustomerId", CustomerId);
-        newUserRow.setAttribute("RestaurantId", selectedRestaurantId);
-        newUserRow.setAttribute("TableSize", number_of_guests);
-        newUserRow.setAttribute("Status", "booked");
-        newUserRow.setAttribute("ReservationTime", reservation_timestamp);
-        reservation_vo.insertRow(newUserRow);        
-        try{
-            am.getTransaction().commit();
-        } catch(Exception e){
-            e.printStackTrace();
+        // Get Reservation VO
+        ViewObject reservation_vo = am.findViewObject(constants.getReservation_vo_name());
+        
+        if(is_available){
+            Row newUserRow = reservation_vo.createRow();
+            newUserRow.setAttribute("CustomerId", CustomerId);
+            newUserRow.setAttribute("RestaurantId", selectedRestaurantId);
+            newUserRow.setAttribute("TableSize", number_of_guests);
+            newUserRow.setAttribute("Status", "booked");
+            newUserRow.setAttribute("ReservationTime", reservation_timestamp);
+            reservation_vo.insertRow(newUserRow);        
+            try{
+                am.getTransaction().commit();
+                am.findViewObject(constants.getCheck_rest_availablity_vo_name()).executeQuery();
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+            return true;
         }
+        else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Seats Unavailable"));
+        }
+        return false;
     }
-    private boolean isReservationExists(Integer restaurantId, Timestamp reservationTimestamp, ViewObject reservationVO) {
-        reservationVO.setWhereClause("G3ReservationsEO.RESTAURANT_ID = :restaurantId AND G3ReservationsEO.RESERVATION_TIME = :reservationTimestamp");
-        reservationVO.defineNamedWhereClauseParam("restaurantId", null, null);
-        reservationVO.defineNamedWhereClauseParam("reservationTimestamp", null, null);
-        reservationVO.setNamedWhereClauseParam("restaurantId", restaurantId);
-        reservationVO.setNamedWhereClauseParam("reservationTimestamp", reservationTimestamp);
-        reservationVO.executeQuery();
-        boolean has_next = reservationVO.hasNext();
-        
-        reservationVO.removeNamedWhereClauseParam("restaurantId");
-        reservationVO.removeNamedWhereClauseParam("reservationTimestamp");
-        reservationVO.setWhereClause(null);
-        reservationVO.executeQuery();
-        
-        return has_next;
-    }
-    public String bookReservation(){        
+    public String bookReservation(){   
+        // Create Reservation Timestamp
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy H");
         String dateTime = reservation_date + " " + reservation_time;
         LocalDateTime localDateTime = LocalDateTime.parse(dateTime, formatter);
         Timestamp reservation_timestamp = Timestamp.valueOf(localDateTime);
         
         ApplicationModule am = getApplicationModule();
-        ViewObject reservation_vo = am.findViewObject(constants.getReservation_vo_name());
-
+        
+        // Get Selected Restaurant ID
         ViewObject selectedRestVO = am.findViewObject(constants.getRest_for_custApp_vo_name());
         Row selectedRestaurant = selectedRestVO.first();
         DBSequence dbSequence = (DBSequence) selectedRestaurant.getAttribute("RestaurantId");
         Integer selectedRestaurantId = dbSequence.getSequenceNumber().intValue();
+                 
+        // Create Booking
+        boolean booking_successful = createBooking(selectedRestaurantId, reservation_timestamp, am);
         
-        if (isReservationExists(selectedRestaurantId, reservation_timestamp, reservation_vo)) {
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Reservation already exists for the selected restaurant and time.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            return null;
+        if(booking_successful){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Booking Successfull"));            
         }
-        createBooking(selectedRestaurantId, reservation_timestamp, reservation_vo, am);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Booking Successfull"));
+        else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Booking Unsuccessful, Something went wrong"));
+        }
 
         return null;
     }
