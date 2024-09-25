@@ -47,30 +47,26 @@ public class ReservationBean {
         }
         return null;
     }
-    public boolean checkRestaurantSeatsAvailability(Integer restaurant_id, ApplicationModule am){
-        /*  For a particular restaurant (restaurant_id = 1)
-         *  TimeSlot = 10 - 12
-         *  Date = 25 sept 
-         *  total seats = 58
-         * */
+    public boolean checkRestaurantSeatsAvailability(Integer restaurant_id, Timestamp reservation_timestamp, ApplicationModule am){
         
         ViewObject vo = am.findViewObject(constants.getCheck_rest_availablity_vo_name());
         vo.setNamedWhereClauseParam("b_rest_id", restaurant_id);
+        vo.setNamedWhereClauseParam("b_reservation_timestamp", reservation_timestamp);
         vo.executeQuery();
 
         Row currRow = vo.first();
-        Number totalReservedSeats = (Number)currRow.getAttribute("TotalReservedSeats");
-        Number totalSeats = (Number)currRow.getAttribute("TotalSeats");
-    
+        Number totalReservedSeats = new Number(0);
+        Number totalSeats = new Number(0);
 
+        if(currRow != null){
+            totalReservedSeats = (Number)currRow.getAttribute("TotalReservedSeats");
+            totalSeats = (Number)currRow.getAttribute("TotalSeats");
+        }
+        
+        System.out.println("totalSeats: " + totalSeats);
+        System.out.println("totalReservedSeats: " + totalReservedSeats);
+        
         try {
-            System.out.println("numberOfGuests: " + number_of_guests);
-            System.out.println("totalSeats: " + totalSeats);
-            System.out.println("totalReservedSeats: " + totalReservedSeats);
-            System.out.println("totalSeats - totalReservedSeats: " + totalSeats.subtract(totalReservedSeats));
-            System.out.println((totalSeats.subtract(totalReservedSeats)).subtract(new Number(number_of_guests)));
-            System.out.println("If condition result: " + totalSeats.subtract(totalReservedSeats).subtract(new Number(number_of_guests)).compareTo(new Number(0)));
-
             if ((totalSeats.subtract(totalReservedSeats)).subtract(new Number(number_of_guests)).compareTo(new Number(0)) > 0){                
                 return true;
             }
@@ -87,9 +83,7 @@ public class ReservationBean {
         Object userIdObject = session.getAttribute("userId");
         int CustomerId = Integer.parseInt(userIdObject.toString());
     
-        System.out.println("Before checkRestaurantSeatsAvailability, createBooking() method");
-        boolean is_available = checkRestaurantSeatsAvailability(selectedRestaurantId, am);
-        System.out.println("After checkRestaurantSeatsAvailability, createBooking() method");
+        boolean is_available = checkRestaurantSeatsAvailability(selectedRestaurantId, reservation_timestamp, am);
 
         // Get Reservation VO
         ViewObject reservation_vo = am.findViewObject(constants.getReservation_vo_name());
@@ -136,11 +130,8 @@ public class ReservationBean {
         ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.of("Asia/Kolkata"));
         Timestamp reservation_timestamp = Timestamp.from(zonedDateTime.toInstant());
         
-        System.out.println("Reservation Timestamp (UTC+5:30): " + reservation_timestamp);
-        
         ApplicationModule am = getApplicationModule();
 
-        
         // Get Selected Restaurant ID
         ViewObject selectedRestVO = am.findViewObject(constants.getRest_for_custApp_vo_name());
         Row selectedRestaurant = selectedRestVO.first();
