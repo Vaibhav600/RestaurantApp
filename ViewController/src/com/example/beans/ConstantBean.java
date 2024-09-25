@@ -12,6 +12,7 @@ public class ConstantBean {
     private String customer_navigation = "goToCustomer";
     private String login_page_navigation = "goToLogin";
     private String error_page_navigation = "goToError";
+    private String delivery_page_navigation = "goToDelivery";
     private String restaurant_vo_name = "G3RestaurantsVO";
     private String restaurant_for_user_vo = "RestaurantForUser";
     private String menu_restaurant_vo = "G3MenuItemsVO";
@@ -23,6 +24,9 @@ public class ConstantBean {
     private String rest_for_custApp_vo_name = "RestaurantVO_ForCustApp";
     private String orderItem_vo_name = "G3OrderItemsVO";
     private String cart_items_vo_name = "CartItemsVO";
+    private String delivery_agent_info_for_user = "DeliveryAgentInfoForUserVO";
+    private String delivery_agent_info_vo = "DeliveryAgentInfoVO";
+    private String delivery_agent_vo_criteria = "DeliveryAgentInfoVOCriteria";
     private String to_deliver_orders_vo = "ToDeliverOrdersForRestaurantVO";
     private String to_deliver_order_by_agent_vo_iter = "ToDeliverOrderByAgentVO1Iterator";
     private String to_deliver_orders_vo_iter = "ToDeliverOrdersForRestaurantVOIterator";
@@ -147,5 +151,21 @@ public class ConstantBean {
 
     public String getTo_deliver_order_by_agent_vo_iter() {
         return to_deliver_order_by_agent_vo_iter;
+    }
+
+    public String getDelivery_page_navigation() {
+        return delivery_page_navigation;
+    }
+
+    public String getDelivery_agent_info_for_user() {
+        return delivery_agent_info_for_user;
+    }
+
+    public String getDelivery_agent_info_vo() {
+        return delivery_agent_info_vo;
+    }
+
+    public String getDelivery_agent_vo_criteria() {
+        return delivery_agent_vo_criteria;
     }
 }

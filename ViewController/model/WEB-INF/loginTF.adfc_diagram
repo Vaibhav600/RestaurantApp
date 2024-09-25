@@ -127,4 +127,29 @@
       <property
          name="sdm:polyPoints">T50,162.5,336.51172,335.5,209.23438,B50</property>
    </ControlFlowCase>
+   <View
+      id="View11">
+      <property
+         name="activityId">delivery_dashboard</property>
+      <property
+         name="x">405.50488</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>delivery_dashboard&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">646.3672</property>
+      <property
+         name="page">/delivery_dashboard.jsf</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase13"
+      from="View2"
+      to="View11">
+      <property
+         name="fromOutcome">goToDelivery</property>
+      <property
+         name="sdm:polyPoints">B50,162.5,444.51172,405.50488,592.3008,T50</property>
+   </ControlFlowCase>
 </SDM>

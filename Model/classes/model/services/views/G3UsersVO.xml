@@ -167,21 +167,18 @@
         ViewAttribute="UserId"
         Operator="="
         Conjunction="AND"
-        Value=""
         Required="Optional"/>
       <ViewCriteriaItem
         Name="FullName"
         ViewAttribute="FullName"
         Operator="STARTSWITH"
         Conjunction="AND"
-        Value=""
         Required="Optional"/>
       <ViewCriteriaItem
         Name="Role"
         ViewAttribute="Role"
         Operator="="
         Conjunction="AND"
-        Value=""
         Required="Optional"/>
     </ViewCriteriaRow>
   </ViewCriteria>
@@ -208,6 +205,11 @@
   <ViewLinkAccessor
     Name="G3ReservationsVO"
     ViewLink="model.services.link.ReservationUserViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="DeliveryAgentInfoVO"
+    ViewLink="model.services.assoc.DeliveryAgentOrderInfoViewLink"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
   <ResourceBundle>

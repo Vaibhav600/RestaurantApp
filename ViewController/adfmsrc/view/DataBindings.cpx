@@ -28,6 +28,7 @@
     <page path="/superAdminDashboard.jsf" usageId="view_superAdminDashboardTestPageDef"/>
     <page path="/addressDetails.jsff" usageId="view_addressDetailsPageDef"/>
     <page path="/orderDetails.jsff" usageId="view_orderDetailsPageDef"/>
+    <page path="/delivery_dashboard.jsf" usageId="view_delivery_dashboardPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="view_loginPageDef" path="view.pageDefs.loginPageDef"/>
@@ -49,6 +50,7 @@
     <page id="view_superAdminDashboardTestPageDef" path="view.pageDefs.superAdminDashboardPageDef"/>
     <page id="view_orderDetailsPageDef" path="view.pageDefs.orderDetailsPageDef"/>
     <page id="view_addressDetailsPageDef" path="view.pageDefs.addressDetailsPageDef"/>
+    <page id="view_delivery_dashboardPageDef" path="view.pageDefs.delivery_dashboardPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <BC4JDataControl id="AppModuleDataControl" Package="model.services"

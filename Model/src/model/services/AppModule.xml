@@ -187,6 +187,16 @@
   <ViewUsage
     Name="ToDeliverOrderByAgentVO1"
     ViewObjectName="model.services.views.ToDeliverOrderByAgentVO"/>
+  <ViewUsage
+    Name="DeliveryAgentInfoForUserVO"
+    ViewObjectName="model.services.views.DeliveryAgentInfoVO"/>
+  <ViewUsage
+    Name="DeliveryAgentInfoVO"
+    ViewObjectName="model.services.views.DeliveryAgentInfoVO">
+    <ViewCriteriaUsage
+      Name="DeliveryAgentInfoVOCriteria"
+      FullName="model.services.views.DeliveryAgentInfoVO.DeliveryAgentInfoVOCriteria"/>
+  </ViewUsage>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -343,5 +353,11 @@
     ViewLinkObjectName="model.services.link.ToDeliverOrderByAgentViewLink"
     SrcViewUsageName="model.services.AppModule.RestaurantForUser"
     DstViewUsageName="model.services.AppModule.ToDeliverOrderByAgentForRestaurant"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="DeliveryAgentInfoForUserViewLink"
+    ViewLinkObjectName="model.services.assoc.DeliveryAgentOrderInfoViewLink"
+    SrcViewUsageName="model.services.AppModule.G3UsersVO"
+    DstViewUsageName="model.services.AppModule.DeliveryAgentInfoForUserVO"
     Reversed="false"/>
 </AppModule>

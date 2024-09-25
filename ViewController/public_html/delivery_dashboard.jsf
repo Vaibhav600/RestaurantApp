@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <c:set var="viewcontrollerBundle" value="#{adfBundle['view.ViewControllerBundle']}"/>
+    <af:document title="owner_dashboard.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelTabbed position="above" id="pt1">
+                <af:showDetailItem id="home" text="Home">
+                    <af:panelBox text="Orders" id="pb12">
+                        <f:facet name="toolbar"/>
+                        <af:listView value="#{bindings.DeliveryAgentInfoForUserVO2.collectionModel}" var="item"
+                                     emptyText="#{bindings.DeliveryAgentInfoForUserVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                     fetchSize="#{bindings.DeliveryAgentInfoForUserVO2.rangeSize}" id="lv2">
+                            <af:listItem id="li2">
+                                <af:panelGridLayout id="pgl2" partialTriggers="b3 b4">
+                                    <af:gridRow marginTop="5px" height="auto" id="gr5">
+                                        <af:gridCell marginStart="5px" width="24%" id="gc11">
+                                            <af:panelLabelAndMessage label="Order Id" id="plam4">
+                                                <af:outputText value="#{item.OrderId}"
+                                                               shortDesc="#{bindings.DeliveryAgentInfoForUserVO2.hints.OrderId.tooltip}"
+                                                               id="ot7">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.DeliveryAgentInfoForUserVO2.hints.OrderId.format}"/>
+                                                </af:outputText>
+                                            </af:panelLabelAndMessage>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc12">
+                                            <af:panelLabelAndMessage label="Order Status" id="plam5">
+                                                <af:outputText value="#{item.OrderStatus}"
+                                                               shortDesc="#{bindings.DeliveryAgentInfoForUserVO2.hints.OrderStatus.tooltip}"
+                                                               id="ot8"/>
+                                            </af:panelLabelAndMessage>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc13">
+                                            <af:outputText value="#{item.DeliveryAgentId}"
+                                                           shortDesc="#{bindings.DeliveryAgentInfoForUserVO2.hints.DeliveryAgentId.tooltip}"
+                                                           id="ot9">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.DeliveryAgentInfoForUserVO2.hints.DeliveryAgentId.format}"/>
+                                            </af:outputText>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" id="gr6">
+                                        <af:gridCell marginStart="5px" width="24%" id="gc14">
+                                            <af:panelLabelAndMessage label="Source Address" id="plam6">
+                                                <af:outputText value="#{item.SourceAddress}"
+                                                               shortDesc="#{bindings.DeliveryAgentInfoForUserVO2.hints.SourceAddress.tooltip}"
+                                                               id="ot10"/>
+                                            </af:panelLabelAndMessage>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc15">
+                                            <af:panelLabelAndMessage label="Destination Address" id="plam7">
+                                                <af:outputText value="#{item.DestinationAddress}"
+                                                               shortDesc="#{bindings.DeliveryAgentInfoForUserVO2.hints.DestinationAddress.tooltip}"
+                                                               id="ot11"/>
+                                            </af:panelLabelAndMessage>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc16"/>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr7">
+                                        <af:gridCell marginStart="5px" width="24%" id="gc17">
+                                            <af:button text="Pick" id="b3"
+                                                       action="#{deliveryAgentActionBean.pickOrder}">
+                                                <af:setPropertyListener from="#{item.OrderId}"
+                                                                        to="#{deliveryAgentActionBean.order_id}"
+                                                                        type="action"/>
+                                                <af:setPropertyListener from="#{item.DeliveryAgentId}"
+                                                                        to="#{deliveryAgentActionBean.agent_id}"
+                                                                        type="action"/>
+                                            </af:button>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc18">
+                                            <af:button text="Delivered" id="b4"
+                                                       action="#{deliveryAgentActionBean.deliverOrder}">
+                                                <af:setPropertyListener from="#{item.OrderId}"
+                                                                        to="#{deliveryAgentActionBean.order_id}"
+                                                                        type="action"/>
+                                                <af:setPropertyListener from="#{item.DeliveryAgentId}"
+                                                                        to="#{deliveryAgentActionBean.agent_id}"
+                                                                        type="action"/>
+                                            </af:button>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc19"/>
+                                    </af:gridRow>
+                                </af:panelGridLayout>
+                            </af:listItem>
+                        </af:listView>
+                    </af:panelBox>
+                </af:showDetailItem>
+            </af:panelTabbed>
+        </af:form>
+        <af:form id="f2">
+        </af:form>
+    </af:document>
+</f:view>

@@ -28,7 +28,8 @@
     IsPersistent="false"
     PrecisionRule="true"
     Type="java.lang.String"
-    ColumnType="$none$"/>
+    ColumnType="$none$"
+    SQLType="VARCHAR"/>
   <AttrArray Name="KeyAttributes">
     <Item Value="status"/>
   </AttrArray>

@@ -24,11 +24,7 @@ public class TabListenerBean {
     ConstantBean constants = new ConstantBean();
     public void onTabChange(DisclosureEvent disclosureEvent) {
             if (disclosureEvent.isExpanded()) {
-            System.out.println("Before Listener");
-
-                        refreshOrdersVO();
-
-            System.out.println("After Listener");
+            refreshOrdersVO();
             }
         }
 

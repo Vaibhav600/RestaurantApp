@@ -233,7 +233,8 @@
                         <f:facet name="toolbar"/>
                         <af:listView value="#{bindings.MenuItemsForRestaurantForUserVO.collectionModel}" var="item"
                                      emptyText="#{bindings.MenuItemsForRestaurantForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                     fetchSize="#{bindings.MenuItemsForRestaurantForUserVO.rangeSize}" id="lv4">
+                                     fetchSize="#{bindings.MenuItemsForRestaurantForUserVO.rangeSize}" id="lv4"
+                                     partialTriggers="::b2">
                             <af:listItem id="li4">
                                 <af:panelGridLayout id="pgl9">
                                     <af:gridRow marginTop="5px" height="auto" id="gr10">
@@ -461,35 +462,53 @@
                     </af:panelBox>
                     <af:panelBox text="Bookings" id="pb5">
                         <f:facet name="toolbar"/>
-                        <af:table value="#{bindings.ReservationOfCustomerForRestForUserVO.collectionModel}" var="row"
-                                  rows="#{bindings.ReservationOfCustomerForRestForUserVO.rangeSize}"
-                                  emptyText="#{bindings.ReservationOfCustomerForRestForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                  rowBandingInterval="0"
-                                  fetchSize="#{bindings.ReservationOfCustomerForRestForUserVO.rangeSize}" id="t1">
-                            <af:column headerText="#{bindings.ReservationOfCustomerForRestForUserVO.hints.FullName.label}"
-                                       id="c1">
-                                <af:outputText value="#{row.FullName}"
-                                               shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.FullName.tooltip}"
-                                               id="ot1" inlineStyle="font-weight:bold;"/>
-                            </af:column>
-                            <af:column headerText="#{bindings.ReservationOfCustomerForRestForUserVO.hints.Reserved_Seats.label}"
-                                       id="c2">
-                                <af:outputText value="#{row.Reserved_Seats}"
-                                               shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.Reserved_Seats.tooltip}"
-                                               id="ot2">
-                                    <af:convertNumber groupingUsed="false"
-                                                      pattern="#{bindings.ReservationOfCustomerForRestForUserVO.hints.Reserved_Seats.format}"/>
-                                </af:outputText>
-                            </af:column>
-                            <af:column headerText="#{bindings.ReservationOfCustomerForRestForUserVO.hints.ReservationTime.label}"
-                                       id="c3">
-                                <af:outputText value="#{row.ReservationTime}"
-                                               shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.ReservationTime.tooltip}"
-                                               id="ot3">
-                                    <af:convertDateTime pattern="#{bindings.ReservationOfCustomerForRestForUserVO.hints.ReservationTime.format}"/>
-                                </af:outputText>
-                            </af:column>
-                        </af:table>
+                        <af:listView value="#{bindings.ReservationOfCustomerForRestForUserVO.collectionModel}"
+                                     var="item"
+                                     emptyText="#{bindings.ReservationOfCustomerForRestForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                     fetchSize="#{bindings.ReservationOfCustomerForRestForUserVO.rangeSize}" id="lv7">
+                            <af:listItem id="li7">
+                                <af:panelGridLayout id="pgl15">
+                                    <af:gridRow marginTop="5px" height="auto" id="gr21">
+                                        <af:gridCell marginStart="5px" width="30%" id="gc44">
+                                            <af:panelLabelAndMessage label="Customer" id="plam18">
+                                                <af:outputText value="#{item.FullName}"
+                                                               shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.FullName.tooltip}"
+                                                               id="ot1"/>
+                                            </af:panelLabelAndMessage>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc45"/>
+                                        <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc46">
+                                            <af:outputText value="#{item.ReservationId}"
+                                                           shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.ReservationId.tooltip}"
+                                                           id="ot2">
+                                                <af:convertNumber groupingUsed="false"
+                                                                  pattern="#{bindings.ReservationOfCustomerForRestForUserVO.hints.ReservationId.format}"/>
+                                            </af:outputText>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                    <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr22">
+                                        <af:gridCell marginStart="5px" width="30%" id="gc47">
+                                            <af:panelLabelAndMessage label="Reserved Seats" id="plam19">
+                                                <af:outputText value="#{item.Reserved_Seats}"
+                                                               shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.Reserved_Seats.tooltip}"
+                                                               id="ot3">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.ReservationOfCustomerForRestForUserVO.hints.Reserved_Seats.format}"/>
+                                                </af:outputText>
+                                            </af:panelLabelAndMessage>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc48">
+                                            <af:outputText value="#{item.Status}"
+                                                           shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.Status.tooltip}"
+                                                           id="ot53"/>
+                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc49">
+                                            <af:button text="Remove Booking" id="b8"/>
+                                        </af:gridCell>
+                                    </af:gridRow>
+                                </af:panelGridLayout>
+                            </af:listItem>
+                        </af:listView>
                     </af:panelBox>
                 </af:showDetailItem>
                 <af:showDetailItem id="delivery_agent" text="Delivery Agent" disclosureListener="#{tabListenerBean.onTabChange}">

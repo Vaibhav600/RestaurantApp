@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.22.48" id="delivery_dashboardPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DeliveryAgentInfoForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="DeliveryAgentInfoForUserVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="DeliveryAgentInfoForUserVOIterator" id="DeliveryAgentInfoForUserVO">
+      <nodeDefinition DefName="model.services.views.DeliveryAgentInfoVO" Name="DeliveryAgentInfoForUserVO0">
+        <AttrNames>
+          <Item Value="OrderId"/>
+          <Item Value="SourceAddress"/>
+          <Item Value="DestinationAddress"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="DeliveryAgentId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="DeliveryAgentInfoForUserVOIterator" id="DeliveryAgentInfoForUserVO2">
+      <nodeDefinition DefName="model.services.views.DeliveryAgentInfoVO" Name="DeliveryAgentInfoForUserVO20">
+        <AttrNames>
+          <Item Value="OrderId"/>
+          <Item Value="OrderStatus"/>
+          <Item Value="DeliveryAgentId"/>
+          <Item Value="SourceAddress"/>
+          <Item Value="DestinationAddress"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

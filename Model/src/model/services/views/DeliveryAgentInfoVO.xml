@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DeliveryAgentInfoVO"
+  Version="12.2.1.22.48"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  AccessMode="DEFAULT">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.services.views.DeliveryAgentInfoVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="bOrderStatus"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <Variable
+    Name="bAgentId"
+    Kind="viewcriteria"
+    Type="oracle.jbo.domain.Number"/>
+  <SQLQuery><![CDATA[SELECT 
+    o.order_id, 
+    r.address AS source_address, 
+    u.address AS destination_address, 
+    o.total_amount,
+    o.delivery_agent_id,
+    o.order_status
+FROM 
+    g3_orders o
+JOIN 
+    g3_restaurants r ON o.restaurant_id = r.restaurant_id
+JOIN 
+    g3_users u ON o.customer_id = u.user_id
+where o.delivery_agent_id is not null]]></SQLQuery>
+  <ViewAttribute
+    Name="OrderId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    AliasName="ORDER_ID"
+    Expression="ORDER_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="SourceAddress"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SOURCE_ADDRESS"
+    Expression="SOURCE_ADDRESS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="255"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DestinationAddress"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DESTINATION_ADDRESS"
+    Expression="DESTINATION_ADDRESS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="255"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TotalAmount"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="TOTAL_AMOUNT"
+    Expression="TOTAL_AMOUNT"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="DeliveryAgentId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    AliasName="DELIVERY_AGENT_ID"
+    Expression="DELIVERY_AGENT_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="OrderStatus"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ORDER_STATUS"
+    Expression="ORDER_STATUS"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="DeliveryAgentInfoVOCriteria"
+    ViewObjectName="model.services.views.DeliveryAgentInfoVO"
+    Conjunction="AND">
+    <Properties Name="_Props">
+      <CustomProperties>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="DeliveryAgentInfoVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="DeliveryAgentId"
+        ViewAttribute="DeliveryAgentId"
+        Operator="="
+        Conjunction="AND"
+        Value=":bAgentId"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="OrderStatus"
+        ViewAttribute="OrderStatus"
+        Operator="="
+        Conjunction="AND"
+        Value=":bOrderStatus"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

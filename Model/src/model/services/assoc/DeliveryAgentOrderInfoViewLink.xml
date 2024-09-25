@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DeliveryAgentOrderInfoViewLink"
+  Version="12.2.1.22.48"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.services.assoc.DeliveryAgentOrderInfoViewLink_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="G3UsersVO"
+    Cardinality="1"
+    Source="true"
+    Owner="model.services.views.G3UsersVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="G3UsersVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.views.G3UsersVO.UserId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="DeliveryAgentInfoVO"
+    Cardinality="-1"
+    Owner="model.services.views.DeliveryAgentInfoVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="DeliveryAgentInfoVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="model.services.views.DeliveryAgentInfoVO.DeliveryAgentId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

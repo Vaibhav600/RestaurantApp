@@ -91,5 +91,23 @@
          <Tester FullProxyInterfaceName="model.services.common.AppModule"/>
          <Custom ns0:ns0="http://xmlns.oracle.com/bc4j/configuration" ns0:tester_classloader_enabled="true" ns0:_testers_credentials_needed="false" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
       </AppModuleConfig>
+      <AppModuleConfig name="1922798E5CB" IsLazyLoadingTrue="true" DBconnection="java:comp/env/jdbc/oracleDS" ApplicationName="model.services.AppModule" jbo.project="model.services.Model" BC4JConfigName="AppModuleLocal" JDBCName="oracle" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database JDBCDataSource="java:comp/env/jdbc/oracleDS" jbo.SQLBuilder="Oracle" jbo.locking.mode="optimistic" jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="model.services.AppModule"/>
+         <Tester FullProxyInterfaceName="model.services.common.AppModule"/>
+         <Custom ns0:ns0="http://xmlns.oracle.com/bc4j/configuration" ns0:tester_classloader_enabled="true" ns0:_testers_credentials_needed="false" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="19227A10CE3" IsLazyLoadingTrue="true" DBconnection="java:comp/env/jdbc/oracleDS" ApplicationName="model.services.AppModule" jbo.project="model.services.Model" BC4JConfigName="AppModuleLocal" JDBCName="oracle" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Database JDBCDataSource="java:comp/env/jdbc/oracleDS" jbo.SQLBuilder="Oracle" jbo.locking.mode="optimistic" jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="model.services.AppModule"/>
+         <Tester FullProxyInterfaceName="model.services.common.AppModule"/>
+         <Custom ns0:ns0="http://xmlns.oracle.com/bc4j/configuration" ns0:tester_classloader_enabled="true" ns0:_testers_credentials_needed="false" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="192288D119B" DeployPlatform="LOCAL" DBconnection="java:comp/env/jdbc/oracleDS" JDBCName="oracle" BC4JConfigName="AppModuleLocal" IsLazyLoadingTrue="true" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" ApplicationName="model.services.AppModule" jbo.project="model.services.Model">
+         <Database jbo.TypeMapEntries="OracleApps" jbo.locking.mode="optimistic" JDBCDataSource="java:comp/env/jdbc/oracleDS" jbo.SQLBuilder="Oracle"/>
+         <Security AppModuleJndiName="model.services.AppModule"/>
+         <Tester FullProxyInterfaceName="model.services.common.AppModule"/>
+         <Custom ns0:ns0="http://xmlns.oracle.com/bc4j/configuration" ns0:LastUsedConfiguration="AppModuleLocal" ns0:tester_classloader_enabled="true" ns0:_testers_credentials_needed="false" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+      </AppModuleConfig>
    </AppModuleConfigBag>
 </BC4JConfig>
