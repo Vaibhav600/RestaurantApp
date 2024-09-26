@@ -630,7 +630,8 @@
                    <af:panelBox text="All Coupons" id="pbCoupons" styleClass="couponBox">
                         <af:listView value="#{bindings.CouponsForRestaurantForUserVO1.collectionModel}" var="item"
                                      emptyText="#{bindings.CouponsForRestaurantForUserVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                     fetchSize="#{bindings.CouponsForRestaurantForUserVO1.rangeSize}" id="lv1">
+                                     fetchSize="#{bindings.CouponsForRestaurantForUserVO1.rangeSize}" id="lv1"
+                                     partialTriggers="::b4">
                             <af:listItem id="li1">
                                 <af:panelGridLayout id="pgl5">
                                     <af:gridRow marginTop="5px" height="auto" id="gr2">
