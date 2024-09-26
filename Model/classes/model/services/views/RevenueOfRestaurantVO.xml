@@ -20,17 +20,15 @@
   </Properties>
   <SQLQuery><![CDATA[SELECT 
     TO_CHAR(o.created_at, 'YYYY-MM-DD') AS order_date, 
-    SUM(oi.item_total) AS total_revenue,
+    SUM(o.total_amount) AS total_revenue,
     o.restaurant_id
 FROM 
-    g3_order_items oi
-INNER JOIN 
-    g3_orders o ON oi.order_id = o.order_id
-WHERE o.created_at BETWEEN SYSDATE - 30 AND SYSDATE  -- Adjust date range
+    g3_orders o
+WHERE 
+    o.created_at BETWEEN SYSDATE - 7 AND SYSDATE  -- Adjust date range
 GROUP BY 
-    o.restaurant_id,TO_CHAR(o.created_at, 'YYYY-MM-DD')
+    o.restaurant_id, TO_CHAR(o.created_at, 'YYYY-MM-DD')
 ORDER BY 
-    
     order_date ASC]]></SQLQuery>
   <ViewAttribute
     Name="OrderDate"

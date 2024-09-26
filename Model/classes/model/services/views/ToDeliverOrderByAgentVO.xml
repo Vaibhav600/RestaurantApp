@@ -18,10 +18,20 @@
         ResId="model.services.views.ToDeliverOrderByAgentVO_LABEL"/>
     </SchemaBasedProperties>
   </Properties>
-  <SQLQuery><![CDATA[SELECT da.agent_id, da.is_available,o.restaurant_id,o.order_id,da.name
+  <SQLQuery><![CDATA[SELECT da.agent_id, da.name, da.phone, 
+       MAX(o.restaurant_id) AS restaurant_id, 
+       MAX(o.order_id) AS order_id
 FROM g3_delivery_agent da
-LEFT JOIN g3_orders o ON da.agent_id = o.delivery_agent_id
-WHERE o.delivery_agent_id IS NULL AND da.is_available = 'yes']]></SQLQuery>
+LEFT JOIN g3_orders o ON da.agent_id = o.delivery_agent_id 
+AND o.order_status = 'Delivered'
+WHERE da.is_available = 'yes'
+AND NOT EXISTS (
+    SELECT 1 
+    FROM g3_orders o2 
+    WHERE da.agent_id = o2.delivery_agent_id 
+    AND o2.order_status != 'Delivered'
+)
+GROUP BY da.agent_id, da.name, da.phone]]></SQLQuery>
   <ViewAttribute
     Name="AgentId"
     IsUpdateable="false"
@@ -33,45 +43,6 @@ WHERE o.delivery_agent_id IS NULL AND da.is_available = 'yes']]></SQLQuery>
     ColumnType="NUMBER"
     AliasName="AGENT_ID"
     Expression="AGENT_ID"
-    SQLType="NUMERIC"/>
-  <ViewAttribute
-    Name="IsAvailable"
-    IsUpdateable="false"
-    IsPersistent="false"
-    PrecisionRule="true"
-    Precision="10"
-    Type="java.lang.String"
-    ColumnType="VARCHAR2"
-    AliasName="IS_AVAILABLE"
-    Expression="IS_AVAILABLE"
-    SQLType="VARCHAR">
-    <DesignTime>
-      <Attr Name="_DisplaySize" Value="10"/>
-    </DesignTime>
-  </ViewAttribute>
-  <ViewAttribute
-    Name="RestaurantId"
-    IsUpdateable="false"
-    IsPersistent="false"
-    PrecisionRule="true"
-    Precision="10"
-    Scale="0"
-    Type="java.lang.Long"
-    ColumnType="NUMBER"
-    AliasName="RESTAURANT_ID"
-    Expression="RESTAURANT_ID"
-    SQLType="NUMERIC"/>
-  <ViewAttribute
-    Name="OrderId"
-    IsUpdateable="false"
-    IsPersistent="false"
-    PrecisionRule="true"
-    Precision="10"
-    Scale="0"
-    Type="java.lang.Long"
-    ColumnType="NUMBER"
-    AliasName="ORDER_ID"
-    Expression="ORDER_ID"
     SQLType="NUMERIC"/>
   <ViewAttribute
     Name="Name"
@@ -88,6 +59,38 @@ WHERE o.delivery_agent_id IS NULL AND da.is_available = 'yes']]></SQLQuery>
       <Attr Name="_DisplaySize" Value="100"/>
     </DesignTime>
   </ViewAttribute>
+  <ViewAttribute
+    Name="Phone"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Scale="0"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    AliasName="PHONE"
+    Expression="PHONE"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="RestaurantId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="RESTAURANT_ID"
+    Expression="RESTAURANT_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="OrderId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="ORDER_ID"
+    Expression="ORDER_ID"
+    SQLType="NUMERIC"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>

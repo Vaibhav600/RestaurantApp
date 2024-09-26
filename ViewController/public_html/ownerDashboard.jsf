@@ -201,13 +201,13 @@
                         </af:gridRow>
                         <af:gridRow id="gr20">
                             <af:gridCell id="gc42">
-                                <af:panelBox text="Revenue of last 30 days" id="pb15">
+                                <af:panelBox text="Revenue of last 7 days" id="pb15">
                                     <f:facet name="toolbar"/>
                                     <dvt:sparkChart id="sparkchart2" subType="lineWithArea" axisScaledFromBaseline="off"
-                                                    inlineStyle="height:120px;width:250px">
-                                        <af:iterator value="#{bindings.RevenueOfRestaurantForUserVO.collectionModel}"
-                                                     var="row" id="i2">
-                                            <dvt:sparkItem value="#{row.TotalRevenue}" id="si6"/>
+                                                    areaColor="#99b5ffde" inlineStyle="height:200px;width:200px;">
+                                        <af:iterator value="#{bindings.RevenueOfRestaurantVO.collectionModel}" var="row"
+                                                     id="i2">
+                                            <dvt:sparkItem value="#{row.TotalRevenue}" id="si1"/>
                                         </af:iterator>
                                     </dvt:sparkChart>
                                 </af:panelBox>
@@ -215,9 +215,6 @@
                             <af:gridCell id="gc43"/>
                         </af:gridRow>
                     </af:panelGridLayout>
-                    <af:panelBox text="PanelBox8" id="pb12">
-                        <f:facet name="toolbar"/>
-                    </af:panelBox>
                 </af:showDetailItem>
                 <af:showDetailItem id="menu" text="Menu">
                     <af:panelBox text="Add Menu Item" id="pb1">

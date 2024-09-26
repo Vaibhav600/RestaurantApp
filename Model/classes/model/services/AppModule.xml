@@ -4,7 +4,7 @@
 <AppModule
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="AppModule"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge"
   ClearCacheOnRollback="true">
   <ViewUsage
@@ -226,6 +226,9 @@
   <ViewUsage
     Name="UsersInfo"
     ViewObjectName="model.services.views.UsersInfo"/>
+  <ViewUsage
+    Name="RevenueOfRestaurantVO"
+    ViewObjectName="model.services.views.RevenueOfRestaurantVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"

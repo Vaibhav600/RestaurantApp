@@ -65,6 +65,10 @@ public class DeliveryAgentActionBean {
         String currentStatus = (String) orderRow.getAttribute("OrderStatus");
         
         // one more check: if order already delivered then should not pick that order
+        if("Delivered".equalsIgnoreCase(currentStatus)){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Order is already delivered", null));
+            return null;
+        }
 
         if (!"Out for delivery".equalsIgnoreCase(currentStatus)) {
             // Update order_status to 'out_for_delivery'

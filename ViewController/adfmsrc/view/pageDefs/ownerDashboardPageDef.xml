@@ -38,12 +38,12 @@
               id="OrdersForEachStatusForRestaurantVOIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="BestSellerForRestaurantForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
               id="BestSellerForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
-    <iterator Binds="RevenueOfRestaurantForUserVO" RangeSize="-1" DataControl="AppModuleDataControl"
-              id="RevenueOfRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="ToDeliverOrderByAgentVO1" RangeSize="25" DataControl="AppModuleDataControl"
               id="ToDeliverOrderByAgentVO1Iterator"/>
     <iterator Binds="ReservationOfCustomerForRestForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
               id="ReservationOfCustomerForRestForUserVOIterator" ChangeEventPolicy="ppr"/>
+    <iterator Binds="RevenueOfRestaurantVO" RangeSize="-1" DataControl="AppModuleDataControl"
+              id="RevenueOfRestaurantVOIterator"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="G3UsersVOIterator" id="CreatedAt">
@@ -277,13 +277,6 @@
         </AttrNames>
       </nodeDefinition>
     </tree>
-    <tree IterBinding="RevenueOfRestaurantForUserVOIterator" id="RevenueOfRestaurantForUserVO">
-      <nodeDefinition DefName="model.services.views.RevenueOfRestaurantVO" Name="RevenueOfRestaurantForUserVO0">
-        <AttrNames>
-          <Item Value="TotalRevenue"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
     <list IterBinding="ToDeliverOrderByAgentVO1Iterator" ListOperMode="navigation"
           ListIter="ToDeliverOrderByAgentVO1Iterator" id="ToDeliverOrderByAgentVO1" DTSupportsMRU="true"
           SelectItemValueMode="ListObject">
@@ -322,6 +315,13 @@
           <Item Value="TotalReservedSeats"/>
           <Item Value="AvailableSeats"/>
           <Item Value="ReservationTime"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="RevenueOfRestaurantVOIterator" id="RevenueOfRestaurantVO">
+      <nodeDefinition DefName="model.services.views.RevenueOfRestaurantVO" Name="RevenueOfRestaurantVO0">
+        <AttrNames>
+          <Item Value="TotalRevenue"/>
         </AttrNames>
       </nodeDefinition>
     </tree>
