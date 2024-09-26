@@ -73,6 +73,55 @@
     EntityAttrName="UpdatedAt"
     EntityUsage="G3UsersEO"
     AliasName="UPDATED_AT"/>
+  <ViewCriteria
+    Name="SuperAdminUsersCriteria"
+    ViewObjectName="model.services.views.SuperAdminUsers"
+    Conjunction="AND">
+    <Properties Name="_Props">
+      <CustomProperties>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="SuperAdminUsersCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="UserId"
+        ViewAttribute="UserId"
+        Operator="="
+        Conjunction="AND"
+        Value=""
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="FullName"
+        ViewAttribute="FullName"
+        Operator="STARTSWITH"
+        Conjunction="OR"
+        Value=""
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="Role"
+        ViewAttribute="Role"
+        Operator="STARTSWITH"
+        Conjunction="OR"
+        Value=""
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>

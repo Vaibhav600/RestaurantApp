@@ -84,12 +84,7 @@ public class AddRestaurantBean {
 
                 String role = (String) user.getAttribute("Role");
                 System.out.println(role);
-                if ("delivery".equals(role)) {
-                    FacesContext.getCurrentInstance()
-                        .addMessage(null,
-                                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                                                     "Delivery agent can't be assigned as owner", null));
-                } else {
+                if("customer".equals(role)){
 
                     Row newRow = restaurants_vo.createRow();
                     newRow.setAttribute("OwnerId", owner_id);
@@ -105,7 +100,15 @@ public class AddRestaurantBean {
                     saveFile(restImage, newRestaurantId.toString());
 
                     am.getTransaction().commit();
+                    FacesContext.getCurrentInstance().addMessage(null,
+                                                                 new FacesMessage("Restaurant added successfully"));
                 }
+                else {
+                    FacesContext.getCurrentInstance()
+                        .addMessage(null,
+                                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                                     "Super-Admin or Delivery agent can't be assigned as owner", null));
+                } 
                 users_vo.removeNamedWhereClauseParam("owner_id");
                 users_vo.setWhereClause(null);
                 users_vo.executeQuery();
