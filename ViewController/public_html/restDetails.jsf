@@ -148,6 +148,10 @@
                                         <af:selectItem label="8:00 PM to 10:00 PM" value="20" id="si6"/>
                                     </af:selectOneChoice>
                                     <af:button text="Book Now" id="b1" action="#{reservationBean.bookReservation}"/>
+                                    <af:button text="Check Availability" id="b5"
+                                               action="#{reservationBean.checkAvailabilityButton}"/>
+                                    <af:outputText value="Available Seats - #{reservationBean.availability}" id="ot5"
+                                                   partialTriggers="b5"/>
                                 </af:panelFormLayout>
                             </af:showDetailItem>
                         </af:panelTabbed>

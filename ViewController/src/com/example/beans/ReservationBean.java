@@ -29,6 +29,7 @@ public class ReservationBean {
     private String number_of_guests;
     private String reservation_date;
     private String reservation_time;
+    private String availability;
 
     ConstantBean constants = new ConstantBean();
 
@@ -63,17 +64,14 @@ public class ReservationBean {
             totalTablesReserved += tableSize;
         }
         rsi.closeRowSetIterator();
-
-        System.out.println("Total tables reserved: " + totalTablesReserved);
-        System.out.println("Restaurant Id: " + restaurant_id);
+        
+        // Get Total Seats For A Restaurant
         ViewObject rest_vo = am.findViewObject("GetRestTotalSeatsCount_VO");
         rest_vo.setNamedWhereClauseParam("set_rest_id", restaurant_id);
         rest_vo.executeQuery();
-        
         Row row = rest_vo.first();
         Number total_seats = (Number)row.getAttribute("AvailableSeats");
 
-        System.out.println("Total Number of Seats for this restaurant: " + total_seats.intValue());
         int guests = Integer.parseInt(number_of_guests);
         
         if((total_seats.intValue() - totalTablesReserved) - guests > 0)
@@ -125,16 +123,20 @@ public class ReservationBean {
 
           // Return the formatted date
           return month + "/" + day + "/" + year;
-      }
-    public String bookReservation(){ 
+    }
+    public Timestamp getTimestamp(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy H");
         String dateTime = formatDateString(reservation_date) + " " + reservation_time;
         LocalDateTime localDateTime = LocalDateTime.parse(dateTime, formatter);
         ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.of("Asia/Kolkata"));
         Timestamp reservation_timestamp = Timestamp.from(zonedDateTime.toInstant());
-        
+        return reservation_timestamp;
+    }
+    public String bookReservation(){ 
         ApplicationModule am = getApplicationModule();
 
+        Timestamp reservation_timestamp = getTimestamp();
+        
         // Get Selected Restaurant ID
         ViewObject selectedRestVO = am.findViewObject(constants.getRest_for_custApp_vo_name());
         Row selectedRestaurant = selectedRestVO.first();
@@ -155,6 +157,48 @@ public class ReservationBean {
         return null;
     }
 
+    public String checkAvailabilityButton(){
+        ApplicationModule am = getApplicationModule();
+
+        Timestamp reservation_timestamp = getTimestamp();
+        
+        // Get Selected Restaurant ID
+        ViewObject selectedRestVO = am.findViewObject(constants.getRest_for_custApp_vo_name());
+        Row selectedRestaurant = selectedRestVO.first();
+        DBSequence dbSequence = (DBSequence) selectedRestaurant.getAttribute("RestaurantId");
+        Integer restaurant_id = dbSequence.getSequenceNumber().intValue();
+        
+        ViewObject check_reserve_vo = am.findViewObject(constants.getReserv_check_vo_name());
+        check_reserve_vo.setNamedWhereClauseParam("bRestaurantId", restaurant_id);
+        check_reserve_vo.setNamedWhereClauseParam("bTimeStamp", reservation_timestamp);
+        check_reserve_vo.executeQuery();
+
+        // Get Total Tables Reserved For given date and time
+        RowSetIterator rsi = check_reserve_vo.createRowSetIterator(null);
+        int totalTablesReserved = 0;
+        while (rsi.hasNext()) {
+            Row currentRow = rsi.next();
+            Integer tableSize = (Integer) currentRow.getAttribute("TableSize");
+            totalTablesReserved += tableSize;
+        }
+        rsi.closeRowSetIterator();
+        
+        // Get Total Seats For A Restaurant
+        ViewObject rest_vo = am.findViewObject("GetRestTotalSeatsCount_VO");
+        rest_vo.setNamedWhereClauseParam("set_rest_id", restaurant_id);
+        rest_vo.executeQuery();
+        Row row = rest_vo.first();
+        Number total_seats = (Number)row.getAttribute("AvailableSeats");
+        
+        int availability = total_seats.intValue() - totalTablesReserved;
+        
+        setAvailability(String.valueOf(availability));
+        
+        System.out.println("Availability: " + availability);
+        
+        return String.valueOf(availability);
+    }
+    
     public void setNumber_of_guests(String number_of_guests) {
         this.number_of_guests = number_of_guests;
     }
@@ -176,5 +220,13 @@ public class ReservationBean {
 
     public String getReservation_time() {
         return reservation_time;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
+    public String getAvailability() {
+        return availability;
     }
 }
