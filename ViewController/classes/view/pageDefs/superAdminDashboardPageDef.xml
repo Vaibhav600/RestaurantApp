@@ -15,11 +15,11 @@
               id="ReservationsForRestaurantIterator"/>
     <searchRegion Binds="ReservationsForRestaurantIterator" Criteria=""
                   Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="ReservationsForRestaurantQuery"/>
-    <iterator Binds="G3UsersVO" RangeSize="10" DataControl="AppModuleDataControl" id="G3UsersVOIterator"/>
-    <searchRegion Criteria="SearchUser" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
-                  Binds="G3UsersVOIterator" id="SearchUserQuery"/>
     <iterator Binds="RevenueForRestaurant" RangeSize="10" DataControl="AppModuleDataControl"
               id="RevenueForRestaurantIterator"/>
+    <iterator Binds="SuperAdminUsers" RangeSize="25" DataControl="AppModuleDataControl" id="SuperAdminUsersIterator"/>
+    <searchRegion Criteria="SuperAdminUsersCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="SuperAdminUsersIterator" id="SuperAdminUsersCriteriaQuery"/>
   </executables>
   <bindings>
     <tree IterBinding="G3RestaurantsVOIterator" id="G3RestaurantsVO">
@@ -91,12 +91,6 @@
     </tree>
     <list IterBinding="G3RestaurantsVOIterator" StaticList="false" Uses="LOV_OwnerId" id="OwnerId1"
           DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
-    <list IterBinding="G3UsersVOIterator" ListOperMode="navigation" ListIter="G3UsersVOIterator" id="G3UsersVO"
-          DTSupportsMRU="true" SelectItemValueMode="ListObject">
-      <AttrNames>
-        <Item Value="t_owner_id"/>
-      </AttrNames>
-    </list>
     <action IterBinding="G3RestaurantsVOIterator" id="CreateWithParams" RequiresUpdateModel="true"
             Action="createWithParams"/>
     <action id="Commit" DataControl="AppModuleDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
@@ -110,21 +104,6 @@
         <Item Value="UpdatedAt"/>
       </AttrNames>
     </attributeValues>
-    <tree IterBinding="G3UsersVOIterator" id="G3UsersVO1">
-      <nodeDefinition DefName="model.services.views.G3UsersVO" Name="G3UsersVO10">
-        <AttrNames>
-          <Item Value="UserId"/>
-          <Item Value="FullName"/>
-          <Item Value="Email"/>
-          <Item Value="Phone"/>
-          <Item Value="Password"/>
-          <Item Value="Address"/>
-          <Item Value="Role"/>
-          <Item Value="CreatedAt"/>
-          <Item Value="UpdatedAt"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
     <tree IterBinding="RevenueForRestaurantIterator" id="RevenueForRestaurant">
       <nodeDefinition DefName="model.services.views.Revenue" Name="RevenueForRestaurant0">
         <AttrNames>
@@ -144,5 +123,25 @@
         <Item Value="TotalRevenue"/>
       </AttrNames>
     </attributeValues>
+    <list IterBinding="SuperAdminUsersIterator" ListOperMode="navigation" ListIter="SuperAdminUsersIterator"
+          id="SuperAdminUsers" DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="UserId"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="SuperAdminUsersIterator" id="SuperAdminUsers1">
+      <nodeDefinition DefName="model.services.views.SuperAdminUsers" Name="SuperAdminUsers10">
+        <AttrNames>
+          <Item Value="UserId"/>
+          <Item Value="FullName"/>
+          <Item Value="Address"/>
+          <Item Value="Email"/>
+          <Item Value="Phone"/>
+          <Item Value="Role"/>
+          <Item Value="CreatedAt"/>
+          <Item Value="UpdatedAt"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
   </bindings>
 </pageDefinition>

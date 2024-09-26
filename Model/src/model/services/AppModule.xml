@@ -229,6 +229,9 @@
   <ViewUsage
     Name="RevenueOfRestaurantVO"
     ViewObjectName="model.services.views.RevenueOfRestaurantVO"/>
+  <ViewUsage
+    Name="SuperAdminUsers"
+    ViewObjectName="model.services.views.SuperAdminUsers"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"

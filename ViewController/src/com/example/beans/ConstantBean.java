@@ -47,7 +47,15 @@ public class ConstantBean {
     }
     private String rating_review_vo_name = "G3RatingsReviewsVO";
     private String users_vo_name = "G3UsersVO";
+    private String super_admin_users_vo = "SuperAdminUsers";
 
+    public void setSuper_admin_users_vo(String super_admin_users_vo) {
+        this.super_admin_users_vo = super_admin_users_vo;
+    }
+
+    public String getSuper_admin_users_vo() {
+        return super_admin_users_vo;
+    }
 
     public void setReserv_check_vo_name(String reserv_check_vo_name) {
         this.reserv_check_vo_name = reserv_check_vo_name;

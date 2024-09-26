@@ -366,95 +366,75 @@
                 <af:showDetailItem id="users" text="Users">
                     <af:panelGroupLayout layout="vertical" id="pgl3">
                         <af:panelHeader text="Search Users" id="ph1">
-                            <af:query id="qryId1" headerText=""
-                                      value="#{bindings.SearchUserQuery.queryDescriptor}"
-                                      model="#{bindings.SearchUserQuery.queryModel}"
-                                      queryListener="#{bindings.SearchUserQuery.processQuery}"
-                                      queryOperationListener="#{bindings.SearchUserQuery.processQueryOperation}"
-                                      resultComponentId="::resId1" modeChangeVisible="false" disclosed="true"
-                                      saveQueryMode="hidden"/>
+                            <af:query id="qryId1" headerText="Search" disclosed="true"
+                                      value="#{bindings.SuperAdminUsersCriteriaQuery.queryDescriptor}"
+                                      model="#{bindings.SuperAdminUsersCriteriaQuery.queryModel}"
+                                      queryListener="#{bindings.SuperAdminUsersCriteriaQuery.processQuery}"
+                                      queryOperationListener="#{bindings.SuperAdminUsersCriteriaQuery.processQueryOperation}"
+                                      resultComponentId="::resId1" saveQueryMode="hidden"/>
                         </af:panelHeader>
-                        <af:table value="#{bindings.G3UsersVO1.collectionModel}" var="row"
-                                  rows="#{bindings.G3UsersVO1.rangeSize}"
-                                  emptyText="#{bindings.G3UsersVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        <af:table value="#{bindings.SuperAdminUsers1.collectionModel}" var="row"
+                                  rows="#{bindings.SuperAdminUsers1.rangeSize}"
+                                  emptyText="#{bindings.SuperAdminUsers1.viewable ? 'No data to display.' : 'Access Denied.'}"
                                   rowBandingInterval="0"
-                                  selectedRowKeys="#{bindings.G3UsersVO1.collectionModel.selectedRow}"
-                                  selectionListener="#{bindings.G3UsersVO1.collectionModel.makeCurrent}"
-                                  rowSelection="single" fetchSize="#{bindings.G3UsersVO1.rangeSize}"
-                                  filterModel="#{bindings.SearchUserQuery.queryDescriptor}"
-                                  queryListener="#{bindings.SearchUserQuery.processQuery}" varStatus="vs" id="resId1">
-                            <af:column sortProperty="#{bindings.G3UsersVO1.hints.UserId.name}" filterable="true"
-                                       sortable="true" headerText="#{bindings.G3UsersVO1.hints.UserId.label}"
-                                       id="resId1c1">
+                                  selectedRowKeys="#{bindings.SuperAdminUsers1.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.SuperAdminUsers1.collectionModel.makeCurrent}"
+                                  rowSelection="single" fetchSize="#{bindings.SuperAdminUsers1.rangeSize}" id="resId1">
+                            <af:column sortProperty="#{bindings.SuperAdminUsers1.hints.UserId.name}" sortable="true"
+                                       headerText="#{bindings.SuperAdminUsers1.hints.UserId.label}" id="resId1c1">
                                 <af:outputText value="#{row.UserId}"
-                                               shortDesc="#{bindings.G3UsersVO1.hints.UserId.tooltip}" id="ot23">
+                                               shortDesc="#{bindings.SuperAdminUsers1.hints.UserId.tooltip}" id="ot23">
                                     <af:convertNumber groupingUsed="false"
-                                                      pattern="#{bindings.G3UsersVO1.hints.UserId.format}"/>
+                                                      pattern="#{bindings.SuperAdminUsers1.hints.UserId.format}"/>
                                 </af:outputText>
                             </af:column>
-                            <af:column sortProperty="#{bindings.G3UsersVO1.hints.FullName.name}" filterable="true"
-                                       sortable="true" headerText="#{bindings.G3UsersVO1.hints.FullName.label}"
-                                       id="resId1c2">
+                            <af:column sortProperty="#{bindings.SuperAdminUsers1.hints.FullName.name}" sortable="true"
+                                       headerText="#{bindings.SuperAdminUsers1.hints.FullName.label}" id="resId1c2">
                                 <af:outputText value="#{row.FullName}"
-                                               shortDesc="#{bindings.G3UsersVO1.hints.FullName.tooltip}" id="ot24"/>
+                                               shortDesc="#{bindings.SuperAdminUsers1.hints.FullName.tooltip}"
+                                               id="ot24"/>
                             </af:column>
-                            <af:column sortProperty="#{bindings.G3UsersVO1.hints.Email.name}" filterable="true"
-                                       sortable="true" headerText="#{bindings.G3UsersVO1.hints.Email.label}"
-                                       id="resId1c3">
-                                <af:outputText value="#{row.Email}"
-                                               shortDesc="#{bindings.G3UsersVO1.hints.Email.tooltip}" id="ot25"/>
-                            </af:column>
-                            <af:column sortProperty="#{bindings.G3UsersVO1.hints.Phone.name}" filterable="true"
-                                       sortable="true" headerText="#{bindings.G3UsersVO1.hints.Phone.label}"
-                                       id="resId1c4">
-                                <af:outputText value="#{row.Phone}"
-                                               shortDesc="#{bindings.G3UsersVO1.hints.Phone.tooltip}" id="ot26"/>
-                            </af:column>
-                            <af:column sortProperty="#{bindings.G3UsersVO1.hints.Password.name}" filterable="true"
-                                       sortable="true" headerText="#{bindings.G3UsersVO1.hints.Password.label}"
-                                       id="resId1c5">
-                                <af:outputText value="#{row.Password}"
-                                               shortDesc="#{bindings.G3UsersVO1.hints.Password.tooltip}" id="ot27"/>
-                            </af:column>
-                            <af:column sortProperty="#{bindings.G3UsersVO1.hints.Address.name}" filterable="true"
-                                       sortable="true" headerText="#{bindings.G3UsersVO1.hints.Address.label}"
-                                       id="resId1c6">
+                            <af:column sortProperty="#{bindings.SuperAdminUsers1.hints.Address.name}" sortable="true"
+                                       headerText="#{bindings.SuperAdminUsers1.hints.Address.label}" id="resId1c3">
                                 <af:outputText value="#{row.Address}"
-                                               shortDesc="#{bindings.G3UsersVO1.hints.Address.tooltip}" id="ot28"/>
+                                               shortDesc="#{bindings.SuperAdminUsers1.hints.Address.tooltip}"
+                                               id="ot25"/>
                             </af:column>
-                            <af:column sortProperty="#{bindings.G3UsersVO1.hints.Role.name}" filterable="true"
-                                       sortable="true" headerText="#{bindings.G3UsersVO1.hints.Role.label}"
-                                       id="resId1c7">
-                                <af:outputText value="#{row.Role}" shortDesc="#{bindings.G3UsersVO1.hints.Role.tooltip}"
-                                               id="ot29"/>
+                            <af:column sortProperty="#{bindings.SuperAdminUsers1.hints.Email.name}" sortable="true"
+                                       headerText="#{bindings.SuperAdminUsers1.hints.Email.label}" id="resId1c4">
+                                <af:outputText value="#{row.Email}"
+                                               shortDesc="#{bindings.SuperAdminUsers1.hints.Email.tooltip}" id="ot26"/>
                             </af:column>
-                            <af:column sortProperty="#{bindings.G3UsersVO1.hints.CreatedAt.name}" filterable="true"
-                                       sortable="true" headerText="#{bindings.G3UsersVO1.hints.CreatedAt.label}"
-                                       id="resId1c8">
-                                <f:facet name="filter">
-                                    <af:inputDate value="#{bindings.SearchUserQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.CreatedAt.value}"
-                                                  id="id2">
-                                        <af:convertDateTime pattern="#{bindings.G3UsersVO1.hints.CreatedAt.format}"/>
-                                    </af:inputDate>
-                                </f:facet>
+                            <af:column sortProperty="#{bindings.SuperAdminUsers1.hints.Phone.name}" sortable="true"
+                                       headerText="#{bindings.SuperAdminUsers1.hints.Phone.label}" id="resId1c5">
+                                <af:outputText value="#{row.Phone}"
+                                               shortDesc="#{bindings.SuperAdminUsers1.hints.Phone.tooltip}" id="ot27"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.SuperAdminUsers1.hints.Role.name}" sortable="true"
+                                       headerText="#{bindings.SuperAdminUsers1.hints.Role.label}" id="resId1c6">
+                                <af:outputText value="#{row.Role}"
+                                               shortDesc="#{bindings.SuperAdminUsers1.hints.Role.tooltip}" id="ot28"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.SuperAdminUsers1.hints.CreatedAt.name}" sortable="true"
+                                       headerText="#{bindings.SuperAdminUsers1.hints.CreatedAt.label}" id="resId1c7">
                                 <af:outputText value="#{row.CreatedAt}"
-                                               shortDesc="#{bindings.G3UsersVO1.hints.CreatedAt.tooltip}" id="ot30">
-                                    <af:convertDateTime pattern="#{bindings.G3UsersVO1.hints.CreatedAt.format}"/>
+                                               shortDesc="#{bindings.SuperAdminUsers1.hints.CreatedAt.tooltip}"
+                                               id="ot29">
+                                    <af:convertDateTime pattern="#{bindings.SuperAdminUsers1.hints.CreatedAt.format}"/>
                                 </af:outputText>
                             </af:column>
-                            <af:column sortProperty="#{bindings.G3UsersVO1.hints.UpdatedAt.name}" filterable="true"
-                                       sortable="true" headerText="#{bindings.G3UsersVO1.hints.UpdatedAt.label}"
-                                       id="resId1c9">
-                                <f:facet name="filter">
-                                    <af:inputDate value="#{bindings.SearchUserQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.UpdatedAt.value}"
-                                                  id="id3">
-                                        <af:convertDateTime pattern="#{bindings.G3UsersVO1.hints.UpdatedAt.format}"/>
-                                    </af:inputDate>
-                                </f:facet>
+                            <af:column sortProperty="#{bindings.SuperAdminUsers1.hints.UpdatedAt.name}" sortable="true"
+                                       headerText="#{bindings.SuperAdminUsers1.hints.UpdatedAt.label}" id="resId1c8">
                                 <af:outputText value="#{row.UpdatedAt}"
-                                               shortDesc="#{bindings.G3UsersVO1.hints.UpdatedAt.tooltip}" id="ot31">
-                                    <af:convertDateTime pattern="#{bindings.G3UsersVO1.hints.UpdatedAt.format}"/>
+                                               shortDesc="#{bindings.SuperAdminUsers1.hints.UpdatedAt.tooltip}"
+                                               id="ot30">
+                                    <af:convertDateTime pattern="#{bindings.SuperAdminUsers1.hints.UpdatedAt.format}"/>
                                 </af:outputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.SuperAdminUsers1.hints.UpdatedAt.name}" sortable="true"
+                                       headerText="Make Delivery Agent" id="resId1c9">
+                                <af:link text="Change" id="l1"
+                                         action="#{changeRoleDelivery.changeRoleToDeliveryAgent}"/>
                             </af:column>
                         </af:table>
                     </af:panelGroupLayout>
@@ -473,12 +453,6 @@
                                 <f:validator binding="#{bindings.RestaurantId.validator}"/>
                                 <af:convertNumber groupingUsed="false" pattern="#{bindings.RestaurantId.format}"/>
                             </af:inputText>
-                            <af:selectOneChoice value="#{bindings.OwnerId.inputValue}" label="#{bindings.OwnerId.label}"
-                                                required="#{bindings.OwnerId.hints.mandatory}"
-                                                shortDesc="#{bindings.OwnerId.hints.tooltip}" id="soc1">
-                                <f:selectItems value="#{bindings.G3UsersVO.items}" id="si1"/>
-                                <f:validator binding="#{bindings.G3UsersVO.validator}"/>
-                            </af:selectOneChoice>
                             <af:inputText value="#{bindings.Name.inputValue}" label="#{bindings.Name.hints.label}"
                                           required="#{bindings.Name.hints.mandatory}"
                                           columns="#{bindings.Name.hints.displayWidth}"
@@ -540,52 +514,55 @@
             <af:popup childCreation="deferred" autoCancel="disabled" id="add_rest_popup">
                 <af:panelWindow id="pw1" stretchChildren="first">
                     <af:panelFormLayout id="pfl1" inlineStyle="width:auto; height:auto;">
-                        <af:selectOneChoice value="#{addRestaurantBean.owner_id}" label="Owner ID"
-                                            required="#{bindings.G3UsersVO.hints.mandatory}"
-                                            shortDesc="#{bindings.G3UsersVO.hints.tooltip}" id="soc2">
-                            <f:selectItems value="#{bindings.G3UsersVO.items}" id="si2"/>
-                            <f:validator binding="#{bindings.G3UsersVO.validator}"/>
+                        <af:selectOneChoice value="#{bindings.SuperAdminUsers.inputValue}"
+                                            label="Owner ID"
+                                            
+                                            shortDesc="#{bindings.SuperAdminUsers.hints.tooltip}" id="soc3"
+                                            valueChangeListener="#{addRestaurantBean.changeOwnerId}" autoSubmit="true"
+                                            required="true">
+                            <f:selectItems value="#{bindings.SuperAdminUsers.items}" id="si3"/>
+                            <f:validator binding="#{bindings.SuperAdminUsers.validator}"/>
                         </af:selectOneChoice>
                         <af:inputText value="#{addRestaurantBean.name}" label="Name"
-                                      required="#{bindings.Name.hints.mandatory}"
+                                      
                                       columns="#{bindings.Name.hints.displayWidth}"
                                       maximumLength="#{bindings.Name.hints.precision}"
-                                      shortDesc="#{bindings.Name.hints.tooltip}" id="it1">
+                                      shortDesc="#{bindings.Name.hints.tooltip}" id="it1" required="true">
                             <f:validator binding="#{bindings.Name.validator}"/>
                         </af:inputText>
                         <af:inputText value="#{addRestaurantBean.address}" label="Address"
-                                      required="#{bindings.Address.hints.mandatory}"
+                                      
                                       columns="#{bindings.Address.hints.displayWidth}"
                                       maximumLength="#{bindings.Address.hints.precision}"
-                                      shortDesc="#{bindings.Address.hints.tooltip}" id="it8">
+                                      shortDesc="#{bindings.Address.hints.tooltip}" id="it8" required="true">
                             <f:validator binding="#{bindings.Address.validator}"/>
                         </af:inputText>
                         <af:inputText value="#{addRestaurantBean.phone}" label="Phone Number"
-                                      required="#{bindings.Phone.hints.mandatory}"
+                                      
                                       columns="#{bindings.Phone.hints.displayWidth}"
                                       maximumLength="#{bindings.Phone.hints.precision}"
-                                      shortDesc="#{bindings.Phone.hints.tooltip}" id="it9">
+                                      shortDesc="#{bindings.Phone.hints.tooltip}" id="it9" required="true">
                             <f:validator binding="#{bindings.Phone.validator}"/>
                             <af:convertNumber groupingUsed="false" pattern="#{bindings.Phone.format}"/>
                         </af:inputText>
                         <af:inputText value="#{addRestaurantBean.available_seats}"
                                       label="Available Seats"
-                                      required="#{bindings.AvailableSeats.hints.mandatory}"
+                                      
                                       columns="#{bindings.AvailableSeats.hints.displayWidth}"
                                       maximumLength="#{bindings.AvailableSeats.hints.precision}"
-                                      shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="it10">
+                                      shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="it10" required="true">
                             <f:validator binding="#{bindings.AvailableSeats.validator}"/>
                             <af:convertNumber groupingUsed="false" pattern="#{bindings.AvailableSeats.format}"/>
                         </af:inputText>
                         <af:inputText value="#{addRestaurantBean.status}" label="Status"
-                                      required="#{bindings.Status.hints.mandatory}"
+                                      
                                       columns="#{bindings.Status.hints.displayWidth}"
                                       maximumLength="#{bindings.Status.hints.precision}"
-                                      shortDesc="#{bindings.Status.hints.tooltip}" id="it11">
+                                      shortDesc="#{bindings.Status.hints.tooltip}" id="it11" required="true">
                             <f:validator binding="#{bindings.Status.validator}"/>
                         </af:inputText>
                         <af:inputFile label="Restaurant Image" id="if1" value="#{addRestaurantBean.restImage}"/>
-                        <af:button text="Add" disabled="#{!bindings.CreateWithParams15.enabled}" id="b33" action="#{addRestaurantBean.addRestaurant}"/>
+                        <af:button text="Add" disabled="#{!bindings.CreateWithParams.enabled}" id="b33" action="#{addRestaurantBean.addRestaurant}"/>
                     </af:panelFormLayout>
                 </af:panelWindow>
             </af:popup>
