@@ -5,15 +5,28 @@
     <data-control-scope>
       <shared/>
     </data-control-scope>
+    <task-flow-reentry>
+      <reentry-outcome-dependent/>
+    </task-flow-reentry>
     <view id="owner_dashboard">
       <page>/ownerDashboard.jsf</page>
     </view>
     <view id="addCoupon"></view>
+    <task-flow-return id="logout">
+      <outcome>
+        <name>logout</name>
+        <reentry-not-allowed/>
+      </outcome>
+    </task-flow-return>
     <control-flow-rule id="__1">
       <from-activity-id>owner_dashboard</from-activity-id>
       <control-flow-case id="__2">
         <from-outcome>goToAddCoupon</from-outcome>
         <to-activity-id>addCoupon</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__3">
+        <from-outcome>logout</from-outcome>
+        <to-activity-id>logout</to-activity-id>
       </control-flow-case>
     </control-flow-rule>
   </task-flow-definition>

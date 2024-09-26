@@ -153,7 +153,7 @@ public class PaymentBean {
             payments_vo.insertRow(newPayment);
 
             orderRow.setAttribute("PaymentStatus", "paid");
-            orderRow.setAttribute("OrderStatus", "ordered");
+            orderRow.setAttribute("OrderStatus", "Ordered");
             try {
                 am.getTransaction().commit();
             } catch (Exception e) {

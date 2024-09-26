@@ -25,6 +25,11 @@
                                                inlineStyle="font-weight:bold; font-size:large;"/>
                             </af:gridCell>
                         </af:gridRow>
+                        <af:gridRow id="gr17">
+                            <af:gridCell id="gc36" halign="end">
+                                <af:button text="Logout" id="b9" action="#{loginBean.doLogout}"/>
+                            </af:gridCell>
+                        </af:gridRow>
                     </af:panelGridLayout>
                     <af:panelGridLayout id="pgl11">
                         <af:gridRow marginTop="5px" height="auto" id="gr15">

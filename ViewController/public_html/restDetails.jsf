@@ -117,7 +117,7 @@
                                                                value="#{row.bindings.Quantity.inputValue}" minimum="0"/>
                                     </af:column>
                                 </af:table>
-                                <af:button text="Order Now" id="order_now_btn"
+                                <af:button text="Add to Cart" id="order_now_btn"
                                            actionListener="#{orderNowBean.submitOrder}"/>
                             </af:showDetailItem>
                             <af:showDetailItem id="BookTable" text="Book Table">
@@ -136,10 +136,7 @@
                                                   required="#{bindings.ReservationTime.hints.mandatory}"
                                                   columns="#{bindings.ReservationTime.hints.displayWidth}"
                                                   shortDesc="#{bindings.ReservationTime.hints.tooltip}" id="id1"
-                                                  autoSubmit="true">
-                                        <f:validator binding="#{bindings.ReservationTime.validator}"/>
-                                        <af:validateDateTimeRange minimum="#{dateValidationBean.currentDate}"/>
-                                    </af:inputDate>
+                                                  autoSubmit="true"/>
                                     <af:selectOneChoice label="Reservation Time Slot" id="soc1"
                                                         value="#{reservationBean.reservation_time}">
                                         <af:selectItem label="10:00 AM to 12:00 PM" value="10" id="si1"/>
@@ -150,7 +147,7 @@
                                         <af:selectItem label="8:00 PM to 10:00 PM" value="20" id="si6"/>
                                     </af:selectOneChoice>
                                     <af:panelGroupLayout id="pgl3">
-                                        <af:button text="Add to Cart" id="b1" action="#{reservationBean.bookReservation}"
+                                        <af:button text="Book Now" id="b1" action="#{reservationBean.bookReservation}"
                                                    inlineStyle="margin-right: 10px;"/>
                                         <af:button text="Check Availability" id="b5"
                                                    action="#{reservationBean.checkAvailabilityButton}"/>
