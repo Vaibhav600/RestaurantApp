@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
-                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:h="http://java.sun.com/jsf/html">
     <af:messages id="m1"/>
     <af:panelGridLayout id="pgl1">
         <af:gridRow marginTop="5px" height="auto" id="gr1">
@@ -12,25 +12,22 @@
         </af:gridRow>
         <af:gridRow marginTop="5px" height="auto" id="gr2">
             <af:gridCell marginStart="5px" width="700px" marginEnd="5px" id="gc2">
-                <af:panelFormLayout id="pfl1" inlineStyle="width:700px;">
+                <af:panelFormLayout id="pfl1">
                     <af:panelLabelAndMessage label="Name" id="plam1">
                         <af:outputText value="#{bindings.FullName.inputValue}"
                                        shortDesc="#{bindings.FullName.hints.tooltip}" id="ot1"/>
                     </af:panelLabelAndMessage>
-                    <af:inputText value="#{bindings.Address.inputValue}" label="#{bindings.Address.hints.label}"
-                                  required="#{bindings.Address.hints.mandatory}"
-                                  columns="#{bindings.Address.hints.displayWidth}"
-                                  maximumLength="#{bindings.Address.hints.precision}"
-                                  shortDesc="#{bindings.Address.hints.tooltip}" id="it1" dimensionsFrom="parent">
-                        <f:validator binding="#{bindings.Address.validator}"/>
-                    </af:inputText>
-                    <af:inputText value="#{bindings.Phone.inputValue}" label="#{bindings.Phone.hints.label}"
+                    <af:panelLabelAndMessage label="Address" id="plam2">
+                        <h:inputTextarea id="it1" value="#{orderNowBean.address}" label="Address" title="Address"/>
+                    </af:panelLabelAndMessage>
+                    <af:inputText value="#{orderNowBean.phone}" label="#{bindings.Phone.hints.label}"
                                   required="#{bindings.Phone.hints.mandatory}"
                                   columns="#{bindings.Phone.hints.displayWidth}"
                                   maximumLength="#{bindings.Phone.hints.precision}"
                                   shortDesc="#{bindings.Phone.hints.tooltip}" id="it2">
                         <f:validator binding="#{bindings.Phone.validator}"/>
                     </af:inputText>
+                    <af:button text="Select" id="b1" actionListener="#{orderNowBean.submitAddress}"/>
                     <f:facet name="footer"/>
                 </af:panelFormLayout>
             </af:gridCell>

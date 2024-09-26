@@ -585,7 +585,7 @@
                             <f:validator binding="#{bindings.Status.validator}"/>
                         </af:inputText>
                         <af:inputFile label="Restaurant Image" id="if1" value="#{addRestaurantBean.restImage}"/>
-                        <af:button text="Add" disabled="#{!bindings.CreateWithParams15.enabled}" id="b3" action="#{addRestaurantBean.addRestaurant}"/>
+                        <af:button text="Add" disabled="#{!bindings.CreateWithParams15.enabled}" id="b33" action="#{addRestaurantBean.addRestaurant}"/>
                     </af:panelFormLayout>
                 </af:panelWindow>
             </af:popup>

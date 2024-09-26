@@ -5,16 +5,12 @@
   <executables>
     <variableIterator id="variables"/>
     <iterator Binds="G3UsersVO" RangeSize="10" DataControl="AppModuleDataControl" id="G3UsersVOIterator"/>
+    <iterator id="CartItemsVOIterator" Binds="CartItemsVO" DataControl="AppModuleDataControl" RangeSize="25"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="G3UsersVOIterator" id="FullName">
       <AttrNames>
         <Item Value="FullName"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="G3UsersVOIterator" id="Address">
-      <AttrNames>
-        <Item Value="Address"/>
       </AttrNames>
     </attributeValues>
     <attributeValues IterBinding="G3UsersVOIterator" id="Phone">

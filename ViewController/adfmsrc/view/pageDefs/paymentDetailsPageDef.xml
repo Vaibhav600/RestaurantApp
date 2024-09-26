@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.22.48" id="paymentDetailsPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="CartItemsVOIterator" Binds="CartItemsVO" DataControl="AppModuleDataControl" RangeSize="25"/>
+    <iterator Binds="PaymentMethod_forCustApp_VO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="PaymentMethod_forCustApp_VOIterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="PaymentMethod_forCustApp_VOIterator" ListOperMode="navigation"
+          ListIter="PaymentMethod_forCustApp_VOIterator" id="PaymentMethod_forCustApp_VO" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="payment_method"/>
+      </AttrNames>
+    </list>
+  </bindings>
+</pageDefinition>
