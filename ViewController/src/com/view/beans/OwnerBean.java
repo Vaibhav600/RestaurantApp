@@ -10,6 +10,8 @@ import oracle.adf.model.binding.DCDataControl;
 
 import oracle.adf.model.binding.DCIteratorBinding;
 
+import oracle.adf.view.rich.component.rich.input.RichSelectOneChoice;
+
 import oracle.jbo.ApplicationModule;
 import oracle.jbo.Row;
 import oracle.jbo.ViewObject;
@@ -17,6 +19,8 @@ import oracle.jbo.ViewObject;
 @ManagedBean(name="ownerBean")
 @SessionScoped
 public class OwnerBean {
+    private RichSelectOneChoice selectedCoupon;
+
     public OwnerBean() {
         super();
     }
@@ -58,5 +62,13 @@ public class OwnerBean {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void setSelectedCoupon(RichSelectOneChoice selectedCoupon) {
+        this.selectedCoupon = selectedCoupon;
+    }
+
+    public RichSelectOneChoice getSelectedCoupon() {
+        return selectedCoupon;
     }
 }

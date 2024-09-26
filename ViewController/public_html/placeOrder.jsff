@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:facelets="http://xmlns.oracle.com/jdev/webapp/facelets"
-                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:h="http://java.sun.com/jsf/html">
     <af:panelGridLayout id="pgl1">
         <af:gridRow marginTop="5px" height="auto" id="gr1">
             <af:gridCell marginStart="5px" width="600px" marginEnd="5px" id="gc1">
@@ -12,8 +12,44 @@
         <af:gridRow marginTop="5px" height="auto" id="gr2">
             <af:gridCell marginStart="5px" width="600px" marginEnd="5px" id="gc2">
                 <af:panelFormLayout id="pfl1" inlineStyle="width:248px;">
+                    <af:panelGridLayout id="pgl2">
+                        <af:gridRow marginTop="5px" height="auto" id="gr4">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc4">
+                                <af:image id="i1" inlineStyle="width: 7rem;"
+                                          source="/styles/210-2100053_cbc-fact-sheet-payment-gateway-icon-png.png"
+                                          shortDesc="Order Placed"/>
+                            </af:gridCell>
+                        </af:gridRow>
+                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr5">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc5">
+                                <af:panelFormLayout id="pfl2">
+                                    <f:facet name="footer">
+                                        <af:selectOneChoice value="#{orderNowBean.givenRating}" label="Rating" id="soc1"
+                                                            autoSubmit="true">
+                                            <f:selectItem id="si1" value="1" itemLabel="1" itemValue="1"/>
+                                            <f:selectItem id="si2" value="2" itemLabel="2" itemValue="2"/>
+                                            <f:selectItem id="si3" value="3" itemLabel="3" itemValue="3"/>
+                                            <f:selectItem id="si4" value="4" itemLabel="4" itemValue="4"/>
+                                            <f:selectItem id="si5" value="5" itemLabel="5" itemValue="5"/>
+                                        </af:selectOneChoice>
+                                        <!--<af:inputText value="#{orderNowBean.givenReview}"
+                                                      label="#{bindings.Review.hints.label}"
+                                                      required="#{bindings.Review.hints.mandatory}"
+                                                      columns="#{bindings.Review.hints.displayWidth}"
+                                                      maximumLength="#{bindings.Review.hints.precision}"
+                                                      shortDesc="#{bindings.Review.hints.tooltip}" id="it1">
+                                            <f:validator binding="#{bindings.Review.validator}"/>
+                                        </af:inputText>-->
+                                        <af:panelLabelAndMessage label="Review" id="plam1">
+                                            <h:inputTextarea id="it2" value="#{orderNowBean.givenReview}"/>
+                                        </af:panelLabelAndMessage>
+                                        <af:button text="Submit" id="b1" actionListener="#{orderNowBean.submitReview}"/>
+                                    </f:facet>
+                                </af:panelFormLayout>
+                            </af:gridCell>
+                        </af:gridRow>
+                    </af:panelGridLayout>
                     <f:facet name="footer"/>
-                    <af:button text="Place Order" id="b1"/>
                 </af:panelFormLayout>
             </af:gridCell>
         </af:gridRow>

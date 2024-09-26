@@ -96,6 +96,7 @@ public class LoginBean {
                     }
                     else if(role.equals("customer")){
                         // FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User Login Success"));
+                        
                         return constants.getCustomer_navigation();
                     }
                     else{

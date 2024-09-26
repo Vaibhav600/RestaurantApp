@@ -140,7 +140,7 @@
     Name="OffersVO"
     ViewObjectName="model.services.views.OffersVO"/>
   <ViewUsage
-    Name="G3RatingsReviewsVO1"
+    Name="G3RatingsReviewsVO"
     ViewObjectName="model.services.views.G3RatingsReviewsVO"/>
   <ViewUsage
     Name="RatingTotalForRestaurant1"
@@ -181,6 +181,15 @@
   <ViewUsage
     Name="CouponsForRestaurant_CustApp"
     ViewObjectName="model.services.views.G3CouponsVO"/>
+  <ViewUsage
+    Name="G3PaymentsVO"
+    ViewObjectName="model.services.views.G3PaymentsVO"/>
+  <ViewUsage
+    Name="PaymentMethod_forCustApp_VO"
+    ViewObjectName="model.services.views.PaymentMethod_forCustApp_VO"/>
+  <ViewUsage
+    Name="UsersInfo"
+    ViewObjectName="model.services.views.UsersInfo"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"

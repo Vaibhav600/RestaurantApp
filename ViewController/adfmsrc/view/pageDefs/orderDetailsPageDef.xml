@@ -4,40 +4,43 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
-    <iterator Binds="G3OrdersVO" RangeSize="25" DataControl="AppModuleDataControl" id="G3OrdersVOIterator"/>
-    <iterator Binds="G3CouponsVO" RangeSize="25" DataControl="AppModuleDataControl" id="G3CouponsVOIterator"/>
-    <iterator Binds="CouponsForRestaurant_CustApp" RangeSize="10" DataControl="AppModuleDataControl"
+    <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"
+              RenderHint="background"/>
+    <iterator Binds="CouponsForRestaurant_CustApp" RangeSize="25" DataControl="AppModuleDataControl"
               id="CouponsForRestaurant_CustAppIterator"/>
   </executables>
   <bindings>
-    <tree IterBinding="CartItemsVOIterator" id="CartItemsVO">
-      <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO0">
-        <AttrNames>
-          <Item Value="Id"/>
-          <Item Value="OrderId"/>
-          <Item Value="ItemId"/>
-          <Item Value="CouponId"/>
-          <Item Value="DishName"/>
-          <Item Value="Price"/>
-          <Item Value="TotalAmount"/>
-          <Item Value="OrderStatus"/>
-          <Item Value="PaymentStatus"/>
-          <Item Value="ItemTotal"/>
-          <Item Value="Description"/>
-          <Item Value="Quantity"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <attributeValues IterBinding="G3OrdersVOIterator" id="TotalAmount">
+    <attributeValues IterBinding="CartItemsVOIterator" id="TotalAmount1">
       <AttrNames>
         <Item Value="TotalAmount"/>
       </AttrNames>
     </attributeValues>
-    <attributeValues IterBinding="CouponsForRestaurant_CustAppIterator" id="CouponId">
+    <tree IterBinding="CartItemsVOIterator" id="CartItemsVO1">
+      <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO10">
+        <AttrNames>
+          <Item Value="OrderId"/>
+          <Item Value="CustomerId"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="OrderStatus"/>
+          <Item Value="PaymentStatus"/>
+          <Item Value="Id"/>
+          <Item Value="ItemTotal"/>
+          <Item Value="Quantity"/>
+          <Item Value="ItemId"/>
+          <Item Value="DishName"/>
+          <Item Value="Price"/>
+          <Item Value="CouponId"/>
+          <Item Value="Description"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="CouponsForRestaurant_CustAppIterator" ListOperMode="navigation"
+          ListIter="CouponsForRestaurant_CustAppIterator" id="CouponsForRestaurant_CustApp" DTSupportsMRU="true"
+          SelectItemValueMode="ListObject">
       <AttrNames>
         <Item Value="CouponId"/>
+        <Item Value="Description"/>
       </AttrNames>
-    </attributeValues>
+    </list>
   </bindings>
 </pageDefinition>

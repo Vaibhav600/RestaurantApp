@@ -23,6 +23,18 @@ public class ConstantBean {
     private String rest_for_custApp_vo_name = "RestaurantVO_ForCustApp";
     private String orderItem_vo_name = "G3OrderItemsVO";
     private String cart_items_vo_name = "CartItemsVO";
+    private String payments_vo_name = "G3PaymentsVO";
+    private String usersInfo_vo_name = "UsersInfo";
+
+    public void setUsers_vo_name(String users_vo_name) {
+        this.users_vo_name = users_vo_name;
+    }
+
+    public String getUsers_vo_name() {
+        return users_vo_name;
+    }
+    private String rating_review_vo_name = "G3RatingsReviewsVO";
+    private String users_vo_name = "G3UsersVO";
 
 
     public String getOrder_restaurant_user_vo() {
@@ -121,6 +133,14 @@ public class ConstantBean {
         return restaurant_for_user_vo;
     }
 
+    public void setPayments_vo_name(String payments_vo_name) {
+        this.payments_vo_name = payments_vo_name;
+    }
+
+    public String getPayments_vo_name() {
+        return payments_vo_name;
+    }
+
     public String getMenu_restaurant_vo() {
         return menu_restaurant_vo;
     }
@@ -131,5 +151,25 @@ public class ConstantBean {
 
     public String getCoupon_vo() {
         return coupon_vo;
+    }
+
+    public void setRating_review_vo_name(String rating_review_vo_name) {
+        this.rating_review_vo_name = rating_review_vo_name;
+    }
+
+    public String getRating_review_vo_name() {
+        return rating_review_vo_name;
+    }
+
+    public void setOrder_restaurant_user_vo(String order_restaurant_user_vo) {
+        this.order_restaurant_user_vo = order_restaurant_user_vo;
+    }
+
+    public void setUsersInfo_vo_name(String usersInfo_vo_name) {
+        this.usersInfo_vo_name = usersInfo_vo_name;
+    }
+
+    public String getUsersInfo_vo_name() {
+        return usersInfo_vo_name;
     }
 }
