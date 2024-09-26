@@ -6,8 +6,9 @@
     
         <af:form id="f1">      
             <af:panelFormLayout id="pfl1" styleClass="formLayout">
-                <af:inputText id="it1" value="#{registerBean.email}" label="Email"/>
-            <af:inputText id="it2" value="#{registerBean.password}" label="Password" secret="true"/>
+                <af:inputText id="it1" value="#{registerBean.fullName}" label="Full Name"/>
+                <af:inputText id="it4" value="#{registerBean.email}" label="Email"/>
+                <af:inputText id="it2" value="#{registerBean.password}" label="Password" secret="true"/>
             <af:inputText id="it3" value="#{registerBean.confirm_password}" label="Confirm Password" secret="true"/>
             <af:commandButton id="cb1" text="Register" action="#{registerBean.registerUser}" styleClass="registerButton"/>
           <af:panelGroupLayout>

@@ -138,7 +138,7 @@
                                 <af:panelBox text="Number of orders placed in last 7 days" id="pb11">
                                     <f:facet name="toolbar"/>
                                     <dvt:sparkChart id="sparkchart1" subType="bar" axisScaledFromBaseline="on"
-                                                    inlineStyle="height:120px;width:250px">
+                                                    inlineStyle="height:120px;width:250px" color="#f3ff5a21">
                                         <af:iterator value="#{bindings.OrdersStatsForRestaurantForUserVO1.collectionModel}"
                                                      var="row" id="i1">
                                             <dvt:sparkItem value="#{row.TotalOrders}" id="si3"/>

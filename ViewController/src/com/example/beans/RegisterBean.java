@@ -20,6 +20,7 @@ import oracle.jbo.ViewObject;
 @ManagedBean(name="registerBean")
 public class RegisterBean {
     private String password;
+    private String fullName;
     private String confirm_password;
     private String email;
     private String usersVO_name = "G3UsersVO";
@@ -47,6 +48,7 @@ public class RegisterBean {
         Row newUserRow = vo.createRow();
         newUserRow.setAttribute("Password", encrypted_password);
         newUserRow.setAttribute("Email", email);
+        newUserRow.setAttribute("FullName", fullName);
         newUserRow.setAttribute("Role", default_role);
         vo.insertRow(newUserRow);
         try{
@@ -114,5 +116,13 @@ public class RegisterBean {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 }
