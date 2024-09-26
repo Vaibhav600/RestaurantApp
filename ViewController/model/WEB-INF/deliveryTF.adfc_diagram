@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">delivery_dashboard</property>
+      <property
+         name="x">228.50488</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>delivery_dashboard&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">223.4375</property>
+      <property
+         name="page">/delivery_dashboard.jsf</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+   <TaskFlowReturn
+      id="TaskFlowReturn5">
+      <property
+         name="activityId">logout</property>
+      <property
+         name="x">566.0</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>logout&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  logout&lt;/p></property>
+      <property
+         name="y">236.20312</property>
+      <property
+         name="finish">true</property>
+      <property
+         name="exceptionHandler">false</property>
+   </TaskFlowReturn>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="View2"
+      to="TaskFlowReturn5">
+      <property
+         name="fromOutcome">logout</property>
+      <property
+         name="sdm:polyPoints">R50,269.50488,223.3711,525.0,236.13672,L50</property>
+   </ControlFlowCase>
+</SDM>

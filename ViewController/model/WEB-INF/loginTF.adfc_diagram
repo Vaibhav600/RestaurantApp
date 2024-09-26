@@ -127,29 +127,31 @@
       <property
          name="sdm:polyPoints">T50,162.5,336.51172,335.5,209.23438,B50</property>
    </ControlFlowCase>
-   <View
-      id="View11">
+   <TaskFlowCall
+      id="TaskFlowCall16">
       <property
-         name="activityId">delivery_dashboard</property>
+         name="description">&lt;html>&lt;p>&lt;b>deliveryTF&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Call&lt;/p></property>
       <property
-         name="x">405.50488</property>
+         name="activityId">deliveryTF</property>
       <property
-         name="description">&lt;html>&lt;p>&lt;b>delivery_dashboard&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+         name="x">388.5</property>
       <property
-         name="y">646.3672</property>
+         name="y">652.4336</property>
       <property
-         name="page">/delivery_dashboard.jsf</property>
+         name="documentReference">/WEB-INF/deliveryTF.xml</property>
       <property
          name="exceptionHandler">false</property>
-   </View>
+      <property
+         name="taskFlowId">deliveryTF</property>
+   </TaskFlowCall>
    <ControlFlowCase
       islink="true"
-      id="ControlFlowCase13"
+      id="ControlFlowCase17"
       from="View2"
-      to="View11">
+      to="TaskFlowCall16">
       <property
          name="fromOutcome">goToDelivery</property>
       <property
-         name="sdm:polyPoints">B50,162.5,444.51172,405.50488,592.3008,T50</property>
+         name="sdm:polyPoints">B50,162.5,444.51172,388.5,598.3672,T50</property>
    </ControlFlowCase>
 </SDM>

@@ -28,9 +28,12 @@
       <id>registerTF</id>
     </task-flow-reference>
   </task-flow-call>
-  <view id="delivery_dashboard">
-    <page>/delivery_dashboard.jsf</page>
-  </view>
+  <task-flow-call id="deliveryTF">
+    <task-flow-reference>
+      <document>/WEB-INF/deliveryTF.xml</document>
+      <id>deliveryTF</id>
+    </task-flow-reference>
+  </task-flow-call>
   <control-flow-rule id="__1">
     <from-activity-id>login</from-activity-id>
     <control-flow-case id="__5">
@@ -51,7 +54,7 @@
     </control-flow-case>
     <control-flow-case id="__3">
       <from-outcome>goToDelivery</from-outcome>
-      <to-activity-id>delivery_dashboard</to-activity-id>
+      <to-activity-id>deliveryTF</to-activity-id>
     </control-flow-case>
   </control-flow-rule>
 </adfc-config>

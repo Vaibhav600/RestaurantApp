@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="deliveryTF">
+    <default-activity>delivery_dashboard</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <task-flow-reentry>
+      <reentry-outcome-dependent/>
+    </task-flow-reentry>
+    <view id="delivery_dashboard">
+      <page>/delivery_dashboard.jsf</page>
+    </view>
+    <task-flow-return id="logout">
+      <outcome>
+        <name>logout</name>
+        <reentry-not-allowed/>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__3">
+      <from-activity-id>delivery_dashboard</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>logout</from-outcome>
+        <to-activity-id>logout</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+  </task-flow-definition>
+</adfc-config>

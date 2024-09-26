@@ -9,11 +9,19 @@
         <af:form id="f1">
             <af:panelTabbed position="above" id="pt1">
                 <af:showDetailItem id="home" text="Home">
+                    <af:panelGridLayout id="pgl1">
+                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr1">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc1" halign="end">
+                                <af:button text="Logout" id="b1" action="#{loginBean.doLogout}"/>
+                            </af:gridCell>
+                        </af:gridRow>
+                    </af:panelGridLayout>
                     <af:panelBox text="Orders" id="pb12">
                         <f:facet name="toolbar"/>
                         <af:listView value="#{bindings.DeliveryAgentInfoForUserVO2.collectionModel}" var="item"
                                      emptyText="#{bindings.DeliveryAgentInfoForUserVO2.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                     fetchSize="#{bindings.DeliveryAgentInfoForUserVO2.rangeSize}" id="lv2">
+                                     fetchSize="#{bindings.DeliveryAgentInfoForUserVO2.rangeSize}" id="lv2"
+                                     partialTriggers="b3 b4">
                             <af:listItem id="li2">
                                 <af:panelGridLayout id="pgl2" partialTriggers="b3 b4">
                                     <af:gridRow marginTop="5px" height="auto" id="gr5">
