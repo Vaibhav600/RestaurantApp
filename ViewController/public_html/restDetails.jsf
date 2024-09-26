@@ -135,8 +135,10 @@
                                                   label="Reservation Date"
                                                   required="#{bindings.ReservationTime.hints.mandatory}"
                                                   columns="#{bindings.ReservationTime.hints.displayWidth}"
-                                                  shortDesc="#{bindings.ReservationTime.hints.tooltip}" id="id1">
+                                                  shortDesc="#{bindings.ReservationTime.hints.tooltip}" id="id1"
+                                                  autoSubmit="true">
                                         <f:validator binding="#{bindings.ReservationTime.validator}"/>
+                                        <af:validateDateTimeRange minimum="#{dateValidationBean.currentDate}"/>
                                     </af:inputDate>
                                     <af:selectOneChoice label="Reservation Time Slot" id="soc1"
                                                         value="#{reservationBean.reservation_time}">
