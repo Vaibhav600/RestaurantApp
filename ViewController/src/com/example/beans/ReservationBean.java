@@ -17,6 +17,7 @@ import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCDataControl;
 import oracle.jbo.ApplicationModule;
 import oracle.jbo.Row;
+import oracle.jbo.RowSetIterator;
 import oracle.jbo.ViewObject;
 import oracle.jbo.domain.DBSequence;
 import oracle.jbo.domain.Number;
@@ -48,33 +49,35 @@ public class ReservationBean {
         return null;
     }
     public boolean checkRestaurantSeatsAvailability(Integer restaurant_id, Timestamp reservation_timestamp, ApplicationModule am){
-        
-        ViewObject vo = am.findViewObject(constants.getCheck_rest_availablity_vo_name());
-        vo.setNamedWhereClauseParam("b_rest_id", restaurant_id);
-        vo.setNamedWhereClauseParam("b_reservation_timestamp", reservation_timestamp);
-        vo.executeQuery();
+        ViewObject check_reserve_vo = am.findViewObject(constants.getReserv_check_vo_name());
+        check_reserve_vo.setNamedWhereClauseParam("bRestaurantId", restaurant_id);
+        check_reserve_vo.setNamedWhereClauseParam("bTimeStamp", reservation_timestamp);
+        check_reserve_vo.executeQuery();
 
-        Row currRow = vo.first();
-        Number totalReservedSeats = new Number(0);
-        Number totalSeats = new Number(0);
+        // Get Total Tables Reserved For given date and time
+        RowSetIterator rsi = check_reserve_vo.createRowSetIterator(null);
+        int totalTablesReserved = 0;
+        while (rsi.hasNext()) {
+            Row currentRow = rsi.next();
+            Integer tableSize = (Integer) currentRow.getAttribute("TableSize");
+            totalTablesReserved += tableSize;
+        }
+        rsi.closeRowSetIterator();
 
-        if(currRow != null){
-            totalReservedSeats = (Number)currRow.getAttribute("TotalReservedSeats");
-            totalSeats = (Number)currRow.getAttribute("TotalSeats");
-        }
+        System.out.println("Total tables reserved: " + totalTablesReserved);
+        System.out.println("Restaurant Id: " + restaurant_id);
+        ViewObject rest_vo = am.findViewObject("GetRestTotalSeatsCount_VO");
+        rest_vo.setNamedWhereClauseParam("set_rest_id", restaurant_id);
+        rest_vo.executeQuery();
         
-        System.out.println("totalSeats: " + totalSeats);
-        System.out.println("totalReservedSeats: " + totalReservedSeats);
+        Row row = rest_vo.first();
+        Number total_seats = (Number)row.getAttribute("AvailableSeats");
+
+        System.out.println("Total Number of Seats for this restaurant: " + total_seats.intValue());
+        int guests = Integer.parseInt(number_of_guests);
         
-        try {
-            if ((totalSeats.subtract(totalReservedSeats)).subtract(new Number(number_of_guests)).compareTo(new Number(0)) > 0){                
-                return true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error in try catch: check checkRestaurantSeatsAvailability method in ReservationBean");
-        }
-        
+        if((total_seats.intValue() - totalTablesReserved) - guests > 0)
+            return true;        
         return false;
     }
     public boolean createBooking(Integer selectedRestaurantId, Timestamp reservation_timestamp, ApplicationModule am){

@@ -30,10 +30,18 @@ public class ConstantBean {
     private String to_deliver_orders_vo = "ToDeliverOrdersForRestaurantVO";
     private String to_deliver_order_by_agent_vo_iter = "ToDeliverOrderByAgentVO1Iterator";
     private String to_deliver_orders_vo_iter = "ToDeliverOrdersForRestaurantVOIterator";
-
     private String check_rest_availablity_vo_name = "CheckRestAvailability_ForCustApp_VO";
     private String rest_to_cust_dashboard_navigation = "goToCustomerDashboard";
+    private String reserv_check_vo_name = "ReservationCheck_forCustApp_VO";
 
+
+    public void setReserv_check_vo_name(String reserv_check_vo_name) {
+        this.reserv_check_vo_name = reserv_check_vo_name;
+    }
+
+    public String getReserv_check_vo_name() {
+        return reserv_check_vo_name;
+    }
 
     public void setRest_to_cust_dashboard_navigation(String rest_to_cust_dashboard_navigation) {
         this.rest_to_cust_dashboard_navigation = rest_to_cust_dashboard_navigation;

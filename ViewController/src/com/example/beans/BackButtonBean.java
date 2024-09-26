@@ -31,14 +31,8 @@ public class BackButtonBean {
             DCDataControl dataControl = bindings.getDataControl();
             ApplicationModule am = (ApplicationModule) dataControl.getDataProvider();
 
-            //        DCIteratorBinding iter = bindings.findIteratorBinding("RestaurantVO_ForCustAppIterator");
-            //        ViewObject vo = iter.getViewObject();
             ViewObject vo = am.findViewObject("RestaurantVO_ForCustApp");
-            //vo.removeNamedWhereClauseParam("bRestName");
-            vo.setNamedWhereClauseParam("bRestName", null);
-            //vo.getViewCriteriaManager().removeViewCriteria("searchRestByNameVC");
-            
-            //vo.removeNamedWhereClauseParam("bRestName");
+            vo.setNamedWhereClauseParam("bRestName", null);            
             vo.executeQuery();
 
             return constants.getRest_to_cust_dashboard_navigation();
