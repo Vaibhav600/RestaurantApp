@@ -147,9 +147,12 @@
                                         <af:selectItem label="6:00 PM to 8:00 PM" value="18" id="si5"/>
                                         <af:selectItem label="8:00 PM to 10:00 PM" value="20" id="si6"/>
                                     </af:selectOneChoice>
-                                    <af:button text="Book Now" id="b1" action="#{reservationBean.bookReservation}"/>
-                                    <af:button text="Check Availability" id="b5"
-                                               action="#{reservationBean.checkAvailabilityButton}"/>
+                                    <af:panelGroupLayout id="pgl3">
+                                        <af:button text="Add to Cart" id="b1" action="#{reservationBean.bookReservation}"
+                                                   inlineStyle="margin-right: 10px;"/>
+                                        <af:button text="Check Availability" id="b5"
+                                                   action="#{reservationBean.checkAvailabilityButton}"/>
+                                    </af:panelGroupLayout>
                                     <af:outputText value="Available Seats - #{reservationBean.availability}" id="ot5"
                                                    partialTriggers="b5"/>
                                 </af:panelFormLayout>

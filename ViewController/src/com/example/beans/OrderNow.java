@@ -200,7 +200,7 @@ public class OrderNow {
             // Now update the OrderTotal attribute in the E3OrdersVO
             updateTotalAmountInOrdersTable(order_id, order_total_amount, orders_vo, am);
 
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Order Created Successfully"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Items Added to Cart Successfully"));
     }
     
     public OrderNow() {

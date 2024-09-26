@@ -48,11 +48,9 @@ GROUP BY
     r.status,
     r.address,
     r.created_at,
-    r.updated_at,
-    rr.rating
+    r.updated_at
 ORDER BY 
-    r.restaurant_id, 
-    rr.rating]]></SQLQuery>
+    r.restaurant_id]]></SQLQuery>
   <EntityUsage
     Name="G3RestaurantsEO"
     Entity="model.services.entities.G3RestaurantsEO"/>
