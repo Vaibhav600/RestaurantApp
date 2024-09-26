@@ -20,6 +20,7 @@
                   Binds="G3UsersVOIterator" id="SearchUserQuery"/>
     <iterator Binds="RevenueForRestaurant" RangeSize="10" DataControl="AppModuleDataControl"
               id="RevenueForRestaurantIterator"/>
+    <iterator Binds="SuperAdminUsers" RangeSize="25" DataControl="AppModuleDataControl" id="SuperAdminUsersIterator"/>
   </executables>
   <bindings>
     <tree IterBinding="G3RestaurantsVOIterator" id="G3RestaurantsVO">
@@ -91,12 +92,6 @@
     </tree>
     <list IterBinding="G3RestaurantsVOIterator" StaticList="false" Uses="LOV_OwnerId" id="OwnerId1"
           DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
-    <list IterBinding="G3UsersVOIterator" ListOperMode="navigation" ListIter="G3UsersVOIterator" id="G3UsersVO"
-          DTSupportsMRU="true" SelectItemValueMode="ListObject">
-      <AttrNames>
-        <Item Value="t_owner_id"/>
-      </AttrNames>
-    </list>
     <action IterBinding="G3RestaurantsVOIterator" id="CreateWithParams" RequiresUpdateModel="true"
             Action="createWithParams"/>
     <action id="Commit" DataControl="AppModuleDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
@@ -144,5 +139,11 @@
         <Item Value="TotalRevenue"/>
       </AttrNames>
     </attributeValues>
+    <list IterBinding="SuperAdminUsersIterator" ListOperMode="navigation" ListIter="SuperAdminUsersIterator"
+          id="SuperAdminUsers" DTSupportsMRU="true" SelectItemValueMode="ListObject">
+      <AttrNames>
+        <Item Value="UserId"/>
+      </AttrNames>
+    </list>
   </bindings>
 </pageDefinition>

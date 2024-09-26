@@ -473,12 +473,6 @@
                                 <f:validator binding="#{bindings.RestaurantId.validator}"/>
                                 <af:convertNumber groupingUsed="false" pattern="#{bindings.RestaurantId.format}"/>
                             </af:inputText>
-                            <af:selectOneChoice value="#{bindings.OwnerId.inputValue}" label="#{bindings.OwnerId.label}"
-                                                required="#{bindings.OwnerId.hints.mandatory}"
-                                                shortDesc="#{bindings.OwnerId.hints.tooltip}" id="soc1">
-                                <f:selectItems value="#{bindings.G3UsersVO.items}" id="si1"/>
-                                <f:validator binding="#{bindings.G3UsersVO.validator}"/>
-                            </af:selectOneChoice>
                             <af:inputText value="#{bindings.Name.inputValue}" label="#{bindings.Name.hints.label}"
                                           required="#{bindings.Name.hints.mandatory}"
                                           columns="#{bindings.Name.hints.displayWidth}"
@@ -540,11 +534,13 @@
             <af:popup childCreation="deferred" autoCancel="disabled" id="add_rest_popup">
                 <af:panelWindow id="pw1" stretchChildren="first">
                     <af:panelFormLayout id="pfl1" inlineStyle="width:auto; height:auto;">
-                        <af:selectOneChoice value="#{addRestaurantBean.owner_id}" label="Owner ID"
-                                            required="#{bindings.G3UsersVO.hints.mandatory}"
-                                            shortDesc="#{bindings.G3UsersVO.hints.tooltip}" id="soc2">
-                            <f:selectItems value="#{bindings.G3UsersVO.items}" id="si2"/>
-                            <f:validator binding="#{bindings.G3UsersVO.validator}"/>
+                        <af:selectOneChoice value="#{bindings.SuperAdminUsers.inputValue}"
+                                            label="Owner ID"
+                                            required="#{bindings.SuperAdminUsers.hints.mandatory}"
+                                            shortDesc="#{bindings.SuperAdminUsers.hints.tooltip}" id="soc3"
+                                            valueChangeListener="#{addRestaurantBean.changeOwnerId}" autoSubmit="true">
+                            <f:selectItems value="#{bindings.SuperAdminUsers.items}" id="si3"/>
+                            <f:validator binding="#{bindings.SuperAdminUsers.validator}"/>
                         </af:selectOneChoice>
                         <af:inputText value="#{addRestaurantBean.name}" label="Name"
                                       required="#{bindings.Name.hints.mandatory}"
@@ -585,7 +581,7 @@
                             <f:validator binding="#{bindings.Status.validator}"/>
                         </af:inputText>
                         <af:inputFile label="Restaurant Image" id="if1" value="#{addRestaurantBean.restImage}"/>
-                        <af:button text="Add" disabled="#{!bindings.CreateWithParams15.enabled}" id="b3" action="#{addRestaurantBean.addRestaurant}"/>
+                        <af:button text="Add" disabled="#{!bindings.CreateWithParams.enabled}" id="b33" action="#{addRestaurantBean.addRestaurant}"/>
                     </af:panelFormLayout>
                 </af:panelWindow>
             </af:popup>

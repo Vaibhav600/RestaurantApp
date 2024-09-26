@@ -35,7 +35,15 @@ public class ConstantBean {
     private String total_seats_restaurant_vo = "TotalReservedSeatsOfRestaurantForUserVO";
     private String reservation_of_customer_for_restaurant = "ReservationOfCustomerForRestForUserVO";
     private String reserv_check_vo_name = "ReservationCheck_forCustApp_VO";
+    private String super_admin_users_vo = "SuperAdminUsers";
 
+    public void setSuper_admin_users_vo(String super_admin_users_vo) {
+        this.super_admin_users_vo = super_admin_users_vo;
+    }
+
+    public String getSuper_admin_users_vo() {
+        return super_admin_users_vo;
+    }
 
     public void setReserv_check_vo_name(String reserv_check_vo_name) {
         this.reserv_check_vo_name = reserv_check_vo_name;

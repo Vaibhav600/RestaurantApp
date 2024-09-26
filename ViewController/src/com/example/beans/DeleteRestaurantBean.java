@@ -74,6 +74,23 @@ public class DeleteRestaurantBean {
                Row currentRow = restaurants_vo.getCurrentRow();
 
                if (currentRow != null) {
+                   Integer owner_id = (Integer) currentRow.getAttribute("OwnerId");
+                   
+                   ViewObject users_vo = am.findViewObject(constants.getSuper_admin_users_vo());
+                   users_vo.setWhereClause("G3UsersEO.USER_ID = :owner_id");
+                   users_vo.defineNamedWhereClauseParam("owner_id", null, null);
+                   users_vo.setNamedWhereClauseParam("owner_id", owner_id);
+                   users_vo.executeQuery();
+                   
+                   Row user=users_vo.first();
+                   
+                   user.setAttribute("Role","customer");
+                   System.out.println(owner_id);
+                   
+                   users_vo.removeNamedWhereClauseParam("owner_id");
+                   users_vo.setWhereClause(null);
+                   users_vo.executeQuery();
+                
                    // Remove the row from the View Object
                    currentRow.remove();
 
