@@ -3,7 +3,7 @@
 <!---->
 <ViewObject
   xmlns="http://xmlns.oracle.com/bc4j"
-  Name="G3ReservationsVO"
+  Name="ReservationCheck_forCustApp_VO"
   Version="12.2.1.11.57"
   InheritPersonalization="merge"
   SelectListFlags="1"
@@ -13,57 +13,23 @@
   CustomQuery="false"
   SelectAllAttributes="false"
   PageIterMode="Full">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="model.services.views.ReservationCheck_forCustApp_VO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
   <Variable
-    Name="reservedRestaurantId"
+    Name="bRestaurantId"
     Kind="viewcriteria"
-    Type="oracle.jbo.domain.Number"/>
+    Type="java.lang.Integer"/>
+  <Variable
+    Name="bTimeStamp"
+    Kind="viewcriteria"
+    Type="java.sql.Timestamp"/>
   <EntityUsage
     Name="G3ReservationsEO"
     Entity="model.services.entities.G3ReservationsEO"/>
-  <ViewAttribute
-    Name="ReservationId"
-    PrecisionRule="true"
-    EntityAttrName="ReservationId"
-    EntityUsage="G3ReservationsEO"
-    AliasName="RESERVATION_ID"
-    IsUpdateable="while_insert"/>
-  <ViewAttribute
-    Name="CustomerId"
-    PrecisionRule="true"
-    EntityAttrName="CustomerId"
-    EntityUsage="G3ReservationsEO"
-    AliasName="CUSTOMER_ID"/>
-  <ViewAttribute
-    Name="RestaurantId"
-    PrecisionRule="true"
-    EntityAttrName="RestaurantId"
-    EntityUsage="G3ReservationsEO"
-    AliasName="RESTAURANT_ID"/>
-  <ViewAttribute
-    Name="TableSize"
-    PrecisionRule="true"
-    EntityAttrName="TableSize"
-    EntityUsage="G3ReservationsEO"
-    AliasName="TABLE_SIZE"/>
-  <ViewAttribute
-    Name="Status"
-    PrecisionRule="true"
-    EntityAttrName="Status"
-    EntityUsage="G3ReservationsEO"
-    AliasName="STATUS"/>
-  <ViewAttribute
-    Name="ReservationTime"
-    PrecisionRule="true"
-    EntityAttrName="ReservationTime"
-    EntityUsage="G3ReservationsEO"
-    AliasName="RESERVATION_TIME">
-    <Properties>
-      <SchemaBasedProperties>
-        <TimeZoneID
-          Value="Asia/Kolkata"/>
-      </SchemaBasedProperties>
-    </Properties>
-  </ViewAttribute>
   <ViewAttribute
     Name="CreatedAt"
     PrecisionRule="true"
@@ -71,14 +37,51 @@
     EntityUsage="G3ReservationsEO"
     AliasName="CREATED_AT"/>
   <ViewAttribute
+    Name="CustomerId"
+    PrecisionRule="true"
+    EntityAttrName="CustomerId"
+    EntityUsage="G3ReservationsEO"
+    AliasName="CUSTOMER_ID"/>
+  <ViewAttribute
+    Name="ReservationId"
+    IsUpdateable="while_insert"
+    PrecisionRule="true"
+    EntityAttrName="ReservationId"
+    EntityUsage="G3ReservationsEO"
+    AliasName="RESERVATION_ID"/>
+  <ViewAttribute
+    Name="ReservationTime"
+    PrecisionRule="true"
+    EntityAttrName="ReservationTime"
+    EntityUsage="G3ReservationsEO"
+    AliasName="RESERVATION_TIME"/>
+  <ViewAttribute
+    Name="RestaurantId"
+    PrecisionRule="true"
+    EntityAttrName="RestaurantId"
+    EntityUsage="G3ReservationsEO"
+    AliasName="RESTAURANT_ID"/>
+  <ViewAttribute
+    Name="Status"
+    PrecisionRule="true"
+    EntityAttrName="Status"
+    EntityUsage="G3ReservationsEO"
+    AliasName="STATUS"/>
+  <ViewAttribute
+    Name="TableSize"
+    PrecisionRule="true"
+    EntityAttrName="TableSize"
+    EntityUsage="G3ReservationsEO"
+    AliasName="TABLE_SIZE"/>
+  <ViewAttribute
     Name="UpdatedAt"
     PrecisionRule="true"
     EntityAttrName="UpdatedAt"
     EntityUsage="G3ReservationsEO"
     AliasName="UPDATED_AT"/>
   <ViewCriteria
-    Name="G3ReservationsVOCriteria"
-    ViewObjectName="model.services.views.G3ReservationsVO"
+    Name="ReservationCheck_forCustApp_VOCriteria"
+    ViewObjectName="model.services.views.ReservationCheck_forCustApp_VO"
     Conjunction="AND">
     <Properties Name="_Props">
       <CustomProperties>
@@ -99,22 +102,29 @@
           Value="InAdvancedMode"/>
       </CustomProperties>
     </Properties>
-    <ViewCriteria
-      Name="G3ReservationsVOSubCriteria1"
-      ViewObjectName="model.services.views.G3ReservationsVO"
-      Conjunction="AND">
-      <ViewCriteriaRow
-        Name="G3ReservationsVOSubCriteria1_row_0"
-        UpperColumns="1">
-        <ViewCriteriaItem
-          Name="RestaurantId"
-          ViewAttribute="RestaurantId"
-          Operator="="
-          Conjunction="AND"
-          Value=":reservedRestaurantId"
-          IsBindVarValue="true"
-          Required="Optional"/>
-      </ViewCriteriaRow>
-    </ViewCriteria>
+    <ViewCriteriaRow
+      Name="ReservationCheck_forCustApp_VOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="ReservationTime"
+        ViewAttribute="ReservationTime"
+        Operator="="
+        Conjunction="AND"
+        Value=":bTimeStamp"
+        IsBindVarValue="true"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="RestaurantId"
+        ViewAttribute="RestaurantId"
+        Operator="="
+        Conjunction="AND"
+        Value=":bRestaurantId"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
   </ViewCriteria>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
 </ViewObject>

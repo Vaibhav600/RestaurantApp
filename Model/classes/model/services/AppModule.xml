@@ -203,6 +203,20 @@
   <ViewUsage
     Name="RatingForRest_forCustApp_VO"
     ViewObjectName="model.services.views.RatingForRest_forCustApp_VO"/>
+  <ViewUsage
+    Name="ReservationCheck_forCustApp_VO"
+    ViewObjectName="model.services.views.ReservationCheck_forCustApp_VO">
+    <ViewCriteriaUsage
+      Name="ReservationCheck_forCustApp_VOCriteria"
+      FullName="model.services.views.ReservationCheck_forCustApp_VO.ReservationCheck_forCustApp_VOCriteria"/>
+  </ViewUsage>
+  <ViewUsage
+    Name="GetRestTotalSeatsCount_VO"
+    ViewObjectName="model.services.views.GetRestTotalSeatsCount_VO">
+    <ViewCriteriaUsage
+      Name="getRestTotalSeatsByIdVC"
+      FullName="model.services.views.GetRestTotalSeatsCount_VO.getRestTotalSeatsByIdVC"/>
+  </ViewUsage>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"

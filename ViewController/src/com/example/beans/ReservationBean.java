@@ -1,27 +1,23 @@
 package com.example.beans;
 
 import java.math.BigDecimal;
-
 import java.sql.SQLException;
 import java.sql.Timestamp;
-
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import javax.faces.context.FacesContext;
-
 import javax.servlet.http.HttpSession;
-
 import oracle.adf.model.BindingContext;
 import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCDataControl;
-
 import oracle.jbo.ApplicationModule;
 import oracle.jbo.Row;
+import oracle.jbo.RowSetIterator;
 import oracle.jbo.ViewObject;
 import oracle.jbo.domain.DBSequence;
 import oracle.jbo.domain.Number;
@@ -33,6 +29,7 @@ public class ReservationBean {
     private String number_of_guests;
     private String reservation_date;
     private String reservation_time;
+    private String availability;
 
     ConstantBean constants = new ConstantBean();
 
@@ -52,75 +49,33 @@ public class ReservationBean {
         }
         return null;
     }
-    
-//    public boolean updateRestaurantSeatCount(Integer restaurant_id, ApplicationModule am){
-//        ViewObject rest_vo = am.findViewObject(constants.getRestaurant_vo_name());
-//        rest_vo.setWhereClause("G3RestaurantsEO.RESTAURANT_ID = :restId");
-//        rest_vo.defineNamedWhereClauseParam("restId", null, null);
-//        rest_vo.setNamedWhereClauseParam("restId", restaurant_id);
-//        rest_vo.executeQuery();
-//        Row restaurant_row = rest_vo.first();
-//        
-//        boolean canAccommodateRequiredSeats = false;
-//        int seats_required = Integer.parseInt(number_of_guests);
-//        
-//        if (restaurant_row != null) {
-//            Number seats = (Number)restaurant_row.getAttribute("AvailableSeats");
-//            int seats_available = seats.intValue();
-//                
-//            if(seats_available - seats_required > 0){
-//                int new_available_seats = seats_available - seats_required;
-//                restaurant_row.setAttribute("AvailableSeats", new_available_seats);
-//                am.getTransaction().commit();
-//                canAccommodateRequiredSeats = true;
-//                
-//                System.out.println("Got an Accomodation.");
-//            }
-//            
-//        } else {
-//            FacesContext.getCurrentInstance().addMessage(null,
-//                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Restaurant not found."));
-//        }
-//        
-//        // Reset the where clause and parameters to avoid affecting other operations
-//        rest_vo.removeNamedWhereClauseParam("restId");
-//        rest_vo.setWhereClause(null);
-//        rest_vo.executeQuery();
-//        
-//        return canAccommodateRequiredSeats;
-//    }
-    public boolean checkRestaurantSeatsAvailability(Integer restaurant_id, ApplicationModule am){
-        /*  For a particular restaurant (restaurant_id = 1)
-         *  TimeSlot = 10 - 12
-         *  Date = 25 sept 
-         *  total seats = 58
-         * */
-        
-        ViewObject vo = am.findViewObject(constants.getCheck_rest_availablity_vo_name());
-        vo.setNamedWhereClauseParam("b_rest_id", restaurant_id);
-        // vo.executeQuery();
+    public boolean checkRestaurantSeatsAvailability(Integer restaurant_id, Timestamp reservation_timestamp, ApplicationModule am){
+        ViewObject check_reserve_vo = am.findViewObject(constants.getReserv_check_vo_name());
+        check_reserve_vo.setNamedWhereClauseParam("bRestaurantId", restaurant_id);
+        check_reserve_vo.setNamedWhereClauseParam("bTimeStamp", reservation_timestamp);
+        check_reserve_vo.executeQuery();
 
-        Row currRow = vo.first();
-        Number totalReservedSeats = (Number)currRow.getAttribute("TotalReservedSeats");
-        Number totalSeats = (Number)currRow.getAttribute("TotalSeats");
-    
-
-        try {
-            System.out.println("numberOfGuests: " + number_of_guests);
-            System.out.println("totalSeats: " + totalSeats);
-            System.out.println("totalReservedSeats: " + totalReservedSeats);
-            System.out.println("totalSeats - totalReservedSeats: " + totalSeats.subtract(totalReservedSeats));
-            System.out.println((totalSeats.subtract(totalReservedSeats)).subtract(new Number(number_of_guests)));
-            System.out.println("If condition result: " + totalSeats.subtract(totalReservedSeats).subtract(new Number(number_of_guests)).compareTo(new Number(0)));
-
-            if ((totalSeats.subtract(totalReservedSeats)).subtract(new Number(number_of_guests)).compareTo(new Number(0)) > 0){                
-                return true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error in try catch: check checkRestaurantSeatsAvailability method in ReservationBean");
+        // Get Total Tables Reserved For given date and time
+        RowSetIterator rsi = check_reserve_vo.createRowSetIterator(null);
+        int totalTablesReserved = 0;
+        while (rsi.hasNext()) {
+            Row currentRow = rsi.next();
+            Integer tableSize = (Integer) currentRow.getAttribute("TableSize");
+            totalTablesReserved += tableSize;
         }
+        rsi.closeRowSetIterator();
         
+        // Get Total Seats For A Restaurant
+        ViewObject rest_vo = am.findViewObject("GetRestTotalSeatsCount_VO");
+        rest_vo.setNamedWhereClauseParam("set_rest_id", restaurant_id);
+        rest_vo.executeQuery();
+        Row row = rest_vo.first();
+        Number total_seats = (Number)row.getAttribute("AvailableSeats");
+
+        int guests = Integer.parseInt(number_of_guests);
+        
+        if((total_seats.intValue() - totalTablesReserved) - guests > 0)
+            return true;        
         return false;
     }
     public boolean createBooking(Integer selectedRestaurantId, Timestamp reservation_timestamp, ApplicationModule am){
@@ -129,13 +84,14 @@ public class ReservationBean {
         Object userIdObject = session.getAttribute("userId");
         int CustomerId = Integer.parseInt(userIdObject.toString());
     
-        // updateRestaurantSeatCount(selectedRestaurantId, am);
-        boolean is_available = checkRestaurantSeatsAvailability(selectedRestaurantId, am);
-        
+        boolean is_available = checkRestaurantSeatsAvailability(selectedRestaurantId, reservation_timestamp, am);
+
         // Get Reservation VO
         ViewObject reservation_vo = am.findViewObject(constants.getReservation_vo_name());
         
         if(is_available){
+            System.out.println("Creating Booking, bookReservation() method");
+
             Row newUserRow = reservation_vo.createRow();
             newUserRow.setAttribute("CustomerId", CustomerId);
             newUserRow.setAttribute("RestaurantId", selectedRestaurantId);
@@ -157,14 +113,29 @@ public class ReservationBean {
         }
         return false;
     }
-    public String bookReservation(){   
-        // Create Reservation Timestamp
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy H");
-        String dateTime = reservation_date + " " + reservation_time;
+    public static String formatDateString(String date) {
+          String[] parts = date.split("/");
+
+          // Ensure the month and day are two digits
+          String month = parts[0].length() == 1 ? "0" + parts[0] : parts[0];
+          String day = parts[1].length() == 1 ? "0" + parts[1] : parts[1];
+          String year = parts[2]; // Year is assumed to be correct
+
+          // Return the formatted date
+          return month + "/" + day + "/" + year;
+    }
+    public Timestamp getTimestamp(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy H");
+        String dateTime = formatDateString(reservation_date) + " " + reservation_time;
         LocalDateTime localDateTime = LocalDateTime.parse(dateTime, formatter);
-        Timestamp reservation_timestamp = Timestamp.valueOf(localDateTime);
-        
+        ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.of("Asia/Kolkata"));
+        Timestamp reservation_timestamp = Timestamp.from(zonedDateTime.toInstant());
+        return reservation_timestamp;
+    }
+    public String bookReservation(){ 
         ApplicationModule am = getApplicationModule();
+
+        Timestamp reservation_timestamp = getTimestamp();
         
         // Get Selected Restaurant ID
         ViewObject selectedRestVO = am.findViewObject(constants.getRest_for_custApp_vo_name());
@@ -173,6 +144,7 @@ public class ReservationBean {
         Integer selectedRestaurantId = dbSequence.getSequenceNumber().intValue();
                  
         // Create Booking
+        System.out.println("Creating Booking, bookReservation() method");
         boolean booking_successful = createBooking(selectedRestaurantId, reservation_timestamp, am);
         
         if(booking_successful){
@@ -185,6 +157,48 @@ public class ReservationBean {
         return null;
     }
 
+    public String checkAvailabilityButton(){
+        ApplicationModule am = getApplicationModule();
+
+        Timestamp reservation_timestamp = getTimestamp();
+        
+        // Get Selected Restaurant ID
+        ViewObject selectedRestVO = am.findViewObject(constants.getRest_for_custApp_vo_name());
+        Row selectedRestaurant = selectedRestVO.first();
+        DBSequence dbSequence = (DBSequence) selectedRestaurant.getAttribute("RestaurantId");
+        Integer restaurant_id = dbSequence.getSequenceNumber().intValue();
+        
+        ViewObject check_reserve_vo = am.findViewObject(constants.getReserv_check_vo_name());
+        check_reserve_vo.setNamedWhereClauseParam("bRestaurantId", restaurant_id);
+        check_reserve_vo.setNamedWhereClauseParam("bTimeStamp", reservation_timestamp);
+        check_reserve_vo.executeQuery();
+
+        // Get Total Tables Reserved For given date and time
+        RowSetIterator rsi = check_reserve_vo.createRowSetIterator(null);
+        int totalTablesReserved = 0;
+        while (rsi.hasNext()) {
+            Row currentRow = rsi.next();
+            Integer tableSize = (Integer) currentRow.getAttribute("TableSize");
+            totalTablesReserved += tableSize;
+        }
+        rsi.closeRowSetIterator();
+        
+        // Get Total Seats For A Restaurant
+        ViewObject rest_vo = am.findViewObject("GetRestTotalSeatsCount_VO");
+        rest_vo.setNamedWhereClauseParam("set_rest_id", restaurant_id);
+        rest_vo.executeQuery();
+        Row row = rest_vo.first();
+        Number total_seats = (Number)row.getAttribute("AvailableSeats");
+        
+        int availability = total_seats.intValue() - totalTablesReserved;
+        
+        setAvailability(String.valueOf(availability));
+        
+        System.out.println("Availability: " + availability);
+        
+        return String.valueOf(availability);
+    }
+    
     public void setNumber_of_guests(String number_of_guests) {
         this.number_of_guests = number_of_guests;
     }
@@ -206,5 +220,13 @@ public class ReservationBean {
 
     public String getReservation_time() {
         return reservation_time;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
+    public String getAvailability() {
+        return availability;
     }
 }

@@ -27,13 +27,46 @@
                                                    inlineStyle="font-size:large;"/>
                                     <af:outputText value="Total Seats - #{bindings.AvailableSeats.inputValue}"
                                                    shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="ot3"
-                                                   inlineStyle="font-size:large;">
+                                                   inlineStyle="font-size:large;" rendered="false">
                                         <af:convertNumber groupingUsed="false"
                                                           pattern="#{bindings.AvailableSeats.format}"/>
                                     </af:outputText>
                                     <af:outputText value="#{bindings.Address.inputValue}"
                                                    shortDesc="#{bindings.Address.hints.tooltip}" id="ot2"
                                                    inlineStyle="font-size:large;"/>
+                                    <af:listView value="#{bindings.CheckRestAvailability_ForCustApp_VO.collectionModel}"
+                                                 var="item"
+                                                 emptyText="#{bindings.CheckRestAvailability_ForCustApp_VO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                 fetchSize="#{bindings.CheckRestAvailability_ForCustApp_VO.rangeSize}"
+                                                 id="lv1" rendered="false">
+                                        <af:listItem id="li1">
+                                            <af:panelGroupLayout layout="vertical" id="pgl2">
+                                                <f:facet name="separator">
+                                                    <af:spacer width="10" id="s1"/>
+                                                </f:facet>
+                                                <af:outputFormatted value="#{item.bindings.RestaurantId.inputValue}"
+                                                                    id="of1" rendered="false">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CheckRestAvailability_ForCustApp_VO.hints.RestaurantId.format}"/>
+                                                </af:outputFormatted>
+                                                <af:outputFormatted value="Total Seats - #{item.bindings.TotalSeats.inputValue}"
+                                                                    id="of2" inlineStyle="font-size:large;">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CheckRestAvailability_ForCustApp_VO.hints.TotalSeats.format}"/>
+                                                </af:outputFormatted>
+                                                <af:outputFormatted value="Reserved Seats - #{item.bindings.TotalReservedSeats.inputValue}"
+                                                                    id="of3" inlineStyle="font-size:large;">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CheckRestAvailability_ForCustApp_VO.hints.TotalReservedSeats.format}"/>
+                                                </af:outputFormatted>
+                                                <af:outputFormatted value="Available Seats - #{item.bindings.AvailableSeats.inputValue}"
+                                                                    id="of4" inlineStyle="font-size:large;">
+                                                    <af:convertNumber groupingUsed="false"
+                                                                      pattern="#{bindings.CheckRestAvailability_ForCustApp_VO.hints.AvailableSeats.format}"/>
+                                                </af:outputFormatted>
+                                            </af:panelGroupLayout>
+                                        </af:listItem>
+                                    </af:listView>
                                 </af:panelFormLayout>
                             </af:showDetailItem>
                             <af:showDetailItem id="Review" text="Review"/>
@@ -102,9 +135,10 @@
                                                   label="Reservation Date"
                                                   required="#{bindings.ReservationTime.hints.mandatory}"
                                                   columns="#{bindings.ReservationTime.hints.displayWidth}"
-                                                  shortDesc="#{bindings.ReservationTime.hints.tooltip}" id="id1">
+                                                  shortDesc="#{bindings.ReservationTime.hints.tooltip}" id="id1"
+                                                  autoSubmit="true">
                                         <f:validator binding="#{bindings.ReservationTime.validator}"/>
-                                        <af:convertDateTime pattern="#{bindings.ReservationTime.format}"/>
+                                        <af:validateDateTimeRange minimum="#{dateValidationBean.currentDate}"/>
                                     </af:inputDate>
                                     <af:selectOneChoice label="Reservation Time Slot" id="soc1"
                                                         value="#{reservationBean.reservation_time}">
@@ -115,7 +149,14 @@
                                         <af:selectItem label="6:00 PM to 8:00 PM" value="18" id="si5"/>
                                         <af:selectItem label="8:00 PM to 10:00 PM" value="20" id="si6"/>
                                     </af:selectOneChoice>
-                                    <af:button text="Book Now" id="b1" action="#{reservationBean.bookReservation}"/>
+                                    <af:panelGroupLayout id="pgl3">
+                                        <af:button text="Add to Cart" id="b1" action="#{reservationBean.bookReservation}"
+                                                   inlineStyle="margin-right: 10px;"/>
+                                        <af:button text="Check Availability" id="b5"
+                                                   action="#{reservationBean.checkAvailabilityButton}"/>
+                                    </af:panelGroupLayout>
+                                    <af:outputText value="Available Seats - #{reservationBean.availability}" id="ot5"
+                                                   partialTriggers="b5"/>
                                 </af:panelFormLayout>
                             </af:showDetailItem>
                         </af:panelTabbed>

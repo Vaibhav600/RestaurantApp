@@ -78,7 +78,7 @@
       <property
          name="description">&lt;html>&lt;p>&lt;b>logout&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  logout&lt;/p></property>
       <property
-         name="y">361.26953</property>
+         name="y">361.20312</property>
       <property
          name="finish">true</property>
       <property
@@ -92,7 +92,7 @@
       <property
          name="fromOutcome">logout</property>
       <property
-         name="sdm:polyPoints">R51,223.56348,218.74219,298.0,361.20312,L50</property>
+         name="sdm:polyPoints">R58,156.06348,222.24219,298.0,361.13672,L50</property>
    </ControlFlowCase>
    <ControlFlowCase
       islink="true"
