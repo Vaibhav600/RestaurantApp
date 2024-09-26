@@ -45,27 +45,47 @@ public class HandleBookingsBean {
     }
     
     public String removeBooking(){
+        System.out.println("Booking Id: "+this.getReservationId());
         ApplicationModule am = getApplicationModule();
         ViewObject vo = am.findViewObject(constants.getReservation_vo_name());
-        Row rowToDelete = null;
-        for (Row row : vo.getAllRowsInRange()) {
-            DBSequence rowItemId = (DBSequence) row.getAttribute("ReservationId"); // Use correct attribute name for ItemId
-            String item = rowItemId.toString(); // Replace with actual attribute name
-            if (item.equals(this.reservationId)) {
-                rowToDelete = row;
-                break;
-            }
-        }
-        if (rowToDelete != null) {
-            rowToDelete.remove();
-            System.out.println("Menu item removed: " + this.reservationId);
-            am.getTransaction().commit();
-            System.out.println("Transaction committed.");
-        } else {
-            System.out.println("Reservation not found.");
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failed", null));
+        ViewObject totalSeatsVO = am.findViewObject(constants.getTotal_seats_restaurant_vo());
+        ViewObject bookingsVO = am.findViewObject(constants.getReservation_of_customer_for_restaurant());
+        // Create a query to find the reservation with the given reservationId
+        vo.setWhereClause("RESERVATION_ID = :resId");
+        vo.defineNamedWhereClauseParam("resId", null, null);
+        vo.setNamedWhereClauseParam("resId", this.reservationId);
+           
+       vo.executeQuery();
+       
+       Row rowToDelete = null;
+       
+       // Check if there are rows matching the query
+       if (vo.hasNext()) {
+           rowToDelete = vo.next();
+       }
+       
+       // Delete the row if it exists
+       if (rowToDelete != null) {
+           rowToDelete.remove();
+           System.out.println("Booking removed: " + this.reservationId);
+           
+           // Commit the transaction
+           am.getTransaction().commit();
+           
+           // Refresh the view objects
+           totalSeatsVO.executeQuery();
+            
+           vo.removeNamedWhereClauseParam("resId");
+           vo.setWhereClause(null);
+           vo.executeQuery();
+           bookingsVO.executeQuery();
 
-        }
+            
+           
+           System.out.println("Transaction committed.");
+       } else {
+           System.out.println("Reservation not found.");
+       }
         return null;
         
     }

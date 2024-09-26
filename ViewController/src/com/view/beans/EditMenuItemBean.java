@@ -54,14 +54,14 @@ public class EditMenuItemBean {
         ViewObject menusVO = am.findViewObject(constants.getMenu_restaurant_vo());
         
         Row rowToDelete = null;
-            for (Row row : menusVO.getAllRowsInRange()) {
-                DBSequence rowItemId = (DBSequence) row.getAttribute("ItemId"); // Use correct attribute name for ItemId
-                            String item = rowItemId.toString(); // Replace with actual attribute name
-                if (item.equals(this.menuItem)) {
-                    rowToDelete = row;
-                    break;
-                }
+        for (Row row : menusVO.getAllRowsInRange()) {
+            DBSequence rowItemId = (DBSequence) row.getAttribute("ItemId"); // Use correct attribute name for ItemId
+                        String item = rowItemId.toString(); // Replace with actual attribute name
+            if (item.equals(this.menuItem)) {
+                rowToDelete = row;
+                break;
             }
+        }
 
         
             if (rowToDelete != null) {

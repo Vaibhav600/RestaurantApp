@@ -27,7 +27,7 @@
   </ViewLinkDefEnd>
   <ViewLinkDefEnd
     Name="TotalReservedSeatsOfRestaurantVO"
-    Cardinality="1"
+    Cardinality="-1"
     Owner="model.services.views.TotalReservedSeatsOfRestaurantVO">
     <DesignTime>
       <Attr Name="_isUpdateable" Value="true"/>

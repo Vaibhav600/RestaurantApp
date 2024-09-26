@@ -22,8 +22,6 @@
               id="CustomerFeedbackToRestaurantVOIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="ReviewForRestaurantForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
               id="ReviewForRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
-    <iterator Binds="ReservationOfCustomerForRestForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
-              id="ReservationOfCustomerForRestForUserVOIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="TotalReservedSeatsOfRestaurantForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
               id="TotalReservedSeatsOfRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
     <searchRegion Binds="G3MenuItemsVOIterator" Criteria="G3MenuItemsVOCriteria"
@@ -44,6 +42,8 @@
               id="RevenueOfRestaurantForUserVOIterator" ChangeEventPolicy="ppr"/>
     <iterator Binds="ToDeliverOrderByAgentVO1" RangeSize="25" DataControl="AppModuleDataControl"
               id="ToDeliverOrderByAgentVO1Iterator"/>
+    <iterator Binds="ReservationOfCustomerForRestForUserVO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="ReservationOfCustomerForRestForUserVOIterator" ChangeEventPolicy="ppr"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="G3UsersVOIterator" id="CreatedAt">
@@ -159,26 +159,6 @@
         </AttrNames>
       </nodeDefinition>
     </tree>
-    <tree IterBinding="ReservationOfCustomerForRestForUserVOIterator" id="ReservationOfCustomerForRestForUserVO">
-      <nodeDefinition DefName="model.services.views.ReservationOfCustomerForRestVO"
-                      Name="ReservationOfCustomerForRestForUserVO0">
-        <AttrNames>
-          <Item Value="FullName"/>
-          <Item Value="Reserved_Seats"/>
-          <Item Value="ReservationTime"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
-    <attributeValues IterBinding="TotalReservedSeatsOfRestaurantForUserVOIterator" id="TotalSeats">
-      <AttrNames>
-        <Item Value="TotalSeats"/>
-      </AttrNames>
-    </attributeValues>
-    <attributeValues IterBinding="TotalReservedSeatsOfRestaurantForUserVOIterator" id="TotalReservedSeats">
-      <AttrNames>
-        <Item Value="TotalReservedSeats"/>
-      </AttrNames>
-    </attributeValues>
     <attributeValues IterBinding="TotalReservedSeatsOfRestaurantForUserVOIterator" id="AvailableSeats">
       <AttrNames>
         <Item Value="AvailableSeats"/>
@@ -311,5 +291,39 @@
         <Item Value="AgentId"/>
       </AttrNames>
     </list>
+    <tree IterBinding="ReservationOfCustomerForRestForUserVOIterator" id="ReservationOfCustomerForRestForUserVO">
+      <nodeDefinition DefName="model.services.views.ReservationOfCustomerForRestVO"
+                      Name="ReservationOfCustomerForRestForUserVO0">
+        <AttrNames>
+          <Item Value="FullName"/>
+          <Item Value="ReservationId"/>
+          <Item Value="Reserved_Seats"/>
+          <Item Value="Status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="TotalReservedSeatsOfRestaurantForUserVOIterator" id="TotalReservedSeatsOfRestaurantForUserVO">
+      <nodeDefinition DefName="model.services.views.TotalReservedSeatsOfRestaurantVO"
+                      Name="TotalReservedSeatsOfRestaurantForUserVO0">
+        <AttrNames>
+          <Item Value="RestaurantId"/>
+          <Item Value="TotalSeats"/>
+          <Item Value="ReservationTime"/>
+          <Item Value="TotalReservedSeats"/>
+          <Item Value="AvailableSeats"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="TotalReservedSeatsOfRestaurantForUserVOIterator" id="TotalReservedSeatsOfRestaurantForUserVO1">
+      <nodeDefinition DefName="model.services.views.TotalReservedSeatsOfRestaurantVO"
+                      Name="TotalReservedSeatsOfRestaurantForUserVO10">
+        <AttrNames>
+          <Item Value="TotalSeats"/>
+          <Item Value="TotalReservedSeats"/>
+          <Item Value="AvailableSeats"/>
+          <Item Value="ReservationTime"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
   </bindings>
 </pageDefinition>

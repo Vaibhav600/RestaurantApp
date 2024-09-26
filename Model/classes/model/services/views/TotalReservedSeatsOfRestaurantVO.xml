@@ -18,20 +18,22 @@
         ResId="model.services.views.TotalReservedSeatsOfRestaurantVO_LABEL"/>
     </SchemaBasedProperties>
   </Properties>
-  <SQLQuery><![CDATA[SELECT 
-    rt.restaurant_id,
-    rt.available_seats AS total_seats,
-    COALESCE(SUM(r.table_size), 0) AS total_reserved_seats,
-    (rt.available_seats - COALESCE(SUM(r.table_size), 0)) AS available_seats
-FROM 
-    g3_restaurants rt
-LEFT JOIN 
-    g3_reservations r 
-ON 
-    rt.restaurant_id = r.restaurant_id 
-
-GROUP BY 
-    rt.restaurant_id, rt.available_seats]]></SQLQuery>
+  <SQLQuery><![CDATA[SELECT
+    r.restaurant_id,
+    r.available_seats as total_seats,
+    res.reservation_time,
+    SUM(res.table_size) AS total_reserved_seats,
+    (r.available_seats - SUM(res.table_size)) AS available_seats
+FROM
+    g3_restaurants r
+JOIN
+    g3_reservations res ON r.restaurant_id = res.restaurant_id
+GROUP BY
+    r.restaurant_id,
+    res.reservation_time,
+    r.available_seats
+ORDER BY
+    res.reservation_time]]></SQLQuery>
   <ViewAttribute
     Name="RestaurantId"
     IsUpdateable="false"
@@ -54,6 +56,27 @@ GROUP BY
     AliasName="TOTAL_SEATS"
     Expression="TOTAL_SEATS"
     SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="ReservationTime"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.sql.Timestamp"
+    ColumnType="TIMESTAMP"
+    AliasName="RESERVATION_TIME"
+    Expression="RESERVATION_TIME"
+    SQLType="TIMESTAMP">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="model.services.views.TotalReservedSeatsOfRestaurantVO.ReservationTime_LABEL"/>
+        <FMT_FORMAT
+          ResId="model.services.views.TotalReservedSeatsOfRestaurantVO.ReservationTime_FMT_FORMAT"/>
+        <FMT_FORMATTER
+          ResId="model.services.views.TotalReservedSeatsOfRestaurantVO.ReservationTime_FMT_FORMATTER"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
   <ViewAttribute
     Name="TotalReservedSeats"
     IsUpdateable="false"

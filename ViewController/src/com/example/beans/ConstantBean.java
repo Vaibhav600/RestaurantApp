@@ -33,6 +33,8 @@ public class ConstantBean {
 
     private String check_rest_availablity_vo_name = "CheckRestAvailability_ForCustApp_VO";
     private String rest_to_cust_dashboard_navigation = "goToCustomerDashboard";
+    private String total_seats_restaurant_vo = "TotalReservedSeatsOfRestaurantForUserVO";
+    private String reservation_of_customer_for_restaurant = "ReservationOfCustomerForRestForUserVO";
 
 
     public void setRest_to_cust_dashboard_navigation(String rest_to_cust_dashboard_navigation) {
@@ -185,5 +187,13 @@ public class ConstantBean {
 
     public String getDelivery_agent_vo_criteria() {
         return delivery_agent_vo_criteria;
+    }
+
+    public String getTotal_seats_restaurant_vo() {
+        return total_seats_restaurant_vo;
+    }
+
+    public String getReservation_of_customer_for_restaurant() {
+        return reservation_of_customer_for_restaurant;
     }
 }

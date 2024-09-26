@@ -60,53 +60,78 @@
                         </af:gridRow>
                         <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr16">
                             <af:gridCell marginStart="5px" width="auto" id="gc34" halign="stretch">
-                                <af:panelBox text="Availability" id="pb9">
+                                <af:panelBox text="Availability" id="pb18">
                                     <f:facet name="toolbar"/>
-                                    <af:panelGridLayout id="pgl13">
-                                        <af:gridRow marginTop="0px" height="auto" marginBottom="0px" id="gr17">
-                                            <af:gridCell marginStart="0px" width="50%" id="gc36">
-                                                <af:panelFormLayout id="pfl1">
-                                                    <af:panelLabelAndMessage label="#{bindings.TotalSeats.hints.label}"
-                                                                             id="plam13">
-                                                        <af:outputText value="#{bindings.TotalSeats.inputValue}"
-                                                                       shortDesc="#{bindings.TotalSeats.hints.tooltip}"
-                                                                       id="ot47">
-                                                            <af:convertNumber groupingUsed="false"
-                                                                              pattern="#{bindings.TotalSeats.format}"/>
-                                                        </af:outputText>
-                                                    </af:panelLabelAndMessage>
-                                                    <af:panelLabelAndMessage label="#{bindings.TotalReservedSeats.hints.label}"
-                                                                             id="plam14">
-                                                        <af:outputText value="#{bindings.TotalReservedSeats.inputValue}"
-                                                                       shortDesc="#{bindings.TotalReservedSeats.hints.tooltip}"
-                                                                       id="ot48">
-                                                            <af:convertNumber groupingUsed="false"
-                                                                              pattern="#{bindings.TotalReservedSeats.format}"/>
-                                                        </af:outputText>
-                                                    </af:panelLabelAndMessage>
-                                                    <af:panelLabelAndMessage label="#{bindings.AvailableSeats.hints.label}"
-                                                                             id="plam15">
-                                                        <af:outputText value="#{bindings.AvailableSeats.inputValue}"
-                                                                       shortDesc="#{bindings.AvailableSeats.hints.tooltip}"
-                                                                       id="ot49">
-                                                            <af:convertNumber groupingUsed="false"
-                                                                              pattern="#{bindings.AvailableSeats.format}"/>
-                                                        </af:outputText>
-                                                    </af:panelLabelAndMessage>
-                                                </af:panelFormLayout>
-                                            </af:gridCell>
-                                            <af:gridCell marginStart="0px" width="50%" marginEnd="0px" id="gc37">
-                                                <dvt:statusMeterGauge id="statusMeterGauge2" orientation="circular"
-                                                                      inlineStyle="width:120px;height:120px"
-                                                                      value="#{bindings.TotalReservedSeats.inputValue}"
-                                                                      title="Available: #{bindings.AvailableSeats.inputValue}"
-                                                                      maximum="#{bindings.TotalSeats.inputValue}">
-                                                    <dvt:gaugeThreshold id="thr2" color="#d62800"/>
-                                                    <dvt:gaugeMetricLabel rendered="true" id="gml1"/>
-                                                </dvt:statusMeterGauge>
-                                            </af:gridCell>
-                                        </af:gridRow>
-                                    </af:panelGridLayout>
+                                    <af:listView value="#{bindings.TotalReservedSeatsOfRestaurantForUserVO1.collectionModel}"
+                                                 var="item"
+                                                 emptyText="#{bindings.TotalReservedSeatsOfRestaurantForUserVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                                 fetchSize="#{bindings.TotalReservedSeatsOfRestaurantForUserVO1.rangeSize}"
+                                                 id="lv9" inlineStyle="height:200px">
+                                        <af:listItem id="li9">
+                                            <af:panelGridLayout id="pgl17" dimensionsFrom="auto">
+                                                <af:gridRow marginTop="5px" height="40px" id="gr31">
+                                                    <af:gridCell marginStart="5px" width="300px" id="gc58"
+                                                                 halign="stretch">
+                                                        <af:panelLabelAndMessage label="Total Seats" id="plam21">
+                                                            <af:outputText value="#{item.TotalSeats}"
+                                                                           shortDesc="#{bindings.TotalReservedSeatsOfRestaurantForUserVO1.hints.TotalSeats.tooltip}"
+                                                                           id="ot56">
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.TotalReservedSeatsOfRestaurantForUserVO1.hints.TotalSeats.format}"/>
+                                                            </af:outputText>
+                                                        </af:panelLabelAndMessage>
+                                                    </af:gridCell>
+                                                    <af:gridCell marginStart="5px" rowSpan="4" width="200px"
+                                                                 marginEnd="5px" id="gc59" halign="center">
+                                                        <dvt:statusMeterGauge id="smg2" orientation="circular"
+                                                                              inlineStyle="width:120px;height:120px"
+                                                                              value="#{item.TotalReservedSeats}"
+                                                                              maximum="#{item.TotalSeats}">
+                                                            <dvt:gaugeThreshold id="gt2" color="#d62800"/>
+                                                            <dvt:gaugeMetricLabel rendered="true" id="gml4"/>
+                                                        </dvt:statusMeterGauge>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="40px" id="gr32">
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc60">
+                                                        <af:panelLabelAndMessage label="Reserved Seats" id="plam22">
+                                                            <af:outputText value="#{item.TotalReservedSeats}"
+                                                                           shortDesc="#{bindings.TotalReservedSeatsOfRestaurantForUserVO1.hints.TotalReservedSeats.tooltip}"
+                                                                           id="ot63">
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.TotalReservedSeatsOfRestaurantForUserVO1.hints.TotalReservedSeats.format}"/>
+                                                            </af:outputText>
+                                                        </af:panelLabelAndMessage>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="40px" id="gr33">
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc61">
+                                                        <af:panelLabelAndMessage label="Available Seats" id="plam23">
+                                                            <af:outputText value="#{item.bindings.AvailableSeats.inputValue}"
+                                                                           id="ot64">
+                                                                <af:convertNumber groupingUsed="false"
+                                                                                  pattern="#{bindings.TotalReservedSeatsOfRestaurantForUserVO1.hints.AvailableSeats.format}"/>
+                                                            </af:outputText>
+                                                        </af:panelLabelAndMessage>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                                <af:gridRow marginTop="5px" height="40px" marginBottom="5px" id="gr34">
+                                                    <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                                                                 id="gc62">
+                                                        <af:panelLabelAndMessage label="Reservation Time" id="plam24">
+                                                            <af:outputText value="#{item.ReservationTime}"
+                                                                           shortDesc="#{bindings.TotalReservedSeatsOfRestaurantForUserVO1.hints.ReservationTime.tooltip}"
+                                                                           id="ot65">
+                                                                <af:convertDateTime pattern="#{bindings.TotalReservedSeatsOfRestaurantForUserVO1.hints.ReservationTime.format}"/>
+                                                            </af:outputText>
+                                                        </af:panelLabelAndMessage>
+                                                    </af:gridCell>
+                                                </af:gridRow>
+                                            </af:panelGridLayout>
+                                        </af:listItem>
+                                    </af:listView>
                                 </af:panelBox>
                             </af:gridCell>
                             <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc35">
@@ -415,50 +440,63 @@
                 <af:showDetailItem id="reservation" text="Reservation">
                     <af:panelBox text="Availibility" id="pb6">
                         <f:facet name="toolbar"/>
-                        <af:panelGridLayout id="pgl8">
-                            <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr9">
-                                <af:gridCell marginStart="5px" width="40%" id="gc15">
-                                    <af:panelFormLayout id="pfl5">
-                                        <af:panelLabelAndMessage label="#{bindings.TotalSeats.hints.label}" id="plam5">
-                                            <af:outputText value="#{bindings.TotalSeats.inputValue}"
-                                                           shortDesc="#{bindings.TotalSeats.hints.tooltip}" id="ot4">
-                                                <af:convertNumber groupingUsed="false"
-                                                                  pattern="#{bindings.TotalSeats.format}"/>
-                                            </af:outputText>
-                                        </af:panelLabelAndMessage>
-                                        <af:panelLabelAndMessage label="#{bindings.TotalReservedSeats.hints.label}"
-                                                                 id="plam6">
-                                            <af:outputText value="#{bindings.TotalReservedSeats.inputValue}"
-                                                           shortDesc="#{bindings.TotalReservedSeats.hints.tooltip}"
-                                                           id="ot5">
-                                                <af:convertNumber groupingUsed="false"
-                                                                  pattern="#{bindings.TotalReservedSeats.format}"/>
-                                            </af:outputText>
-                                        </af:panelLabelAndMessage>
-                                        <af:panelLabelAndMessage label="#{bindings.AvailableSeats.hints.label}"
-                                                                 id="plam7">
-                                            <af:outputText value="#{bindings.AvailableSeats.inputValue}"
-                                                           shortDesc="#{bindings.AvailableSeats.hints.tooltip}"
-                                                           id="ot6">
-                                                <af:convertNumber groupingUsed="false"
-                                                                  pattern="#{bindings.AvailableSeats.format}"/>
-                                            </af:outputText>
-                                        </af:panelLabelAndMessage>
-                                    </af:panelFormLayout>
-                                </af:gridCell>
-                                <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc16">
-                                    <dvt:statusMeterGauge id="statusMeterGauge1" orientation="circular"
-                                                          inlineStyle="width:100px;height:100px"
-                                                          value="#{bindings.TotalReservedSeats.inputValue}"
-                                                          maximum="#{bindings.TotalSeats.inputValue}"
-                                                          thresholdDisplay="onIndicator"
-                                                          title="Available: #{bindings.AvailableSeats.inputValue}">
-                                        <dvt:gaugeThreshold id="thr1" color="#d62800"/>
-                                        <dvt:gaugeMetricLabel rendered="true" id="gml2"/>
-                                    </dvt:statusMeterGauge>
-                                </af:gridCell>
-                            </af:gridRow>
-                        </af:panelGridLayout>
+                        <af:carousel currentItemKey="#{bindings.TotalReservedSeatsOfRestaurantForUserVO.treeModel.rootCurrencyRowKey}"
+                                     value="#{bindings.TotalReservedSeatsOfRestaurantForUserVO.treeModel}" var="item"
+                                     id="c1" inlineStyle="height:420px;width:800px">
+                            <f:facet name="nodeStamp">
+                                <af:carouselItem id="ci1"
+                                                 inlineStyle="height:400px; width:550px; border-color:Red; border-right-width:medium;">
+                                    <af:panelBox id="pb17">
+                                        <f:facet name="toolbar"/>
+                                        <af:panelGridLayout id="pgl8">
+                                            <af:gridRow marginTop="5px" height="auto" id="gr9">
+                                                <af:gridCell marginStart="5px" width="300px" marginEnd="5px" id="gc15"
+                                                             halign="center">
+                                                    <af:outputText value="Total Seats: " id="ot57"
+                                                                   inlineStyle="font-weight:bold;"/>
+                                                    <af:outputText value="#{item.TotalSeats}" id="ot58"/>
+                                                </af:gridCell>
+                                            </af:gridRow>
+                                            <af:gridRow marginTop="5px" height="auto" id="gr26">
+                                                <af:gridCell marginStart="5px" width="300px" marginEnd="5px" id="gc53"
+                                                             halign="center">
+                                                    <af:outputText value="Reserved Seats: " id="ot59"
+                                                                   inlineStyle="font-weight:bold;"/>
+                                                    <af:outputText value="#{item.TotalReservedSeats}" id="ot60"/>
+                                                </af:gridCell>
+                                            </af:gridRow>
+                                            <af:gridRow marginTop="5px" height="25px" id="gr27">
+                                                <af:gridCell marginStart="5px" width="300px" marginEnd="5px" id="gc54"
+                                                             halign="center">
+                                                    <af:outputText value="Available Seats: " id="ot61"
+                                                                   inlineStyle="font-weight:bold;"/>
+                                                    <af:outputText value="#{item.AvailableSeats}" id="ot62"/>
+                                                </af:gridCell>
+                                            </af:gridRow>
+                                            <af:gridRow id="gr23" height="50px">
+                                                <af:gridCell id="gc16" halign="center">
+                                                    <af:outputText value="Time Slot: " id="ot4"
+                                                                   inlineStyle="font-weight:bold;"/>
+                                                    <af:outputText value="#{item.ReservationTime}" id="ot5"/>
+                                                </af:gridCell>
+                                            </af:gridRow>
+                                            <af:gridRow marginTop="5px" height="300px" marginBottom="5px" id="gr28">
+                                                <af:gridCell marginStart="5px" width="300px" marginEnd="5px" id="gc55"
+                                                             halign="center">
+                                                    <dvt:statusMeterGauge id="smg1" orientation="circular"
+                                                                          inlineStyle="width:150px;height:150px"
+                                                                          value="#{item.TotalReservedSeats}"
+                                                                          maximum="#{item.TotalSeats}">
+                                                        <dvt:gaugeThreshold id="gt1" color="#d62800"/>
+                                                        <dvt:gaugeMetricLabel rendered="true" id="gml3"/>
+                                                    </dvt:statusMeterGauge>
+                                                </af:gridCell>
+                                            </af:gridRow>
+                                        </af:panelGridLayout>
+                                    </af:panelBox>
+                                </af:carouselItem>
+                            </f:facet>
+                        </af:carousel>
                     </af:panelBox>
                     <af:panelBox text="Bookings" id="pb5">
                         <f:facet name="toolbar"/>
@@ -497,13 +535,14 @@
                                                 </af:outputText>
                                             </af:panelLabelAndMessage>
                                         </af:gridCell>
-                                        <af:gridCell marginStart="5px" width="33%" id="gc48">
-                                            <af:outputText value="#{item.Status}"
-                                                           shortDesc="#{bindings.ReservationOfCustomerForRestForUserVO.hints.Status.tooltip}"
-                                                           id="ot53"/>
-                                        </af:gridCell>
+                                        <af:gridCell marginStart="5px" width="33%" id="gc48"/>
                                         <af:gridCell marginStart="5px" width="33%" marginEnd="5px" id="gc49">
-                                            <af:button text="Remove Booking" id="b8"/>
+                                            <af:button text="Remove Booking" id="b8"
+                                                       action="#{handleBookingsBean.removeBooking}">
+                                                <af:setPropertyListener from="#{item.ReservationId}"
+                                                                        to="#{handleBookingsBean.reservationId}"
+                                                                        type="action"/>
+                                            </af:button>
                                         </af:gridCell>
                                     </af:gridRow>
                                 </af:panelGridLayout>
@@ -512,7 +551,7 @@
                     </af:panelBox>
                 </af:showDetailItem>
                 <af:showDetailItem id="delivery_agent" text="Delivery Agent" disclosureListener="#{tabListenerBean.onTabChange}">
-                    <af:panelBox text="PanelBox1" id="pb7">
+                    <af:panelBox text="Assign Delivery Partner" id="pb7">
                         <f:facet name="toolbar"/>
                         <af:panelGridLayout id="pgl1">
                             <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr1">
