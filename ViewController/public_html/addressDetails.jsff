@@ -18,14 +18,15 @@
                                        shortDesc="#{bindings.FullName.hints.tooltip}" id="ot1"/>
                     </af:panelLabelAndMessage>
                     <af:panelLabelAndMessage label="Address" id="plam2">
-                        <h:inputTextarea id="it1" value="#{orderNowBean.address}" label="Address" title="Address"/>
+                        <h:inputTextarea id="it1" value="#{orderNowBean.address}" label="Address" title="Address"
+                                         required="true" requiredMessage="Address is required"/>
                     </af:panelLabelAndMessage>
                     <af:inputText value="#{orderNowBean.phone}" label="#{bindings.Phone.hints.label}"
-                                  required="#{bindings.Phone.hints.mandatory}"
                                   columns="#{bindings.Phone.hints.displayWidth}"
                                   maximumLength="#{bindings.Phone.hints.precision}"
-                                  shortDesc="#{bindings.Phone.hints.tooltip}" id="it2">
+                                  shortDesc="#{bindings.Phone.hints.tooltip}" id="it2" required="true">
                         <f:validator binding="#{bindings.Phone.validator}"/>
+                        <af:validateRegExp pattern="[0-9]{10}" messageDetailNoMatch="Please enter 10 digit Phone Number."/>
                     </af:inputText>
                     <af:button text="Select" id="b1" actionListener="#{orderNowBean.submitAddress}"/>
                     <f:facet name="footer"/>
