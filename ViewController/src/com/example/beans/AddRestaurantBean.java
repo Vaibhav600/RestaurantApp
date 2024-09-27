@@ -38,11 +38,23 @@ public class AddRestaurantBean {
     private String status;
 
     private UploadedFile restImage;
+    private UploadedFile newImage;
+
 
     ConstantBean constants = new ConstantBean();
 
     public AddRestaurantBean() {
         super();
+    }
+
+    public void setNewImage(UploadedFile newImage) {
+        System.out.println("Image in setRestImage method: " + newImage.toString());
+
+        this.newImage = newImage;
+    }
+
+    public UploadedFile getNewImage() {
+        return newImage;
     }
 
     public ApplicationModule getApplicationModule() {
@@ -57,85 +69,9 @@ public class AddRestaurantBean {
         }
         return null;
     }
-
-    public String addRestaurant() {
-        try {
-            ApplicationModule am = getApplicationModule();
-            ViewObject restaurants_vo = am.findViewObject(constants.getRestaurant_vo_name());
-
-            restaurants_vo.setWhereClause("G3RestaurantsEO.OWNER_ID = :owner_id");
-            restaurants_vo.defineNamedWhereClauseParam("owner_id", null, null);
-            restaurants_vo.setNamedWhereClauseParam("owner_id", owner_id);
-            restaurants_vo.executeQuery();
-            Row queryRow = restaurants_vo.first();
-            restaurants_vo.removeNamedWhereClauseParam("owner_id");
-            restaurants_vo.setWhereClause(null);
-            restaurants_vo.executeQuery();
-            if (queryRow == null) {
-                Row lastRow = restaurants_vo.last();
-                Long newRestaurantId = Long.valueOf(lastRow.getAttribute("RestaurantId").toString()) + 1;
-
-                ViewObject users_vo = am.findViewObject(constants.getSuper_admin_users_vo());
-                users_vo.setWhereClause("G3UsersEO.USER_ID = :owner_id");
-                users_vo.defineNamedWhereClauseParam("owner_id", null, null);
-                users_vo.setNamedWhereClauseParam("owner_id", owner_id);
-                users_vo.executeQuery();
-                Row user = users_vo.first();
-
-                String role = (String) user.getAttribute("Role");
-                System.out.println(role);
-                if("customer".equals(role)){
-
-                    Row newRow = restaurants_vo.createRow();
-                    newRow.setAttribute("OwnerId", owner_id);
-                    newRow.setAttribute("Name", name);
-                    newRow.setAttribute("Address", address);
-                    newRow.setAttribute("Phone", phone);
-                    newRow.setAttribute("AvailableSeats", available_seats);
-                    newRow.setAttribute("Status", status);
-                    restaurants_vo.insertRow(newRow);
-
-                    user.setAttribute("Role", "owner");
-
-                    saveFile(restImage, newRestaurantId.toString());
-
-                    am.getTransaction().commit();
-                    FacesContext.getCurrentInstance().addMessage(null,
-                                                                 new FacesMessage("Restaurant added successfully"));
-                }
-                else {
-                    FacesContext.getCurrentInstance()
-                        .addMessage(null,
-                                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                                                     "Super-Admin or Delivery agent can't be assigned as owner", null));
-                } 
-                users_vo.removeNamedWhereClauseParam("owner_id");
-                users_vo.setWhereClause(null);
-                users_vo.executeQuery();
-                owner_id = "";
-                name = "";
-                address = "";
-                phone = "";
-                available_seats = "";
-                status = "";
-            } else {
-                FacesContext.getCurrentInstance()
-                    .addMessage(null,
-                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                                                 "Owner is already assigned to a restaurant", null));
-            }
-
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance()
-                .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Restaurant Addition Failed", null));
-            System.out.println(e);
-        }
-        return null;
-    }
-
+    
     public void changeOwnerId(ValueChangeEvent event) {
         String newVal = event.getNewValue().toString();
-        System.out.println(newVal);
         setOwner_id(newVal);
     }
 
@@ -194,6 +130,84 @@ public class AddRestaurantBean {
     public UploadedFile getRestImage() {
         return restImage;
     }
+
+    public String addRestaurant() {
+        try {
+            ApplicationModule am = getApplicationModule();
+            ViewObject restaurants_vo = am.findViewObject(constants.getRestaurant_vo_name());
+
+            restaurants_vo.setWhereClause("G3RestaurantsEO.OWNER_ID = :owner_id");
+            restaurants_vo.defineNamedWhereClauseParam("owner_id", null, null);
+            restaurants_vo.setNamedWhereClauseParam("owner_id", owner_id);
+            restaurants_vo.executeQuery();
+            Row queryRow = restaurants_vo.first();
+            restaurants_vo.removeNamedWhereClauseParam("owner_id");
+            restaurants_vo.setWhereClause(null);
+            restaurants_vo.executeQuery();
+            if (queryRow == null) {
+                Row lastRow = restaurants_vo.last();
+                Long newRestaurantId = Long.valueOf(lastRow.getAttribute("RestaurantId").toString()) + 1;
+
+                ViewObject users_vo = am.findViewObject(constants.getSuper_admin_users_vo());
+                users_vo.setWhereClause("G3UsersEO.USER_ID = :owner_id");
+                users_vo.defineNamedWhereClauseParam("owner_id", null, null);
+                users_vo.setNamedWhereClauseParam("owner_id", owner_id);
+                users_vo.executeQuery();
+                Row user = users_vo.first();
+
+                String role = (String) user.getAttribute("Role");
+                System.out.println(role);
+                if("customer".equals(role)){
+
+                    Row newRow = restaurants_vo.createRow();
+                    newRow.setAttribute("OwnerId", owner_id);
+                    newRow.setAttribute("Name", name);
+                    newRow.setAttribute("Address", address);
+                    newRow.setAttribute("Phone", phone);
+                    newRow.setAttribute("AvailableSeats", available_seats);
+                    newRow.setAttribute("Status", status);
+                    restaurants_vo.insertRow(newRow);
+                    user.setAttribute("Role", "owner");
+                    am.getTransaction().commit();
+
+                    System.out.println("NEW RESTSURANT ID: " +newImage );
+
+                    saveFile(newImage, newRow.getAttribute("RestaurantId").toString());
+
+                    FacesContext.getCurrentInstance().addMessage(null,
+                                                                 new FacesMessage("Restaurant added successfully"));
+                }
+                else {
+                    FacesContext.getCurrentInstance()
+                        .addMessage(null,
+                                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                                     "Super-Admin or Delivery agent can't be assigned as owner", null));
+                } 
+                users_vo.removeNamedWhereClauseParam("owner_id");
+                users_vo.setWhereClause(null);
+                users_vo.executeQuery();
+                owner_id = "";
+                name = "";
+                address = "";
+                phone = "";
+                available_seats = "";
+                status = "";
+            } else {
+                FacesContext.getCurrentInstance()
+                    .addMessage(null,
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                                 "Owner is already assigned to a restaurant", null));
+            }
+
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance()
+                .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Restaurant Addition Failed", null));
+            System.out.println(e);
+        }
+        return null;
+    }
+
+
 
 
     private void saveFile(UploadedFile file, String fileName) {

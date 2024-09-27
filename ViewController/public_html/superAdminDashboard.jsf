@@ -5,7 +5,7 @@
     <c:set var="viewcontrollerBundle" value="#{adfBundle['view.ViewControllerBundle']}"/>
     <af:document title="superAdminDashboardTest.jsf" id="d1">
         <af:messages id="m1"/>
-        <af:form id="f1">
+        <af:form id="f1" usesUpload="true">
             <af:panelTabbed position="above" id="pt1">
                 <af:showDetailItem id="restaurants" text="Restaurants" disclosed="true">
                     <af:panelSplitter id="ps1" splitterPosition="280" inlineStyle="width:1408px; height:863px;">
@@ -568,7 +568,7 @@
                                       shortDesc="#{bindings.Status.hints.tooltip}" id="it11" required="true">
                             <f:validator binding="#{bindings.Status.validator}"/>
                         </af:inputText>
-                        <af:inputFile label="Restaurant Image" id="if1" value="#{addRestaurantBean.restImage}"/>
+                        <af:inputFile label="Image" id="if2" value="#{addRestaurantBean.newImage}"/>
                         <af:button text="Add" disabled="#{!bindings.CreateWithParams.enabled}" id="b33" action="#{addRestaurantBean.addRestaurant}"/>
                     </af:panelFormLayout>
                 </af:panelWindow>
