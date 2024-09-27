@@ -3,10 +3,17 @@ package com.example.beans;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+
+import java.util.Date;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -132,26 +139,52 @@ public class ReservationBean {
         Timestamp reservation_timestamp = Timestamp.from(zonedDateTime.toInstant());
         return reservation_timestamp;
     }
-    public String bookReservation(){ 
-        ApplicationModule am = getApplicationModule();
+    private boolean checkDateValidation(){
+        
+        System.out.println("DATE : " + formatDateString(reservation_date));
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+            Date reservationDate = dateFormat.parse(formatDateString(reservation_date));
+            
+            Date currentDate = new Date();
 
-        Timestamp reservation_timestamp = getTimestamp();
+            String currentDateString = dateFormat.format(currentDate);
+            currentDate = dateFormat.parse(currentDateString);
+
+            return !reservationDate.before(currentDate); 
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false; // Return false in case of parsing error
+        }        
+    }
+    public String bookReservation(){ 
+        boolean date_check = checkDateValidation();
         
-        // Get Selected Restaurant ID
-        ViewObject selectedRestVO = am.findViewObject(constants.getRest_for_custApp_vo_name());
-        Row selectedRestaurant = selectedRestVO.first();
-        DBSequence dbSequence = (DBSequence) selectedRestaurant.getAttribute("RestaurantId");
-        Integer selectedRestaurantId = dbSequence.getSequenceNumber().intValue();
-                 
-        // Create Booking
-        System.out.println("Creating Booking, bookReservation() method");
-        boolean booking_successful = createBooking(selectedRestaurantId, reservation_timestamp, am);
-        
-        if(booking_successful){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Booking Successfull"));            
+        if(date_check){
+            ApplicationModule am = getApplicationModule();
+
+            Timestamp reservation_timestamp = getTimestamp();
+            
+            // Get Selected Restaurant ID
+            ViewObject selectedRestVO = am.findViewObject(constants.getRest_for_custApp_vo_name());
+            Row selectedRestaurant = selectedRestVO.first();
+            DBSequence dbSequence = (DBSequence) selectedRestaurant.getAttribute("RestaurantId");
+            Integer selectedRestaurantId = dbSequence.getSequenceNumber().intValue();
+                     
+            // Create Booking
+            System.out.println("Creating Booking, bookReservation() method");
+            boolean booking_successful = createBooking(selectedRestaurantId, reservation_timestamp, am);
+            
+            if(booking_successful){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Booking Successfull"));            
+            }
+            else{
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Booking Unsuccessful, Something went wrong"));
+            }
         }
         else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Booking Unsuccessful, Something went wrong"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Date Validation Failed."));
         }
 
         return null;
