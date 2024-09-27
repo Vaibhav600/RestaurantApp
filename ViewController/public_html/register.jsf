@@ -6,9 +6,18 @@
     
         <af:form id="f1">      
             <af:panelFormLayout id="pfl1" styleClass="formLayout">
-                <af:inputText id="it1" value="#{registerBean.fullName}" label="Full Name"/>
-                <af:inputText id="it4" value="#{registerBean.email}" label="Email"/>
-                <af:inputText id="it2" value="#{registerBean.password}" label="Password" secret="true"/>
+                <af:inputText id="it1" value="#{registerBean.fullName}" label="Full Name" showRequired="true">
+                    <af:validateLength minimum="4" hintMinimum="Full name should be at least 4 charaters"/>
+                </af:inputText>
+                <af:inputText id="it4" value="#{registerBean.email}" label="Email" showRequired="true">
+                   <af:validateRegExp pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$"
+                       messageDetailNoMatch="Please enter a valid email address."/>
+                </af:inputText>
+                <af:inputText id="it2" value="#{registerBean.password}" label="Password" secret="true"
+                              showRequired="true">
+                    <af:validateLength minimum="4" maximum="20"
+                                       hintMinimum="Password should be at least 4 characters long"/>
+                </af:inputText>
             <af:inputText id="it3" value="#{registerBean.confirm_password}" label="Confirm Password" secret="true"/>
             <af:commandButton id="cb1" text="Register" action="#{registerBean.registerUser}" styleClass="registerButton"/>
           <af:panelGroupLayout>

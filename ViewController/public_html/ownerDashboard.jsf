@@ -228,14 +228,14 @@
                                           shortDesc="#{bindings.DishName.hints.tooltip}" id="it9">
                                 <f:validator binding="#{bindings.DishName.validator}"/>
                             </af:inputText>
-                            <af:inputText value="#{restaurantMenuBean.price}" label="#{bindings.Price.hints.label}"
-                                          required="#{bindings.Price.hints.mandatory}"
-                                          columns="#{bindings.Price.hints.displayWidth}"
-                                          maximumLength="#{bindings.Price.hints.precision}"
-                                          shortDesc="#{bindings.Price.hints.tooltip}" id="it10">
+                            <af:inputNumberSpinbox value="#{restaurantMenuBean.price}"
+                                                   label="#{bindings.Price.hints.label}"
+                                                   required="#{bindings.Price.hints.mandatory}"
+                                                   columns="#{bindings.Price.hints.displayWidth}"
+                                                   shortDesc="#{bindings.Price.hints.tooltip}" id="it10" minimum="1">
                                 <f:validator binding="#{bindings.Price.validator}"/>
                                 <af:convertNumber groupingUsed="false" pattern="#{bindings.Price.format}"/>
-                            </af:inputText>
+                            </af:inputNumberSpinbox>
                             <af:selectOneRadio value="#{restaurantMenuBean.availability}"
                                                label="#{bindings.Availability.label}"
                                                required="#{bindings.Availability.hints.mandatory}"
@@ -261,7 +261,7 @@
                         <af:listView value="#{bindings.MenuItemsForRestaurantForUserVO.collectionModel}" var="item"
                                      emptyText="#{bindings.MenuItemsForRestaurantForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
                                      fetchSize="#{bindings.MenuItemsForRestaurantForUserVO.rangeSize}" id="lv4"
-                                     partialTriggers="::b2">
+                                     partialTriggers="::b2 b5">
                             <af:listItem id="li4">
                                 <af:panelGridLayout id="pgl9">
                                     <af:gridRow marginTop="5px" height="auto" id="gr10">
@@ -634,7 +634,7 @@
                         <af:listView value="#{bindings.CouponsForRestaurantForUserVO1.collectionModel}" var="item"
                                      emptyText="#{bindings.CouponsForRestaurantForUserVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
                                      fetchSize="#{bindings.CouponsForRestaurantForUserVO1.rangeSize}" id="lv1"
-                                     partialTriggers="::b4">
+                                     partialTriggers="::b4 b6">
                             <af:listItem id="li1">
                                 <af:panelGridLayout id="pgl5">
                                     <af:gridRow marginTop="5px" height="auto" id="gr2">
