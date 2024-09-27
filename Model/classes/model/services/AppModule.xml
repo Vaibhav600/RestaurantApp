@@ -4,7 +4,7 @@
 <AppModule
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="AppModule"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge"
   ClearCacheOnRollback="true">
   <ViewUsage
@@ -232,6 +232,13 @@
   <ViewUsage
     Name="SuperAdminUsers"
     ViewObjectName="model.services.views.SuperAdminUsers"/>
+  <ViewUsage
+    Name="MyOrders_forCustApp_VO"
+    ViewObjectName="model.services.views.MyOrders_forCustApp_VO">
+    <ViewCriteriaUsage
+      Name="MyOrders_forCustApp_VOCriteria"
+      FullName="model.services.views.MyOrders_forCustApp_VO.MyOrders_forCustApp_VOCriteria"/>
+  </ViewUsage>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"

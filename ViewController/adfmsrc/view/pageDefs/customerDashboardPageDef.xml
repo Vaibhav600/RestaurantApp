@@ -9,10 +9,11 @@
     </variableIterator>
     <iterator Binds="RestaurantVO_ForCustApp" RangeSize="25" DataControl="AppModuleDataControl"
               id="RestaurantVO_ForCustAppIterator"/>
-    <iterator Binds="CartItemsVO" RangeSize="25" DataControl="AppModuleDataControl" id="CartItemsVOIterator"/>
     <iterator Binds="OffersVO" RangeSize="25" DataControl="AppModuleDataControl" id="OffersVOIterator"/>
     <taskFlow id="checkoutTrainTF1" taskFlowId="/WEB-INF/checkoutTrainTF.xml#checkoutTrainTF" activation="deferred"
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <iterator Binds="MyOrders_forCustApp_VO" RangeSize="25" DataControl="AppModuleDataControl"
+              id="MyOrders_forCustApp_VOIterator"/>
   </executables>
   <bindings>
     <action IterBinding="RestaurantVO_ForCustAppIterator" id="ExecuteWithParams" RequiresUpdateModel="true"
@@ -24,17 +25,6 @@
         <Item Value="ExecuteWithParams_bRestName"/>
       </AttrNames>
     </attributeValues>
-    <tree IterBinding="CartItemsVOIterator" id="CartItemsVO1">
-      <nodeDefinition DefName="model.services.views.CartItemsVO" Name="CartItemsVO10">
-        <AttrNames>
-          <Item Value="OrderId"/>
-          <Item Value="DishName"/>
-          <Item Value="TotalAmount"/>
-          <Item Value="OrderStatus"/>
-          <Item Value="PaymentStatus"/>
-        </AttrNames>
-      </nodeDefinition>
-    </tree>
     <tree IterBinding="OffersVOIterator" id="OffersVO">
       <nodeDefinition DefName="model.services.views.OffersVO" Name="OffersVO0">
         <AttrNames>
@@ -76,6 +66,26 @@
           <Item Value="Name"/>
           <Item Value="AvgRating"/>
           <Item Value="Status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="MyOrders_forCustApp_VOIterator" id="MyOrders_forCustApp_VO">
+      <nodeDefinition DefName="model.services.views.MyOrders_forCustApp_VO" Name="MyOrders_forCustApp_VO0">
+        <AttrNames>
+          <Item Value="DishName"/>
+          <Item Value="Price"/>
+          <Item Value="ItemTotal"/>
+          <Item Value="Quantity"/>
+          <Item Value="TotalAmount"/>
+          <Item Value="OrderStatus"/>
+          <Item Value="PaymentStatus"/>
+          <Item Value="Description"/>
+          <Item Value="OrderId"/>
+          <Item Value="CustomerId"/>
+          <Item Value="Id"/>
+          <Item Value="ItemId"/>
+          <Item Value="CouponId"/>
+          <Item Value="RestaurantId"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

@@ -48,7 +48,7 @@
                                                  var="item"
                                                  emptyText="#{bindings.CuisinesForRestaurantForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
                                                  fetchSize="#{bindings.CuisinesForRestaurantForUserVO.rangeSize}"
-                                                 id="lv5">
+                                                 id="lv5" partialTriggers="::b2">
                                         <af:listItem id="li5">
                                             <af:panelGroupLayout layout="horizontal" id="pgl12">
                                                 <f:facet name="separator">
@@ -505,7 +505,8 @@
                         <af:listView value="#{bindings.ReservationOfCustomerForRestForUserVO.collectionModel}"
                                      var="item"
                                      emptyText="#{bindings.ReservationOfCustomerForRestForUserVO.viewable ? 'No data to display.' : 'Access Denied.'}"
-                                     fetchSize="#{bindings.ReservationOfCustomerForRestForUserVO.rangeSize}" id="lv7">
+                                     fetchSize="#{bindings.ReservationOfCustomerForRestForUserVO.rangeSize}" id="lv7"
+                                     partialTriggers="b8">
                             <af:listItem id="li7">
                                 <af:panelGridLayout id="pgl15">
                                     <af:gridRow marginTop="5px" height="auto" id="gr21">

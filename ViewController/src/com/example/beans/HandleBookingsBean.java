@@ -60,9 +60,8 @@ public class HandleBookingsBean {
        Row rowToDelete = null;
        
        // Check if there are rows matching the query
-       if (vo.hasNext()) {
-           rowToDelete = vo.next();
-       }
+        rowToDelete = vo.first();
+
        
        // Delete the row if it exists
        if (rowToDelete != null) {

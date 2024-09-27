@@ -14,9 +14,7 @@
                         <af:button text="Offers" id="b2">
                             <af:showPopupBehavior popupId="coupons_popup"/>
                         </af:button>
-                        <af:button text="My Orders" id="b4">
-                            <af:showPopupBehavior popupId="my_orders_popup"/>
-                        </af:button>
+                        <af:button text="My Orders" id="b4" action="#{viewScope.myOrderCustomerBean.setCustomerId}"/>
                         <af:button text="Logout" id="b5" action="#{loginBean.doLogout}"/>
                     </af:gridCell>
                 </af:gridRow>
@@ -135,60 +133,159 @@
                 </af:panelWindow>
                     
             </af:popup>
-            <af:popup childCreation="deferred" autoCancel="disabled" id="my_orders_popup" animate="true">
+            <af:popup childCreation="deferred" autoCancel="disabled" id="my_orders_popup" animate="true"
+                      binding="#{myOrderCustomerBean.popup_order}">
                 <af:panelWindow id="pw2">
                     <af:panelGridLayout id="pgl3">
                         <af:gridRow marginTop="5px" height="auto" id="gr1">
-                            <af:gridCell marginStart="5px" width="700px" marginEnd="5px" id="gc2" halign="stretch"
+                            <af:gridCell marginStart="5px" width="900px" marginEnd="5px" id="gc2" halign="stretch"
                                          valign="stretch">
-                                <af:table value="#{bindings.CartItemsVO1.collectionModel}" var="row"
-                                          rows="#{bindings.CartItemsVO1.rangeSize}"
-                                          emptyText="#{bindings.CartItemsVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                <af:table value="#{bindings.MyOrders_forCustApp_VO.collectionModel}" var="row"
+                                          rows="#{bindings.MyOrders_forCustApp_VO.rangeSize}"
+                                          emptyText="#{bindings.MyOrders_forCustApp_VO.viewable ? 'No data to display.' : 'Access Denied.'}"
                                           rowBandingInterval="0"
-                                          selectedRowKeys="#{bindings.CartItemsVO1.collectionModel.selectedRow}"
-                                          selectionListener="#{bindings.CartItemsVO1.collectionModel.makeCurrent}"
-                                          rowSelection="single" fetchSize="#{bindings.CartItemsVO1.rangeSize}" id="t2"
-                                          width="100%" columnStretching="last">
-                                    <af:column sortProperty="#{bindings.CartItemsVO1.hints.OrderId.name}"
-                                               sortable="true" headerText="#{bindings.CartItemsVO1.hints.OrderId.label}"
-                                               id="c7">
-                                        <af:outputText value="#{row.OrderId}"
-                                                       shortDesc="#{bindings.CartItemsVO1.hints.OrderId.tooltip}"
-                                                       id="ot7">
+                                          fetchSize="#{bindings.MyOrders_forCustApp_VO.rangeSize}" id="t1">
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.DishName.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.DishName.label}"
+                                               id="c1">
+                                        <af:outputText value="#{row.DishName}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.DishName.tooltip}"
+                                                       id="ot1"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.Price.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.Price.label}"
+                                               id="c2">
+                                        <af:outputText value="#{row.Price}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.Price.tooltip}"
+                                                       id="ot2">
                                             <af:convertNumber groupingUsed="false"
-                                                              pattern="#{bindings.CartItemsVO1.hints.OrderId.format}"/>
+                                                              pattern="#{bindings.MyOrders_forCustApp_VO.hints.Price.format}"/>
                                         </af:outputText>
                                     </af:column>
-                                    <af:column sortProperty="#{bindings.CartItemsVO1.hints.DishName.name}"
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.ItemTotal.name}"
                                                sortable="true"
-                                               headerText="#{bindings.CartItemsVO1.hints.DishName.label}" id="c8">
-                                        <af:outputText value="#{row.DishName}"
-                                                       shortDesc="#{bindings.CartItemsVO1.hints.DishName.tooltip}"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.ItemTotal.label}"
+                                               id="c3">
+                                        <af:outputText value="#{row.ItemTotal}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.ItemTotal.tooltip}"
+                                                       id="ot3">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MyOrders_forCustApp_VO.hints.ItemTotal.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.Quantity.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.Quantity.label}"
+                                               id="c4">
+                                        <af:outputText value="#{row.Quantity}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.Quantity.tooltip}"
+                                                       id="ot4">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MyOrders_forCustApp_VO.hints.Quantity.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.TotalAmount.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.TotalAmount.label}"
+                                               id="c5">
+                                        <af:outputText value="#{row.TotalAmount}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.TotalAmount.tooltip}"
+                                                       id="ot5">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MyOrders_forCustApp_VO.hints.TotalAmount.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.OrderStatus.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.OrderStatus.label}"
+                                               id="c6">
+                                        <af:outputText value="#{row.OrderStatus}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.OrderStatus.tooltip}"
+                                                       id="ot6"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.PaymentStatus.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.PaymentStatus.label}"
+                                               id="c7">
+                                        <af:outputText value="#{row.PaymentStatus}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.PaymentStatus.tooltip}"
+                                                       id="ot7"/>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.Description.name}"
+                                               sortable="true"
+                                               headerText="Coupon"
+                                               id="c8">
+                                        <af:outputText value="#{row.Description}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.Description.tooltip}"
                                                        id="ot8"/>
                                     </af:column>
-                                    <af:column sortProperty="#{bindings.CartItemsVO1.hints.TotalAmount.name}"
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.OrderId.name}"
                                                sortable="true"
-                                               headerText="#{bindings.CartItemsVO1.hints.TotalAmount.label}" id="c9">
-                                        <af:outputText value="#{row.TotalAmount}"
-                                                       shortDesc="#{bindings.CartItemsVO1.hints.TotalAmount.tooltip}"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.OrderId.label}"
+                                               id="c9" rendered="false">
+                                        <af:outputText value="#{row.OrderId}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.OrderId.tooltip}"
                                                        id="ot9">
                                             <af:convertNumber groupingUsed="false"
-                                                              pattern="#{bindings.CartItemsVO1.hints.TotalAmount.format}"/>
+                                                              pattern="#{bindings.MyOrders_forCustApp_VO.hints.OrderId.format}"/>
                                         </af:outputText>
                                     </af:column>
-                                    <af:column sortProperty="#{bindings.CartItemsVO1.hints.OrderStatus.name}"
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.CustomerId.name}"
                                                sortable="true"
-                                               headerText="#{bindings.CartItemsVO1.hints.OrderStatus.label}" id="c10">
-                                        <af:outputText value="#{row.OrderStatus}"
-                                                       shortDesc="#{bindings.CartItemsVO1.hints.OrderStatus.tooltip}"
-                                                       id="ot10"/>
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.CustomerId.label}"
+                                               id="c10" rendered="false">
+                                        <af:outputText value="#{row.CustomerId}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.CustomerId.tooltip}"
+                                                       id="ot10">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MyOrders_forCustApp_VO.hints.CustomerId.format}"/>
+                                        </af:outputText>
                                     </af:column>
-                                    <af:column sortProperty="#{bindings.CartItemsVO1.hints.PaymentStatus.name}"
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.Id.name}"
                                                sortable="true"
-                                               headerText="#{bindings.CartItemsVO1.hints.PaymentStatus.label}" id="c11">
-                                        <af:outputText value="#{row.PaymentStatus}"
-                                                       shortDesc="#{bindings.CartItemsVO1.hints.PaymentStatus.tooltip}"
-                                                       id="ot11"/>
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.Id.label}" id="c11"
+                                               rendered="false">
+                                        <af:outputText value="#{row.Id}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.Id.tooltip}"
+                                                       id="ot11">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MyOrders_forCustApp_VO.hints.Id.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.ItemId.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.ItemId.label}"
+                                               id="c15" rendered="false">
+                                        <af:outputText value="#{row.ItemId}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.ItemId.tooltip}"
+                                                       id="ot15">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MyOrders_forCustApp_VO.hints.ItemId.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.CouponId.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.CouponId.label}"
+                                               id="c16" rendered="false">
+                                        <af:outputText value="#{row.CouponId}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.CouponId.tooltip}"
+                                                       id="ot16">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MyOrders_forCustApp_VO.hints.CouponId.format}"/>
+                                        </af:outputText>
+                                    </af:column>
+                                    <af:column sortProperty="#{bindings.MyOrders_forCustApp_VO.hints.RestaurantId.name}"
+                                               sortable="true"
+                                               headerText="#{bindings.MyOrders_forCustApp_VO.hints.RestaurantId.label}"
+                                               id="c17" rendered="false">
+                                        <af:outputText value="#{row.RestaurantId}"
+                                                       shortDesc="#{bindings.MyOrders_forCustApp_VO.hints.RestaurantId.tooltip}"
+                                                       id="ot17">
+                                            <af:convertNumber groupingUsed="false"
+                                                              pattern="#{bindings.MyOrders_forCustApp_VO.hints.RestaurantId.format}"/>
+                                        </af:outputText>
                                     </af:column>
                                 </af:table>
                             </af:gridCell>
