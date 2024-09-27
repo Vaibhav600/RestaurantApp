@@ -5,18 +5,5 @@
     <view id="register">
       <page>/register.jsf</page>
     </view>
-    <task-flow-call id="loginTF">
-      <task-flow-reference>
-        <document>/WEB-INF/loginTF.xml</document>
-        <id>loginTF</id>
-      </task-flow-reference>
-    </task-flow-call>
-    <control-flow-rule id="__1">
-      <from-activity-id>register</from-activity-id>
-      <control-flow-case id="__2">
-        <from-outcome>goToLogin</from-outcome>
-        <to-activity-id>loginTF</to-activity-id>
-      </control-flow-case>
-    </control-flow-rule>
   </task-flow-definition>
 </adfc-config>

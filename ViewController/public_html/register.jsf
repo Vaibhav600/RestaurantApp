@@ -12,8 +12,8 @@
             <af:inputText id="it3" value="#{registerBean.confirm_password}" label="Confirm Password" secret="true"/>
             <af:commandButton id="cb1" text="Register" action="#{registerBean.registerUser}" styleClass="registerButton"/>
           <af:panelGroupLayout>
-           <af:outputText value="Already have an account? " id="ot1" styleClass="inlineText" />
-<af:link text="Login" id="l1"  styleClass="inlineLink" action="goToLogin"/>
+           <af:outputText value="Already have an account? " id="ot1" styleClass="inlineText" rendered="false"/>
+<af:link text="Login" id="l1"  styleClass="inlineLink" action="goToLogin" rendered="false"/>
         </af:panelGroupLayout>
             </af:panelFormLayout>
         </af:form>

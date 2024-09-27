@@ -210,4 +210,29 @@
       <property
          name="sdm:polyPoints">T50,795.3457,213.23438,858.75195,168.16797,B50</property>
    </ControlFlowCase>
+   <TaskFlowReturn
+      id="TaskFlowReturn22">
+      <property
+         name="activityId">logout</property>
+      <property
+         name="x">160.0</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>logout&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Return&lt;/p>&lt;p>Outcome:  logout&lt;/p></property>
+      <property
+         name="y">428.40234</property>
+      <property
+         name="finish">true</property>
+      <property
+         name="exceptionHandler">false</property>
+   </TaskFlowReturn>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase23"
+      from="View3"
+      to="TaskFlowReturn22">
+      <property
+         name="fromOutcome">logout</property>
+      <property
+         name="sdm:polyPoints">B44,254.92871,222.47266,160.0,374.40234,T50</property>
+   </ControlFlowCase>
 </SDM>

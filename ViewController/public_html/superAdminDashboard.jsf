@@ -362,6 +362,13 @@
                     <af:panelFormLayout id="pfl4">
                         <f:facet name="footer"/>
                     </af:panelFormLayout>
+                    <af:panelGridLayout id="pgl4">
+                        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr3">
+                            <af:gridCell marginStart="5px" width="100%" marginEnd="5px" id="gc5" halign="end">
+                                <af:button text="Logout" id="b5" action="#{loginBean.doLogout}"/>
+                            </af:gridCell>
+                        </af:gridRow>
+                    </af:panelGridLayout>
                 </af:showDetailItem>
                 <af:showDetailItem id="users" text="Users">
                     <af:panelGroupLayout layout="vertical" id="pgl3">
