@@ -4,7 +4,7 @@
 <AppModule
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="AppModule"
-  Version="12.2.1.22.48"
+  Version="12.2.1.11.57"
   InheritPersonalization="merge"
   ClearCacheOnRollback="true">
   <ViewUsage
@@ -242,6 +242,9 @@
   <ViewUsage
     Name="G3DeliveryAgentVO1"
     ViewObjectName="model.services.views.G3DeliveryAgentVO"/>
+  <ViewUsage
+    Name="RestaurantReview_ForCustApp"
+    ViewObjectName="model.services.views.RestaurantReviewVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
@@ -404,5 +407,11 @@
     ViewLinkObjectName="model.services.assoc.DeliveryAgentOrderInfoViewLink"
     SrcViewUsageName="model.services.AppModule.G3UsersVO"
     DstViewUsageName="model.services.AppModule.DeliveryAgentInfoForUserVO"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="Review_ForCustAppViewLink1"
+    ViewLinkObjectName="model.services.views.Review_ForCustAppViewLink"
+    SrcViewUsageName="model.services.AppModule.RestaurantVO_ForCustApp"
+    DstViewUsageName="model.services.AppModule.RestaurantReview_ForCustApp"
     Reversed="false"/>
 </AppModule>

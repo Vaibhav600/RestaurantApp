@@ -170,6 +170,11 @@ ORDER BY
     ViewLink="model.services.link.CouponForRestaurant_ForCustApp_FK"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="RestaurantReviewVO"
+    ViewLink="model.services.views.Review_ForCustAppViewLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="model.ModelBundle"/>

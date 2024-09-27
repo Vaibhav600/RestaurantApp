@@ -16,6 +16,8 @@
               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
     <iterator id="CheckRestAvailability_ForCustApp_VOIterator" Binds="CheckRestAvailability_ForCustApp_VO"
               DataControl="AppModuleDataControl" RangeSize="25"/>
+    <iterator Binds="RestaurantReview_ForCustApp" RangeSize="25" DataControl="AppModuleDataControl"
+              id="RestaurantReview_ForCustAppIterator"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="RestaurantVO_ForCustAppIterator" id="Name">
@@ -87,6 +89,15 @@
           <Item Value="TotalSeats"/>
           <Item Value="TotalReservedSeats"/>
           <Item Value="AvailableSeats"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="RestaurantReview_ForCustAppIterator" id="RestaurantReview_ForCustApp">
+      <nodeDefinition DefName="model.services.views.RestaurantReviewVO" Name="RestaurantReview_ForCustApp0">
+        <AttrNames>
+          <Item Value="FullName"/>
+          <Item Value="Rating"/>
+          <Item Value="Review"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

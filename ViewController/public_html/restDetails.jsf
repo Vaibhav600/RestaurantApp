@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html>
-<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+        xmlns:dvt="http://xmlns.oracle.com/dss/adf/faces">
     <af:document title="restDetails.jsf" id="d1">
         <af:messages id="m1"/>
         <af:form id="f1">
@@ -69,7 +70,42 @@
                                     </af:listView>
                                 </af:panelFormLayout>
                             </af:showDetailItem>
-                            <af:showDetailItem id="Review" text="Review"/>
+                            <af:showDetailItem id="Review" text="Review">
+                                <af:listView value="#{bindings.RestaurantReview_ForCustApp.collectionModel}" var="item"
+                                             emptyText="#{bindings.RestaurantReview_ForCustApp.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                             fetchSize="#{bindings.RestaurantReview_ForCustApp.rangeSize}" id="lv2">
+                                    <af:listItem id="li2">
+                                        <af:panelGridLayout id="pgl4">
+                                            <af:gridRow marginTop="5px" height="auto" id="gr3">
+                                                <af:gridCell marginStart="5px" width="40%" id="gc3">
+                                                    <af:panelLabelAndMessage label="Customer" id="plam1">
+                                                        <af:outputText value="#{item.FullName}"
+                                                                       shortDesc="#{bindings.RestaurantReview_ForCustApp.hints.FullName.tooltip}"
+                                                                       id="ot6"/>
+                                                    </af:panelLabelAndMessage>
+                                                </af:gridCell>
+                                                <af:gridCell marginStart="5px" rowSpan="2" width="50%" marginEnd="5px"
+                                                             id="gc4">
+                                                    <af:outputText value="#{item.Rating}"
+                                                                   shortDesc="#{bindings.RestaurantReview_ForCustApp.hints.Rating.tooltip}"
+                                                                   id="ot7" rendered="false">
+                                                        <af:convertNumber groupingUsed="false"
+                                                                          pattern="#{bindings.RestaurantReview_ForCustApp.hints.Rating.format}"/>
+                                                    </af:outputText>
+                                                    <dvt:ratingGauge id="ratingGauge1" value="#{item.Rating}"/>
+                                                </af:gridCell>
+                                            </af:gridRow>
+                                            <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr4">
+                                                <af:gridCell marginStart="5px" width="40%" marginEnd="5px" id="gc5">
+                                                    <af:outputText value="#{item.Review}"
+                                                                   shortDesc="#{bindings.RestaurantReview_ForCustApp.hints.Review.tooltip}"
+                                                                   id="ot8"/>
+                                                </af:gridCell>
+                                            </af:gridRow>
+                                        </af:panelGridLayout>
+                                    </af:listItem>
+                                </af:listView>
+                            </af:showDetailItem>
                             <af:showDetailItem id="Menu" text="Menu">
                                 <af:table value="#{bindings.MenuItems_CustApp_VO.collectionModel}" var="row"
                                           rows="#{bindings.MenuItems_CustApp_VO.rangeSize}"
