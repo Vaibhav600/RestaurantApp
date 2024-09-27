@@ -14,6 +14,7 @@ import oracle.adf.model.binding.DCDataControl;
 import oracle.adf.model.binding.DCIteratorBinding;
 
 import oracle.jbo.Row;
+import oracle.jbo.ViewObject;
 
 @SessionScoped
 @ManagedBean(name = "changeRoleDelivery")
@@ -45,7 +46,7 @@ public class ChangeRoleDelivery {
         }
         Row currentRow = iteratorBinding.getCurrentRow();
         String role = (String) currentRow.getAttribute("Role");
-
+        
         if (!"customer".equals(role)) {
             FacesContext.getCurrentInstance()
                 .addMessage(null,
@@ -54,6 +55,14 @@ public class ChangeRoleDelivery {
         } else {
             try {
                 currentRow.setAttribute("Role", "delivery");
+                ViewObject vo=am.findViewObject("G3DeliveryAgentVO");
+                
+                Row newRow = vo.createRow();
+                newRow.setAttribute("AgentId",currentRow.getAttribute("UserId"));
+                newRow.setAttribute("Name", currentRow.getAttribute("FullName"));
+                newRow.setAttribute("Phone", currentRow.getAttribute("Phone"));
+                newRow.setAttribute("IsAvailable","yes");
+                vo.insertRow(newRow);
                 am.getTransaction().commit();
                 FacesContext.getCurrentInstance().addMessage(null,
                                                              new FacesMessage("Role changed successfully"));

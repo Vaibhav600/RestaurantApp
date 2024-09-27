@@ -4,7 +4,7 @@
 <AppModule
   xmlns="http://xmlns.oracle.com/bc4j"
   Name="AppModule"
-  Version="12.2.1.11.57"
+  Version="12.2.1.22.48"
   InheritPersonalization="merge"
   ClearCacheOnRollback="true">
   <ViewUsage
@@ -239,6 +239,9 @@
       Name="MyOrders_forCustApp_VOCriteria"
       FullName="model.services.views.MyOrders_forCustApp_VO.MyOrders_forCustApp_VOCriteria"/>
   </ViewUsage>
+  <ViewUsage
+    Name="G3DeliveryAgentVO1"
+    ViewObjectName="model.services.views.G3DeliveryAgentVO"/>
   <ViewLinkUsage
     Name="OrderRestaurantViewLink"
     ViewLinkObjectName="model.services.link.OrderRestaurantViewLink"
