@@ -461,41 +461,37 @@
                                 <af:convertNumber groupingUsed="false" pattern="#{bindings.RestaurantId.format}"/>
                             </af:inputText>
                             <af:inputText value="#{bindings.Name.inputValue}" label="#{bindings.Name.hints.label}"
-                                          required="#{bindings.Name.hints.mandatory}"
                                           columns="#{bindings.Name.hints.displayWidth}"
                                           maximumLength="#{bindings.Name.hints.precision}"
-                                          shortDesc="#{bindings.Name.hints.tooltip}" id="it3">
+                                          shortDesc="#{bindings.Name.hints.tooltip}" id="it3" required="true">
                                 <f:validator binding="#{bindings.Name.validator}"/>
                             </af:inputText>
                             <af:inputText value="#{bindings.Address.inputValue}" label="#{bindings.Address.hints.label}"
-                                          required="#{bindings.Address.hints.mandatory}"
                                           columns="#{bindings.Address.hints.displayWidth}"
                                           maximumLength="#{bindings.Address.hints.precision}"
-                                          shortDesc="#{bindings.Address.hints.tooltip}" id="it4">
+                                          shortDesc="#{bindings.Address.hints.tooltip}" id="it4" required="true">
                                 <f:validator binding="#{bindings.Address.validator}"/>
                             </af:inputText>
                             <af:inputText value="#{bindings.Phone.inputValue}" label="#{bindings.Phone.hints.label}"
-                                          required="#{bindings.Phone.hints.mandatory}"
                                           columns="#{bindings.Phone.hints.displayWidth}"
                                           maximumLength="#{bindings.Phone.hints.precision}"
-                                          shortDesc="#{bindings.Phone.hints.tooltip}" id="it5">
+                                          shortDesc="#{bindings.Phone.hints.tooltip}" id="it5" required="true">
                                 <f:validator binding="#{bindings.Phone.validator}"/>
+                                <af:validateRegExp pattern="[0-9]{10}" messageDetailNoMatch="Please enter 10 digit Phone Number."/>
                                 <af:convertNumber groupingUsed="false" pattern="#{bindings.Phone.format}"/>
                             </af:inputText>
                             <af:inputText value="#{bindings.AvailableSeats.inputValue}"
                                           label="#{bindings.AvailableSeats.hints.label}"
-                                          required="#{bindings.AvailableSeats.hints.mandatory}"
                                           columns="#{bindings.AvailableSeats.hints.displayWidth}"
                                           maximumLength="#{bindings.AvailableSeats.hints.precision}"
-                                          shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="it6">
+                                          shortDesc="#{bindings.AvailableSeats.hints.tooltip}" id="it6" required="true">
                                 <f:validator binding="#{bindings.AvailableSeats.validator}"/>
                                 <af:convertNumber groupingUsed="false" pattern="#{bindings.AvailableSeats.format}"/>
                             </af:inputText>
                             <af:inputText value="#{bindings.Status.inputValue}" label="#{bindings.Status.hints.label}"
-                                          required="#{bindings.Status.hints.mandatory}"
                                           columns="#{bindings.Status.hints.displayWidth}"
                                           maximumLength="#{bindings.Status.hints.precision}"
-                                          shortDesc="#{bindings.Status.hints.tooltip}" id="it7">
+                                          shortDesc="#{bindings.Status.hints.tooltip}" id="it7" required="true">
                                 <f:validator binding="#{bindings.Status.validator}"/>
                             </af:inputText>
                             <af:inputDate value="#{bindings.CreatedAt.inputValue}"
@@ -550,6 +546,7 @@
                                       maximumLength="#{bindings.Phone.hints.precision}"
                                       shortDesc="#{bindings.Phone.hints.tooltip}" id="it9" required="true">
                             <f:validator binding="#{bindings.Phone.validator}"/>
+                            <af:validateRegExp pattern="[0-9]{10}" messageDetailNoMatch="Please enter 10 digit Phone Number."/>
                             <af:convertNumber groupingUsed="false" pattern="#{bindings.Phone.format}"/>
                         </af:inputText>
                         <af:inputText value="#{addRestaurantBean.available_seats}"
